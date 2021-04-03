@@ -1,3 +1,4 @@
+import BaseSelect from './component/base-select'
 import Button from './component/button'
 import Checkbox from './component/checkbox'
 import ChoiceGroup from './component/choice-group'
@@ -6,6 +7,7 @@ import Label from './component/label'
 import Spinner from './component/spinner'
 
 const components = {
+  BaseSelect,
   Button,
   Checkbox,
   ChoiceGroup,
