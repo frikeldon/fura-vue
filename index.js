@@ -1,8 +1,10 @@
+import Button from './component/button'
 import Icon from './component/icon'
 import Label from './component/label'
 import Spinner from './component/spinner'
 
 const components = {
+  Button,
   Icon,
   Label,
   Spinner
