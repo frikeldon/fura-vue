@@ -131,7 +131,7 @@ export default {
 </script>
 <template>
   <fura-choice-group
-  in-row
+    in-row
     label="ChoiceGroup"
     :options="options"
     v-model="value"
@@ -170,7 +170,7 @@ export default {
       />
     </div>
     <div>
-      <fluentui-label v-text="slotProps.option.icon" />
+      <fura-label v-text="slotProps.option.icon" />
     </div>
   </fura-choice-group>
 </template>
