@@ -4,6 +4,7 @@ import Checkbox from './component/checkbox'
 import ChoiceGroup from './component/choice-group'
 import Icon from './component/icon'
 import Label from './component/label'
+import Select from './component/select'
 import Spinner from './component/spinner'
 
 const components = {
@@ -13,6 +14,7 @@ const components = {
   ChoiceGroup,
   Icon,
   Label,
+  Select,
   Spinner
 }
 
