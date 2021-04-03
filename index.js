@@ -1,5 +1,7 @@
+import Icon from './component/icon'
 
 const components = {
+  Icon
 }
 
 export default {
