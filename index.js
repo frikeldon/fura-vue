@@ -1,4 +1,5 @@
 import BaseFieldCombo from './component/base-field-combo'
+import BaseFieldInput from './component/base-field-input'
 import BaseSelect from './component/base-select'
 import Button from './component/button'
 import Checkbox from './component/checkbox'
@@ -10,6 +11,7 @@ import Spinner from './component/spinner'
 
 const components = {
   BaseFieldCombo,
+  BaseFieldInput,
   BaseSelect,
   Button,
   Checkbox,
