@@ -1,3 +1,4 @@
+import BaseDropdown from './component/base-dropdown'
 import BaseFieldCombo from './component/base-field-combo'
 import BaseFieldInput from './component/base-field-input'
 import BaseSelect from './component/base-select'
@@ -10,6 +11,7 @@ import Select from './component/select'
 import Spinner from './component/spinner'
 
 const components = {
+  BaseDropdown,
   BaseFieldCombo,
   BaseFieldInput,
   BaseSelect,
