@@ -221,7 +221,7 @@ export default {
         if (this.multiple) {
           const value = this.options[index].value
           const valueIndex = this.value.indexOf(value)
-          if (valueIndex > -1) {
+          if (this.value && valueIndex > -1) {
             this.value.splice(valueIndex, 1)
           } else {
             this.value.push(value)
@@ -258,7 +258,7 @@ export default {
     :readonly="readonly"
     :multiple="multiple"
     :markedIndex="markedIndex"
-    :immediateScroll="immediateScroll"
+    :immediate-scroll="immediateScroll"
     :options="options"
     @select="onSelect"
     @click="onClick"
@@ -345,7 +345,7 @@ export default {
     :readonly="readonly"
     :multiple="multiple"
     :markedIndex="markedIndex"
-    :immediateScroll="immediateScroll"
+    :immediate-scroll="immediateScroll"
     :options="options"
     @select="onSelect"
     @click="onClick"
@@ -432,7 +432,7 @@ export default {
     :readonly="readonly"
     :multiple="multiple"
     :markedIndex="markedIndex"
-    :immediateScroll="immediateScroll"
+    :immediate-scroll="immediateScroll"
     :options="options"
     @select="onSelect"
     @click="onClick"
