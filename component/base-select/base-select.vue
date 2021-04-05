@@ -49,7 +49,7 @@ export default {
         const option = options[index]
         if (
           (!option.type || option.type === 'option') &&
-          values.includes(option.value)
+          values?.includes(option.value)
         ) {
           selectedIndices.push(index)
         }
