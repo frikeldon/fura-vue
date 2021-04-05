@@ -1,4 +1,5 @@
 import Autofill from './component/autofill'
+import BaseComboBox from './component/base-combo-box'
 import BaseDropdown from './component/base-dropdown'
 import BaseFieldCombo from './component/base-field-combo'
 import BaseFieldInput from './component/base-field-input'
@@ -14,6 +15,7 @@ import Spinner from './component/spinner'
 
 const components = {
   Autofill,
+  BaseComboBox,
   BaseDropdown,
   BaseFieldCombo,
   BaseFieldInput,
