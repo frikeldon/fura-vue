@@ -4,10 +4,12 @@ export default {
     /** Mes a mostrar en el calendario. */
     value: {
       type: Number,
-      required: true,
-      validator: month => Number.isInteger(month) &&
+      default: null,
+      validator: month => month === null || (
+        Number.isInteger(month) &&
         month >= 0 &&
         month <= 11
+      )
     },
     /** Textos para identificar los meses. */
     months: {
