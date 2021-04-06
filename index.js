@@ -9,6 +9,7 @@ import BaseFieldCombo from './component/base-field-combo'
 import BaseFieldInput from './component/base-field-input'
 import BaseSelect from './component/base-select'
 import Button from './component/button'
+import Calendar from './component/calendar'
 import Checkbox from './component/checkbox'
 import ChoiceGroup from './component/choice-group'
 import ComboBox from './component/combo-box'
@@ -30,6 +31,7 @@ const components = {
   BaseFieldInput,
   BaseSelect,
   Button,
+  Calendar,
   Checkbox,
   ChoiceGroup,
   ComboBox,
