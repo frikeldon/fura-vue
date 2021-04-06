@@ -103,6 +103,7 @@ export default {
       <span
         class="title"
         v-text="selectedText || placeholder"
+        v-bind="$attrs"
       />
       <span class="caret">
         <Icon

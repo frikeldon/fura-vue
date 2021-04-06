@@ -149,6 +149,7 @@ export default {
         @click="handleAutofillClick"
         @update:model-value="$emit('input', $event)"
         @keydown="$emit('keydown', $event)"
+        v-bind="$attrs"
       />
     </div>
     <button
