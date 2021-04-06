@@ -17,6 +17,7 @@ import DatePicker from './component/date-picker'
 import Dropdown from './component/dropdown'
 import Icon from './component/icon'
 import Label from './component/label'
+import NumberField from './component/number-field'
 import Select from './component/select'
 import Spinner from './component/spinner'
 import TextField from './component/text-field'
@@ -41,6 +42,7 @@ const components = {
   Dropdown,
   Icon,
   Label,
+  NumberField,
   Select,
   Spinner,
   TextField
