@@ -1,4 +1,5 @@
 import Autofill from './component/autofill'
+import BaseCalendar from './component/base-calendar'
 import BaseCalendarDays from './component/base-calendar-days'
 import BaseCalendarMonths from './component/base-calendar-months'
 import BaseCalendarYears from './component/base-calendar-years'
@@ -19,6 +20,7 @@ import Spinner from './component/spinner'
 
 const components = {
   Autofill,
+  BaseCalendar,
   BaseCalendarDays,
   BaseCalendarMonths,
   BaseCalendarYears,
