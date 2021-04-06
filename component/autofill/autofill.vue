@@ -157,19 +157,21 @@ export default {
 </script>
 <template>
   <div>
-    <fura-autofill
-      style="width: 100%"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :disabled="disabled"
-      :autofill="autofill"
-      :accent-insensitive="accentInsensitive"
-      :suggested-value="suggestedValue"
-      v-model="value"
-    />
-  </div>
-  <div>
-    <fura-label v-text="label" />
+    <div>
+      <fura-autofill
+        style="width: 100%"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :disabled="disabled"
+        :autofill="autofill"
+        :accent-insensitive="accentInsensitive"
+        :suggested-value="suggestedValue"
+        v-model="value"
+      />
+    </div>
+    <div>
+      <fura-label v-text="label" />
+    </div>
   </div>
 </template>
 </docs>
