@@ -81,7 +81,7 @@ export default {
     :required="required"
     :borderless="borderless"
     :underlined="underlined"
-    @click-label="$refs.field.focus()"
+    @click="$refs.field.focus()"
   >
     <div
       v-if="prefix"
