@@ -19,6 +19,7 @@ import Icon from './component/icon'
 import Label from './component/label'
 import Select from './component/select'
 import Spinner from './component/spinner'
+import TextField from './component/text-field'
 
 const components = {
   Autofill,
@@ -41,7 +42,8 @@ const components = {
   Icon,
   Label,
   Select,
-  Spinner
+  Spinner,
+  TextField
 }
 
 export default {
