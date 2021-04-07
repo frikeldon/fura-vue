@@ -18,6 +18,7 @@ import Dropdown from './component/dropdown'
 import Icon from './component/icon'
 import Label from './component/label'
 import NumberField from './component/number-field'
+import Pivot from './component/pivot'
 import Select from './component/select'
 import Spinner from './component/spinner'
 import TextField from './component/text-field'
@@ -43,6 +44,7 @@ const components = {
   Icon,
   Label,
   NumberField,
+  Pivot,
   Select,
   Spinner,
   TextField
