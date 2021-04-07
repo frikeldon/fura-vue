@@ -1,0 +1,95 @@
+<script>
+import BaseCommandButton from '../base-command-button'
+
+export default {
+  components: { BaseCommandButton },
+  props: {
+    /** Texto para representar la etiqueta del botón. */
+    text: { type: String, default: '' },
+    /** El nombre del icono a mostrar en el botón. */
+    icon: { type: String, default: '' },
+    /** Color para representar el icono. */
+    iconColor: { type: String, default: '' },
+    /** Si el botón debe reservar un espacio para el icono. */
+    iconSpace: { type: Boolean, default: false },
+    /** El nombre del icono a mostrar en la parte expandida del botón. */
+    expandIcon: { type: String, default: '' },
+    /** Tiempo en milisegundos que el mouse debe estar sobre el botón para activar el evento mousestop. */
+    mousestopDelay: { type: Number, default: 800 },
+    /** Estado de deshabilitado. */
+    disabled: { type: Boolean, default: false }
+  },
+  emits: [
+    /**
+     * Se genera cuando el usuario hace clic en el componente.
+     * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
+     */
+    'click',
+    /**
+     * Se genera cuando el usuario hace clic en el icono de la parte expandida del botón.
+     * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
+     */
+    'click-expand',
+    /** Se genera cuando el mouse está sobre el botón durante un período de tiempo determinado. */
+    'mousestop',
+    /** Se genera cuando el mouse está sobre el botón expandido durante un período de tiempo determinado. */
+    'mousestop-expand'
+  ]
+}
+</script>
+
+<template>
+  <div class="splitButton">
+    <span>
+      <BaseCommandButton
+        class="action"
+        :text="text"
+        :icon="icon"
+        :icon-space="iconSpace"
+        :icon-color="iconColor"
+        :mousestop-delay="mousestopDelay"
+        :disabled="disabled"
+        @click="$emit('click', $event)"
+        @mousestop="$emit('mousestop')"
+      />
+      <BaseCommandButton
+        class="expand"
+        :expand-icon="expandIcon"
+        :mousestop-delay="mousestopDelay"
+        :disabled="disabled"
+        @click="$emit('click-expand', $event)"
+        @click-expand="$emit('click-expand', $event)"
+        @mousestop="$emit('mousestop-expand')"
+      />
+      <span class="divisor" />
+    </span>
+  </div>
+</template>
+
+<style lang="less" scoped src="./base-split-button.less"></style>
+
+<docs>
+<script>
+  export default {
+    methods: {
+      onClick() { alert('click') },
+      onClickExpand() { alert('click expand') },
+      onMousestop() { alert('mousestop') },
+      onMousestopExpand() { alert('mousestop expand') }
+    }
+  }
+</script>
+<template>
+  <div style="display: inline-block; border: 1px solid black">
+    <fura-base-split-button
+      text="Add Item"
+      icon="Add"
+      expand-icon="ChevronDown"
+      @click="onClick"
+      @click-expand="onClickExpand"
+      @mousestop="onMousestop"
+      @mousestop-expand="onMousestopExpand"
+    />
+  </div>
+</template>
+</docs>

@@ -9,6 +9,7 @@ import BaseDropdown from './component/base-dropdown'
 import BaseFieldCombo from './component/base-field-combo'
 import BaseFieldInput from './component/base-field-input'
 import BaseSelect from './component/base-select'
+import BaseSplitButton from './component/base-split-button'
 import Button from './component/button'
 import Calendar from './component/calendar'
 import Checkbox from './component/checkbox'
@@ -36,6 +37,7 @@ const components = {
   BaseFieldCombo,
   BaseFieldInput,
   BaseSelect,
+  BaseSplitButton,
   Button,
   Calendar,
   Checkbox,
