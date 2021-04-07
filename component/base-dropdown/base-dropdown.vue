@@ -109,7 +109,7 @@ export default {
         <Icon
           class="icon"
           name="ChevronDown"
-          @click="$emit('click')"
+          @click.stop="$emit('click')"
         />
       </span>
     </div>

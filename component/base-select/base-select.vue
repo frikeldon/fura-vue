@@ -180,7 +180,7 @@ export default {
               <Icon
                 class="icon"
                 name="CheckMark"
-                @click="handleClick(index)"
+                @click.stop="handleClick(index)"
               />
             </div>
             <span v-text="option.text" />

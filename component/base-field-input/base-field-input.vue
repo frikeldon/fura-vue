@@ -49,7 +49,7 @@ export default {
         class="label"
         :required="required"
         :disabled="disabled"
-        @click="$emit('click', $event)"
+        @click.stop="$emit('click', $event)"
         v-text="label"
       />
       <div class="fieldGroup">

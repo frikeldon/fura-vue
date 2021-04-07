@@ -126,23 +126,23 @@ export default {
         <div v-if="currentView === 'days'">
           <span
             v-text="currentMonthName"
-            @click="$emit('selectView', 'months')"
+            @click.stop="$emit('selectView', 'months')"
           />
           <span>&nbsp;</span>
           <span
             v-text="currentYear"
-            @click="$emit('selectView', 'years')"
+            @click.stop="$emit('selectView', 'years')"
           />
         </div>
         <div
           v-else-if="currentView === 'months'"
           v-text="currentYear"
-          @click="$emit('selectView', 'days')"
+          @click.stop="$emit('selectView', 'days')"
         />
         <div
           v-else-if="currentView === 'years'"
           v-text="currentYearRange"
-          @click="$emit('selectView', 'days')"
+          @click.stop="$emit('selectView', 'days')"
         />
       </div>
       <div class="titleComponents">

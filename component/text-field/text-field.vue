@@ -125,7 +125,7 @@ export default {
       v-if="icon"
       class="icon"
       :name="icon"
-      @click="$emit('click')"
+      @click.stop="$emit('click')"
     />
 
     <div

@@ -178,7 +178,7 @@ export default {
     <Icon
       class="icon"
       name="Calendar"
-      @click="handleIconClick"
+      @click.stop="handleIconClick"
     />
 
     <template #dropdown>
