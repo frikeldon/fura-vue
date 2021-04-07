@@ -1,9 +1,9 @@
 <script>
-import Label from '../label'
+import FuraLabel from '../label'
 
 export default {
   name: 'FuraChoiceGroup',
-  components: { Label },
+  components: { FuraLabel },
   props: {
     /** Valor actual de ChoiceGroup. */
     modelValue: { type: String, default: null },
@@ -44,7 +44,7 @@ export default {
 
 <template>
   <div>
-    <Label
+    <FuraLabel
       v-if="label"
       v-text="label"
       :disabled="disabled"

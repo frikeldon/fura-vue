@@ -1,9 +1,9 @@
 <script>
-import Icon from '../icon'
+import FuraIcon from '../icon'
 
 export default {
   name: 'FuraCheckbox',
-  components: { Icon },
+  components: { FuraIcon },
   props: {
     /** El valor de Checkbox. */
     modelValue: { type: Boolean, default: false },
@@ -65,7 +65,7 @@ export default {
     @click.stop="handleClick"
   >
     <div class="box">
-      <Icon
+      <FuraIcon
         class="icon"
         name="CheckMark"
       />

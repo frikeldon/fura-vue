@@ -1,9 +1,9 @@
 <script>
-import BaseSelect from '../base-select'
+import FuraBaseSelect from '../base-select'
 
 export default {
   name: 'FuraSelect',
-  components: { BaseSelect },
+  components: { FuraBaseSelect },
   props: {
     /** Las opciones de Select. */
     options: { type: Array, required: true },
@@ -68,7 +68,7 @@ export default {
 </script>
 
 <template>
-  <BaseSelect
+  <FuraBaseSelect
     ref="select"
     :options="options"
     :value="modelValue"
@@ -128,7 +128,7 @@ export default {
         :click="slotProps.click"
       />
     </template>
-  </BaseSelect>
+  </FuraBaseSelect>
 </template>
 
 <docs>

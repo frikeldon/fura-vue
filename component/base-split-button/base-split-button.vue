@@ -1,9 +1,9 @@
 <script>
-import BaseCommandButton from '../base-command-button'
+import FuraBaseCommandButton from '../base-command-button'
 
 export default {
   name: 'FuraBaseSplitButton',
-  components: { BaseCommandButton },
+  components: { FuraBaseCommandButton },
   props: {
     /** Texto para representar la etiqueta del botón. */
     text: { type: String, default: '' },
@@ -42,7 +42,7 @@ export default {
 <template>
   <div class="splitButton">
     <span>
-      <BaseCommandButton
+      <FuraBaseCommandButton
         class="action"
         :text="text"
         :icon="icon"
@@ -53,7 +53,7 @@ export default {
         @click="$emit('click', $event)"
         @mousestop="$emit('mousestop')"
       />
-      <BaseCommandButton
+      <FuraBaseCommandButton
         class="expand"
         :expand-icon="expandIcon"
         :mousestop-delay="mousestopDelay"

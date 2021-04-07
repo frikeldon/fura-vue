@@ -1,9 +1,9 @@
 <script>
-import Icon from '../icon'
+import FuraIcon from '../icon'
 
 export default {
   name: 'FuraPivot',
-  components: { Icon },
+  components: { FuraIcon },
   props: {
     /** Valor de la pestaña seleccionada. */
     modelValue: { type: String, default: null },
@@ -43,7 +43,7 @@ export default {
       >
         <span>
           <span>
-            <Icon
+            <FuraIcon
               v-if="tab.icon"
               class="icon"
               :name="tab.icon"

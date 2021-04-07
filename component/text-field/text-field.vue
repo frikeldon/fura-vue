@@ -1,12 +1,12 @@
 <script>
-import BaseFieldInput from '../base-field-input'
-import Icon from '../icon'
+import FuraBaseFieldInput from '../base-field-input'
+import FuraIcon from '../icon'
 
 export default {
   name: 'FuraTextField',
   components: {
-    BaseFieldInput,
-    Icon
+    FuraBaseFieldInput,
+    FuraIcon
   },
   props: {
     /** Etiqueta que se muestra encima del campo de formulario asociado. */
@@ -71,7 +71,7 @@ export default {
 </script>
 
 <template>
-  <BaseFieldInput
+  <FuraBaseFieldInput
     class="textField"
     :class="{ multiline }"
     :label="label"
@@ -122,7 +122,7 @@ export default {
       v-bind="$attrs"
     >
 
-    <Icon
+    <FuraIcon
       v-if="icon"
       class="icon"
       :name="icon"
@@ -135,7 +135,7 @@ export default {
     >
       <span v-text="sufix" />
     </div>
-  </BaseFieldInput>
+  </FuraBaseFieldInput>
 </template>
 
 <style lang="less" scoped src="./text-field.less"></style>

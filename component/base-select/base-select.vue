@@ -1,9 +1,9 @@
 <script>
-import Icon from '../icon'
+import FuraIcon from '../icon'
 
 export default {
   name: 'FuraBaseSelect',
-  components: { Icon },
+  components: { FuraIcon },
   props: {
     /** Las opciones de Select. */
     options: { type: Array, required: true },
@@ -178,7 +178,7 @@ export default {
         >
           <label>
             <div>
-              <Icon
+              <FuraIcon
                 class="icon"
                 name="CheckMark"
                 @click.stop="handleClick(index)"

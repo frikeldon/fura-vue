@@ -1,5 +1,5 @@
 <script>
-import TextField from '../text-field'
+import FuraTextField from '../text-field'
 
 function defaultParse (text) {
   return text === ''
@@ -38,7 +38,7 @@ function defaultStringify (number) {
 
 export default {
   name: 'FuraNumberField',
-  components: { TextField },
+  components: { FuraTextField },
   props: {
     /** Etiqueta que se muestra encima del campo de formulario asociado. */
     label: { type: String, default: '' },
@@ -206,7 +206,7 @@ export default {
 </script>
 
 <template>
-  <TextField
+  <FuraTextField
     ref="textField"
     :class="textAlign"
     :label="label"

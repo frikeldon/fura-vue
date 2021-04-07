@@ -1,18 +1,18 @@
 <script>
-import BaseFieldCombo from '../base-field-combo'
-import Autofill from '../autofill'
-import BaseSelect from '../base-select'
-import Icon from '../icon'
-import Spinner from '../spinner'
+import FuraBaseFieldCombo from '../base-field-combo'
+import FuraAutofill from '../autofill'
+import FuraBaseSelect from '../base-select'
+import FuraIcon from '../icon'
+import FuraSpinner from '../spinner'
 
 export default {
   name: 'FuraBaseComboBox',
   components: {
-    BaseFieldCombo,
-    BaseSelect,
-    Autofill,
-    Icon,
-    Spinner
+    FuraBaseFieldCombo,
+    FuraBaseSelect,
+    FuraAutofill,
+    FuraIcon,
+    FuraSpinner
   },
   props: {
     /** Etiqueta que se muestra encima del campo de formulario asociado. */
@@ -95,7 +95,7 @@ export default {
         this.$emit('click')
       }
     },
-    handleAutofillClick (event) {
+    handleFuraAutofillClick (event) {
       if (!this.disabled && !this.readonly && !this.allowFreeform) {
         this.$emit('click')
       }
@@ -124,7 +124,7 @@ export default {
 </script>
 
 <template>
-  <BaseFieldCombo
+  <FuraBaseFieldCombo
     class="comboBox"
     :label="label"
     :description="description"
@@ -138,7 +138,7 @@ export default {
     @click="$refs.autofill.focus()"
   >
     <div class="title">
-      <Autofill
+      <FuraAutofill
         ref="autofill"
         class="autofill"
         :autofill="autoComplete"
@@ -147,7 +147,7 @@ export default {
         :readonly="!allowFreeform"
         :accent-insensitive="accentInsensitive"
         :suggested-value="autoComplete ? suggestedText : ''"
-        @click="handleAutofillClick"
+        @click="handleFuraAutofillClick"
         @update:model-value="$emit('input', $event)"
         @keydown="$emit('keydown', $event)"
         v-bind="$attrs"
@@ -159,7 +159,7 @@ export default {
       @click.stop="handleCaretClick"
     >
       <span>
-        <Icon
+        <FuraIcon
           class="icon"
           name="ChevronDown"
           @click.stop="handleCaretClick"
@@ -167,7 +167,7 @@ export default {
       </span>
     </button>
     <template #dropdown>
-      <BaseSelect
+      <FuraBaseSelect
         v-if="optionsLoaded"
         ref="select"
         class="select"
@@ -227,18 +227,18 @@ export default {
             :click="slotProps.click"
           />
         </template>
-      </BaseSelect>
+      </FuraBaseSelect>
       <div
         v-else
         class="loadingDropdown"
       >
-        <Spinner
+        <FuraSpinner
           class="spinner"
           :label="loadingText"
         />
       </div>
     </template>
-  </BaseFieldCombo>
+  </FuraBaseFieldCombo>
 </template>
 
 <style lang="less" scoped src="./base-combo-box.less"></style>

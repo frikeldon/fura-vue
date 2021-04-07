@@ -1,9 +1,9 @@
 <script>
-import Label from '../../component/label'
+import FuraLabel from '../../component/label'
 
 export default {
   name: 'FuraBaseFieldInput',
-  components: { Label },
+  components: { FuraLabel },
   props: {
     /** Etiqueta que se muestra encima del campo de formulario asociado. */
     label: { type: String, default: '' },
@@ -45,7 +45,7 @@ export default {
     }"
   >
     <div class="wrapper">
-      <Label
+      <FuraLabel
         v-if="label"
         class="label"
         :required="required"

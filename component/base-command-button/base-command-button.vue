@@ -1,9 +1,9 @@
 <script>
-import Icon from '../icon'
+import FuraIcon from '../icon'
 
 export default {
   name: 'FuraBaseCommandButton',
-  components: { Icon },
+  components: { FuraIcon },
   props: {
     /** Texto para representar la etiqueta del botón. */
     text: { type: String, default: '' },
@@ -68,7 +68,7 @@ export default {
     @mouseout.stop="clearMouseHandler"
   >
     <span>
-      <Icon
+      <FuraIcon
         v-if="iconSpace || icon"
         class="icon"
         :style="{ color: disabled ? '' : iconColor }"
@@ -81,7 +81,7 @@ export default {
       >
         <span v-text="text" />
       </span>
-      <Icon
+      <FuraIcon
         v-if="expandIcon"
         class="expand"
         :name="expandIcon"

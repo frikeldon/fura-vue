@@ -1,11 +1,15 @@
 <script>
-import BaseFieldCombo from '../base-field-combo'
-import Icon from '../icon'
-import Calendar from '../calendar'
+import FuraBaseFieldCombo from '../base-field-combo'
+import FuraIcon from '../icon'
+import FuraCalendar from '../calendar'
 
 export default {
   name: 'FuraDatePicker',
-  components: { BaseFieldCombo, Icon, Calendar },
+  components: {
+    FuraBaseFieldCombo,
+    FuraIcon,
+    FuraCalendar
+  },
   props: {
     /** Etiqueta que se muestra encima del campo de formulario asociado. */
     label: { type: String, default: '' },
@@ -150,7 +154,7 @@ export default {
 </script>
 
 <template>
-  <BaseFieldCombo
+  <FuraBaseFieldCombo
     class="datePicker"
     :class="{ notWritable }"
     :label="label"
@@ -176,14 +180,14 @@ export default {
       @click.stop="handleTextClick"
       v-bind="$attrs"
     >
-    <Icon
+    <FuraIcon
       class="icon"
       name="Calendar"
       @click.stop="handleIconClick"
     />
 
     <template #dropdown>
-      <Calendar
+      <FuraCalendar
         class="calendar"
         :days="days"
         :months="months"
@@ -194,7 +198,7 @@ export default {
         @update:model-value="handleCalendarUpdateModelValue"
       />
     </template>
-  </BaseFieldCombo>
+  </FuraBaseFieldCombo>
 </template>
 
 <style lang="less" scoped src="./date-picker.less"></style>

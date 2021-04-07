@@ -1,9 +1,9 @@
 <script>
-import BaseCalendar from '../base-calendar'
+import FuraBaseCalendar from '../base-calendar'
 
 export default {
   name: 'FuraCalendar',
-  components: { BaseCalendar },
+  components: { FuraBaseCalendar },
   props: {
     /** Textos para identificar los dias de la semana empezando por el domingo. */
     days: {
@@ -119,7 +119,7 @@ export default {
 </script>
 
 <template>
-  <BaseCalendar
+  <FuraBaseCalendar
     :value="modelValue"
     :current-month="currentMonth"
     :current-year="currentYear"

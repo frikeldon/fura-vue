@@ -1,16 +1,16 @@
 <script>
-import BaseCalendarDays from '../base-calendar-days'
-import BaseCalendarMonths from '../base-calendar-months'
-import BaseCalendarYears from '../base-calendar-years'
-import Icon from '../icon'
+import FuraBaseCalendarDays from '../base-calendar-days'
+import FuraBaseCalendarMonths from '../base-calendar-months'
+import FuraBaseCalendarYears from '../base-calendar-years'
+import FuraIcon from '../icon'
 
 export default {
   name: 'FuraBaseCalendar',
   components: {
-    BaseCalendarDays,
-    BaseCalendarMonths,
-    BaseCalendarYears,
-    Icon
+    FuraBaseCalendarDays,
+    FuraBaseCalendarMonths,
+    FuraBaseCalendarYears,
+    FuraIcon
   },
   props: {
     /** Mes a mostrar en el calendario. */
@@ -152,18 +152,18 @@ export default {
             class="prev"
             @click="$emit('navigate', -1)"
           >
-            <Icon name="Up" />
+            <FuraIcon name="Up" />
           </button>
           <button
             class="next"
             @click="$emit('navigate', 1)"
           >
-            <Icon name="Down" />
+            <FuraIcon name="Down" />
           </button>
         </div>
       </div>
     </div>
-    <BaseCalendarDays
+    <FuraBaseCalendarDays
       v-if="currentView === 'days'"
       :current-month="currentMonth"
       :current-year="currentYear"
@@ -173,14 +173,14 @@ export default {
       :value="value"
       @select="$emit('selectDate', $event)"
     />
-    <BaseCalendarMonths
+    <FuraBaseCalendarMonths
       v-else-if="currentView === 'months'"
       :value="currentMonth"
       :current-year="currentYear"
       :months="months"
       @select="$emit('selectMonth', $event)"
     />
-    <BaseCalendarYears
+    <FuraBaseCalendarYears
       v-else-if="currentView === 'years'"
       :first-year="currentYear"
       :value="selectedYear"

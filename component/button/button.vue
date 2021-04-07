@@ -1,9 +1,9 @@
 <script>
-import Icon from '../icon'
+import FuraIcon from '../icon'
 
 export default {
   name: 'FuraButton',
-  components: { Icon },
+  components: { FuraIcon },
   props: {
     /**
      * Tipo de botón.
@@ -60,7 +60,7 @@ export default {
     @click="$emit('click', $event)"
   >
     <span>
-      <Icon
+      <FuraIcon
         v-if="icon"
         :name="icon"
         class="icon"

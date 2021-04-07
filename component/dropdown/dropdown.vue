@@ -1,10 +1,10 @@
 <script>
-import BaseDropdown from '../base-dropdown'
+import FuraBaseDropdown from '../base-dropdown'
 import { equalInsensitive } from '../../utils/text.js'
 
 export default {
   name: 'FuraDropdown',
-  components: { BaseDropdown },
+  components: { FuraBaseDropdown },
   props: {
     /** Etiqueta que se muestra encima del campo de formulario asociado. */
     label: { type: String, default: '' },
@@ -124,7 +124,7 @@ export default {
 </script>
 
 <template>
-  <BaseDropdown
+  <FuraBaseDropdown
     ref="dropdown"
     :label="label"
     :description="description"
@@ -196,7 +196,7 @@ export default {
         :click="slotProps.click"
       />
     </template>
-  </BaseDropdown>
+  </FuraBaseDropdown>
 </template>
 
 <docs>

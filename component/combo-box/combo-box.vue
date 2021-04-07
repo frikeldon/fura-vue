@@ -1,10 +1,10 @@
 <script>
-import BaseComboBox from '../base-combo-box'
+import FuraBaseComboBox from '../base-combo-box'
 import { startsWith, equalInsensitive } from '../../utils/text'
 
 export default {
   name: 'FuraComboBox',
-  components: { BaseComboBox },
+  components: { FuraBaseComboBox },
   props: {
     /** Etiqueta que se muestra encima del campo de formulario asociado. */
     label: { type: String, default: '' },
@@ -148,7 +148,7 @@ export default {
 }
 </script>
 <template>
-  <BaseComboBox
+  <FuraBaseComboBox
     ref="comboBox"
     :label="label"
     :description="description"
@@ -223,7 +223,7 @@ export default {
         :click="slotProps.click"
       />
     </template>
-  </BaseComboBox>
+  </FuraBaseComboBox>
 </template>
 
 <docs>

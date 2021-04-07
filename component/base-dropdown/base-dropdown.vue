@@ -1,14 +1,14 @@
 <script>
-import BaseFieldCombo from '../base-field-combo'
-import BaseSelect from '../base-select'
-import Icon from '../icon'
+import FuraBaseFieldCombo from '../base-field-combo'
+import FuraBaseSelect from '../base-select'
+import FuraIcon from '../icon'
 
 export default {
   name: 'FuraBaseDropdown',
   components: {
-    BaseFieldCombo,
-    BaseSelect,
-    Icon
+    FuraBaseFieldCombo,
+    FuraBaseSelect,
+    FuraIcon
   },
   props: {
     /** Etiqueta que se muestra encima del campo de formulario asociado. */
@@ -81,7 +81,7 @@ export default {
 </script>
 
 <template>
-  <BaseFieldCombo
+  <FuraBaseFieldCombo
     class="dropdown"
     :label="label"
     :description="description"
@@ -107,7 +107,7 @@ export default {
         v-bind="$attrs"
       />
       <span class="caret">
-        <Icon
+        <FuraIcon
           class="icon"
           name="ChevronDown"
           @click.stop="$emit('click')"
@@ -115,7 +115,7 @@ export default {
       </span>
     </div>
     <template #dropdown>
-      <BaseSelect
+      <FuraBaseSelect
         ref="select"
         class="select"
         :options="options"
@@ -174,9 +174,9 @@ export default {
             :click="slotProps.click"
           />
         </template>
-      </BaseSelect>
+      </FuraBaseSelect>
     </template>
-  </BaseFieldCombo>
+  </FuraBaseFieldCombo>
 </template>
 
 <style lang="less" scoped src="./base-dropdown.less"></style>
