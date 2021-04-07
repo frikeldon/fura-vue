@@ -4,6 +4,7 @@ import BaseCalendarDays from './component/base-calendar-days'
 import BaseCalendarMonths from './component/base-calendar-months'
 import BaseCalendarYears from './component/base-calendar-years'
 import BaseComboBox from './component/base-combo-box'
+import BaseCommandButton from './component/base-command-button'
 import BaseDropdown from './component/base-dropdown'
 import BaseFieldCombo from './component/base-field-combo'
 import BaseFieldInput from './component/base-field-input'
@@ -30,6 +31,7 @@ const components = {
   BaseCalendarMonths,
   BaseCalendarYears,
   BaseComboBox,
+  BaseCommandButton,
   BaseDropdown,
   BaseFieldCombo,
   BaseFieldInput,
