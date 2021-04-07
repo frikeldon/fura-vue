@@ -2,6 +2,7 @@
 import Label from '../../component/label'
 
 export default {
+  name: 'FuraBaseFieldInput',
   components: { Label },
   props: {
     /** Etiqueta que se muestra encima del campo de formulario asociado. */

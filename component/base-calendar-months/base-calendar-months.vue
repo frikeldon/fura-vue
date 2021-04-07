@@ -1,5 +1,6 @@
 <script>
 export default {
+  name: 'FuraBaseCalendarMonths',
   props: {
     /** Mes a mostrar en el calendario. */
     value: {

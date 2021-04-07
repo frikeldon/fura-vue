@@ -2,6 +2,7 @@
 import Icon from '../icon'
 
 export default {
+  name: 'FuraCheckbox',
   components: { Icon },
   props: {
     /** El valor de Checkbox. */

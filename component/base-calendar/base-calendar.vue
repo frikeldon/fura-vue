@@ -5,6 +5,7 @@ import BaseCalendarYears from '../base-calendar-years'
 import Icon from '../icon'
 
 export default {
+  name: 'FuraBaseCalendar',
   components: {
     BaseCalendarDays,
     BaseCalendarMonths,

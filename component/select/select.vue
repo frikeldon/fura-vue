@@ -2,6 +2,7 @@
 import BaseSelect from '../base-select'
 
 export default {
+  name: 'FuraSelect',
   components: { BaseSelect },
   props: {
     /** Las opciones de Select. */

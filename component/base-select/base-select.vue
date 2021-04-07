@@ -2,6 +2,7 @@
 import Icon from '../icon'
 
 export default {
+  name: 'FuraBaseSelect',
   components: { Icon },
   props: {
     /** Las opciones de Select. */

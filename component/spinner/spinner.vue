@@ -1,5 +1,6 @@
 <script>
 export default {
+  name: 'FuraSpinner',
   props: {
     /**
      * El tamaño con el que se dibuja Spinner.

@@ -2,6 +2,7 @@
 import BaseCommandButton from '../base-command-button'
 
 export default {
+  name: 'FuraBaseSplitButton',
   components: { BaseCommandButton },
   props: {
     /** Texto para representar la etiqueta del botón. */

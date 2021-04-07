@@ -2,6 +2,7 @@
 import { commonStartLength, startsWith } from '../../utils/text.js'
 
 export default {
+  name: 'FuraAutofill',
   props: {
     /** Valor actual del campo. */
     modelValue: { type: String, default: '' },

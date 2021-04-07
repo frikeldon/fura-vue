@@ -2,6 +2,7 @@
 import Icon from '../icon'
 
 export default {
+  name: 'FuraButton',
   components: { Icon },
   props: {
     /**

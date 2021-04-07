@@ -37,6 +37,7 @@ function defaultStringify (number) {
 }
 
 export default {
+  name: 'FuraNumberField',
   components: { TextField },
   props: {
     /** Etiqueta que se muestra encima del campo de formulario asociado. */

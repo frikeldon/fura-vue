@@ -3,6 +3,7 @@ import BaseFieldInput from '../base-field-input'
 import Icon from '../icon'
 
 export default {
+  name: 'FuraTextField',
   components: {
     BaseFieldInput,
     Icon

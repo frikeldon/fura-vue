@@ -2,6 +2,7 @@
 import BaseCalendar from '../base-calendar'
 
 export default {
+  name: 'FuraCalendar',
   components: { BaseCalendar },
   props: {
     /** Textos para identificar los dias de la semana empezando por el domingo. */

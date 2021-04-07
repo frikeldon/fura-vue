@@ -2,6 +2,7 @@
 import Label from '../label'
 
 export default {
+  name: 'FuraChoiceGroup',
   components: { Label },
   props: {
     /** Valor actual de ChoiceGroup. */

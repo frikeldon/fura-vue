@@ -1,5 +1,6 @@
 <script>
 export default {
+  name: 'FuraBaseCalendarYears',
   props: {
     /** Primer año a mostrar en la lista. */
     firstYear: {

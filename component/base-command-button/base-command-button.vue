@@ -2,6 +2,7 @@
 import Icon from '../icon'
 
 export default {
+  name: 'FuraBaseCommandButton',
   components: { Icon },
   props: {
     /** Texto para representar la etiqueta del botón. */

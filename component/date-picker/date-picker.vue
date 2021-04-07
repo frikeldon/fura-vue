@@ -4,6 +4,7 @@ import Icon from '../icon'
 import Calendar from '../calendar'
 
 export default {
+  name: 'FuraDatePicker',
   components: { BaseFieldCombo, Icon, Calendar },
   props: {
     /** Etiqueta que se muestra encima del campo de formulario asociado. */

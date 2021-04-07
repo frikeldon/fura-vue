@@ -3,6 +3,7 @@ import BaseComboBox from '../base-combo-box'
 import { startsWith, equalInsensitive } from '../../utils/text'
 
 export default {
+  name: 'FuraComboBox',
   components: { BaseComboBox },
   props: {
     /** Etiqueta que se muestra encima del campo de formulario asociado. */

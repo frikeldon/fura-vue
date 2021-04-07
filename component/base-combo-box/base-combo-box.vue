@@ -6,6 +6,7 @@ import Icon from '../icon'
 import Spinner from '../spinner'
 
 export default {
+  name: 'FuraBaseComboBox',
   components: {
     BaseFieldCombo,
     BaseSelect,

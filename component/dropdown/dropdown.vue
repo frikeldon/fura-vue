@@ -3,6 +3,7 @@ import BaseDropdown from '../base-dropdown'
 import { equalInsensitive } from '../../utils/text.js'
 
 export default {
+  name: 'FuraDropdown',
   components: { BaseDropdown },
   props: {
     /** Etiqueta que se muestra encima del campo de formulario asociado. */

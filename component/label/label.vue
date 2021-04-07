@@ -1,5 +1,6 @@
 <script>
 export default {
+  name: 'FuraLabel',
   props: {
     /** Representa Label como requerido. */
     required: { type: Boolean, default: false },

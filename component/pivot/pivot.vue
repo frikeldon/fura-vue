@@ -2,6 +2,7 @@
 import Icon from '../icon'
 
 export default {
+  name: 'FuraPivot',
   components: { Icon },
   props: {
     /** Valor de la pestaña seleccionada. */

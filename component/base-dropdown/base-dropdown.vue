@@ -4,6 +4,7 @@ import BaseSelect from '../base-select'
 import Icon from '../icon'
 
 export default {
+  name: 'FuraBaseDropdown',
   components: {
     BaseFieldCombo,
     BaseSelect,
