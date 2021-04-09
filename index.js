@@ -20,6 +20,7 @@ import CommandBar from './component/command-bar'
 import DatePicker from './component/date-picker'
 import Dialog from './component/dialog'
 import Dropdown from './component/dropdown'
+import ExpanderButton from './component/expander-button'
 import Icon from './component/icon'
 import Label from './component/label'
 import NumberField from './component/number-field'
@@ -53,6 +54,7 @@ const components = {
   DatePicker,
   Dialog,
   Dropdown,
+  ExpanderButton,
   Icon,
   Label,
   NumberField,
