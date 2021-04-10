@@ -92,9 +92,10 @@ export default {
   const colors = ['Pink', 'Crimson', 'Red', 'Maroon', 'Brown', 'Misty Rose', 'Salmon', 'Coral', 'Orange-Red', 'Chocolate', 'Orange', 'Gold', 'Ivory', 'Yellow', 'Olive', 'Yellow-Green', 'Lawn green', 'Chartreuse', 'Lime', 'Green', 'Spring green', 'Aquamarine', 'Turquoise', 'Azure', 'Aqua', 'Cyan', 'Teal', 'Lavender', 'Blue', 'Navy', 'Blue-Violet', 'Indigo', 'Dark Violet', 'Plum', 'Magenta', 'Purple', 'Red-Violet', 'Tan', 'Beige', 'Slate gray', 'Dark Slate Gray', 'White', 'White Smoke', 'Light Gray', 'Silver', 'Dark Gray', 'Gray', 'Dim Gray', 'Black']
   export default {
     data () {
-      const data = Array(20).fill(0).map((_, i) => ['' + i, colors[i], colors[21 + i]])
+      const data = Array(16).fill(0).map((_, i) => ['' + i, colors[i], colors[16 + i], colors[32 + i]])
       return {
         columns: [
+          {},
           { align: 'left' },
           { align: 'center' },
           { align: 'right' }
