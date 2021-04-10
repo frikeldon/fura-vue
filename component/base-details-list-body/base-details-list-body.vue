@@ -34,7 +34,7 @@ export default {
      * Se genera cuando el usuario hace clic sobre una fila.
      * @property {number} index Índice de la fila pulsada.
      */
-    'click'
+    'select'
   ],
   computed: {
     /** Datos a mostrar. */
@@ -54,7 +54,7 @@ export default {
       :selection="selection"
       :selected="selectedIndices.includes(startIndex + rowIndex)"
       :compact="compact"
-      @click="$emit('click', startIndex + rowIndex)"
+      @click="$emit('select', startIndex + rowIndex)"
     >
       <td
         v-if="collapsible"
