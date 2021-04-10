@@ -34,7 +34,12 @@ export default {
      * Se genera cuando el usuario hace clic sobre una fila.
      * @property {number} index Índice de la fila pulsada.
      */
-    'select'
+    'select',
+    /**
+     * Se genera cuando el usuario hace clic sobre una celda.
+     * @property {object} coords Objeto ({ row, column }) con el número de fila y columna pulsada.
+     */
+    'clickCell'
   ],
   computed: {
     /** Datos a mostrar. */
@@ -64,6 +69,10 @@ export default {
         v-for="(column, columnIndex) in columns"
         :key="columnIndex"
         :class="column.align"
+        @click.stop="$emit('clickCell', {
+          row: startIndex + rowIndex,
+          column: columnIndex
+        })"
       >
         <!--
             @slot Contenido de una celda

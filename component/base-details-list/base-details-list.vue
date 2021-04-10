@@ -98,7 +98,12 @@ export default {
      * Se genera cuando el usuario hace clic sobre una celda de la cabecera.
      * @property {number} index Índice de la columna pulsada.
      */
-    'clickHeader'
+    'clickHeader',
+    /**
+     * Se genera cuando el usuario hace clic sobre una celda.
+     * @property {object} coords Objeto ({ row, column }) con el número de fila y columna pulsada.
+     */
+    'clickCell'
   ],
   computed: {
     /** Indica si todos los grupos estan plegados, si la tabla se puede plegar. */
@@ -243,6 +248,7 @@ export default {
           :compact="compact"
           :collapsible="collapsible"
           @select="$emit('selectRow', $event)"
+          @click-cell="$emit('clickCell', $event)"
           v-slot="slotProps"
         >
           <!--
@@ -272,6 +278,7 @@ export default {
       :compact="compact"
       :collapsible="collapsible"
       @select="$emit('selectRow', $event)"
+      @click-cell="$emit('clickCell', $event)"
       v-slot="slotProps"
     >
       <!--
@@ -364,6 +371,14 @@ export default {
         .fill(0)
         .map((_, i) => [`Item ${i}`, i.toString()])
       }
+    },
+    methods: {
+      clickHeader (index) {
+        console.log(`Click in header ${index}`)
+      },
+      clickCell (coords) {
+        console.log(`Click in cell with row ${coords.row} and column ${coords.column}`)
+      },
     }
   }
 </script>
@@ -372,6 +387,8 @@ export default {
     :columns="columns"
     :groups="groups"
     :data="data"
+    @click-header="clickHeader"
+    @click-cell="clickCell"
   />
 </template>
 </docs>
