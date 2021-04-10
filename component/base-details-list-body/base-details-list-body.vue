@@ -73,9 +73,9 @@ export default {
         -->
         <slot
           :column="column"
-          :columnIndex="columnIndex"
+          :column-index="columnIndex"
           :row="row"
-          :rowIndex="startIndex + rowIndex"
+          :row-index="startIndex + rowIndex"
           :content="row[column.key || columnIndex]"
         >
           <div v-text="row[column.key || columnIndex]?.toString()" />

@@ -161,10 +161,10 @@ export default {
 </script>
 <template>
   <fura-base-calendar-days
-    :currentMonth="currentMonth"
-    :currentYear="currentYear"
+    :current-month="currentMonth"
+    :current-year="currentYear"
     :days="days"
-    :firstDayOfTheWeek="firstDayOfTheWeek"
+    :first-day-of-the-week="firstDayOfTheWeek"
     :today="today"
     :value="value"
     @select="onSelect"

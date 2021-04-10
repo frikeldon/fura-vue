@@ -86,7 +86,7 @@ export default {
 <template>
   <fura-pivot
     :large="large"
-    :tabStyle="tabStyle"
+    :tab-style="tabStyle"
     :tabs="tabs"
     v-model="modelValue"
   />
@@ -113,7 +113,7 @@ export default {
 <template>
   <fura-pivot
     :large="large"
-    :tabStyle="tabStyle"
+    :tab-style="tabStyle"
     :tabs="tabs"
     v-model="modelValue"
   />
@@ -140,7 +140,7 @@ export default {
 <template>
   <fura-pivot
     :large="large"
-    :tabStyle="tabStyle"
+    :tab-style="tabStyle"
     :tabs="tabs"
     v-model="modelValue"
   />
@@ -167,7 +167,7 @@ export default {
 <template>
   <fura-pivot
     :large="large"
-    :tabStyle="tabStyle"
+    :tab-style="tabStyle"
     :tabs="tabs"
     v-model="modelValue"
     v-slot="slotProps"

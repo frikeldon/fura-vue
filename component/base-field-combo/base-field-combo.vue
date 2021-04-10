@@ -108,7 +108,7 @@ export default {
     :label="label"
     :description="description"
     :invalid="invalid"
-    :errorMessage="errorMessage"
+    :error-message="errorMessage"
     :disabled="disabled"
     :required="required"
     :borderless="borderless"

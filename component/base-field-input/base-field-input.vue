@@ -81,7 +81,7 @@ export default {
   label="Base input field"
   description="Wrapper of a form field."
   :invalid="false"
-  :errorMessage="null"
+  :error-message="null"
   :disabled="false"
   :required="false"
   :borderless="false"
