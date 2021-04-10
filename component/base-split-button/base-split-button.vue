@@ -30,11 +30,11 @@ export default {
      * Se genera cuando el usuario hace clic en el icono de la parte expandida del botón.
      * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
      */
-    'click-expand',
+    'clickExpand',
     /** Se genera cuando el mouse está sobre el botón durante un período de tiempo determinado. */
     'mousestop',
     /** Se genera cuando el mouse está sobre el botón expandido durante un período de tiempo determinado. */
-    'mousestop-expand'
+    'mousestopExpand'
   ]
 }
 </script>
@@ -58,9 +58,9 @@ export default {
         :expand-icon="expandIcon"
         :mousestop-delay="mousestopDelay"
         :disabled="disabled"
-        @click="$emit('click-expand', $event)"
-        @click-expand="$emit('click-expand', $event)"
-        @mousestop="$emit('mousestop-expand')"
+        @click="$emit('clickExpand', $event)"
+        @click-expand="$emit('clickExpand', $event)"
+        @mousestop="$emit('mousestopExpand')"
       />
       <span class="divisor" />
     </span>
