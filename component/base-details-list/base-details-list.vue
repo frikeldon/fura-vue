@@ -191,14 +191,25 @@ export default {
           :class="column.align"
           @click.stop="$emit('clickHeader', index)"
         >
-          <div class="headerTitle">
-            <span v-text="column.title" />
-            <FuraIcon
-              v-if="column.icon"
-              class="icon"
-              :name="column.icon"
-            />
-          </div>
+          <!--
+            @slot Contenido de una cabecera
+            @binding {object} column Referencia a la definición de la columna.
+            @binding {number} index Índice de la definición de la columna.
+          -->
+          <slot
+            name="header"
+            :column="column"
+            :index="index"
+          >
+            <div class="headerTitle">
+              <span v-text="column.title" />
+              <FuraIcon
+                v-if="column.icon"
+                class="icon"
+                :name="column.icon"
+              />
+            </div>
+          </slot>
         </th>
       </FuraBaseDetailsListRow>
     </thead>
@@ -229,11 +240,24 @@ export default {
               :colspan="columns.length"
               :style="{ paddingLeft: `${(group.level || 0) * 36}px`}"
             >
-              <div
-                class="groupTitle"
-                :class="{ collapsed: collapsedIndices.has(index) }"
-                v-text="group.name"
-              />
+              <!--
+                @slot Contenido de un encabezado de grupo
+                @binding {object} group Referencia a la definición del grupo.
+                @binding {number} index Índice de la definición del grupo.
+                @binding {boolean} isCollapsed Indica si el grupo está plegado.
+              -->
+              <slot
+                name="group"
+                :group="group"
+                :index="index"
+                :is-collapsed="collapsedIndices.has(index)"
+              >
+                <div
+                  class="groupTitle"
+                  :class="{ collapsed: collapsedIndices.has(index) }"
+                  v-text="group.name"
+                />
+              </slot>
             </th>
           </FuraBaseDetailsListRow>
         </thead>
@@ -252,17 +276,17 @@ export default {
           v-slot="slotProps"
         >
           <!--
-            @slot Cell's content
-            @binding {string,number} column Column's key of the current cell.
-            @binding {number} row Row's index of the current cell.
-            @binding {string} content Content of the current cell.
+            @slot Contenido de una celda
+            @binding {number} rowIndex Índice de la fila.
+            @binding {number} columnIndex Índice de la definición de la columna.
+            @binding {string} content Contenido de la celda.
+            @binding {object} column Referencia a la definición de la columna.
           -->
           <slot
-            :column="slotProps.column"
-            :column-index="slotProps.columnIndex"
-            :row="slotProps.row"
             :row-index="slotProps.rowIndex"
+            :column-index="slotProps.columnIndex"
             :content="slotProps.content"
+            :column="slotProps.column"
           />
         </FuraBaseDetailsListBody>
       </template>
@@ -282,17 +306,17 @@ export default {
       v-slot="slotProps"
     >
       <!--
-        @slot Cell's content
-        @binding {string,number} column Column's key of the current cell.
-        @binding {number} row Row's index of the current cell.
-        @binding {string} content Content of the current cell.
+        @slot Contenido de una celda
+        @binding {number} rowIndex Índice de la fila.
+        @binding {number} columnIndex Índice de la definición de la columna.
+        @binding {string} content Contenido de la celda.
+        @binding {object} column Referencia a la definición de la columna.
       -->
       <slot
-        :column="slotProps.column"
-        :column-index="slotProps.columnIndex"
-        :row="slotProps.row"
         :row-index="slotProps.rowIndex"
+        :column-index="slotProps.columnIndex"
         :content="slotProps.content"
+        :column="slotProps.column"
       />
     </FuraBaseDetailsListBody>
   </table>
@@ -390,5 +414,63 @@ export default {
     @click-header="clickHeader"
     @click-cell="clickCell"
   />
+</template>
+</docs>
+
+<docs>
+<script>
+  export default {
+    data () {
+      return {
+        columns: [
+          { key: 'button', width: '75px' },
+          { title: 'Name', key: 'name', align: 'left', width: '125px' },
+          { title: 'Color', key: 'color', align: 'left' }
+        ],
+        groups: [
+          { name: 'Color: "red"', startIndex: 0, count: 2, level: 0 },
+          { name: 'Color: "green"', startIndex: 2, count: 0, level: 0 },
+          { name: 'Color: "blue"', startIndex: 2, count: 3, level: 0 }
+        ],
+        data: [
+          { name: 'a', color: 'red' },
+          { name: 'b', color: 'red' },
+          { name: 'c', color: 'blue' },
+          { name: 'd', color: 'blue' },
+          { name: 'e', color: 'blue' }
+        ]
+      }
+    },
+    methods: {
+      getGroupName (group) {
+        return `${group.name} (${group.count})`
+      }
+    }
+  }
+</script>
+<template>
+  <fura-base-details-list
+    :columns="columns"
+    :groups="groups"
+    :data="data"
+  >
+    <template v-slot:default="slotProps">
+      <fura-button
+        v-if="slotProps.column.key === 'button'"
+        type="icon"
+        icon="Edit"
+      />
+    </template>
+    <template v-slot:header="slotProps">
+      <fura-button
+        v-if="slotProps.column.key === 'button'"
+        type="icon"
+        icon="Add"
+      />
+    </template>
+    <template v-slot:group="slotProps">
+      <fura-label v-text="getGroupName(slotProps.group)" />
+    </template>
+  </fura-base-details-list>
 </template>
 </docs>

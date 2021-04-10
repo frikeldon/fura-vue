@@ -75,17 +75,17 @@ export default {
         })"
       >
         <!--
-            @slot Contenido de una celda
-            @binding {string,number} column Column's key of the current cell.
-            @binding {number} row Row's index of the current cell.
-            @binding {string} content Content of the current cell.
+          @slot Contenido de una celda
+          @binding {number} rowIndex Índice de la fila.
+          @binding {number} columnIndex Índice de la definición de la columna.
+          @binding {string} content Contenido de la celda.
+          @binding {object} column Referencia a la definición de la columna.
         -->
         <slot
-          :column="column"
-          :column-index="columnIndex"
-          :row="row"
           :row-index="startIndex + rowIndex"
+          :column-index="columnIndex"
           :content="row[column.key || columnIndex]"
+          :column="column"
         >
           <div v-text="row[column.key || columnIndex]?.toString()" />
         </slot>
