@@ -1,9 +1,9 @@
 <script>
-import BaseDetailsListRow from '../base-details-list-row'
+import FuraBaseDetailsListRow from '../base-details-list-row'
 
 export default {
   name: 'FuraBaseDetailsListBody',
-  components: { BaseDetailsListRow },
+  components: { FuraBaseDetailsListRow },
   props: {
     /** Definición de las columnas. */
     columns: { type: Array, required: true },
@@ -47,7 +47,7 @@ export default {
 
 <template>
   <tbody>
-    <BaseDetailsListRow
+    <FuraBaseDetailsListRow
       v-for="(row, rowIndex) in currentData"
       :key="startIndex + rowIndex"
       type="data"
@@ -81,7 +81,7 @@ export default {
           <div v-text="row[column.key || columnIndex]?.toString()" />
         </slot>
       </td>
-    </BaseDetailsListRow>
+    </FuraBaseDetailsListRow>
   </tbody>
 </template>
 

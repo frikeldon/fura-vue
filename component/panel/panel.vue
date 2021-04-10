@@ -1,9 +1,9 @@
 <script>
-import Icon from '../icon'
+import FuraIcon from '../icon'
 
 export default {
   name: 'FuraPanel',
-  components: { Icon },
+  components: { FuraIcon },
   props: {
     /**
      * El tipo de panel a mostrar.
@@ -42,7 +42,7 @@ export default {
           <div v-text="headerText" />
         </div>
         <button @click.stop="$emit('click')">
-          <Icon
+          <FuraIcon
             class="icon"
             name="Cancel"
           />
