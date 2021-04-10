@@ -1,0 +1,78 @@
+@import "../../theme/mixin.less";
+@import "../../theme/color.less";
+@import "../../theme/typography.less";
+
+@expanderWidth: 36px;
+
+table {
+  .normalize();
+  width: 100%;
+  table-layout: fixed;
+  .fontStyleSmall();
+  color: @neutralPrimary;
+  background: @white;
+  border-collapse: collapse;
+  border-color: @neutralLight;
+}
+
+.auto {
+  table-layout: auto;
+}
+
+.fullAuto {
+  table-layout: auto;
+  width: auto;
+}
+
+.expanderCell {
+  width: @expanderWidth;
+}
+
+th {
+  text-align: left;
+}
+
+.headerCell:hover {
+  background: @neutralLighter;
+}
+
+.headerTitle {
+  box-sizing: border-box;
+  min-height: 42px;
+  padding: 0px 8px 0px 12px;
+  margin: 0;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  outline: 0;
+  cursor: pointer;
+  user-select: none;
+
+  display: flex;
+  .fontStyleMedium(@weight: @fontWeightSemibold);
+
+  .icon {
+    padding-left: 4px;
+  }
+
+  .left & {
+    justify-content: flex-start;
+  }
+
+  .center & {
+    justify-content: center;
+  }
+
+  .right & {
+    justify-content: flex-end;
+  }
+}
+
+.groupTitle {
+  display: flex;
+  .fontStyleMedium(@weight: @fontWeightSemibold);
+
+  &.collapsed {
+    font-weight: @fontWeightRegular;
+  }
+}
