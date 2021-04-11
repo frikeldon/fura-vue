@@ -85,12 +85,12 @@ export default {
     /** Se genera cuando el usuario hace clic sobre la fila de la cabecera de la tabla. */
     'selectAll',
     /**
-     * Se genera cuando el usuario hace clic sobre el boton de expandir de un grupo.
+     * Se genera cuando el usuario hace clic sobre el boton de desplegar de un grupo.
      * @property {number} index Índice del grupo pulsado.
      */
     'expandGroup',
     /**
-     * Se genera cuando el usuario hace clic sobre el boton de expandir de la cabecera de la tabla.
+     * Se genera cuando el usuario hace clic sobre el boton de desplegar de la cabecera de la tabla.
      * @property {boolean} notAllCollapsed Indica si no todos los grupos estan plegados.
      */
     'expandAll',
