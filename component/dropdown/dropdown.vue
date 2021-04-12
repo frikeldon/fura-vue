@@ -33,7 +33,9 @@ export default {
     /** Indica si el campo permite seleccionar más de una opción. */
     multiple: { type: Boolean, default: false },
     /** Indica si el desplazamiento del Select debe hacerse sin animación. */
-    immediateScroll: { type: Boolean, default: false }
+    immediateScroll: { type: Boolean, default: false },
+    /** La cantidad máxima de opciones que se pueden seleccionar. */
+    maxSelectedOptions: { type: Number, default: -1 }
   },
   emits: [
     /**
@@ -103,10 +105,13 @@ export default {
       if (option && (!option.type || option.type === 'option')) {
         if (this.multiple) {
           if (Array.isArray(this.modelValue)) {
-            const newValue = this.modelValue?.includes(option.value)
-              ? this.modelValue.filter(value => value !== option.value)
-              : [...this.modelValue, option.value]
-            this.$emit('update:modelValue', newValue)
+            if (this.modelValue.includes(option.value)) {
+              const newValue = this.modelValue.filter(value => value !== option.value)
+              this.$emit('update:modelValue', newValue)
+            } else if (this.maxSelectedOptions < 0 || this.modelValue.length < this.maxSelectedOptions) {
+              const newValue = [...this.modelValue, option.value]
+              this.$emit('update:modelValue', newValue)
+            }
           } else {
             this.$emit('update:modelValue', [option.value])
           }
@@ -212,14 +217,12 @@ export default {
         required: false,
         borderless: false,
         underlined: false,
-        open: false,
         value: null,
-        selectedText: '',
         placeholder: 'Pick an element',
         readonly: false,
         multiple: false,
-        markedIndex: -1,
         immediateScroll: false,
+        maxSelectedOptions: -1,
         options: [
           { type: 'header', text: 'Fruits' },
           { text: 'Apple', value: 'apple' },
@@ -235,29 +238,6 @@ export default {
           { text: 'Lettuce', value: 'lettuce' }
         ]
       }
-    },
-    methods: {
-      onSelect (index) {
-        if (this.multiple) {
-          const value = this.options[index].value
-          const valueIndex = this.value.indexOf(value)
-          if (valueIndex > -1) {
-            this.value.splice(valueIndex, 1)
-          } else {
-            this.value.push(value)
-          }
-          this.selectedText = this.value
-            .map(value => this.options.find(option => option.value === value).text)
-            .join(', ')
-        } else {
-          this.value = this.options[index].value
-          this.selectedText = this.options[index].text
-          this.open = false
-        }
-      },
-      onClick () {
-        this.open = !this.open
-      }
     }
   }
 </script>
@@ -271,17 +251,13 @@ export default {
     :required="required"
     :borderless="borderless"
     :underlined="underlined"
-    :open="open"
-    :value="value"
-    :selected-text="selectedText"
     :placeholder="placeholder"
     :readonly="readonly"
     :multiple="multiple"
-    :marked-index="markedIndex"
     :immediate-scroll="immediateScroll"
+    :max-selected-options="maxSelectedOptions"
     :options="options"
-    @select="onSelect"
-    @click="onClick"
+    v-model="value"
   />
 </template>
 </docs>
@@ -299,14 +275,12 @@ export default {
         required: false,
         borderless: false,
         underlined: false,
-        open: false,
         value: [],
-        selectedText: '',
         placeholder: 'Pick an element',
         readonly: false,
         multiple: true,
-        markedIndex: -1,
         immediateScroll: false,
+        maxSelectedOptions: -1,
         options: [
           { type: 'header', text: 'Fruits' },
           { text: 'Apple', value: 'apple' },
@@ -322,29 +296,6 @@ export default {
           { text: 'Lettuce', value: 'lettuce' }
         ]
       }
-    },
-    methods: {
-      onSelect (index) {
-        if (this.multiple) {
-          const value = this.options[index].value
-          const valueIndex = this.value.indexOf(value)
-          if (valueIndex > -1) {
-            this.value.splice(valueIndex, 1)
-          } else {
-            this.value.push(value)
-          }
-          this.selectedText = this.value
-            .map(value => this.options.find(option => option.value === value).text)
-            .join(', ')
-        } else {
-          this.value = this.options[index].value
-          this.selectedText = this.options[index].text
-          this.open = false
-        }
-      },
-      onClick () {
-        this.open = !this.open
-      }
     }
   }
 </script>
@@ -358,17 +309,13 @@ export default {
     :required="required"
     :borderless="borderless"
     :underlined="underlined"
-    :open="open"
-    :value="value"
-    :selected-text="selectedText"
     :placeholder="placeholder"
     :readonly="readonly"
     :multiple="multiple"
-    :marked-index="markedIndex"
     :immediate-scroll="immediateScroll"
+    :max-selected-options="maxSelectedOptions"
     :options="options"
-    @select="onSelect"
-    @click="onClick"
+    v-model="value"
   />
 </template>
 </docs>
@@ -386,14 +333,12 @@ export default {
         required: false,
         borderless: false,
         underlined: false,
-        open: false,
         value: null,
-        selectedText: '',
         placeholder: 'Pick an element',
         readonly: false,
         multiple: false,
-        markedIndex: -1,
         immediateScroll: false,
+        maxSelectedOptions: -1,
         options: [
           { type: 'header', text: 'Fruits' },
           { text: 'Apple', value: 'apple' },
@@ -409,29 +354,6 @@ export default {
           { text: 'Lettuce', value: 'lettuce' }
         ]
       }
-    },
-    methods: {
-      onSelect (index) {
-        if (this.multiple) {
-          const value = this.options[index].value
-          const valueIndex = this.value.indexOf(value)
-          if (valueIndex > -1) {
-            this.value.splice(valueIndex, 1)
-          } else {
-            this.value.push(value)
-          }
-          this.selectedText = this.value
-            .map(value => this.options.find(option => option.value === value).text)
-            .join(', ')
-        } else {
-          this.value = this.options[index].value
-          this.selectedText = this.options[index].text
-          this.open = false
-        }
-      },
-      onClick () {
-        this.open = !this.open
-      }
     }
   }
 </script>
@@ -445,17 +367,13 @@ export default {
     :required="required"
     :borderless="borderless"
     :underlined="underlined"
-    :open="open"
-    :value="value"
-    :selected-text="selectedText"
     :placeholder="placeholder"
     :readonly="readonly"
     :multiple="multiple"
-    :marked-index="markedIndex"
     :immediate-scroll="immediateScroll"
+    :max-selected-options="maxSelectedOptions"
     :options="options"
-    @select="onSelect"
-    @click="onClick"
+    v-model="value"
   >
     <template v-slot:default="slotProps">
       <div>
