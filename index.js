@@ -21,6 +21,7 @@ import ChoiceGroup from './component/choice-group'
 import ComboBox from './component/combo-box'
 import CommandBar from './component/command-bar'
 import DatePicker from './component/date-picker'
+import DetailsList from './component/details-list'
 import Dialog from './component/dialog'
 import Dropdown from './component/dropdown'
 import ExpanderButton from './component/expander-button'
@@ -58,6 +59,7 @@ const components = {
   ComboBox,
   CommandBar,
   DatePicker,
+  DetailsList,
   Dialog,
   Dropdown,
   ExpanderButton,
