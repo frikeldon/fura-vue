@@ -38,6 +38,8 @@ export default {
     accentInsensitive: { type: Boolean, default: false },
     /** Texto de ejemplo a mostrar en el campo. */
     placeholder: { type: String, default: '' },
+    /** Indica si el desplazamiento del Select debe hacerse sin animación. */
+    immediateScroll: { type: Boolean, default: false },
     /** La cantidad máxima de opciones que se pueden seleccionar. */
     maxSelectedOptions: { type: Number, default: -1 }
   },
@@ -101,7 +103,7 @@ export default {
       if (code === 'ArrowDown' || code === 'ArrowUp') {
         event.preventDefault()
         const indexIncrement = code === 'ArrowDown' ? 1 : -1
-        this.suggestedIndex = select.getNextOptionIndex(this.suggestedIndex, indexIncrement)
+        this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, indexIncrement)
         select.scrollToOption(this.suggestedIndex)
         if (this.allowFreeform) {
           this.$nextTick(() => autofill.suggest(this.options[this.suggestedIndex].text, !this.autoComplete))
@@ -174,6 +176,7 @@ export default {
     :selected-text="selectedText"
     :open="open && !disabled && !readonly"
     :suggested-index="suggestedIndex"
+    :immediate-scroll="immediateScroll"
     @keydown="handleKeydown"
     @click="handleClick"
     @select="handleSelect"

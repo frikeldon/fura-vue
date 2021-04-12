@@ -86,7 +86,7 @@ export default {
       if (code === 'ArrowDown' || code === 'ArrowUp') {
         event.preventDefault()
         const indexIncrement = code === 'ArrowDown' ? 1 : -1
-        this.suggestedIndex = select.getNextOptionIndex(this.suggestedIndex, indexIncrement)
+        this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, indexIncrement)
         select.scrollToOption(this.suggestedIndex)
         this.$nextTick(() => autofill.suggest(this.items[this.suggestedIndex].text, !this.autoComplete))
       } else if (code === 'Enter') {

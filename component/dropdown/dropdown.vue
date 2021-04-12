@@ -72,10 +72,10 @@ export default {
       if (this.open) {
         const { select } = this.$refs.dropdown.$refs
         if (code === 'ArrowDown') {
-          this.markedIndex = select.getNextOptionIndex(this.markedIndex, 1)
+          this.markedIndex = select.getNextEnabledOptionIndex(this.markedIndex, 1)
           select.scrollToOption(this.markedIndex)
         } else if (code === 'ArrowUp') {
-          this.markedIndex = select.getNextOptionIndex(this.markedIndex, -1)
+          this.markedIndex = select.getNextEnabledOptionIndex(this.markedIndex, -1)
           select.scrollToOption(this.markedIndex)
         } else if (code === 'Space' || code === 'Enter') {
           this.handleSelect(this.markedIndex)
