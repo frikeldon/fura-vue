@@ -58,7 +58,9 @@ export default {
     /** El texto a mostrar en el progreso de carga. */
     loadingText: { type: String, default: '' },
     /** Indica si el desplazamiento del Select debe hacerse sin animación. */
-    immediateScroll: { type: Boolean, default: false }
+    immediateScroll: { type: Boolean, default: false },
+    /** Indica si las opciones deben ocultar la caja de selección cuando el estado es multiple. */
+    hideCheckbox: { type: Boolean, default: false }
   },
   emits: [
     /**
@@ -174,6 +176,7 @@ export default {
         :options="options"
         :value="value"
         :multiple="multiple"
+        :hide-checkbox="hideCheckbox"
         :marked-index="suggestedIndex"
         @select="$emit('select', $event)"
         @keydown="$emit('keydown', $event)"
