@@ -159,6 +159,7 @@ export default {
     <template #dropdown>
       <div class="dropdownWrapper">
         <FuraBaseSelect
+          v-if="itemsLoaded"
           ref="select"
           class="select"
           multiple
@@ -219,11 +220,15 @@ export default {
             />
           </template>
         </FuraBaseSelect>
-        <FuraSpinner
-          v-if="itemsLoaded"
-          class="spinner"
-          :label="loadingText"
-        />
+        <div
+          v-else
+          class="loadingDropdown"
+        >
+          <FuraSpinner
+            class="spinner"
+            :label="loadingText"
+          />
+        </div>
       </div>
     </template>
   </FuraBaseFieldCombo>

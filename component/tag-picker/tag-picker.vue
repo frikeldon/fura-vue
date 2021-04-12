@@ -42,14 +42,16 @@ export default {
     /** Texto de ejemplo a mostrar en el campo. */
     placeholder: { type: String, default: '' },
     /** El texto a mostrar en el progreso de carga. */
-    loadingText: { type: String, default: '' }
+    loadingText: { type: String, default: '' },
+    /** Indica si el desplazamiento del Select debe hacerse sin animación. */
+    immediateScroll: { type: Boolean, default: false }
   },
   data () {
     return {
       open: false,
       items: [],
       suggestedIndex: -1,
-      loading: false
+      itemsLoaded: false
     }
   },
   emits: [
@@ -103,7 +105,7 @@ export default {
     async handleInput (text) {
       this.items = []
       if (text) {
-        this.loading = true
+        this.itemsLoaded = false
         this.open = true
         const items = await this.getItems(text)
         this.items = this.filterItems
@@ -119,7 +121,7 @@ export default {
       } else {
         this.open = false
       }
-      this.loading = false
+      this.itemsLoaded = true
     },
     handleSelect (index) {
       const selected = this.items[index]
@@ -149,15 +151,16 @@ export default {
     :borderless="borderless"
     :underlined="underlined"
     :open="open"
-    :value="modelValue"
+    :selected-items="modelValue"
     :items="items"
     :suggested-index="suggestedIndex"
     :placeholder="placeholder"
     :readonly="readonly"
     :auto-complete="autoComplete"
     :accent-insensitive="accentInsensitive"
-    :loading="loading"
+    :items-loaded="itemsLoaded"
     :loading-text="loadingText"
+    :immediate-scroll="immediateScroll"
     @remove="handleRemove"
     @keydown="handleKeydown"
     @input="debouncedHandleInput"
@@ -240,9 +243,9 @@ export default {
   function getItems (text) {
     return new Promise(function (resolve) {
       setTimeout(() => {
-        const found = iconItems.filter(item => item.text.toLowercase().startsWith(text))
+        const found = iconItems.filter(item => item.text.toLowerCase().startsWith(text))
         resolve(found)
-      }, 500 + (Math.rand() * 250));
+      }, 500 + (Math.random() * 250));
     })
   }
 
@@ -257,7 +260,6 @@ export default {
         required: false,
         borderless: false,
         underlined: false,
-        open: false,
         suggestedIndex: -1,
         placeholder: 'Pick an element',
         readonly: false,
@@ -270,25 +272,11 @@ export default {
         getItemsWait: 250,
         filterItems: false
       }
-    },
-    methods: {
-      onSelect (index) {
-        const selectedItem = this.items[index]
-        if (!this.selectedItems.includes(selectedItem)) {
-          this.selectedItems.push(selectedItem)
-        }
-      },
-      onRemove (index) {
-        this.selectedItems.splice(index, 1)
-      },
-      onInput (text) {
-        this.open = !!text
-      }
     }
   }
 </script>
 <template>
-  <fura-base-tag-picker
+  <fura-tag-picker
     :label="label"
     :description="description"
     :invalid="invalid"
@@ -297,7 +285,6 @@ export default {
     :required="required"
     :borderless="borderless"
     :underlined="underlined"
-    :open="open"
     :suggested-index="suggestedIndex"
     :placeholder="placeholder"
     :readonly="readonly"
@@ -305,13 +292,10 @@ export default {
     :accent-insensitive="accentInsensitive"
     :loading-text="loadingText"
     :immediate-scroll="immediateScroll"
-    :selected-items="selectedItems"
     :get-items="getItems"
     :get-items-wait="getItemsWait"
     :filter-items="filterItems"
-    @select="onSelect"
-    @remove="onRemove"
-    @input="onInput"
+    v-model="selectedItems"
   />
 </template>
 </docs>
