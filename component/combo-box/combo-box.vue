@@ -37,7 +37,9 @@ export default {
     /** Indica si el campo ignora los acentos al autocompletar el valor. */
     accentInsensitive: { type: Boolean, default: false },
     /** Texto de ejemplo a mostrar en el campo. */
-    placeholder: { type: String, default: '' }
+    placeholder: { type: String, default: '' },
+    /** La cantidad máxima de opciones que se pueden seleccionar. */
+    maxSelectedOptions: { type: Number, default: -1 }
   },
   emits: [
     /**
@@ -75,10 +77,13 @@ export default {
       if (option && (!option.type || option.type === 'option')) {
         if (this.multiple) {
           if (Array.isArray(this.modelValue)) {
-            const newValue = this.modelValue.includes(option.value)
-              ? this.modelValue.filter(value => value !== option.value)
-              : [...this.modelValue, option.value]
-            this.$emit('update:modelValue', newValue)
+            if (this.modelValue.includes(option.value)) {
+              const newValue = this.modelValue.filter(value => value !== option.value)
+              this.$emit('update:modelValue', newValue)
+            } else if (this.maxSelectedOptions < 0 || this.modelValue.length < this.maxSelectedOptions) {
+              const newValue = [...this.modelValue, option.value]
+              this.$emit('update:modelValue', newValue)
+            }
           } else {
             this.$emit('update:modelValue', [option.value])
           }
@@ -116,7 +121,7 @@ export default {
         }
       }
     },
-    handleClick (event) {
+    handleClick () {
       this.open = !this.open
       if (this.open) {
         this.$refs.comboBox.$refs.autofill.focus()
@@ -247,6 +252,7 @@ export default {
         autoComplete: false,
         accentInsensitive: false,
         immediateScroll: false,
+        maxSelectedOptions: -1,
         options: [
           { type: 'header', text: 'Fruits' },
           { text: 'Apple', value: 'apple' },
@@ -282,6 +288,7 @@ export default {
     :auto-complete="autoComplete"
     :accent-insensitive="accentInsensitive"
     :immediate-scroll="immediateScroll"
+    :max-selected-options="maxSelectedOptions"
     :options="options"
     v-model="value"
   />
@@ -309,6 +316,7 @@ export default {
         autoComplete: false,
         accentInsensitive: false,
         immediateScroll: false,
+        maxSelectedOptions: -1,
         options: [
           { text: 'menjàrem', value: 'menjarem' },
           { text: 'bàscula', value: 'bascula' },
@@ -369,6 +377,7 @@ export default {
     :auto-complete="autoComplete"
     :accent-insensitive="accentInsensitive"
     :immediate-scroll="immediateScroll"
+    :max-selected-options="maxSelectedOptions"
     :options="options"
     v-model="value"
   />
@@ -396,6 +405,7 @@ export default {
         autoComplete: false,
         accentInsensitive: false,
         immediateScroll: false,
+        maxSelectedOptions: -1,
         options: [
           { type: 'header', text: 'Fruits' },
           { text: 'Apple', value: 'apple' },
@@ -431,6 +441,7 @@ export default {
     :auto-complete="autoComplete"
     :accent-insensitive="accentInsensitive"
     :immediate-scroll="immediateScroll"
+    :max-selected-options="maxSelectedOptions"
     :options="options"
     v-model="value"
   >
