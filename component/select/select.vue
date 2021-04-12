@@ -16,7 +16,9 @@ export default {
     /** Indica si el campo permite seleccionar más de una opción. */
     multiple: { type: Boolean, default: false },
     /** Indica si el desplazamiento del Select debe hacerse sin animación. */
-    immediateScroll: { type: Boolean, default: false }
+    immediateScroll: { type: Boolean, default: false },
+    /** La cantidad máxima de opciones que se pueden seleccionar. */
+    maxSelectedOptions: { type: Number, default: -1 }
   },
   emits: [
     /**
@@ -47,10 +49,13 @@ export default {
       if (option && (!option.type || option.type === 'option')) {
         if (this.multiple) {
           if (Array.isArray(this.modelValue)) {
-            const newValue = this.modelValue.includes(option.value)
-              ? this.modelValue.filter(value => value !== option.value)
-              : [...this.modelValue, option.value]
-            this.$emit('update:modelValue', newValue)
+            if (this.modelValue.includes(option.value)) {
+              const newValue = this.modelValue.filter(value => value !== option.value)
+              this.$emit('update:modelValue', newValue)
+            } else if (this.maxSelectedOptions < 0 || this.modelValue.length < this.maxSelectedOptions) {
+              const newValue = [...this.modelValue, option.value]
+              this.$emit('update:modelValue', newValue)
+            }
           } else {
             this.$emit('update:modelValue', [option.value])
           }
@@ -304,6 +309,40 @@ export default {
     style="max-height: 200px; overflow-y: scroll;"
     :options="options"
     v-model="value"
+  />
+</template>
+</docs>
+
+<docs>
+<script>
+  export default {
+    data () {
+      return {
+        options: [
+          { type: 'header', text: 'Fruits' },
+          { text: 'Apple', value: 'apple' },
+          { text: 'Banana', value: 'banana' },
+          { text: 'Mango', value: 'mango' },
+          { text: 'Orange', value: 'orange', disabled: true },
+          { text: 'Passionfruit', value: 'passionfruit' },
+          { text: 'Grape', value: 'grape' },
+          { type: 'divider' },
+          { type: 'header', text: 'Vegetables' },
+          { text: 'Broccoli', value: 'broccoli' },
+          { text: 'Carrot', value: 'carrot' },
+          { text: 'Lettuce', value: 'lettuce' }
+        ],
+        values: []
+      }
+    }
+  }
+</script>
+<template>
+  <fura-select
+    multiple
+    :options="options"
+    :max-selected-options="2"
+    v-model="values"
   />
 </template>
 </docs>
