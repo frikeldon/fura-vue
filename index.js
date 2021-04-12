@@ -34,6 +34,7 @@ import Panel from './component/panel'
 import Pivot from './component/pivot'
 import Select from './component/select'
 import Spinner from './component/spinner'
+import TagPicker from './component/tag-picker'
 import TextField from './component/text-field'
 
 const components = {
@@ -73,6 +74,7 @@ const components = {
   Pivot,
   Select,
   Spinner,
+  TagPicker,
   TextField
 }
 
