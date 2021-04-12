@@ -37,7 +37,7 @@ export default {
   },
   emits: [
     /**
-     * Se genera cuando el usuario realiza una alteración en el valor de Checkbox.
+     * Se genera cuando el usuario realiza una alteración en el valor de Dropdown.
      * @property {string,Array} modelValue Valor o lista de valores seleccionados.
      */
     'update:modelValue'

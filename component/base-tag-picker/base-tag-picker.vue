@@ -233,7 +233,6 @@ export default {
 
 <docs>
 <script>
-  import furaVue from 'fura-vue'
   export default {
     data () {
       return {
