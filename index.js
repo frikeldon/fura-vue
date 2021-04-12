@@ -13,6 +13,7 @@ import BaseFieldCombo from './component/base-field-combo'
 import BaseFieldInput from './component/base-field-input'
 import BaseSelect from './component/base-select'
 import BaseSplitButton from './component/base-split-button'
+import BaseTagPicker from './component/base-tag-picker'
 import BlockMenu from './component/block-menu'
 import Button from './component/button'
 import Calendar from './component/calendar'
@@ -51,6 +52,7 @@ const components = {
   BaseFieldInput,
   BaseSelect,
   BaseSplitButton,
+  BaseTagPicker,
   BlockMenu,
   Button,
   Calendar,
