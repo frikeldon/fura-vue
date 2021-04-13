@@ -224,7 +224,6 @@ export default {
             :selection="selection"
             :compact="compact"
             :selected="isGroupSelected(index)"
-            :checkbox="selection === 'multiple'"
             @click="$emit('selectGroup', index)"
           >
             <th
