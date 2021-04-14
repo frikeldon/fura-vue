@@ -197,6 +197,24 @@ export default {
         :is-collapsed="slotProps.isCollapsed"
       />
     </template>
+    <template #groupFooter="slotProps">
+      <!--
+        @slot Contenido de una celda de un pie de grupo
+        @binding {number} groupIndex Índice de la definición del grupo.
+        @binding {object} group Referencia a la definición del grupo.
+        @binding {number} columnIndex Índice de la definición de la columna.
+        @binding {object} column Referencia a la definición de la columna.
+        @binding {Array} data Datos del grupo.
+      -->
+      <slot
+        name="groupFooter"
+        :group-index="slotProps?.groupIndex"
+        :group="slotProps?.group"
+        :column-index="slotProps?.columnIndex"
+        :column="slotProps?.column"
+        :data="slotProps?.data"
+      />
+    </template>
   </FuraBaseDetailsList>
 </template>
 
@@ -352,6 +370,79 @@ export default {
     </template>
     <template v-slot:group="slotProps">
       <fura-label v-text="getGroupName(slotProps.group)" />
+    </template>
+  </fura-details-list>
+</template>
+</docs>
+
+<docs>
+<script>
+  export default {
+    data () {
+      return {
+        columns: [{ title: 'Name' }, { title: 'Value' }],
+        groups: Array(4).fill(0)
+          .map((_, i) => i * 5)
+          .flatMap(i =>
+            i % 10 === 0
+              ? [
+                  {
+                    name: `Group ${i.toString().padStart(3, '0')}`,
+                    startIndex: i,
+                    count: 0,
+                    level: 0
+                  },
+                  {
+                    name: `Subgroup: ${i.toString().padStart(3, '0')}`,
+                    startIndex: i,
+                    count: 5,
+                    level: 1
+                  }
+                ]
+              : [
+                  {
+                    name: `Subgroup: ${i.toString().padStart(3, '0')}`,
+                    startIndex: i,
+                    count: 5,
+                    level: 1
+                  }
+                ],
+          ),
+        data: Array(20)
+        .fill(0)
+        .map((_, i) => [`Item ${i}`, i.toString()]),
+        selectedIndices: []
+      }
+    },
+    methods: {
+      getGroupFooter (slotProps) {
+        if (slotProps) {
+          if (slotProps.columnIndex === 0) {
+            const first = this.data[slotProps.group.startIndex][1]
+            const last = this.data[slotProps.group.startIndex + slotProps.group.count - 1][1]
+            return `Items ${first}..${last}`
+           } else if (slotProps.columnIndex === 1) {
+            return this.data.slice(slotProps.group.startIndex, slotProps.group.startIndex + slotProps.group.count)
+              .map(row => row[1])
+              .join(', ')
+          }
+        }
+        return ''
+      }
+    }
+  }
+</script>
+<template>
+  <fura-details-list
+    :columns="columns"
+    :groups="groups"
+    :data="data"
+    v-model:selected-indices="selectedIndices"
+  >
+    <template v-slot:groupFooter="slotProps">
+      <span>
+        <b v-text="getGroupFooter(slotProps)"></b>
+      </span>
     </template>
   </fura-details-list>
 </template>
