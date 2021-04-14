@@ -54,9 +54,9 @@ export default {
     required: { type: Boolean, default: false },
     /** Indica si el campo de formulario asociado no tiene bordes. */
     borderless: { type: Boolean, default: false },
-    /** Whether or not the associated form field is underlined. */
-    underlined: { type: Boolean, default: false },
     /** Indica si el campo de formulario asociado está subrayado o no. */
+    underlined: { type: Boolean, default: false },
+    /** Texto de ejemplo a mostrar en el campo. */
     placeholder: { type: String, default: '' },
     /** Prefijo que se muestra antes del contenido del campo. No está incluido en el valor. */
     prefix: { type: String, default: '' },
