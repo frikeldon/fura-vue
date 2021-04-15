@@ -39,6 +39,7 @@ import Select from './component/select'
 import Spinner from './component/spinner'
 import TagPicker from './component/tag-picker'
 import TextField from './component/text-field'
+import Toggle from './component/toggle'
 
 const components = {
   Autofill,
@@ -81,7 +82,8 @@ const components = {
   Select,
   Spinner,
   TagPicker,
-  TextField
+  TextField,
+  Toggle
 }
 
 export default {
