@@ -1,10 +1,12 @@
 const path = require('path')
+const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const packageJson = require('./package.json')
 
 module.exports = () => ({
   mode: 'production',
-  entry: './index.js',
+  entry: './index.umd.js',
   output: {
     path: path.resolve('dist'),
     library: {
@@ -52,6 +54,9 @@ module.exports = () => ({
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: 'fura-vue.css'
+    }),
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(packageJson.version)
     })
   ]
 })
