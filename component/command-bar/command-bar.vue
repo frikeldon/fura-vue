@@ -13,7 +13,7 @@ export default {
   },
   props: {
     /** Elementos de la barra de comandos. */
-    items: { type: Array, required: true },
+    items: { type: Array, default: () => [] },
     /** Elementos que aparecen por defecto en el menú desbordado. */
     overflowItems: { type: Array, default: () => [] },
     /** Elementos de la parte derecha de la barra de comandos. */
