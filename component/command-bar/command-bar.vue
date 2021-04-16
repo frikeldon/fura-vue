@@ -29,6 +29,7 @@ export default {
     return {
       refItems: [],
       expanded: null,
+      expandedFar: null,
       overflowIndex: this.items.length
     }
   },
@@ -124,6 +125,11 @@ export default {
         ? null
         : index
     },
+    expandItemFar (index) {
+      this.expandedFar = this.expandedFar === index
+        ? null
+        : index
+    },
     handleClick (index) {
       if (this.expanded !== index) {
         this.expanded = null
@@ -134,6 +140,19 @@ export default {
           item.action.call(null)
         } else if (item.childs && item.childs.length > 0) {
           this.expanded = index
+        }
+      }
+    },
+    handleClickFar (index) {
+      if (this.expandedFar !== index) {
+        this.expandedFar = null
+      }
+      const item = this.farItems[index]
+      if (item) {
+        if (typeof item.action === 'function') {
+          item.action.call(null)
+        } else if (item.childs && item.childs.length > 0) {
+          this.expandedFar = index
         }
       }
     }
@@ -152,6 +171,16 @@ export default {
     },
     items (value) {
       this.overflowIndex = value.length
+    },
+    expanded (value) {
+      if (value != null) {
+        this.expandedFar = null
+      }
+    },
+    expandedFar (value) {
+      if (value != null) {
+        this.expanded = null
+      }
     }
   },
   mounted () {
@@ -230,10 +259,10 @@ export default {
           :mousestop-delay="mousestopDelay"
           :disabled="item.disabled"
           expand-icon="ChevronDown"
-          @click="handleClick(index)"
-          @click-expand="expandItem(index)"
-          @mousestop="expandItem(index)"
-          @mousestop-expand="expandItem(index)"
+          @click="handleClickFar(index)"
+          @click-expand="expandItemFar(index)"
+          @mousestop="expandItemFar(index)"
+          @mousestop-expand="expandItemFar(index)"
         />
         <FuraBaseCommandButton
           v-else
@@ -243,12 +272,12 @@ export default {
           :mousestop-delay="mousestopDelay"
           :expand-icon="checkItemHasChilds(item) ? 'ChevronDown' : ''"
           :disabled="item.disabled"
-          @click="handleClick(index)"
-          @click-expand="expandItem(index)"
-          @mousestop="expandItem(index)"
+          @click="handleClickFar(index)"
+          @click-expand="expandItemFar(index)"
+          @mousestop="expandItemFar(index)"
         />
         <FuraBlockMenu
-          v-if="index === expanded && checkItemHasChilds(item)"
+          v-if="index === expandedFar && checkItemHasChilds(item)"
           :items="item.childs"
         />
       </div>
