@@ -1,0 +1,72 @@
+@import "../../theme/mixin.less";
+@import "../../theme/color.less";
+@import "../../theme/animation.less";
+
+@defaultHeight: 32px;
+
+input {
+  .normalize();
+  font-size: 14px;
+  color: @neutralPrimary;
+  background-color: @white;
+  height: 100%;
+  padding: 0px 8px 0px 9px;
+  display: block;
+  min-width: 61px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: text;
+  user-select: text;
+  border-style: none;
+  flex: 1 1 0%;
+  outline: 0;
+  overflow: hidden;
+  border-radius: 2px 0px 0px 2px;
+}
+
+span {
+  display: block;
+  height: 100%;
+  cursor: default;
+
+  button {
+    background: transparent;
+    position: relative;
+    outline: 0;
+    border: 0;
+    border-radius: 0 2px 0 0;
+    display: block;
+    width: 23px;
+    height: 50%;
+
+    &:hover {
+      background-color: @neutralLighter;
+    }
+
+    &.up {
+      border-radius: 0px 2px 0px 0px;
+    }
+
+    &.down {
+      border-radius: 0px 0px 2px 0px;
+    }
+  }
+}
+
+.icon {
+  display: inline-block;
+  font-size: (@defaultHeight / 4);
+  height: (@defaultHeight / 2);
+  line-height: (@defaultHeight / 2);
+}
+
+.disabled {
+  input,
+  span button {
+    background-color: @neutralLighter;
+  }
+
+  .icon {
+    color: @neutralTertiary;
+  }
+}

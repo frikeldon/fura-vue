@@ -36,6 +36,7 @@ import Panel from './component/panel'
 import Pivot from './component/pivot'
 import SearchBox from './component/search-box'
 import Select from './component/select'
+import SpinButton from './component/spin-button'
 import Spinner from './component/spinner'
 import TagPicker from './component/tag-picker'
 import TextField from './component/text-field'
@@ -80,6 +81,7 @@ const components = {
   Pivot,
   SearchBox,
   Select,
+  SpinButton,
   Spinner,
   TagPicker,
   TextField,
