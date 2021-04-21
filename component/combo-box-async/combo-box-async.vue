@@ -112,6 +112,12 @@ export default {
     },
     handleClick () {
       this.open = !this.open
+      if (
+        (!this.filterOptions && this.options.length === 0) ||
+        (this.filterOptions && this.modelValue.length === 0)
+      ) {
+        this.open = false
+      }
       if (this.open) {
         this.$refs.comboBox.$refs.autofill.focus()
       }
