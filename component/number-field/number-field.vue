@@ -143,11 +143,21 @@ export default {
   emits: [
     /**
      * Se genera cuando el usuario realiza una alteración en el valor del campo.
-     * @property {string} modelValue Valor actual del campo.
+     * @property {number} modelValue Valor actual del campo.
      */
     'update:modelValue',
     /** Se genera cuando el usuario hace clic en el icono del campo. */
-    'click'
+    'click',
+    /**
+     * Se genera cuando el componente recibe el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'focus',
+    /**
+     * Se genera cuando el componente pierde el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'blur'
   ],
   data () {
     return { hasFocus: false }
@@ -182,11 +192,13 @@ export default {
     }
   },
   methods: {
-    handleFocus () {
+    handleFocus (event) {
       this.hasFocus = true
+      this.$emit('focus', event)
     },
-    handleBlur () {
+    handleBlur (event) {
       this.hasFocus = false
+      this.$emit('blur', event)
     },
     handleKeyDown (event) {
       const { target, key } = event
@@ -226,7 +238,7 @@ export default {
     :maxlength="maxlength"
     :unresizable="unresizable"
     :auto-adjust-height="autoAdjustHeight"
-    v-model:model-value="textValue"
+    v-model="textValue"
     @click="$emit('click')"
     @focus="handleFocus"
     @blur="handleBlur"

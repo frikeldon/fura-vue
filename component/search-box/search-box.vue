@@ -46,7 +46,17 @@ export default {
      */
     'search',
     /** Se genera cuando el usuario pulsa 'Escape' en el campo. */
-    'escape'
+    'escape',
+    /**
+     * Se genera cuando el componente recibe el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'focus',
+    /**
+     * Se genera cuando el componente pierde el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'blur'
   ],
   methods: {
     handleKeydown (event) {
@@ -99,6 +109,8 @@ export default {
       :disabled="disabled"
       @input.stop="$emit('update:modelValue', $event.target.value)"
       @keydown="handleKeydown"
+      @focus="$emit('focus', $event)"
+      @blur="$emit('blur', $event)"
     >
     <div
       v-if="modelValue && !disabled"

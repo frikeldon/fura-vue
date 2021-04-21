@@ -55,7 +55,23 @@ export default {
     /** Valor actual del campo. */
     modelValue: { type: Number, default: null }
   },
-  emits: ['update:modelValue'],
+  emits: [
+    /**
+     * Se genera cuando el usuario realiza una alteración en el valor del campo.
+     * @property {number} modelValue Valor actual del campo.
+     */
+    'update:modelValue',
+    /**
+     * Se genera cuando el componente recibe el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'focus',
+    /**
+     * Se genera cuando el componente pierde el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'blur'
+  ],
   computed: {
     textValue () {
       return this.stringify(this.modelValue)
@@ -100,6 +116,8 @@ export default {
       :value="textValue"
       :disabled="disabled"
       @change="handleChange"
+      @focus="$emit('focus', $event)"
+      @blur="$emit('blur', $event)"
     >
     <span>
       <button

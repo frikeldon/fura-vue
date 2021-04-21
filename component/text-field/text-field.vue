@@ -53,7 +53,22 @@ export default {
      */
     'update:modelValue',
     /** Se genera cuando el usuario hace clic en el icono del campo. */
-    'click'
+    'click',
+    /**
+     * Se genera cuando el componente recibe el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'focus',
+    /**
+     * Se genera cuando el componente pierde el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'blur',
+    /**
+     * Se genera cuando el usuario pulsa una tecla.
+     * @property {KeyboardEvent} keyboardEvent Descripción del evento de pulsación de tecla.
+     */
+    'keydown'
   ],
   methods: {
     handleTextareaInput (event) {
@@ -105,7 +120,9 @@ export default {
       :readonly="readonly"
       :maxlength="maxlength"
       @input.stop="handleTextareaInput"
-      v-bind="$attrs"
+      @focus="$emit('focus', $event)"
+      @blur="$emit('blur', $event)"
+      @keydown="$emit('keydown', $event)"
     />
     <input
       v-else
@@ -119,7 +136,9 @@ export default {
       :readonly="readonly"
       :maxlength="maxlength"
       @input.stop="$emit('update:modelValue', $event.target.value)"
-      v-bind="$attrs"
+      @focus="$emit('focus', $event)"
+      @blur="$emit('blur', $event)"
+      @keydown="$emit('keydown', $event)"
     >
 
     <FuraIcon

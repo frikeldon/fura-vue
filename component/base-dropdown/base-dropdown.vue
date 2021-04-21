@@ -58,7 +58,17 @@ export default {
      */
     'keydown',
     /** Se genera cuando el usuario hace clic en el campo de Dropdown. */
-    'click'
+    'click',
+    /**
+     * Se genera cuando el componente recibe el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'focus',
+    /**
+     * Se genera cuando el componente pierde el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'blur'
   ],
   watch: {
     markedIndex (index) {
@@ -100,11 +110,12 @@ export default {
       :tabindex="disabled ? '' : '0'"
       @click.stop="$emit('click')"
       @keydown.stop.prevent="$emit('keydown', $event)"
+      @focus="$emit('focus', $event)"
+      @blur="$emit('blur', $event)"
     >
       <span
         class="title"
         v-text="selectedText || placeholder"
-        v-bind="$attrs"
       />
       <span class="caret">
         <FuraIcon

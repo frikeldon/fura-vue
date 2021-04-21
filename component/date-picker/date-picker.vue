@@ -111,7 +111,17 @@ export default {
      * Se genera cuando el usuario selecciona una fecha en la vista de dias.
      * @property {Date} modelValue Fecha seleccionada en el calendario.
      */
-    'update:modelValue'
+    'update:modelValue',
+    /**
+     * Se genera cuando el componente recibe el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'focus',
+    /**
+     * Se genera cuando el componente pierde el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'blur'
   ],
   data () {
     return {
@@ -178,7 +188,8 @@ export default {
       :readonly="notWritable || readonly"
       @change.stop="handleTextChange"
       @click.stop="handleTextClick"
-      v-bind="$attrs"
+      @focus="$emit('focus', $event)"
+      @blur="$emit('blur', $event)"
     >
     <FuraIcon
       class="icon"

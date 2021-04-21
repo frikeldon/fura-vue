@@ -79,7 +79,17 @@ export default {
      * Se genera cuando el usuario realiza un cambio en el campo de texto de ComboBox.
      * @property {string} text Texto introducido en el campo de texto de ComboBox.
      */
-    'input'
+    'input',
+    /**
+     * Se genera cuando el componente recibe el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'focus',
+    /**
+     * Se genera cuando el componente pierde el foco.
+     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
+     */
+    'blur'
   ],
   computed: {
     suggestedText () {
@@ -152,7 +162,8 @@ export default {
         @click="handleFuraAutofillClick"
         @update:model-value="$emit('input', $event)"
         @keydown="$emit('keydown', $event)"
-        v-bind="$attrs"
+        @focus="$emit('focus', $event)"
+        @blur="$emit('blur', $event)"
       />
     </div>
     <button
