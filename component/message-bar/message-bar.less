@@ -1,0 +1,155 @@
+@import "../../theme/typography.less";
+@import "../../theme/color.less";
+
+.messageBar {
+  .fontStyleMedium();
+  color: @neutralPrimary;
+  min-height: 32px;
+  width: 100%;
+  display: flex;
+  word-break: break-word;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  line-height: normal;
+}
+
+.icon {
+  font-size: @iconFontSizeMedium;
+  min-width: @iconFontSizeMedium;
+  min-height: @iconFontSizeMedium;
+  display: flex;
+  flex-shrink: 0;
+  margin: 8px 0px 8px 12px;
+}
+
+.text {
+  .fontStyleSmall();
+  min-width: 0px;
+  display: flex;
+  flex-grow: 1;
+  margin: 8px;
+  -webkit-font-smoothing: antialiased;
+
+  > span {
+    line-height: 16px;
+  }
+}
+
+.actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row-reverse;
+  align-items: center;
+  margin: 0px 12px 0px 8px;
+
+  &.multiline {
+    margin-bottom: 8px;
+  }
+}
+
+/* Icon Button */
+
+button {
+  outline: transparent;
+  position: relative;
+  box-sizing: border-box;
+  border: none;
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 2px;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  color: rgb(0, 120, 212);
+  flex-shrink: 0;
+  user-select: none;
+
+  > span {
+    display: flex;
+    height: 100%;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.buttonIcon {
+  font-size: @iconFontSizeXSmall;
+  height: @iconFontSizeXSmall;
+  line-height: @iconFontSizeXSmall;
+  color: @neutralPrimary;
+}
+
+/* MessageBar modifiers */
+
+.messageBar {
+  &.noDismiss .text {
+    margin-right: 12px;
+  }
+  
+  &.singleline .text > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  &.multiline {
+    flex-direction: column;
+  }
+}
+
+/* MessageBar types */
+
+.info {
+  background: var(--info-background, #f3f2f1);
+
+  .icon {
+    color: var(--info-icon, #605e5c);
+  }
+}
+
+.error {
+  background: var(--error-background, #fde7e9);
+
+  .icon {
+    color: var(--error-icon, #a80000);
+  }
+}
+
+.blocked {
+  background: var(--blocked-background, #fde7e9);
+
+  .icon {
+    color: var(--blocked-icon, #a80000);
+  }
+}
+
+.severeWarning {
+  background: var(--severe-warning-background, #fed9cc);
+
+  .icon {
+    color: var(--severe-icon, #d83b01);
+  }
+}
+
+.success {
+  background: var(--success-background, #dff6dd);
+
+  .icon {
+    color: var(--success-icon, #107c10);
+  }
+}
+
+.warning {
+  background: var(--warning-background, #fff4ce);
+
+  .icon {
+    color: var(--warning-icon, #797775);
+  }
+}

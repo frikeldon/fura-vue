@@ -30,6 +30,7 @@ import Dropdown from './component/dropdown'
 import ExpanderButton from './component/expander-button'
 import Icon from './component/icon'
 import Label from './component/label'
+import MessageBar from './component/message-bar'
 import NumberField from './component/number-field'
 import Overlay from './component/overlay'
 import Panel from './component/panel'
@@ -75,6 +76,7 @@ const components = {
   ExpanderButton,
   Icon,
   Label,
+  MessageBar,
   NumberField,
   Overlay,
   Panel,
