@@ -35,6 +35,7 @@ import NumberField from './component/number-field'
 import Overlay from './component/overlay'
 import Panel from './component/panel'
 import Pivot from './component/pivot'
+import ProgressIndicator from './component/progress-indicator'
 import SearchBox from './component/search-box'
 import Select from './component/select'
 import SpinButton from './component/spin-button'
@@ -81,6 +82,7 @@ const components = {
   Overlay,
   Panel,
   Pivot,
+  ProgressIndicator,
   SearchBox,
   Select,
   SpinButton,

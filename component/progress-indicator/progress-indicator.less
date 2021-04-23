@@ -1,0 +1,64 @@
+@import "../../theme/typography.less";
+@import "../../theme/color.less";
+
+.progressIndicator {
+  .fontStyleMedium();
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: @neutralPrimary;
+  padding-top: 4px;
+  line-height: 20px;
+}
+
+.description {
+  color: @neutralSecondary;
+  font-size: @fontSizeSmallPlus;
+  line-height: 18px;
+}
+
+.itemProgress {
+  position: relative;
+  overflow: hidden;
+  height: 2px;
+  padding: 8px 0px;
+}
+
+.progressTrack {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: @neutralLight;
+}
+
+.progressBar {
+  background-color: @themePrimary;
+  height: 2px;
+  position: absolute;
+  transition: width 0.15s linear 0s;
+  width: 0px;
+
+  &.indeterminate {
+    transition: width 0.3s ease 0s;
+    min-width: 33%;
+    background: linear-gradient(
+      to right,
+      @neutralLight 0%,
+      @themePrimary 50%,
+      @neutralLight 100%
+    );
+    animation: 3s ease 0s infinite normal none running indeterminateProgress;
+  }
+}
+
+@keyframes indeterminateProgress {
+  0% {
+    left: -30%;
+  }
+  100% {
+    left: 100%;
+  }
+}
