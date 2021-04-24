@@ -39,7 +39,7 @@ export default {
     /** Indica si el campo ignora los acentos al autocompletar el valor. */
     accentInsensitive: { type: Boolean, default: false },
     /** Texto de ejemplo a mostrar en el campo. */
-    placeholder: { type: String, default: '' },
+    placeholder: { type: String, default: null },
     /** Indica si el desplazamiento del Select debe hacerse sin animación. */
     immediateScroll: { type: Boolean, default: false },
     /** La cantidad máxima de opciones que se pueden seleccionar. */

@@ -34,7 +34,7 @@ export default {
       <div class="progressTrack" />
       <div
         class="progressBar"
-        :class="progress === null ? 'indeterminate' : ''"
+        :class="progress === null ? 'indeterminate' : null"
         :style="{ width: progress }"
       />
     </div>

@@ -26,7 +26,7 @@ export default {
     /** Indica si el campo de formulario asociado está subrayado o no. */
     underlined: { type: Boolean, default: false },
     /** Texto de ejemplo a mostrar en el campo. */
-    placeholder: { type: String, default: '' },
+    placeholder: { type: String, default: null },
     /** Prefijo que se muestra antes del contenido del campo de texto. No está incluido en el valor. */
     prefix: { type: String, default: '' },
     /** Sufijo que se muestra después del contenido del campo de texto. No está incluido en el valor. */
@@ -38,7 +38,7 @@ export default {
     /** Indica si el campo es de solo lectura. */
     readonly: { type: Boolean, default: false },
     /** Longitud máxima (número de caracteres) del valor. */
-    maxlength: { type: Number, default: -1 },
+    maxlength: { type: Number, default: null },
     /** Indica si el campo es no redimensionable para campos de texto de varias líneas. */
     unresizable: { type: Boolean, default: false },
     /** Indica si se ajustaautomáticamente la altura para campos de texto de varias líneas. */
@@ -116,8 +116,8 @@ export default {
       }"
       :value="modelValue"
       :placeholder="placeholder"
-      :disabled="disabled"
-      :readonly="readonly"
+      :disabled="disabled || null"
+      :readonly="readonly || null"
       :maxlength="maxlength"
       @input.stop="handleTextareaInput"
       @focus="$emit('focus', $event)"
@@ -132,8 +132,8 @@ export default {
       :class="{ hasIcon: icon }"
       :value="modelValue"
       :placeholder="placeholder"
-      :disabled="disabled"
-      :readonly="readonly"
+      :disabled="disabled || null"
+      :readonly="readonly || null"
       :maxlength="maxlength"
       @input.stop="$emit('update:modelValue', $event.target.value)"
       @focus="$emit('focus', $event)"

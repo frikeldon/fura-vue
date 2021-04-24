@@ -40,7 +40,7 @@ export default {
     /** La cantidad máxima de elementos que se pueden seleccionar. */
     maxSelectedItems: { type: Number, default: -1 },
     /** Texto de ejemplo a mostrar en el campo. */
-    placeholder: { type: String, default: '' },
+    placeholder: { type: String, default: null },
     /** El texto a mostrar en el progreso de carga. */
     loadingText: { type: String, default: '' },
     /** Indica si el desplazamiento del Select debe hacerse sin animación. */

@@ -114,7 +114,7 @@ export default {
       ref="field"
       type="text"
       :value="textValue"
-      :disabled="disabled"
+      :disabled="disabled || null"
       @change="handleChange"
       @focus="$emit('focus', $event)"
       @blur="$emit('blur', $event)"
@@ -122,7 +122,7 @@ export default {
     <span>
       <button
         class="up"
-        :disabled="disabled"
+        :disabled="disabled || null"
         @click="handleClickUp"
       >
         <FuraIcon
@@ -132,7 +132,7 @@ export default {
       </button>
       <button
         class="down"
-        :disabled="disabled"
+        :disabled="disabled || null"
         @click="handleClickDown"
       >
         <FuraIcon

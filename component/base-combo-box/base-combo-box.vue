@@ -50,7 +50,7 @@ export default {
     /** Indica si el campo ignora los acentos al autocompletar el valor. */
     accentInsensitive: { type: Boolean, default: false },
     /** Texto de ejemplo a mostrar en el campo. */
-    placeholder: { type: String, default: '' },
+    placeholder: { type: String, default: null },
     /** Índice de la opción sugerida. */
     suggestedIndex: { type: Number, default: -1 },
     /** Indica si el ComboBox debe mostrar las opciones en vez de un progreso de carga. */
@@ -168,7 +168,7 @@ export default {
     </div>
     <button
       class="caret"
-      :disabled="disabled"
+      :disabled="disabled || null"
       @click.stop="handleCaretClick"
     >
       <span>

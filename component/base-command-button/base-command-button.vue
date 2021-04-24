@@ -62,7 +62,7 @@ export default {
 
 <template>
   <button
-    :disabled="disabled"
+    :disabled="disabled || null"
     @click.stop="handleClick"
     @mouseover.stop="handleMouseover"
     @mouseout.stop="clearMouseHandler"

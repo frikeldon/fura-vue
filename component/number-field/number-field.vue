@@ -57,7 +57,7 @@ export default {
     /** Indica si el campo de formulario asociado está subrayado o no. */
     underlined: { type: Boolean, default: false },
     /** Texto de ejemplo a mostrar en el campo. */
-    placeholder: { type: String, default: '' },
+    placeholder: { type: String, default: null },
     /** Prefijo que se muestra antes del contenido del campo. No está incluido en el valor. */
     prefix: { type: String, default: '' },
     /** Sufijo que se muestra después del contenido del campo. No está incluido en el valor. */

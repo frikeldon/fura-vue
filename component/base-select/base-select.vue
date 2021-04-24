@@ -199,7 +199,7 @@ export default {
             marked: !(disabled || option.disabled) && (markedIndex === index),
             highlighted: !(disabled || option.disabled) && (highlightedIndex === index)
           }"
-          :disabled="disabled || option.disabled"
+          :disabled="disabled || option.disabled || null"
           @click.stop="handleClick(index)"
           v-text="option.text"
         />

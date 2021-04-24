@@ -23,9 +23,9 @@ export default {
     /** El nombre del icono a mostrar en el botón. */
     icon: { type: String, default: '' },
     /** Si se proporciona, el componente se dibuja como enlace y no como botón. */
-    href: { type: String, default: '' },
+    href: { type: String, default: null },
     /** Atributo target del enlace. El atributo 'href' debe ser proporcionado. */
-    target: { type: String, default: '' },
+    target: { type: String, default: null },
     /** Estado de seleccionado. */
     checked: { type: Boolean, default: false },
     /** Estado de deshabilitado. */
@@ -55,8 +55,8 @@ export default {
       checked
     }"
     :href="href"
-    :target="href ? target : ''"
-    :disabled="disabled"
+    :target="href ? target : null"
+    :disabled="disabled || null"
     @click="$emit('click', $event)"
   >
     <span>

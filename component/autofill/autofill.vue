@@ -7,7 +7,7 @@ export default {
     /** Valor actual del campo. */
     modelValue: { type: String, default: '' },
     /** Texto de ejemplo a mostrar en el campo. */
-    placeholder: { type: String, default: '' },
+    placeholder: { type: String, default: null },
     /** Indica si el campo es de solo lectura. */
     readonly: { type: Boolean, default: false },
     /** Estado deshabilitado del campo de formulario asociado. */
@@ -126,8 +126,8 @@ export default {
     type="text"
     ref="field"
     :placeholder="placeholder"
-    :readonly="readonly"
-    :disabled="disabled"
+    :readonly="readonly || null"
+    :disabled="disabled || null"
     @input.stop="handleInput"
     @keydown.stop="handleKeydown"
   >

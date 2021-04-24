@@ -28,7 +28,7 @@ export default {
     /** El nombre del icono a mostrar en el campo de texto. */
     icon: { type: String, default: 'Search' },
     /** Texto de ejemplo a mostrar en el campo. */
-    placeholder: { type: String, default: '' },
+    placeholder: { type: String, default: null },
     /** Indica si el icono de SearchBox debe estar animado o no. */
     disableAnimation: { type: Boolean, default: false },
     /** Valor actual del campo. */
@@ -106,7 +106,7 @@ export default {
       class="field"
       :value="modelValue"
       :placeholder="placeholder"
-      :disabled="disabled"
+      :disabled="disabled || null"
       @input.stop="$emit('update:modelValue', $event.target.value)"
       @keydown="handleKeydown"
       @focus="$emit('focus', $event)"
