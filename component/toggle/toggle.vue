@@ -26,7 +26,14 @@ export default {
      * @property {boolean} modelValue Nuevo valor de modelValue
      */
     'update:modelValue'
-  ]
+  ],
+  methods: {
+    handleClick () {
+      if (!this.disabled) {
+        this.$emit('update:modelValue', !this.modelValue)
+      }
+    }
+  }
 }
 </script>
 
@@ -46,7 +53,8 @@ export default {
       <button
         class="toggle"
         :class="{ checked: modelValue }"
-        @click="$emit('update:modelValue', !modelValue)"
+        :disabled="disabled || null"
+        @click="handleClick"
       >
         <span />
       </button>
@@ -54,7 +62,7 @@ export default {
         v-if="onText || offText"
         class="stateText"
         v-text="modelValue ? onText : offText"
-        @click="$emit('update:modelValue', !modelValue)"
+        @click="handleClick"
       />
     </div>
   </div>
