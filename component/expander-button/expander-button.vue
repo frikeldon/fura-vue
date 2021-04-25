@@ -23,7 +23,7 @@ export default {
 </script>
 
 <template>
-  <div
+  <button
     :class="{ expanded, vertical }"
     @click.stop="$emit('click', $event)"
   >
@@ -31,7 +31,7 @@ export default {
       class="icon"
       :name="icon"
     />
-  </div>
+  </button>
 </template>
 
 <style lang="less" scoped src="./expander-button.less"></style>

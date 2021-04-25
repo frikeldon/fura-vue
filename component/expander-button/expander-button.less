@@ -1,20 +1,31 @@
+@import "../../theme/mixin.less";
 @import "../../theme/color.less";
 
 @expanderWidth: 36px;
 
-div {
+button {
+  .normalize();
   position: relative;
+  background: transparent;
+  border: 0;
+  outline: 0;
   color: @neutralSecondary;
   width: @expanderWidth;
   display: inline-flex;
-  padding: 0;
-  margin: 0;
   height: 100%;
   align-items: center;
   justify-content: center;
   font-size: 12px;
   cursor: pointer;
   user-select: none;
+
+  &:hover,
+  &:active,
+  &.checked {
+    background: transparent;
+    border: 0;
+    outline: 0;
+  }
 }
 
 .icon {
@@ -25,11 +36,11 @@ div {
   .expanded & {
     transform: rotate(90deg);
   }
-  
+
   .vertical & {
     transform: rotate(90deg);
   }
-  
+
   .vertical.expanded & {
     transform: rotate(-90deg);
   }
