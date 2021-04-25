@@ -21,8 +21,16 @@ div {
   transform-origin: 50% 50%;
   transform: rotate(0deg);
   transition: transform 0.1s linear 0s;
-}
 
-.expanded .icon {
-  transform: rotate(90deg);
+  .expanded & {
+    transform: rotate(90deg);
+  }
+  
+  .vertical & {
+    transform: rotate(90deg);
+  }
+  
+  .vertical.expanded & {
+    transform: rotate(-90deg);
+  }
 }
