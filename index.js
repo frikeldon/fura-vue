@@ -11,6 +11,7 @@ import BaseDetailsListRow from './component/base-details-list-row'
 import BaseDropdown from './component/base-dropdown'
 import BaseFieldCombo from './component/base-field-combo'
 import BaseFieldInput from './component/base-field-input'
+import BaseNavList from './component/base-nav-list'
 import BaseSelect from './component/base-select'
 import BaseSplitButton from './component/base-split-button'
 import BaseTagPicker from './component/base-tag-picker'
@@ -58,6 +59,7 @@ const components = {
   BaseDropdown,
   BaseFieldCombo,
   BaseFieldInput,
+  BaseNavList,
   BaseSelect,
   BaseSplitButton,
   BaseTagPicker,

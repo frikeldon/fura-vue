@@ -1,0 +1,138 @@
+@import "../../theme/typography.less";
+@import "../../theme/color.less";
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 0;
+}
+
+.container {
+  display: block;
+  position: relative;
+  color: @neutralPrimary;
+}
+
+.expander {
+  position: absolute;
+  display: flex;
+  width: 26px;
+  height: auto;
+  top: 1px;
+  bottom: 1px;
+  left: 1px;
+  color: @neutralPrimary;
+  z-index: 1;
+}
+
+.icon {
+  margin: 0px 4px;
+  font-size: @iconFontSizeMedium;
+  height: @iconFontSizeMedium;
+  line-height: @iconFontSizeMedium;
+  text-align: center;
+  flex-shrink: 0;
+  color: @themePrimary;
+}
+
+.link {
+  .fontStyleMedium();
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  height: 44px;
+  line-height: 44px;
+  width: 100%;
+  color: @neutralPrimary;
+  background-color: transparent;
+  border: 1px solid transparent;
+  user-select: none;
+  outline: transparent;
+  text-decoration: none;
+  border-radius: 2px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  .container.wrappedText & {
+    white-space: normal;
+    line-height: inherit;
+  }
+
+  > span {
+    display: flex;
+    height: 100%;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    > div {
+      margin: 0px 4px;
+      overflow: hidden;
+      vertical-align: middle;
+      text-align: left;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.container:hover {
+  background: @neutralLighter;
+
+  .link {
+    color: @themePrimary;
+  }
+}
+
+.container.selected {
+  .link {
+    background-color: @neutralLight;
+    font-weight: @fontWeightSemibold;
+
+    > span:after {
+      border-left: 2px solid @themePrimary;
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      pointer-events: none;
+    }
+  }
+
+  .expander {
+    color: @themePrimary;
+    background-color: @neutralLighterAlt;
+
+    &:after {
+      border-left: 2px solid @themePrimary;
+      content: "";
+      position: absolute;
+      inset: 0px;
+      pointer-events: none;
+    }
+  }
+}
+
+.container:hover .link {
+  background-color: @neutralLighter;
+  color: @themePrimary;
+}
+
+.link[disabled] {
+  pointer-events: none;
+
+  &,
+  &:active,
+  .container:hover & {
+    cursor: default;
+    color: @neutralTertiary;
+  }
+}
