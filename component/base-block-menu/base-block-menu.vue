@@ -66,17 +66,53 @@ export default {
   <div class="blockMenu">
     <ul>
       <template v-for="(item, index) in items">
-        <!--
-          @slot Elemento del menú.
-          @binding {object} item Referencia al elemento.
-          @binding {number} index Índice del elemento.
-        -->
-        <slot
-          v-if="!item.type || item.type === 'button'"
-          :item="item"
-          :index="index"
+        <li
+          v-if="item.type === 'divider'"
+          :key="`divider_${index}`"
+          class="divider"
+        />
+        <li
+          v-else-if="item.type === 'title'"
+          :key="`title_${index}`"
+          class="title"
         >
-          <li :key="index">
+          <!--
+            @slot Encabezado del menú.
+            @binding {object} item Referencia al elemento.
+            @binding {number} index Índice del elemento.
+          -->
+          <slot
+            name="title"
+            :item="item"
+            :index="index"
+          >
+            <div>
+              <FuraIcon
+                class="icon"
+                :name="item.icon"
+                :style="{ color: item.iconColor }"
+              />
+              <span v-text="item.text" />
+            </div>
+          </slot>
+        </li>
+        <li
+          v-else
+          :key="`item_${index}`"
+        >
+          <!--
+            @slot Elemento del menú.
+            @binding {object} item Referencia al elemento.
+            @binding {number} index Índice del elemento.
+            @binding {function} click Método para invocar el evento click.
+            @binding {function} expand Método para invocar el evento expand.
+          -->
+          <slot
+            :item="item"
+            :index="index"
+            :click="() => handleClick(item, index)"
+            :expand="() => handleExpand(item, index)"
+          >
             <FuraBaseSplitButton
               v-if="checkItemHasActions(item) && checkItemHasChilds(item)"
               class="button"
@@ -106,96 +142,45 @@ export default {
               @click-expand="handleExpand(item, index)"
               @mousestop="handleExpand(item, index)"
             />
-            <FuraBaseBlockMenu
-              v-if="item.expanded && checkItemHasChilds(item)"
-              class="childBlockMenu"
-              :items="item.childs"
-              :mousestop-delay="mousestopDelay"
-              @click="handleChildClick(item, index, $event)"
-              @expand="handleChildExpand(item, index, $event)"
-            >
-              <template #default="slotProps">
-                <!--
-                  @slot Encabezado del menú.
-                  @binding {object} item Referencia al elemento.
-                  @binding {number} index Índice del elemento.
-                -->
-                <slot
-                  :item="slotProps.item"
-                  :index="slotProps.index"
-                />
-              </template>
-
-              <template #title="slotProps">
-                <!--
-                  @slot Encabezado del menú.
-                  @binding {object} item Referencia al elemento.
-                  @binding {number} index Índice del elemento.
-                -->
-                <slot
-                  name="title"
-                  :item="slotProps.item"
-                  :index="slotProps.index"
-                />
-              </template>
-
-              <template #divider="slotProps">
-                <!--
-                  @slot Separador del menú.
-                  @binding {object} item Referencia al elemento.
-                  @binding {number} index Índice del elemento.
-                -->
-                <slot
-                  name="divider"
-                  :item="slotProps.item"
-                  :index="slotProps.index"
-                />
-              </template>
-            </FuraBaseBlockMenu>
-          </li>
-        </slot>
-        <!--
-          @slot Encabezado del menú.
-          @binding {object} item Referencia al elemento.
-          @binding {number} index Índice del elemento.
-        -->
-        <slot
-          v-else-if="item.type === 'title'"
-          name="title"
-          :item="item"
-          :index="index"
-        >
-          <li
-            :key="index"
-            class="title"
+          </slot>
+          <FuraBaseBlockMenu
+            v-if="item.expanded && checkItemHasChilds(item)"
+            class="childBlockMenu"
+            :items="item.childs"
+            :mousestop-delay="mousestopDelay"
+            @click="handleChildClick(item, index, $event)"
+            @expand="handleChildExpand(item, index, $event)"
           >
-            <div>
-              <FuraIcon
-                class="icon"
-                :name="item.icon"
-                :style="{ color: item.iconColor }"
+            <template #default="slotProps">
+              <!--
+                @slot Encabezado del menú.
+                @binding {object} item Referencia al elemento.
+                @binding {number} index Índice del elemento.
+                @binding {function} click Método para invocar el evento click.
+                @binding {function} expand Método para invocar el evento expand.
+              -->
+              <slot
+                :item="slotProps.item"
+                :index="slotProps.index"
+                :click="slotProps.click"
+                :expand="slotProps.expand"
               />
-              <span v-text="item.text" />
-            </div>
-            <slot />
-          </li>
-        </slot>
-        <!--
-          @slot Separador del menú.
-          @binding {object} item Referencia al elemento.
-          @binding {number} index Índice del elemento.
-        -->
-        <slot
-          v-else-if="item.type === 'divider'"
-          name="divider"
-          :item="item"
-          :index="index"
-        >
-          <li
-            :key="index"
-            class="divider"
-          />
-        </slot>
+            </template>
+
+            <template #title="slotProps">
+              <!--
+                @slot Encabezado del menú.
+                @binding {object} item Referencia al elemento.
+                @binding {number} index Índice del elemento.
+              -->
+              <slot
+                name="title"
+                :item="slotProps.item"
+                :index="slotProps.index"
+              />
+            </template>
+          </FuraBaseBlockMenu>
+        </li>
       </template>
     </ul>
   </div>
@@ -302,6 +287,9 @@ export default {
       }
     },
     methods: {
+      onClick ({ item }) {
+        item.action && item.action()
+      },
       onExpand ({ item }) {
         item.expanded = !item.expanded
       }
@@ -312,6 +300,7 @@ export default {
   <fura-base-block-menu
     :mousestop-delay="mousestopDelay"
     :items="items"
+    @click="onClick"
     @expand="onExpand"
   />
 </template>
@@ -416,6 +405,9 @@ export default {
       }
     },
     methods: {
+      onClick ({ item }) {
+        item.action && item.action()
+      },
       onExpand ({ item }) {
         item.expanded = !item.expanded
       }
@@ -426,21 +418,28 @@ export default {
   <fura-base-block-menu
     :mousestop-delay="mousestopDelay"
     :items="items"
+    @click="onClick"
     @expand="onExpand"
   >
-    <template v-slot:title="slotProps">
-      <li>
+    <template v-slot="slotProps">
+      <div style="display: flex; align-items: center;">
         <fura-button
-          style="width: 100%"
-          primary
+          style="flex-grow: 1;"
           :text="slotProps.item.text"
+          @click="slotProps.click"
         />
-      </li>
+        <fura-expander-button
+          v-if="slotProps.item.childs"
+          style="flex-grow: 0;"
+          :expanded="slotProps.item.expanded"
+          @click="slotProps.expand"
+        />
+      </div>
     </template>
-    <template v-slot:divider>
-      <li>
-        <hr />
-      </li>
+    <template v-slot:title="slotProps">
+      <fura-label
+        v-text="slotProps.item.text"
+      />
     </template>
   </fura-base-block-menu>
 </template>

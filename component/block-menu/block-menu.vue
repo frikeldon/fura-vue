@@ -110,7 +110,36 @@ export default {
     :mousestop-delay="mousestopDelay"
     @click="handleClick"
     @expand="handleExpand"
-  />
+  >
+    <template #default="slotProps">
+      <!--
+        @slot Encabezado del menú.
+        @binding {object} item Referencia al elemento.
+        @binding {number} index Índice del elemento.
+        @binding {function} click Método para invocar el evento click.
+        @binding {function} expand Método para invocar el evento expand.
+      -->
+      <slot
+        :item="slotProps.item"
+        :index="slotProps.index"
+        :click="slotProps.click"
+        :expand="slotProps.expand"
+      />
+    </template>
+
+    <template #title="slotProps">
+      <!--
+        @slot Encabezado del menú.
+        @binding {object} item Referencia al elemento.
+        @binding {number} index Índice del elemento.
+      -->
+      <slot
+        name="title"
+        :item="slotProps.item"
+        :index="slotProps.index"
+      />
+    </template>
+  </FuraBaseBlockMenu>
 </template>
 
 <docs>
@@ -218,5 +247,134 @@ export default {
     :mousestop-delay="mousestopDelay"
     :items="items"
   />
+</template>
+</docs>
+
+<docs>
+<script>
+  export default {
+    data () {
+      return {
+        mousestopDelay: 800,
+        items: [
+          {
+            value: 'newItem',
+            text: 'New',
+            icon: 'Add',
+            action: () => alert('New'),
+            childs: [
+              {
+                type: 'title',
+                text: 'Actions'
+              },
+              {
+                value: 'upload',
+                text: 'Upload',
+                icon: 'Upload',
+                iconColor: 'salmon'
+              },
+              {
+                value: 'rename',
+                text: 'Rename'
+              },
+              {
+                value: 'share',
+                text: 'Sharing',
+                icon: 'Share',
+                childs: [
+                  {
+                    value: 'sharetoemail',
+                    text: 'Share to Email',
+                    icon: 'Mail'
+                  },
+                  {
+                    value: 'sharetotwitter',
+                    text: 'Share to Twitter',
+                    icon: 'Share'
+                  }
+                ]
+              },
+              {
+                type: 'divider'
+              },
+              {
+                type: 'title',
+                text: 'Navigation'
+              },
+              {
+                value: 'properties',
+                text: 'Properties'
+              },
+              {
+                value: 'print',
+                text: 'Print',
+                icon: 'Print',
+                disabled: true
+              },
+              {
+                value: 'bing',
+                text: 'Go to Bing'
+              }
+            ]
+          },
+          {
+            value: 'upload',
+            text: 'Upload',
+            icon: 'Upload',
+            action: () => alert('upload')
+          },
+          {
+            value: 'share',
+            text: 'Share',
+            icon: 'Share',
+            childs: [
+              {
+                value: 'sharetoemail',
+                text: 'Share to Email',
+                icon: 'Mail'
+              },
+              {
+                value: 'sharetotwitter',
+                text: 'Share to Twitter',
+                icon: 'Share'
+              }
+            ]
+          },
+          {
+            value: 'download',
+            text: 'Download',
+            icon: 'Download'
+          }
+        ]
+      }
+    }
+  }
+</script>
+<template>
+  <fura-block-menu
+    :mousestop-delay="mousestopDelay"
+    :items="items"
+  >
+    <template v-slot="slotProps">
+      <div style="display: flex; align-items: center;">
+        <fura-button
+          style="flex-grow: 1;"
+          :text="slotProps.item.text"
+          @click="slotProps.click"
+        />
+        <fura-expander-button
+          v-if="slotProps.item.childs"
+          style="flex-grow: 0;"
+          :expanded="slotProps.item.expanded"
+          @click="slotProps.expand"
+        />
+      </div>
+    </template>
+    <template v-slot:title="slotProps">
+      <fura-label
+        v-text="slotProps.item.text"
+      />
+    </template>
+  </fura-block-menu>
 </template>
 </docs>
