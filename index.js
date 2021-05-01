@@ -1,4 +1,5 @@
 import Autofill from './component/autofill'
+import BaseBlockMenu from './component/base-block-menu'
 import BaseCalendar from './component/base-calendar'
 import BaseCalendarDays from './component/base-calendar-days'
 import BaseCalendarMonths from './component/base-calendar-months'
@@ -49,6 +50,7 @@ import Toggle from './component/toggle'
 
 const components = {
   Autofill,
+  BaseBlockMenu,
   BaseCalendar,
   BaseCalendarDays,
   BaseCalendarMonths,

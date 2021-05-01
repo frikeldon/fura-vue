@@ -1,164 +1,117 @@
 <script>
-import FuraBaseSplitButton from '../base-split-button'
-import FuraBaseCommandButton from '../base-command-button'
-import FuraIcon from '../icon'
+import FuraBaseBlockMenu from '../base-block-menu'
+
+function getExpandedState (items) {
+  const expanded = []
+  let current = items
+  let found = true
+  while (found && Array.isArray(current)) {
+    found = false
+    for (let index = 0; index < current.length; index += 1) {
+      if (current[index].expanded) {
+        expanded.push(index)
+        current = current[index].childs
+        found = true
+        break
+      }
+    }
+  }
+  return expanded
+}
+
+function getItemsState (items, expanded) {
+  const cloneItems = []
+  for (let index = 0; index < items.length; index += 1) {
+    const item = items[index]
+    const isExpanded = expanded[0] === index
+    cloneItems.push({
+      ...item,
+      expanded: isExpanded && Array.isArray(item.childs) && item.childs.length > 0,
+      childs: Array.isArray(item.childs) && item.childs.length > 0
+        ? getItemsState(item.childs, isExpanded ? expanded.slice(1) : [])
+        : undefined
+    })
+  }
+  return cloneItems
+}
+
+function getIdsPath (event) {
+  const ids = []
+  let current = event.path
+  while (current) {
+    ids.push(current.index)
+    current = current.path
+  }
+  ids.push(event.index)
+  return ids
+}
 
 export default {
   name: 'FuraBlockMenu',
-  components: {
-    FuraBaseSplitButton,
-    FuraBaseCommandButton,
-    FuraIcon
-  },
+  components: { FuraBaseBlockMenu },
   props: {
     /** Elementos del menú. */
     items: { type: Array, required: true },
     /** Tiempo en milisegundos que el mouse debe estar sobre el botón para expandir el menú secundario. */
     mousestopDelay: { type: Number, default: 800 }
   },
+  emits: [
+    /**
+     * Se genera cuando el usuario hace click en un elemento de menú.
+     * @property {object} linkInfo Índice del elemento de menú dentro de la coleccion (index), referencia a las propiedades del elemento de menú (item) y la ruta para llegar al elemento de menú si es necesarui (path).
+     */
+    'click'
+  ],
   data () {
     return {
-      expanded: null
+      expanded: getExpandedState(this.items)
     }
   },
   computed: {
-    iconSpace () {
-      return this.items
-        .filter(item => !item.type || item.type === 'button')
-        .some(button => button.icon)
+    currentStateItems () {
+      return getItemsState(this.items, this.expanded)
     }
   },
   methods: {
-    /** Comprueba si un elemento tiene una acción asignada. */
-    checkItemHasActions (item) {
-      return typeof item.action === 'function'
+    /**
+     * Esconde todos los submenús desplegados.
+     * @public
+     */
+    collapseAll () {
+      this.expanded = []
     },
-    /** Comprueba si un elemento tiene elementos hijos. */
-    checkItemHasChilds (item) {
-      return Array.isArray(item.childs) && item.childs.length > 0
-    },
-    expandItem (index) {
-      this.expanded = this.expanded === index
-        ? null
-        : index
-    },
-    handleClick (index) {
-      if (this.expanded !== index) {
-        this.expanded = null
+    handleClick (event) {
+      if (typeof event.item.action === 'function') {
+        event.item.action.call(null)
       }
-      const item = this.items[index]
-      if (item) {
-        if (typeof item.action === 'function') {
-          item.action.call(null)
-        } else if (item.childs && item.childs.length > 0) {
-          this.expanded = index
-        }
+      this.$emit('click', event)
+      this.collapseAll()
+    },
+    handleExpand (event) {
+      const ids = getIdsPath(event)
+      if (ids.join() === this.expanded.join()) {
+        this.expanded = this.expanded.slice(0, -1)
+      } else {
+        this.expanded = ids
       }
+    }
+  },
+  watch: {
+    items (value) {
+      this.expanded = getExpandedState(value)
     }
   }
 }
 </script>
 
 <template>
-  <div class="blockMenu">
-    <ul>
-      <template v-for="(item, index) in items">
-        <!--
-          @slot Elemento del menú.
-          @binding {object} item Referencia al elemento.
-          @binding {number} index Índice del elemento.
-        -->
-        <slot
-          v-if="!item.type || item.type === 'button'"
-          :item="item"
-          :index="index"
-        >
-          <li :key="index">
-            <FuraBaseSplitButton
-              v-if="checkItemHasActions(item) && checkItemHasChilds(item)"
-              class="button"
-              :text="item.text"
-              :icon="item.icon"
-              :icon-color="item.iconColor"
-              :icon-space="iconSpace"
-              :mousestop-delay="mousestopDelay"
-              :disabled="item.disabled"
-              expand-icon="ChevronRight"
-              @click="handleClick(index)"
-              @click-expand="expandItem(index)"
-              @mousestop="expandItem(index)"
-              @mousestop-expand="expandItem(index)"
-            />
-            <FuraBaseCommandButton
-              v-else
-              class="button"
-              :text="item.text"
-              :icon="item.icon"
-              :icon-color="item.iconColor"
-              :icon-space="iconSpace"
-              :mousestop-delay="mousestopDelay"
-              :expand-icon="checkItemHasChilds(item) ? 'ChevronRight' : ''"
-              :disabled="item.disabled"
-              @click="handleClick(index)"
-              @click-expand="expandItem(index)"
-              @mousestop="expandItem(index)"
-            />
-            <FuraBlockMenu
-              v-if="index === expanded && checkItemHasChilds(item)"
-              class="childBlockMenu"
-              :items="item.childs"
-              :mousestop-delay="mousestopDelay"
-            />
-          </li>
-        </slot>
-        <!--
-          @slot Encabezado del menú.
-          @binding {object} item Referencia al elemento.
-          @binding {number} index Índice del elemento.
-        -->
-        <slot
-          v-else-if="item.type === 'title'"
-          name="title"
-          :item="item"
-          :index="index"
-        >
-          <li
-            :key="index"
-            class="title"
-          >
-            <div>
-              <FuraIcon
-                class="icon"
-                :name="item.icon"
-                :style="{ color: item.iconColor }"
-              />
-              <span v-text="item.text" />
-            </div>
-            <slot />
-          </li>
-        </slot>
-        <!--
-          @slot Separador del menú.
-          @binding {object} item Referencia al elemento.
-          @binding {number} index Índice del elemento.
-        -->
-        <slot
-          v-else-if="item.type === 'divider'"
-          name="divider"
-          :item="item"
-          :index="index"
-        >
-          <li
-            :key="index"
-            class="divider"
-          />
-        </slot>
-      </template>
-    </ul>
-  </div>
+  <FuraBaseBlockMenu
+    :items="currentStateItems"
+    :mousestop-delay="mousestopDelay"
+    @click="handleClick"
+    @expand="handleExpand"
+  />
 </template>
-
-<style lang="less" scoped src="./block-menu.less"></style>
 
 <docs>
 <script>
