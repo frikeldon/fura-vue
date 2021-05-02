@@ -25,6 +25,7 @@ import ChoiceGroup from './component/choice-group'
 import ComboBox from './component/combo-box'
 import ComboBoxAsync from './component/combo-box-async'
 import CommandBar from './component/command-bar'
+import CommandBarItemCollection from './component/command-bar-item-collection'
 import ContextualMenu from './component/contextual-menu'
 import DatePicker from './component/date-picker'
 import DetailsList from './component/details-list'
@@ -76,6 +77,7 @@ const components = {
   ComboBox,
   ComboBoxAsync,
   CommandBar,
+  CommandBarItemCollection,
   ContextualMenu,
   DatePicker,
   DetailsList,

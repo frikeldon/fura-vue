@@ -1,0 +1,21 @@
+@import "../../theme/typography.less";
+@import "../../theme/color.less";
+
+.collection {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.item {
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  display: block;
+  height: 36px;
+
+  .more::v-deep(.icon) {
+    color: @neutralPrimary;
+  }
+}
