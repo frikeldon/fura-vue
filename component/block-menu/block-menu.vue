@@ -378,3 +378,125 @@ export default {
   </fura-block-menu>
 </template>
 </docs>
+
+<docs>
+<script>
+  function getSampleItems (component) {
+    return [
+      {
+        value: 'newItem',
+        text: 'New',
+        icon: 'Add',
+        action: () => alert('New'),
+        childs: [
+          {
+            type: 'title',
+            text: 'Actions'
+          },
+          {
+            value: 'upload',
+            text: 'Upload',
+            icon: 'Upload',
+            iconColor: 'salmon'
+          },
+          {
+            value: 'rename',
+            text: 'Rename'
+          },
+          {
+            value: 'share',
+            text: 'Sharing',
+            icon: 'Share',
+            childs: [
+              {
+                value: 'sharetoemail',
+                text: 'Share to Email',
+                icon: 'Mail'
+              },
+              {
+                value: 'sharetotwitter',
+                text: 'Share to Twitter',
+                icon: 'Share'
+              }
+            ]
+          },
+          {
+            type: 'divider'
+          },
+          {
+            type: 'title',
+            text: 'Navigation'
+          },
+          {
+            value: 'properties',
+            text: 'Properties'
+          },
+          {
+            value: 'print',
+            text: 'Print',
+            icon: 'Print',
+            disabled: true
+          },
+          {
+            value: 'bing',
+            text: 'Go to Bing'
+          }
+        ]
+      },
+      {
+        value: 'upload',
+        text: 'Upload',
+        icon: 'Upload',
+        action: () => alert('upload')
+      },
+      {
+        value: 'share',
+        text: 'Share',
+        icon: 'Share',
+        childs: [
+          {
+            value: 'sharetoemail',
+            text: 'Share to Email',
+            icon: 'Mail'
+          },
+          {
+            value: 'sharetotwitter',
+            text: 'Share to Twitter',
+            icon: 'Share'
+          }
+        ]
+      },
+      {
+        value: 'download',
+        text: 'Download',
+        icon: 'Download'
+      },
+      {
+        value: 'expand',
+        text: 'Expand menu',
+        action() { component.items = getSampleItemsExpanded(component) }
+      }
+    ]
+  }
+  function getSampleItemsExpanded (component) {
+    const items = getSampleItems(component)
+    items[0].expanded = true
+    items[0].childs[3].expanded = true
+    return items
+  }
+  export default {
+    data () {
+      return {
+        mousestopDelay: 800,
+        items: getSampleItems(this)
+      }
+    }
+  }
+</script>
+<template>
+  <fura-block-menu
+    :mousestop-delay="mousestopDelay"
+    :items="items"
+  />
+</template>
+</docs>
