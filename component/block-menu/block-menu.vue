@@ -1,50 +1,6 @@
 <script>
 import FuraBaseBlockMenu from '../base-block-menu'
-
-function getExpandedState (items) {
-  const expanded = []
-  let current = items
-  let found = true
-  while (found && Array.isArray(current)) {
-    found = false
-    for (let index = 0; index < current.length; index += 1) {
-      if (current[index].expanded) {
-        expanded.push(index)
-        current = current[index].childs
-        found = true
-        break
-      }
-    }
-  }
-  return expanded
-}
-
-function getItemsState (items, expanded) {
-  const cloneItems = []
-  for (let index = 0; index < items.length; index += 1) {
-    const item = items[index]
-    const isExpanded = expanded[0] === index
-    cloneItems.push({
-      ...item,
-      expanded: isExpanded && Array.isArray(item.childs) && item.childs.length > 0,
-      childs: Array.isArray(item.childs) && item.childs.length > 0
-        ? getItemsState(item.childs, isExpanded ? expanded.slice(1) : [])
-        : undefined
-    })
-  }
-  return cloneItems
-}
-
-function getIdsPath (event) {
-  const ids = []
-  let current = event.path
-  while (current) {
-    ids.push(current.index)
-    current = current.path
-  }
-  ids.push(event.index)
-  return ids
-}
+import { getExpandedIds, cloneStateWithExpands, getExpandedIdsFromEvent } from '../../utils/expanded.js'
 
 export default {
   name: 'FuraBlockMenu',
@@ -64,12 +20,12 @@ export default {
   ],
   data () {
     return {
-      expanded: getExpandedState(this.items)
+      expanded: getExpandedIds('childs', this.items)
     }
   },
   computed: {
     currentStateItems () {
-      return getItemsState(this.items, this.expanded)
+      return cloneStateWithExpands('childs', this.items, this.expanded)
     }
   },
   methods: {
@@ -88,7 +44,7 @@ export default {
       this.collapseAll()
     },
     handleExpand (event) {
-      const ids = getIdsPath(event)
+      const ids = getExpandedIdsFromEvent(event)
       if (ids.join() === this.expanded.join()) {
         this.expanded = this.expanded.slice(0, -1)
       } else {
@@ -98,7 +54,7 @@ export default {
   },
   watch: {
     items (value) {
-      this.expanded = getExpandedState(value)
+      this.expanded = getExpandedIds('childs', value)
     }
   }
 }

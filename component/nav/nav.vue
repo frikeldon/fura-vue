@@ -1,36 +1,6 @@
 <script>
 import FuraBaseNav from '../base-nav'
-
-function getExpandedIds (links, prefix = []) {
-  const ids = []
-  for (let index = 0; index < links.length; index += 1) {
-    const link = links[index]
-    const id = [...prefix, index]
-    if (link.expanded) {
-      ids.push(id.join(','))
-    }
-    if (Array.isArray(link.links) && link.links.length > 0) {
-      ids.push(...getExpandedIds(link.links, id))
-    }
-  }
-  return ids
-}
-
-function getLinksState (links, expanded, prefix = []) {
-  const cloneLinks = []
-  for (let index = 0; index < links.length; index += 1) {
-    const link = links[index]
-    const id = [...prefix, index]
-    cloneLinks.push({
-      ...link,
-      expanded: expanded.has(id.join(',')),
-      links: Array.isArray(link.links) && link.links.length > 0
-        ? getLinksState(link.links, expanded, id)
-        : undefined
-    })
-  }
-  return cloneLinks
-}
+import { getExpandedTreeIds, cloneStateWithTreeExpands } from '../../utils/expanded.js'
 
 export default {
   name: 'FuraNav',
@@ -49,7 +19,7 @@ export default {
   },
   data () {
     return {
-      expanded: new Set(getExpandedIds(this.groups))
+      expanded: new Set(getExpandedTreeIds('links', this.groups))
     }
   },
   emits: [
@@ -66,7 +36,7 @@ export default {
   ],
   computed: {
     currentStateGroups () {
-      return getLinksState(this.groups, this.expanded)
+      return cloneStateWithTreeExpands('links', this.groups, this.expanded)
     }
   },
   methods: {
@@ -98,7 +68,7 @@ export default {
   },
   watch: {
     groups (value) {
-      this.expanded = new Set(getExpandedIds(value))
+      this.expanded = new Set(getExpandedTreeIds('links', value))
     }
   }
 }
