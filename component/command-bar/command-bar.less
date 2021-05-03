@@ -11,29 +11,10 @@
   overflow: visible;
 }
 
-.commandBar > div {
-  position: relative;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-}
-
-.commandBar > div:first-child {
+.near {
   flex-grow: 1;
 }
 
-.commandBar > div:last-child {
+.far {
   flex-shrink: 0;
-}
-
-.item {
-  position: relative;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  display: block;
-  height: 36px;
-
-  .more::v-deep(.icon) {
-    color: @neutralPrimary;
-  }
 }

@@ -1,15 +1,12 @@
 <script>
-import FuraBaseSplitButton from '../base-split-button'
-import FuraBaseCommandButton from '../base-command-button'
-import FuraBlockMenu from '../block-menu'
+import FuraCommandBarItemCollection from '../command-bar-item-collection'
 import debounce from '../../utils/debounce'
+import { cloneStateWithExpands, getExpandedIdsFromEvent } from '../../utils/expanded.js'
 
 export default {
   name: 'FuraCommandBar',
   components: {
-    FuraBaseSplitButton,
-    FuraBaseCommandButton,
-    FuraBlockMenu
+    FuraCommandBarItemCollection
   },
   props: {
     /** Elementos de la barra de comandos. */
@@ -27,10 +24,9 @@ export default {
   },
   data () {
     return {
-      refItems: [],
-      expanded: null,
-      expandedFar: null,
-      overflowIndex: this.items.length
+      overflowIndex: this.items.length,
+      expanded: [],
+      expandedSide: 'none'
     }
   },
   computed: {
@@ -50,6 +46,14 @@ export default {
       }
       return currentItems
     },
+    currentStateItems () {
+      const { currentItems, expanded, expandedSide } = this
+      return cloneStateWithExpands('childs', currentItems, expandedSide === 'near' ? expanded : [])
+    },
+    currentStateFarItems () {
+      const { farItems, expanded, expandedSide } = this
+      return cloneStateWithExpands('childs', farItems, expandedSide === 'far' ? expanded : [])
+    },
     isMoreItemVisible () {
       const { currentItems } = this
       return currentItems[currentItems.length - 1]?.type === 'more'
@@ -66,47 +70,32 @@ export default {
         this.observer.observe(this.$el)
       }
     },
-    /** Calcula el ancho de los elementos de la barra de comandos y los almacena en la propiedad 'itemWidths'. */
-    calculateItemWidths () {
-      const items = this.isMoreItemVisible
-        ? this.refItems.slice(0, this.refItems.length - 1)
-        : this.refItems
-      this.itemWidths = []
-      for (
-        let index = 0, accumulated = 0;
-        index < items.length;
-        index += 1
-      ) {
-        accumulated += items[index].el.getBoundingClientRect().width
-        this.itemWidths.push(accumulated)
-      }
-    },
     /** Calcula el índice del elemento que crea desbordamiento en la barra de comandos. */
     updateOverflowIndex () {
       if (Array.isArray(this.itemWidths)) {
         if (this.itemWidths.length === 0) { // First execution
-          this.calculateItemWidths()
+          this.itemWidths = this.$refs.near.getItemWidths()
         }
         const parentWidth = this.$el.getBoundingClientRect().width
         const farWidth = this.$refs.far
-          ? this.$refs.far.getBoundingClientRect().width
+          ? this.$refs.far.$el.getBoundingClientRect().width
           : 0
         const moreWidth = this.isMoreItemVisible
-          ? this.refItems[this.refItems.length - 1].el.getBoundingClientRect().width
+          ? this.$refs.near.refItems[this.$refs.near.refItems.length - 1].el.getBoundingClientRect().width
           : 0
         const space = parentWidth - farWidth - moreWidth - 8
         let index = this.itemWidths.length - 1
         for (; index >= 0; index -= 1) {
-          if (this.itemWidths[index] < space) { break }
+          if (this.itemWidths[index].accumulatedWidth < space) { break }
         }
         this.overflowIndex = index + 1
       }
     },
-    /** Establece 'overflowIndex' al máximo valor que válido qe puede tener. */
+    /** Establece 'overflowIndex' al máximo valor que válido que puede tener. */
     resetOverflowIndex () {
       this.overflowIndex = this.items.length
       this.$nextTick(() => {
-        this.calculateItemWidths()
+        this.itemWidths = this.$refs.near.getItemWidths()
         if (this.autoupdateOverflow) {
           this.updateOverflowIndex()
         }
@@ -120,41 +109,28 @@ export default {
     checkItemHasChilds (item) {
       return Array.isArray(item.childs) && item.childs.length > 0
     },
-    expandItem (index) {
-      this.expanded = this.expanded === index
-        ? null
-        : index
+    /**
+     * Esconde todos los submenús desplegados.
+     * @public
+     */
+    collapseAll () {
+      this.expanded = []
+      this.expandedSide = 'none'
     },
-    expandItemFar (index) {
-      this.expandedFar = this.expandedFar === index
-        ? null
-        : index
+    handleClick (event) {
+      if (typeof event.item.action === 'function') {
+        event.item.action.call(null)
+      }
+      this.collapseAll()
     },
-    handleClick (index) {
-      if (this.expanded !== index) {
-        this.expanded = null
+    handleExpand (bar, event) {
+      const ids = getExpandedIdsFromEvent(event)
+      if (ids.join() === this.expanded.join()) {
+        this.expanded = this.expanded.slice(0, -1)
+      } else {
+        this.expanded = ids
       }
-      const item = this.currentItems[index]
-      if (item) {
-        if (typeof item.action === 'function') {
-          item.action.call(null)
-        } else if (item.childs && item.childs.length > 0) {
-          this.expanded = index
-        }
-      }
-    },
-    handleClickFar (index) {
-      if (this.expandedFar !== index) {
-        this.expandedFar = null
-      }
-      const item = this.farItems[index]
-      if (item) {
-        if (typeof item.action === 'function') {
-          item.action.call(null)
-        } else if (item.childs && item.childs.length > 0) {
-          this.expandedFar = index
-        }
-      }
+      this.expandedSide = this.expanded.length > 0 ? bar : 'none'
     }
   },
   watch: {
@@ -171,117 +147,36 @@ export default {
     },
     items (value) {
       this.overflowIndex = value.length
-    },
-    expanded (value) {
-      if (value != null) {
-        this.expandedFar = null
-      }
-    },
-    expandedFar (value) {
-      if (value != null) {
-        this.expanded = null
-      }
     }
   },
   mounted () {
     this.createObserver()
-    this.calculateItemWidths()
+    this.itemWidths = this.$refs.near.getItemWidths()
   },
   beforeUnmount () {
     this.observer.unobserve(this.$el)
-  },
-  beforeUpdate () {
-    this.refItems = []
   }
 }
 </script>
 
 <template>
   <div class="commandBar">
-    <div>
-      <div
-        v-for="(item, index) in currentItems"
-        :key="index"
-        :ref="el => refItems.push({ index, el })"
-        class="item"
-      >
-        <FuraBaseCommandButton
-          v-if="item.type === 'more'"
-          class="more"
-          icon="More"
-          :mousestop-delay="mousestopDelay"
-          :disabled="item.disabled"
-          @click="handleClick(index)"
-          @mousestop="expandItem(index)"
-        />
-        <FuraBaseSplitButton
-          v-else-if="checkItemHasActions(item) && checkItemHasChilds(item)"
-          :text="item.text"
-          :icon="item.icon"
-          :icon-color="item.iconColor"
-          :mousestop-delay="mousestopDelay"
-          :disabled="item.disabled"
-          expand-icon="ChevronDown"
-          @click="handleClick(index)"
-          @click-expand="expandItem(index)"
-          @mousestop="expandItem(index)"
-          @mousestop-expand="expandItem(index)"
-        />
-        <FuraBaseCommandButton
-          v-else
-          :text="item.text"
-          :icon="item.icon"
-          :icon-color="item.iconColor"
-          :mousestop-delay="mousestopDelay"
-          :expand-icon="checkItemHasChilds(item) ? 'ChevronDown' : ''"
-          :disabled="item.disabled"
-          @click="handleClick(index)"
-          @click-expand="expandItem(index)"
-          @mousestop="expandItem(index)"
-        />
-        <FuraBlockMenu
-          v-if="index === expanded && checkItemHasChilds(item)"
-          :items="item.childs"
-        />
-      </div>
-    </div>
-    <div ref="far">
-      <div
-        v-for="(item, index) in farItems"
-        :key="index"
-        class="item"
-      >
-        <FuraBaseSplitButton
-          v-if="checkItemHasActions(item) && checkItemHasChilds(item)"
-          :text="item.text"
-          :icon="item.icon"
-          :icon-color="item.iconColor"
-          :mousestop-delay="mousestopDelay"
-          :disabled="item.disabled"
-          expand-icon="ChevronDown"
-          @click="handleClickFar(index)"
-          @click-expand="expandItemFar(index)"
-          @mousestop="expandItemFar(index)"
-          @mousestop-expand="expandItemFar(index)"
-        />
-        <FuraBaseCommandButton
-          v-else
-          :text="item.text"
-          :icon="item.icon"
-          :icon-color="item.iconColor"
-          :mousestop-delay="mousestopDelay"
-          :expand-icon="checkItemHasChilds(item) ? 'ChevronDown' : ''"
-          :disabled="item.disabled"
-          @click="handleClickFar(index)"
-          @click-expand="expandItemFar(index)"
-          @mousestop="expandItemFar(index)"
-        />
-        <FuraBlockMenu
-          v-if="index === expandedFar && checkItemHasChilds(item)"
-          :items="item.childs"
-        />
-      </div>
-    </div>
+    <FuraCommandBarItemCollection
+      ref="near"
+      class="near"
+      :items="currentStateItems"
+      :mousestop-delay="mousestopDelay"
+      @click="handleClick($event)"
+      @expand="handleExpand('near', $event)"
+    />
+    <FuraCommandBarItemCollection
+      ref="far"
+      class="far"
+      :items="currentStateFarItems"
+      :mousestop-delay="mousestopDelay"
+      @click="handleClick($event)"
+      @expand="handleExpand('far', $event)"
+    />
   </div>
 </template>
 
@@ -293,9 +188,11 @@ export default {
     data () {
       return {
         mousestopDelay: 800,
+        maxWidth: 750,
         autoupdateOverflow: false,
         items: [
           {
+            type: 'split',
             value: 'newItem',
             text: 'New',
             icon: 'Add',
@@ -406,16 +303,23 @@ export default {
           { value: 'info', icon: 'Info' }
         ]
       }
+    },
+    computed: {
+      containerStyle () {
+        return this.maxWidth ? `max-width: ${this.maxWidth}px` : null
+      }
     }
   }
 </script>
 <template>
-  <fura-command-bar
-    :mousestop-delay="mousestopDelay"
-    :items="items"
-    :autoupdate-overflow="autoupdateOverflow"
-    :overflow-items="overflowItems"
-    :far-items="farItems"
-  />
+  <div :style="containerStyle">
+    <fura-command-bar
+      :mousestop-delay="mousestopDelay"
+      :items="items"
+      :autoupdate-overflow="autoupdateOverflow"
+      :overflow-items="overflowItems"
+      :far-items="farItems"
+    />
+  </div>
 </template>
 </docs>
