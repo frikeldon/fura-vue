@@ -1,0 +1,80 @@
+@import "../../theme/typography.less";
+@import "../../theme/color.less";
+
+.separator {
+  .fontStyleMedium();
+  position: relative;
+  z-index: 1;
+}
+
+.horizontal {
+  padding: 4px 0;
+
+  &::after {
+    background-color: @neutralLighter;
+    height: 1px;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
+
+  &.start {
+    text-align: start;
+  }
+
+  &.center {
+    text-align: center;
+  }
+
+  &.end {
+    text-align: end;
+  }
+}
+
+.vertical {
+  padding: 0 4px;
+  height: inherit;
+  display: table-cell;
+  text-align: center;
+
+  &::after {
+    background-color: @neutralLighter;
+    width: 1px;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+    z-index: -1;
+  }
+
+  &.start {
+    vertical-align: top;
+  }
+
+  &.center {
+    vertical-align: middle;
+  }
+
+  &.end {
+    vertical-align: bottom;
+  }
+}
+
+.content {
+  position: relative;
+  display: inline-block;
+  padding: 0 12px;
+  color: @neutralPrimary;
+  background: @white;
+
+  .vertical & {
+    padding: 12px 0;
+  }
+}

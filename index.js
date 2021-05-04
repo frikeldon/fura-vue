@@ -44,6 +44,7 @@ import Pivot from './component/pivot'
 import ProgressIndicator from './component/progress-indicator'
 import SearchBox from './component/search-box'
 import Select from './component/select'
+import Separator from './component/separator'
 import SpinButton from './component/spin-button'
 import Spinner from './component/spinner'
 import TagPicker from './component/tag-picker'
@@ -97,6 +98,7 @@ const components = {
   ProgressIndicator,
   SearchBox,
   Select,
+  Separator,
   SpinButton,
   Spinner,
   TagPicker,
