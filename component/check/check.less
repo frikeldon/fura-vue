@@ -1,0 +1,92 @@
+@import "../../theme/color.less";
+
+.icon() {
+  position: absolute;
+  top: 0px;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+div {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 1;
+  vertical-align: top;
+  position: relative;
+  user-select: none;
+  color: @neutralSecondary;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    opacity: 1;
+    border-radius: 50%;
+    background: @white;
+  }
+}
+
+.circle {
+  .icon();
+  font-size: 18px;
+  left: 0px;
+}
+
+.checkmark {
+  .icon();
+  font-size: 16px;
+  left: 0.5px;
+  opacity: 0;
+
+  div:hover > & {
+    opacity: 1;
+  }
+}
+
+.checked {
+  .circle {
+    .icon();
+    font-size: 18px;
+    left: 0px;
+  }
+
+  .checkmark {
+    .icon();
+    font-size: 16px;
+    left: 0.5px;
+    opacity: 0;
+  }
+}
+
+.checked {
+  &::before {
+    background: @themePrimary;
+  }
+
+  .circle,
+  .checkmark {
+    color: @white;
+    opacity: 1;
+  }
+}
+
+.disabled {
+  color: @neutralLight;
+
+  &:hover > .checkmark {
+    opacity: 0;
+  }
+}
+
+.disabled.checked {
+  &::before {
+    background: @neutralLight;
+  }
+
+  &:hover > .checkmark {
+    opacity: 1;
+  }
+}

@@ -20,6 +20,7 @@ import BaseTagPicker from './component/base-tag-picker'
 import BlockMenu from './component/block-menu'
 import Button from './component/button'
 import Calendar from './component/calendar'
+import Check from './component/check'
 import Checkbox from './component/checkbox'
 import ChoiceGroup from './component/choice-group'
 import ComboBox from './component/combo-box'
@@ -72,6 +73,7 @@ const components = {
   BlockMenu,
   Button,
   Calendar,
+  Check,
   Checkbox,
   ChoiceGroup,
   ComboBox,
