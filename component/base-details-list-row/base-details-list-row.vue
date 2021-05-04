@@ -1,9 +1,9 @@
 <script>
-import FuraIcon from '../icon'
+import FuraCheck from '../check'
 
 export default {
   name: 'FuraBaseDetailsListRow',
-  components: { FuraIcon },
+  components: { FuraCheck },
   props: {
     /**
      * Tipo de fila.
@@ -29,10 +29,7 @@ export default {
     compact: { type: Boolean, default: false }
   },
   emits: [
-    /**
-     * Se genera cuando el usuario hace clic en el componente.
-     * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
-     */
+    /** Se genera cuando el usuario hace clic en el componente. */
     'click'
   ]
 }
@@ -41,23 +38,18 @@ export default {
 <template>
   <tr
     :class="[type, { selected, compact }]"
-    @click.stop="$emit('click', $event)"
+    @click.stop="$emit('click')"
   >
     <td
       v-if="selection"
       class="checkboxCell"
     >
       <div v-if="type === 'data' || selection === 'multiple'">
-        <div>
-          <FuraIcon
-            class="icon circle"
-            name="CircleRing"
-          />
-          <FuraIcon
-            class="icon checkmark"
-            name="StatusCircleCheckmark"
-          />
-        </div>
+        <FuraCheck
+          class="check"
+          :model-value="selected"
+          @update:model-value="$emit('click')"
+        />
       </div>
     </td>
     <!-- @slot Row's content -->
