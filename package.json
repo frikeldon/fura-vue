@@ -2,6 +2,7 @@
   "name": "fura-vue",
   "version": "0.2.1",
   "description": "Componentes Vue inspirados en Fluent UI de Microsoft.",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/frikeldon/fura-vue.git"
