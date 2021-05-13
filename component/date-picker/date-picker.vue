@@ -31,7 +31,7 @@ export default {
     readonly: { type: Boolean, default: false },
     /** Texto de ejemplo a mostrar en el campo. */
     placeholder: { type: String, default: null },
-    /** Indica si DatePicker permite o no la entrada de teclado.  */
+    /** Indica si DatePicker permite o no la entrada de teclado. */
     notWritable: { type: Boolean, default: false },
     /** Textos para identificar los dias de la semana empezando por el domingo. */
     days: {

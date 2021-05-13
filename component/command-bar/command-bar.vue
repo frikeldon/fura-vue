@@ -17,7 +17,7 @@ export default {
     farItems: { type: Array, default: () => [] },
     /** Tiempo en milisegundos que el mouse debe estar sobre el botón para expandir el menú secundario. */
     mousestopDelay: { type: Number, default: 800 },
-    /** Indica si la barra de comandos mueve automaticamente elementos al menú desbordado.  */
+    /** Indica si la barra de comandos mueve automaticamente elementos al menú desbordado. */
     autoupdateOverflow: { type: Boolean, default: false },
     /** Milisegundos entre dos comprobaciones consecutivas de cambio de tamaño. */
     autoupdateOverflowRate: { type: Number, default: 250 }
