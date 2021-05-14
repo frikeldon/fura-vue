@@ -2,14 +2,7 @@
 import FuraTextField from '../text-field'
 
 function defaultParse (text) {
-  return text === ''
-    ? null
-    : Number(
-      text
-        .replace(/(?:€|%)$/g, '')
-        .replace(/\./g, '')
-        .replace(',', '.')
-    )
+  return Number(text)
 }
 
 function defaultStringify (number) {
@@ -34,6 +27,12 @@ function defaultStringify (number) {
 
   const normalizedNum = this.formatStyle === 'percent' ? number / 100 : number
   return normalizedNum.toLocaleString('ca-ES', options)
+}
+
+function defaultStringifyFocus (number) {
+  return typeof number === 'number' && !isNaN(number)
+    ? String(number)
+    : ''
 }
 
 export default {
@@ -119,8 +118,10 @@ export default {
     },
     /** Función para convertir de texto a número. */
     parse: { type: Function, default: defaultParse },
-    /** Función para convertir de número a texto. */
+    /** Función para convertir de número a texto cuando el campo no tiene el foco. */
     stringify: { type: Function, default: defaultStringify },
+    /** Función para convertir de número a texto cuando el campo tiene el foco. */
+    stringifyFocus: { type: Function, default: defaultStringifyFocus },
     /**
      * Alineación del texto cuando el campo no tiene el foco.
      * @values left, center, right
@@ -167,9 +168,7 @@ export default {
       get () {
         const { hasFocus, modelValue } = this
         if (hasFocus) {
-          return typeof modelValue === 'number' && !isNaN(modelValue)
-            ? String(modelValue)
-            : ''
+          return this.stringifyFocus(modelValue)
         } else {
           return this.stringify(modelValue)
         }
@@ -177,8 +176,6 @@ export default {
       set (value) {
         if (!value) {
           this.$emit('update:modelValue', null)
-        } else if (this.hasFocus) {
-          this.$emit('update:modelValue', Number(value))
         } else {
           this.$emit('update:modelValue', this.parse(value))
         }
@@ -206,7 +203,7 @@ export default {
       if (!allowedKeys.includes(key)) {
         const { value, selectionStart, selectionEnd } = target
         const newValue = value.substring(0, selectionStart) + key + value.substring(selectionEnd)
-        if (isNaN(newValue)) {
+        if (isNaN(this.parse(newValue))) {
           event.preventDefault()
           event.stopPropagation()
           event.target.value = this.textValue
@@ -260,6 +257,37 @@ export default {
   <fura-number-field
     label="I'm a field"
     v-model="value"
+  />
+</template>
+</docs>
+
+<docs>
+<script>
+export default {
+  data () {
+    return {
+      value: null
+    }
+  },
+  methods: {
+    stringifyFocus (number) {
+      const text = typeof number === 'number' && !isNaN(number)
+        ? String(number)
+        : ''
+      return text.replace('.', ',')
+    },
+    parse (text) {
+      return Number((text || '').replace(',', '.'))
+    }
+  }
+}
+</script>
+<template>
+  <fura-number-field
+    label="I'm a field"
+    v-model="value"
+    :stringify-focus="stringifyFocus"
+    :parse="parse"
   />
 </template>
 </docs>
