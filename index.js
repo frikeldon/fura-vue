@@ -51,7 +51,7 @@ import TagPicker from './component/tag-picker/index.js'
 import TextField from './component/text-field/index.js'
 import Toggle from './component/toggle/index.js'
 
-const components = {
+export const components = {
   Autofill,
   BaseBlockMenu,
   BaseCalendar,
@@ -106,12 +106,9 @@ const components = {
   Toggle
 }
 
-export default {
-  install (app, { prefix = 'fura' } = {}) {
-    for (const name in components) {
-      const kebabName = name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
-      app.component(`${prefix}-${kebabName}`, components[name])
-    }
-  },
-  components
+export default function install (app, { prefix = 'fura' } = {}) {
+  for (const name in components) {
+    const kebabName = name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+    app.component(`${prefix}-${kebabName}`, components[name])
+  }
 }

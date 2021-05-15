@@ -1,3 +1,7 @@
-import furaVue from './index.js'
-furaVue.version = VERSION // eslint-disable-line no-undef
-export default furaVue
+import install, { components } from './index.js'
+
+export default {
+  install,
+  components,
+  version: VERSION // eslint-disable-line no-undef
+}
