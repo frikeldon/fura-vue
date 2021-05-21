@@ -84,8 +84,8 @@ export default {
     handleClickDown () {
       this.$emit('update:modelValue', this.dec(this.modelValue))
     },
-    handleChange (value) {
-      const newValue = this.parse(value)
+    handleChange (event) {
+      const newValue = this.parse(event.target.value)
       if (isNaN(newValue)) {
         this.$refs.field.value = this.textValue
       } else {
