@@ -6,7 +6,7 @@ function defaultParse (text) {
 }
 
 function defaultStringify (number) {
-  if (number == null) return ''
+  if (isNaN(number)) { return '' }
 
   const options = {
     style: this.formatStyle,
@@ -30,9 +30,9 @@ function defaultStringify (number) {
 }
 
 function defaultStringifyFocus (number) {
-  return typeof number === 'number' && !isNaN(number)
-    ? String(number)
-    : ''
+  return isNaN(number)
+    ? ''
+    : String(number)
 }
 
 export default {
