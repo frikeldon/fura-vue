@@ -83,7 +83,7 @@ export default {
       type: Date,
       default: null
     },
-    /** Función para convertir de fecha a texto. */
+    /** Función para convertir de texto a fecha. */
     parse: {
       type: Function,
       default: text => {
@@ -94,8 +94,13 @@ export default {
           : null
       }
     },
-    /** Función para convertir de texto a fecha. */
+    /** Función para convertir de fecha a texto cuando el campo no tiene el foco. */
     stringify: {
+      type: Function,
+      default: null
+    },
+    /** Función para convertir de fecha a texto cuando el campo tiene el foco. */
+    stringifyFocus: {
       type: Function,
       default: date => {
         const padZero = (num, length = 2) => num.toString().padStart(length, '0')
@@ -126,7 +131,16 @@ export default {
   data () {
     return {
       open: false,
-      fieldValue: this.modelValue ? this.stringify(this.modelValue) : ''
+      hasFocus: false
+    }
+  },
+  computed: {
+    fieldValue () {
+      const { modelValue, hasFocus, stringify, stringifyFocus } = this
+      const transform = hasFocus
+        ? stringifyFocus
+        : stringify || stringifyFocus
+      return modelValue ? transform.call(this, modelValue) : ''
     }
   },
   methods: {
@@ -153,11 +167,14 @@ export default {
     handleCalendarUpdateModelValue (value) {
       this.$emit('update:modelValue', value)
       this.open = false
-    }
-  },
-  watch: {
-    modelValue (value) {
-      this.fieldValue = value ? this.stringify(value) : ''
+    },
+    handleFocus (event) {
+      this.hasFocus = true
+      this.$emit('focus', event)
+    },
+    handleBlur (event) {
+      this.hasFocus = false
+      this.$emit('blur', event)
     }
   }
 }
@@ -188,8 +205,8 @@ export default {
       :readonly="notWritable || readonly || null"
       @change.stop="handleTextChange"
       @click.stop="handleTextClick"
-      @focus="$emit('focus', $event)"
-      @blur="$emit('blur', $event)"
+      @focus="handleFocus"
+      @blur="handleBlur"
     >
     <FuraIcon
       class="icon"
@@ -252,6 +269,55 @@ export default {
     :not-writable="notWritable"
     :go-today="goToday"
     :today="today"
+    v-model="modelValue"
+  />
+</template>
+</docs>
+
+<docs>
+<script>
+  export default {
+    data () {
+      return {
+        label: 'DatePicker',
+        description: 'DatePicker field',
+        invalid: false,
+        errorMessage: null,
+        disabled: false,
+        required: false,
+        borderless: false,
+        underlined: false,
+        readonly: false,
+        placeholder: 'Pick a date',
+        notWritable: false,
+        goToday: 'Go to today',
+        today: new Date(),
+        modelValue: null,
+      }
+    },
+    methods: {
+      formatify (value) {
+        return value ? value.toJSON() : ''
+      }
+    }
+  }
+</script>
+<template>
+  <fura-date-picker
+    :label="label"
+    :description="description"
+    :invalid="invalid"
+    :error-message="errorMessage"
+    :disabled="disabled"
+    :required="required"
+    :borderless="borderless"
+    :underlined="underlined"
+    :readonly="readonly"
+    :placeholder="placeholder"
+    :not-writable="notWritable"
+    :go-today="goToday"
+    :today="today"
+    :stringify="formatify"
     v-model="modelValue"
   />
 </template>
