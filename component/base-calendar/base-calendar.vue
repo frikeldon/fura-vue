@@ -147,20 +147,18 @@ export default {
         />
       </div>
       <div class="titleComponents">
-        <div class="navContainer">
-          <button
-            class="prev"
-            @click="$emit('navigate', -1)"
-          >
-            <FuraIcon name="Up" />
-          </button>
-          <button
-            class="next"
-            @click="$emit('navigate', 1)"
-          >
-            <FuraIcon name="Down" />
-          </button>
-        </div>
+        <button
+          class="prev"
+          @click="$emit('navigate', -1)"
+        >
+          <FuraIcon name="Up" />
+        </button>
+        <button
+          class="next"
+          @click="$emit('navigate', 1)"
+        >
+          <FuraIcon name="Down" />
+        </button>
       </div>
     </div>
     <FuraBaseCalendarDays
