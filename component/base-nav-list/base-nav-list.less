@@ -11,13 +11,13 @@ li {
   padding: 0;
 }
 
-.container {
+.fura-container {
   display: block;
   position: relative;
   color: @neutralPrimary;
 }
 
-.expander {
+.fura-expander {
   position: absolute;
   display: flex;
   width: 26px;
@@ -29,7 +29,7 @@ li {
   z-index: 1;
 }
 
-.icon {
+.fura-icon {
   margin: 0px 4px;
   font-size: @iconFontSizeMedium;
   height: @iconFontSizeMedium;
@@ -39,7 +39,7 @@ li {
   color: @themePrimary;
 }
 
-.link {
+.fura-link {
   .fontStyleMedium();
   position: relative;
   display: block;
@@ -60,7 +60,7 @@ li {
   white-space: nowrap;
   overflow: hidden;
 
-  .container.wrappedText & {
+  .fura-container.fura-wrappedText & {
     white-space: normal;
     line-height: inherit;
   }
@@ -82,16 +82,16 @@ li {
   }
 }
 
-.container:hover {
+.fura-container:hover {
   background: @neutralLighter;
 
-  .link {
+  .fura-link {
     color: @themePrimary;
   }
 }
 
-.container.selected {
-  .link {
+.fura-container.fura-selected {
+  .fura-link {
     background-color: @neutralLight;
     font-weight: @fontWeightSemibold;
 
@@ -107,7 +107,7 @@ li {
     }
   }
 
-  .expander {
+  .fura-expander {
     color: @themePrimary;
     background-color: @neutralLighterAlt;
 
@@ -121,17 +121,17 @@ li {
   }
 }
 
-.container:hover .link {
+.fura-container:hover .fura-link {
   background-color: @neutralLighter;
   color: @themePrimary;
 }
 
-.link[disabled] {
+.fura-link[disabled] {
   pointer-events: none;
 
   &,
   &:active,
-  .container:hover & {
+  .fura-container:hover & {
     cursor: default;
     color: @neutralTertiary;
   }

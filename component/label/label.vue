@@ -11,7 +11,12 @@ export default {
 </script>
 
 <template>
-  <label :class="{ required, disabled }">
+  <label
+    :class="{
+      'fura-required': required,
+      'fura-disabled': disabled
+    }"
+  >
     <!-- @slot Contenido de Label. -->
     <slot />
   </label>

@@ -1,12 +1,12 @@
 @import "../../theme/typography.less";
 @import "../../theme/color.less";
 
-.searchBox {
+.fura-searchBox {
   .fontStyleMedium();
   margin-bottom: 8px;
 }
 
-.container {
+.fura-container {
   display: inline-flex;
   position: relative;
 }
@@ -40,7 +40,7 @@ button {
     border-style: solid;
   }
 
-  &.checked {
+  &.fura-checked {
     justify-content: flex-end;
     background: @themePrimary;
     border-color: transparent;
@@ -50,7 +50,7 @@ button {
     }
   }
 
-  .disabled & {
+  .fura-disabled & {
     cursor: default;
     border-color: @neutralTertiaryAlt;
 
@@ -58,7 +58,7 @@ button {
       background-color: @neutralTertiaryAlt;
     }
 
-    &.checked {
+    &.fura-checked {
       background-color: @neutralTertiaryAlt;
 
       span {
@@ -68,18 +68,18 @@ button {
   }
 }
 
-.stateText {
+.fura-stateText {
   padding: 0;
   margin: 0px 8px;
   font-weight: @fontWeightRegular;
   user-select: none;
 
-  .disabled & {
+  .fura-disabled & {
     color: @neutralTertiaryAlt;
   }
 }
 
-.inline {
+.fura-inline {
   display: flex;
   align-items: center;
 
@@ -87,14 +87,14 @@ button {
     text-overflow: ellipsis;
   }
 
-  .fieldLabel {
+  .fura-fieldLabel {
     margin-right: 16px;
   }
 
-  .withoutText {
+  .fura-withoutText {
     align-items: center;
 
-    .fieldLabel {
+    .fura-fieldLabel {
       order: 1;
       margin-right: 0px;
       margin-left: 16px;

@@ -119,11 +119,11 @@ export default {
 
 <template>
   <div
-    class="calendar"
-    :class="{ showGoToday: goToday }"
+    class="fura-calendar"
+    :class="{ 'fura-showGoToday': goToday }"
   >
-    <div class="header">
-      <div class="title">
+    <div class="fura-header">
+      <div class="fura-title">
         <div v-if="currentView === 'days'">
           <span
             v-text="currentMonthName"
@@ -146,15 +146,15 @@ export default {
           @click.stop="$emit('selectView', 'days')"
         />
       </div>
-      <div class="titleComponents">
+      <div class="fura-titleComponents">
         <button
-          class="prev"
+          class="fura-prev"
           @click="$emit('navigate', -1)"
         >
           <FuraIcon name="Up" />
         </button>
         <button
-          class="next"
+          class="fura-next"
           @click="$emit('navigate', 1)"
         >
           <FuraIcon name="Down" />
@@ -186,7 +186,7 @@ export default {
     />
     <button
       v-if="goToday"
-      class="goToday"
+      class="fura-goToday"
       @click="$emit('clickGoToday')"
       v-text="goToday"
     />

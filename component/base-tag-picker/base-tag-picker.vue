@@ -90,8 +90,8 @@ export default {
 
 <template>
   <FuraBaseFieldCombo
-    class="tagPicker"
-    :class="{ disabled }"
+    class="fura-tagPicker"
+    :class="{ 'fura-disabled': disabled }"
     :label="label"
     :description="description"
     :invalid="invalid"
@@ -103,10 +103,10 @@ export default {
     :open="open && !disabled && !readonly"
     @click="$refs.autofill.focus()"
   >
-    <div class="field">
+    <div class="fura-field">
       <span
         v-if="selectedItems.length > 0"
-        class="itemsWrapper"
+        class="fura-itemsWrapper"
       >
         <template v-for="(item, index) in selectedItems">
           <!--
@@ -123,8 +123,8 @@ export default {
           >
             <div
               :key="index"
-              class="tag"
-              :class="{ disabled }"
+              class="fura-tag"
+              :class="{ 'fura-disabled': disabled }"
               tabindex="0"
             >
               <span v-text="item.text" />
@@ -134,7 +134,7 @@ export default {
               >
                 <span>
                   <FuraIcon
-                    class="itemIcon"
+                    class="fura-itemIcon"
                     name="Cancel"
                   />
                 </span>
@@ -145,7 +145,7 @@ export default {
       </span>
       <FuraAutofill
         ref="autofill"
-        class="autofill"
+        class="fura-autofill"
         :autofill="autoComplete"
         :placeholder="placeholder"
         :disabled="disabled"
@@ -157,11 +157,11 @@ export default {
       />
     </div>
     <template #dropdown>
-      <div class="dropdownWrapper">
+      <div class="fura-dropdownWrapper">
         <FuraBaseSelect
           v-if="itemsLoaded"
           ref="select"
-          class="select"
+          class="fura-select"
           multiple
           hide-checkbox
           :options="items"
@@ -222,10 +222,10 @@ export default {
         </FuraBaseSelect>
         <div
           v-else
-          class="loadingDropdown"
+          class="fura-loadingDropdown"
         >
           <FuraSpinner
-            class="spinner"
+            class="fura-spinner"
             :label="loadingText"
           />
         </div>

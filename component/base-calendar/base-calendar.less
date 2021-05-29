@@ -3,17 +3,17 @@
 
 @calendarDay: 28px;
 
-.calendar {
+.fura-calendar {
   display: inline-block;
   position: relative;
   background-color: @white;
 
-  &.showGoToday {
+  &.fura-showGoToday {
     padding-bottom: 28px;
   }
 }
 
-.header {
+.fura-header {
   position: relative;
   display: inline-flex;
   height: @calendarDay;
@@ -21,7 +21,7 @@
   width: 100%;
 }
 
-.title {
+.fura-title {
   display: inline-flex;
   flex-grow: 1;
   .fontStyleMedium();
@@ -41,14 +41,14 @@
   }
 }
 
-.titleComponents {
+.fura-titleComponents {
   display: inline-flex;
   align-self: flex-end;
   overflow: visible;
 }
 
-.prev,
-.next {
+.fura-prev,
+.fura-next {
   width: @calendarDay;
   height: @calendarDay;
   display: inline-block;
@@ -71,7 +71,7 @@
   }
 }
 
-.goToday {
+.fura-goToday {
   bottom: 0;
   color: @themePrimary;
   cursor: pointer;

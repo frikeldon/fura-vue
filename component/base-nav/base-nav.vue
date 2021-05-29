@@ -40,20 +40,20 @@ export default {
     <div
       v-for="(group, groupIndex) in groups"
       :key="groupIndex"
-      class="group"
-      :class="{ expanded: group.expanded }"
+      class="fura-group"
+      :class="{ 'fura-expanded': group.expanded }"
     >
       <button
         v-if="group.name"
         @click="$emit('expand', { group, groupIndex })"
       >
         <FuraIcon
-          class="icon"
+          class="fura-icon"
           name="ChevronDown"
         />
         {{ group.name }}
       </button>
-      <div class="content slideDownIn20">
+      <div class="fura-content fura-slideDownIn20">
         <FuraBaseNavList
           :links="group.links"
           :nesting-level="0"

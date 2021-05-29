@@ -51,18 +51,18 @@ export default {
       :required="required"
     />
     <div
-      class="field"
-      :class="{ inRow }"
+      class="fura-field"
+      :class="{ 'fura-inRow': inRow }"
     >
       <div
         v-for="(option, index) in options"
         :key="index"
       >
         <div
-          class="option"
+          class="fura-option"
           :class="{
-            checked: option.value === modelValue,
-            disabled: disabled || option.disabled
+            'fura-checked': option.value === modelValue,
+            'fura-disabled': disabled || option.disabled
           }"
           @click.stop="handleClick(option)"
         >

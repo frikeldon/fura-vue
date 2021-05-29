@@ -30,7 +30,7 @@ function defaultStringify (number) {
 }
 
 function defaultStringifyFocus (number) {
-  return isNaN(number)
+  return number == null || isNaN(number)
     ? ''
     : String(number)
 }
@@ -183,9 +183,12 @@ export default {
     },
     textAlign () {
       const { hasFocus, align, alignFocus } = this
-      return hasFocus
+      const value = hasFocus
         ? alignFocus
         : align
+      return ['left', 'center', 'right'].includes(value)
+        ? `fura-${value}`
+        : null
     }
   },
   methods: {

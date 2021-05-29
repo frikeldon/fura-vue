@@ -44,15 +44,15 @@ export default {
 <template>
   <component
     :is="href ? 'a' : 'button'"
-    class="button"
+    class="fura-button"
     :class="{
-      default: type === 'default',
-      action: type === 'action',
-      command: type === 'command',
-      compound: type === 'compound',
-      icon: type === 'icon',
-      primary,
-      checked
+      'fura-default': type === 'default',
+      'fura-action': type === 'action',
+      'fura-command': type === 'command',
+      'fura-compound': type === 'compound',
+      'fura-icon': type === 'icon',
+      'fura-primary': primary,
+      'fura-checked': checked
     }"
     :href="href"
     :target="href ? target : null"
@@ -63,20 +63,20 @@ export default {
       <FuraIcon
         v-if="icon"
         :name="icon"
-        class="icon"
+        class="fura-icon"
       />
       <span
         v-if="type !== 'icon' && (text || secondaryText)"
-        class="textContainer"
+        class="fura-textContainer"
       >
         <span
           v-if="text"
-          class="label"
+          class="fura-label"
           v-text="text"
         />
         <span
           v-if="secondaryText"
-          class="description"
+          class="fura-description"
           v-text="secondaryText"
         />
       </span>

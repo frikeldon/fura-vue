@@ -31,15 +31,18 @@ export default {
 
 <template>
   <div
-    :class="{ checked: modelValue, disabled }"
+    :class="{
+      'fura-checked': modelValue,
+      'fura-disabled': disabled
+    }"
     @click.stop="handleClick"
   >
     <FuraIcon
-      class="circle"
+      class="fura-circle"
       name="CircleRing"
     />
     <FuraIcon
-      class="checkmark"
+      class="fura-checkmark"
       name="StatusCircleCheckmark"
     />
   </div>

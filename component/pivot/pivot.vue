@@ -25,11 +25,16 @@ export default {
 </script>
 
 <template>
-  <div :class="{ large, tabStyle }">
+  <div
+    :class="{
+      'fura-large': large,
+      'fura-tabStyle': tabStyle
+    }"
+  >
     <button
       v-for="(tab, index) in tabs"
       :key="index"
-      :class="{ selected: modelValue === tab.value }"
+      :class="{ 'fura-selected': modelValue === tab.value }"
       @click.stop="$emit('update:modelValue', tab.value)"
     >
       <!--
@@ -45,16 +50,16 @@ export default {
           <span>
             <FuraIcon
               v-if="tab.icon"
-              class="icon"
+              class="fura-icon"
               :name="tab.icon"
             />
             <span
-              class="label"
+              class="fura-label"
               v-text="tab.text"
             />
             <span
               v-if="tab.count != null"
-              class="count"
+              class="fura-count"
               v-text="`(${tab.count.toString()})`"
             />
           </span>

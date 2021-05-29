@@ -8,31 +8,31 @@ tr {
   height: 42px;
 }
 
-.header,
-.data {
+.fura-header,
+.fura-data {
   border-bottom: 1px solid @neutralLight;
 }
 
-.group {
+.fura-group {
   border-bottom: 1px solid @white;
 }
 
-.data:hover,
-.group:hover {
+.fura-data:hover,
+.fura-group:hover {
   background: @neutralLighter;
 }
 
 /* Row -> Selected */
 
-.data.selected,
-.group.selected {
+.fura-data.fura-selected,
+.fura-group.fura-selected {
   background: @neutralLight;
   border-bottom: 1px solid @white;
 }
 
 /* Check */
 
-.checkboxCell {
+.fura-checkboxCell {
   width: 48px;
 
   > div {
@@ -51,14 +51,14 @@ tr {
 
 /* Check -> selected */
 
-.header.selected .checkboxCell > div,
-.data.selected .checkboxCell > div {
+.fura-header.fura-selected .fura-checkboxCell > div,
+.fura-data.fura-selected .fura-checkboxCell > div {
   opacity: 1;
 }
 
 /* Compact */
 
-.compact {
+.fura-compact {
   height: 32px;
   border-bottom: 0;
 

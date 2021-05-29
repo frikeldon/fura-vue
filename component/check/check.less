@@ -29,13 +29,13 @@ div {
   }
 }
 
-.circle {
+.fura-circle {
   .icon();
   font-size: 18px;
   left: 0px;
 }
 
-.checkmark {
+.fura-checkmark {
   .icon();
   font-size: 16px;
   left: 0.5px;
@@ -46,14 +46,14 @@ div {
   }
 }
 
-.checked {
-  .circle {
+.fura-checked {
+  .fura-circle {
     .icon();
     font-size: 18px;
     left: 0px;
   }
 
-  .checkmark {
+  .fura-checkmark {
     .icon();
     font-size: 16px;
     left: 0.5px;
@@ -61,32 +61,32 @@ div {
   }
 }
 
-.checked {
+.fura-checked {
   &::before {
     background: @themePrimary;
   }
 
-  .circle,
-  .checkmark {
+  .fura-circle,
+  .fura-checkmark {
     color: @white;
     opacity: 1;
   }
 }
 
-.disabled {
+.fura-disabled {
   color: @neutralLight;
 
-  &:hover > .checkmark {
+  &:hover > .fura-checkmark {
     opacity: 0;
   }
 }
 
-.disabled.checked {
+.fura-disabled.fura-checked {
   &::before {
     background: @neutralLight;
   }
 
-  &:hover > .checkmark {
+  &:hover > .fura-checkmark {
     opacity: 1;
   }
 }

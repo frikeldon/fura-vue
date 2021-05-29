@@ -1,7 +1,7 @@
 @import "../../theme/typography.less";
 @import "../../theme/color.less";
 
-.messageBar {
+.fura-messageBar {
   .fontStyleMedium();
   color: @neutralPrimary;
   min-height: 32px;
@@ -10,13 +10,13 @@
   word-break: break-word;
 }
 
-.content {
+.fura-content {
   display: flex;
   width: 100%;
   line-height: normal;
 }
 
-.icon {
+.fura-icon {
   font-size: @iconFontSizeMedium;
   min-width: @iconFontSizeMedium;
   min-height: @iconFontSizeMedium;
@@ -25,7 +25,7 @@
   margin: 8px 0px 8px 12px;
 }
 
-.text {
+.fura-text {
   .fontStyleSmall();
   min-width: 0px;
   display: flex;
@@ -38,14 +38,14 @@
   }
 }
 
-.actions {
+.fura-actions {
   display: flex;
   flex: 0 0 auto;
   flex-direction: row-reverse;
   align-items: center;
   margin: 0px 12px 0px 8px;
 
-  &.multiline {
+  &.fura-multiline {
     margin-bottom: 8px;
   }
 }
@@ -79,7 +79,7 @@ button {
   }
 }
 
-.buttonIcon {
+.fura-buttonIcon {
   font-size: @iconFontSizeXSmall;
   height: @iconFontSizeXSmall;
   line-height: @iconFontSizeXSmall;
@@ -88,68 +88,68 @@ button {
 
 /* MessageBar modifiers */
 
-.messageBar {
-  &.noDismiss .text {
+.fura-messageBar {
+  &.fura-noDismiss .fura-text {
     margin-right: 12px;
   }
   
-  &.singleline .text > span {
+  &.fura-singleline .fura-text > span {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
   
-  &.multiline {
+  &.fura-multiline {
     flex-direction: column;
   }
 }
 
 /* MessageBar types */
 
-.info {
+.fura-info {
   background: var(--info-background, #f3f2f1);
 
-  .icon {
+  .fura-icon {
     color: var(--info-icon, #605e5c);
   }
 }
 
-.error {
+.fura-error {
   background: var(--error-background, #fde7e9);
 
-  .icon {
+  .fura-icon {
     color: var(--error-icon, #a80000);
   }
 }
 
-.blocked {
+.fura-blocked {
   background: var(--blocked-background, #fde7e9);
 
-  .icon {
+  .fura-icon {
     color: var(--blocked-icon, #a80000);
   }
 }
 
-.severeWarning {
+.fura-severeWarning {
   background: var(--severe-warning-background, #fed9cc);
 
-  .icon {
+  .fura-icon {
     color: var(--severe-icon, #d83b01);
   }
 }
 
-.success {
+.fura-success {
   background: var(--success-background, #dff6dd);
 
-  .icon {
+  .fura-icon {
     color: var(--success-icon, #107c10);
   }
 }
 
-.warning {
+.fura-warning {
   background: var(--warning-background, #fff4ce);
 
-  .icon {
+  .fura-icon {
     color: var(--warning-icon, #797775);
   }
 }

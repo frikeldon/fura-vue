@@ -15,16 +15,16 @@ table {
   border-color: @neutralLight;
 }
 
-.auto {
+.fura-auto {
   table-layout: auto;
 }
 
-.fullAuto {
+.fura-fullAuto {
   table-layout: auto;
   width: auto;
 }
 
-.expanderCell {
+.fura-expanderCell {
   width: @expanderWidth;
 }
 
@@ -32,11 +32,11 @@ th {
   text-align: left;
 }
 
-.headerCell:hover {
+.fura-headerCell:hover {
   background: @neutralLighter;
 }
 
-.headerTitle {
+.fura-headerTitle {
   box-sizing: border-box;
   min-height: 42px;
   padding: 0px 8px 0px 12px;
@@ -51,28 +51,28 @@ th {
   display: flex;
   .fontStyleMedium(@weight: @fontWeightSemibold);
 
-  .icon {
+  .fura-icon {
     padding-left: 4px;
   }
 
-  .left & {
+  .fura-left & {
     justify-content: flex-start;
   }
 
-  .center & {
+  .fura-center & {
     justify-content: center;
   }
 
-  .right & {
+  .fura-right & {
     justify-content: flex-end;
   }
 }
 
-.groupTitle {
+.fura-groupTitle {
   display: flex;
   .fontStyleMedium(@weight: @fontWeightSemibold);
 
-  &.collapsed {
+  &.fura-collapsed {
     font-weight: @fontWeightRegular;
   }
 }

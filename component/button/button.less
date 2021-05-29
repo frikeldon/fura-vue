@@ -1,7 +1,7 @@
 @import "../../theme/color.less";
 @import "../../theme/typography.less";
 
-.button {
+.fura-button {
   .fontStyleMedium();
   position: relative;
   display: inline-block;
@@ -24,7 +24,7 @@
     color: @neutralDark;
   }
 
-  &.checked,
+  &.fura-checked,
   &:active {
     background-color: @neutralLight;
     color: @neutralDark;
@@ -39,19 +39,19 @@
   }
 }
 
-.textContainer {
+.fura-textContainer {
   flex-grow: 1;
   display: block;
 }
 
-.label {
+.fura-label {
   display: block;
   margin: 0px 4px;
   line-height: 100%;
   font-weight: @fontWeightSemibold;
 }
 
-.description {
+.fura-description {
   display: block;
   font-size: @fontSizeSmall;
   font-weight: @fontWeightRegular;
@@ -59,7 +59,7 @@
   color: @neutralSecondary;
 }
 
-.icon {
+.fura-icon {
   font-size: @iconFontSizeMedium;
   margin: 0px 4px;
   height: @iconFontSizeMedium;
@@ -68,22 +68,22 @@
   flex-shrink: 0;
 }
 
-.button.action {
+.fura-button.fura-action {
   padding: 0px 4px;
   height: 40px;
   color: @black;
   background-color: transparent;
   border-color: transparent;
 
-  .icon {
+  .fura-icon {
     color: @themeDarkAlt;
   }
 
-  &.checked .icon {
+  &.fura-checked .fura-icon {
     color: @themeDarker;
   }
 
-  .label {
+  .fura-label {
     font-weight: @fontWeightRegular;
   }
 
@@ -92,22 +92,22 @@
   }
 }
 
-.button.command {
+.fura-button.fura-command {
   padding-top: 0px 4px;
   height: 44px;
   min-width: 40px;
   border-width: 0px;
   text-decoration: none;
 
-  &.checked:hover {
+  &.fura-checked:hover {
     background-color: @neutralQuaternaryAlt;
   }
 
-  .icon {
+  .fura-icon {
     color: @themePrimary;
   }
 
-  .label {
+  .fura-label {
     font-weight: @fontWeightRegular;
   }
 
@@ -116,7 +116,7 @@
   }
 }
 
-.button.compound {
+.fura-button.fura-compound {
   padding: 16px 12px;
   max-width: 280px;
   min-height: 72px;
@@ -126,17 +126,17 @@
     align-items: flex-start;
   }
 
-  .textContainer {
+  .fura-textContainer {
     text-align: left;
   }
 
-  .label {
+  .fura-label {
     margin: 0px;
     margin-bottom: 5px;
   }
 }
 
-.button.icon {
+.fura-button.fura-icon {
   padding: 0px 4px;
   width: 32px;
   height: 32px;
@@ -150,25 +150,25 @@
     background-color: @neutralLighter;
   }
 
-  &.checked,
+  &.fura-checked,
   &:active {
     color: @themeDark;
     background-color: @neutralLight;
   }
 
-  &.checked:hover {
+  &.fura-checked:hover {
     color: @themeDark;
     background-color: @neutralQuaternaryAlt;
   }
 }
 
-.button.primary {
+.fura-button.fura-primary {
   color: @white;
   background-color: @themePrimary;
   border-color: @themePrimary;
 
-  .icon,
-  .description {
+  .fura-icon,
+  .fura-description {
     color: @white;
   }
 
@@ -182,13 +182,13 @@
     border-color: @themeDark;
   }
 
-  &.checked {
+  &.fura-checked {
     background-color: @themeDark;
     border-color: @themePrimary;
   }
 }
 
-.button[disabled] {
+.fura-button[disabled] {
   pointer-events: none;
 
   &,
@@ -200,16 +200,16 @@
     border-color: @neutralLighter;
   }
 
-  .description {
+  .fura-description {
     color: @neutralTertiary;
   }
 
-  .icon {
+  .fura-icon {
     color: @neutralTertiaryAlt;
   }
 
-  &.command,
-  &.action {
+  &.fura-command,
+  &.fura-action {
     border-color: @white;
     background-color: @white;
   }

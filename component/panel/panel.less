@@ -1,7 +1,7 @@
 @import "../../theme/typography.less";
 @import "../../theme/color.less";
 
-.panel {
+.fura-panel {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -16,45 +16,45 @@
     rgba(0, 0, 0, 0.18) 0px 4.8px 14.4px 0px;
 }
 
-.extraSmall {
+.fura-extraSmall {
   width: 272px;
 }
 
-.small {
+.fura-small {
   width: 340px;
 }
 
-.medium {
+.fura-medium {
   width: 592px;
 }
 
-.large {
+.fura-large {
   width: 644px;
 }
 
-.extraLarge {
+.fura-extraLarge {
   width: 940px;
 }
 
-.fluid {
+.fura-fluid {
   width: 100%;
 }
 
-.left {
+.fura-left {
   left: 0px;
   right: auto;
 }
 
-.commands {
+.fura-commands {
   margin-top: 18px;
 }
 
-.navigation {
+.fura-navigation {
   display: flex;
   justify-content: flex-end;
 }
 
-.navigation > button {
+.fura-navigation > button {
   position: relative;
   font-size: 20px;
   font-weight: 400;
@@ -75,13 +75,13 @@
   border-radius: 2px;
 }
 
-.navigation > button:hover,
-.navigation > button:active {
+.fura-navigation > button:hover,
+.fura-navigation > button:active {
   color: @neutralDark;
   background-color: @neutralLight;
 }
 
-.navigation > button > .icon {
+.fura-navigation > button > .fura-icon {
   display: flex;
   height: 100%;
   flex-wrap: nowrap;
@@ -89,16 +89,16 @@
   align-items: center;
 }
 
-.header {
+.fura-header {
   padding: 0px 24px;
   align-self: flex-start;
 }
 
-.navigation .header {
+.fura-navigation .fura-header {
   flex-grow: 1;
 }
 
-.header > div {
+.fura-header > div {
   .fontStyleXLarge();
   color: @neutralPrimary;
   line-height: 27px;
@@ -106,28 +106,28 @@
   word-break: break-word;
 }
 
-.contentInner {
+.fura-contentInner {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   overflow-y: hidden;
 }
 
-.scrollableContent {
+.fura-scrollableContent {
   overflow-y: auto;
   flex-grow: 1;
 }
 
-.content {
+.fura-content {
   padding: 0px 24px 20px 24px;
 }
 
-.footer {
+.fura-footer {
   flex-shrink: 0;
   border-top: 1px solid transparent;
   transition: opacity 0.367s cubic-bezier(0.1, 0.25, 0.75, 0.9) 0s;
 }
 
-.footerInner {
+.fura-footerInner {
   padding: 16px 24px 16px 24px;
 }

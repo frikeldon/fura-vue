@@ -29,6 +29,28 @@ export default {
       default: 'after',
       validator: position => !position || ['before', 'left', 'hCenter', 'right', 'after'].includes(position)
     }
+  },
+  methods: {
+    /**
+     * Devuelve el nombre de la clase CSS que corresponde a cada alineamiento vertical.
+     * @param verticalPosition Alineamiento vertical (above, top, vCenter, bottom, below).
+     * @return Nombre de la clase CSS que corresponde al alineamiento.
+     */
+    getVerticalPositionClass (verticalPosition) {
+      return ['above', 'top', 'vCenter', 'bottom', 'below'].includes(verticalPosition)
+        ? `fura-${verticalPosition}`
+        : null
+    },
+    /**
+     * Devuelve el nombre de la clase CSS que corresponde a cada alineamiento horizontal.
+     * @param verticalPosition Alineamiento horizontal (before, left, hCenter, right, after).
+     * @return Nombre de la clase CSS que corresponde al alineamiento.
+     */
+    getHorizontalPositionClass (horizontalPosition) {
+      return ['before', 'left', 'hCenter', 'right', 'after'].includes(horizontalPosition)
+        ? `fura-${horizontalPosition}`
+        : null
+    }
   }
 }
 </script>
@@ -38,8 +60,11 @@ export default {
     <slot />
     <FuraBlockMenu
       v-if="showMenu"
-      class="menu"
-      :class="[verticalPosition, horizontalPosition]"
+      class="fura-menu"
+      :class="[
+        getVerticalPositionClass(verticalPosition),
+        getHorizontalPositionClass(horizontalPosition)
+      ]"
       :items="items"
       :mousestop-delay="mousestopDelay"
     />

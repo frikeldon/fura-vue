@@ -92,7 +92,7 @@ export default {
 
 <template>
   <FuraBaseFieldCombo
-    class="dropdown"
+    class="fura-dropdown"
     :label="label"
     :description="description"
     :invalid="invalid"
@@ -106,7 +106,7 @@ export default {
   >
     <div
       ref="container"
-      class="container"
+      class="fura-container"
       :tabindex="disabled ? '' : '0'"
       @click.stop="$emit('click')"
       @keydown.stop.prevent="$emit('keydown', $event)"
@@ -114,12 +114,12 @@ export default {
       @blur="$emit('blur', $event)"
     >
       <span
-        class="title"
+        class="fura-title"
         v-text="selectedText || placeholder"
       />
-      <span class="caret">
+      <span class="fura-caret">
         <FuraIcon
-          class="icon"
+          class="fura-icon"
           name="ChevronDown"
           @click.stop="$emit('click')"
         />
@@ -128,7 +128,7 @@ export default {
     <template #dropdown>
       <FuraBaseSelect
         ref="select"
-        class="select"
+        class="fura-select"
         :options="options"
         :value="value"
         :multiple="multiple"

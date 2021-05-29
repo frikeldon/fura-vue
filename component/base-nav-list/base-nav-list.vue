@@ -56,22 +56,22 @@ export default {
       :key="index"
     >
       <div
-        class="container"
+        class="fura-container"
         :class="{
-          wrappedText,
-          selected: selected !== null && selected === link.key
+          'fura-wrappedText': wrappedText,
+          'fura-selected': selected !== null && selected === link.key
         }"
       >
         <FuraExpanderButton
           v-if="Array.isArray(link.links) && link.links.length > 0"
-          class="expander"
+          class="fura-expander"
           vertical
           :expanded="link.expanded"
           @click="handleClickExpander(link, index)"
         />
         <component
           :is="link.href ? 'a' : 'button'"
-          class="link"
+          class="fura-link"
           :style="`padding: 0 20px 0 ${(14 * nestingLevel) + (link.icon ? 3 : 27)}px`"
           :href="link.href"
           :target="link.href ? link.target : null"
@@ -83,10 +83,10 @@ export default {
             <FuraIcon
               v-if="link.icon"
               :name="link.icon"
-              class="icon"
+              class="fura-icon"
             />
             <div
-              class="label"
+              class="fura-label"
               v-text="link.name"
             />
           </span>

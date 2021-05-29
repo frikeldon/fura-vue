@@ -24,46 +24,58 @@ export default {
   emits: [
     /** Se genera cuando el usuario pulsa el botón de cerrar. */
     'click'
-  ]
+  ],
+  methods: {
+    /**
+     * Devuelve el nombre de la clase CSS que corresponde a cada tipo de panel.
+     * @param type Tipo de panel (custom, extraSmall, small, medium, large, extraLarge, fluid).
+     * @return Nombre de la clase CSS que corresponde al tipo de panel.
+     */
+    getTypeClass (type) {
+      return ['custom', 'extraSmall', 'small', 'medium', 'large', 'extraLarge', 'fluid'].includes(type)
+        ? `fura-${type}`
+        : null
+    }
+  }
 }
 </script>
 
 <template>
   <div
-    class="panel"
-    :class="[type, { left }]"
+    class="fura-panel"
+    :class="[getTypeClass(type), { 'fura-left': left }]"
   >
     <div
       v-if="!withoutCloseButton"
-      class="commands"
+      class="fura-commands"
     >
-      <div class="navigation">
-        <div class="header">
+      <div class="fura-navigation">
+        <div class="fura-header">
           <div v-text="headerText" />
         </div>
         <button @click.stop="$emit('click')">
           <FuraIcon
-            class="icon"
+            class="fura-icon"
             name="Cancel"
           />
         </button>
       </div>
     </div>
-    <div class="contentInner">
+    <div class="fura-contentInner">
       <div
         v-if="withoutCloseButton"
-        class="header"
+        class="fura-header"
       >
         <div v-text="headerText" />
       </div>
-      <div class="scrollableContent">
-        <div class="content">
+      <div class="fura-scrollableContent">
+        <div class="fura-content">
           <!-- @slot Cuerpo del panel. -->
           <slot />
         </div>
       </div>
-      <div class="footer">
-        <div class="footerInner">
+      <div class="fura-footer">
+        <div class="fura-footerInner">
           <!-- @slot Pie del panel. -->
           <slot name="footer" />
         </div>
@@ -126,7 +138,7 @@ export default {
           v-model="choiceValue"
         />
         <template #footer>
-          <div class="footer">
+          <div class="fura-footer">
             <fura-button
               primary
               text="Ok"

@@ -107,36 +107,36 @@ button > span > span {
   flex: 0 1 100%;
 }
 
-.icon {
+.fura-icon {
   margin-left: 0px;
 }
 
-.label {
+.fura-label {
   display: inline-block;
   vertical-align: top;
   margin-left: 4px;
 }
 
-.count {
+.fura-count {
   margin-left: 4px;
   display: inline-block;
   vertical-align: top;
 }
 
-button.selected::before {
+button.fura-selected::before {
   background-color: @themePrimary;
 }
 
-button.selected:hover::before {
+button.fura-selected:hover::before {
   left: 0px;
   right: 0px;
 }
 
-.large .label {
+.fura-large .fura-label {
   .fontStyleLarge();
 }
 
-.tabStyle button.selected {
+.fura-tabStyle button.fura-selected {
   margin: 0;
   padding: 0 10px;
   color: @white;
@@ -144,7 +144,7 @@ button.selected:hover::before {
   vertical-align: top;
 }
 
-.tabStyle button::before {
+.fura-tabStyle button::before {
   background-color: transparent;
   bottom: 0px;
   content: "";
@@ -156,8 +156,8 @@ button.selected:hover::before {
   transition: none 0s ease 0s;
 }
 
-.tabStyle button.selected .icon,
-.tabStyle button.selected .label,
-.tabStyle button.selected .count {
+.fura-tabStyle button.fura-selected .fura-icon,
+.fura-tabStyle button.fura-selected .fura-label,
+.fura-tabStyle button.fura-selected .fura-count {
   color: @white;
 }

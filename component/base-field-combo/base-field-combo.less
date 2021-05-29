@@ -9,42 +9,42 @@
 @borderFocusColor: @themePrimary;
 @borderInvalidColor: @redDark;
 
-.fieldCombo {
+.fura-fieldCombo {
   .normalize();
   .fontStyleMedium();
   position: relative;
 
-  &.disabled {
+  &.fura-disabled {
     pointer-events: none;
 
-    .fieldGroup {
+    .fura-fieldGroup {
       background-color: @backgroundDisabledColor;
     }
   }
 
-  &:not(.disabled):not(.borderless) {
-    &:not(.underlined) {
-      .fieldGroup::after {
+  &:not(.fura-disabled):not(.fura-borderless) {
+    &:not(.fura-underlined) {
+      .fura-fieldGroup::after {
         .borderCss(@color: @borderColor);
       }
 
-      &:not(.open) .fieldGroup:focus-within::after {
+      &:not(.fura-open) .fura-fieldGroup:focus-within::after {
         .borderCss(@color: @borderFocusColor, @width: 2px);
       }
 
-      &.invalid .fieldGroup::after,
-      &.invalid:not(.open) .fieldGroup::after {
+      &.fura-invalid .fura-fieldGroup::after,
+      &.fura-invalid:not(.fura-open) .fura-fieldGroup::after {
         border-color: @borderInvalidColor;
       }
     }
 
-    .fieldGroup:hover::after {
+    .fura-fieldGroup:hover::after {
       border-color: @borderHoverColor;
     }
   }
 }
 
-.fieldGroup {
+.fura-fieldGroup {
   .normalize();
   border: 0;
   background: @white;
@@ -54,12 +54,12 @@
   position: relative;
 }
 
-.description {
+.fura-description {
   color: @neutralSecondary;
   font-size: @fontSizeSmall;
 }
 
-.errorMessage {
+.fura-errorMessage {
   color: @redDark;
   font-size: @fontSizeSmall;
   margin: 0;
@@ -68,7 +68,7 @@
   align-items: center;
 }
 
-.requiredPlaceholder:not([underlined]) .elementWrapper::after {
+.fura-requiredPlaceholder:not([underlined]) .fura-elementWrapper::after {
   content: "*";
   color: @redDark;
   position: absolute;
@@ -76,21 +76,21 @@
   right: -10px;
 }
 
-.underlined {
-  .elementWrapper {
+.fura-underlined {
+  .fura-elementWrapper {
     text-overflow: ellipsis;
     position: relative;
     display: flex;
   }
 
-  .label {
+  .fura-label {
     margin-right: 8px;
     padding-left: 12px;
     line-height: 22px;
     height: 32px;
   }
 
-  &.required .label {
+  &.fura-required .fura-label {
     position: relative;
     margin-right: 10px;
 
@@ -100,14 +100,14 @@
     }
   }
 
-  .fieldWrapper {
+  .fura-fieldWrapper {
     position: relative;
     flex: 1 1 0px;
     max-width: 100%;
     width: 0%;
   }
 
-  &.requiredPlaceholder .fieldGroup::after {
+  &.fura-requiredPlaceholder .fura-fieldGroup::after {
     content: "*";
     color: @redDark;
     position: absolute;
@@ -115,28 +115,28 @@
     right: -10px;
   }
 
-  .elementWrapper::after {
+  .fura-elementWrapper::after {
     .borderBottomCss(@color: @borderColor);
   }
 
-  &:not(.disabled):not(.open) .elementWrapper:focus-within::after {
+  &:not(.fura-disabled):not(.fura-open) .fura-elementWrapper:focus-within::after {
     .borderBottomCss(@color: @borderFocusColor, @width: 2px);
   }
 
-  &.invalid:not(.disabled):not(.open) .elementWrapper:focus-within::after {
+  &.fura-invalid:not(.fura-disabled):not(.fura-open) .fura-elementWrapper:focus-within::after {
     border-color: @redDark;
   }
 
-  &.invalid .elementWrapper::after {
+  &.fura-invalid .fura-elementWrapper::after {
     border-color: @borderInvalidColor;
   }
 
-  &.disabled .elementWrapper::after {
+  &.fura-disabled .fura-elementWrapper::after {
     border-color: @backgroundDisabledColor;
   }
 }
 
-.dropdownPanel {
+.fura-dropdownPanel {
   .normalize();
   display: none;
   position: absolute;
@@ -144,7 +144,7 @@
   z-index: 400;
   user-select: none;
 
-  .fieldCombo.open & {
+  .fura-fieldCombo.fura-open & {
     display: flex;
   }
 }

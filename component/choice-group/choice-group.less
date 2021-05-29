@@ -3,7 +3,7 @@
 
 @choiceFieldSize: 20px;
 
-.field {
+.fura-field {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -26,7 +26,7 @@
     margin-top: 8px;
   }
 
-  &.inRow {
+  &.fura-inRow {
     flex-direction: row;
 
     > div {
@@ -35,7 +35,7 @@
   }
 }
 
-.option {
+.fura-option {
   color: @neutralPrimary;
   box-sizing: inherit;
   margin: 0;
@@ -89,7 +89,7 @@
     }
   }
 
-  &:not(.disabled) label:hover::after {
+  &:not(.fura-disabled) label:hover::after {
     border: 5px solid @neutralSecondary;
     left: 5px;
     top: 5px;
@@ -97,7 +97,7 @@
     height: 10px;
   }
 
-  &.checked {
+  &.fura-checked {
     label::before {
       border-color: @themePrimary;
     }
@@ -111,13 +111,13 @@
     }
   }
 
-  &:not(.disabled) label:hover::before,
-  &:not(.disabled) label:hover::after {
+  &:not(.fura-disabled) label:hover::before,
+  &:not(.fura-disabled) label:hover::after {
     border-color: @themeDark;
   }
 
-  &.disabled,
-  &.disabled.checked {
+  &.fura-disabled,
+  &.fura-disabled.fura-checked {
     color: @neutralTertiary;
 
     label,

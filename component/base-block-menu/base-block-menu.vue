@@ -63,18 +63,18 @@ export default {
 </script>
 
 <template>
-  <div class="blockMenu">
+  <div class="fura-blockMenu">
     <ul>
       <template v-for="(item, index) in items">
         <li
           v-if="item.type === 'divider'"
           :key="`divider_${index}`"
-          class="divider"
+          class="fura-divider"
         />
         <li
           v-else-if="item.type === 'title'"
           :key="`title_${index}`"
-          class="title"
+          class="fura-title"
         >
           <!--
             @slot Encabezado del menú.
@@ -88,7 +88,7 @@ export default {
           >
             <div>
               <FuraIcon
-                class="icon"
+                class="fura-icon"
                 :name="item.icon"
                 :style="{ color: item.iconColor }"
               />
@@ -115,7 +115,7 @@ export default {
           >
             <FuraBaseSplitButton
               v-if="checkItemHasActions(item) && checkItemHasChilds(item)"
-              class="button"
+              class="fura-button"
               :text="item.text"
               :icon="item.icon"
               :icon-color="item.iconColor"
@@ -130,7 +130,7 @@ export default {
             />
             <FuraBaseCommandButton
               v-else
-              class="button"
+              class="fura-button"
               :text="item.text"
               :icon="item.icon"
               :icon-color="item.iconColor"
@@ -145,7 +145,7 @@ export default {
           </slot>
           <FuraBaseBlockMenu
             v-if="item.expanded && checkItemHasChilds(item)"
-            class="childBlockMenu"
+            class="fura-childBlockMenu"
             :items="item.childs"
             :mousestop-delay="mousestopDelay"
             @click="handleChildClick(item, index, $event)"

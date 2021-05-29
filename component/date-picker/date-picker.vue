@@ -182,8 +182,8 @@ export default {
 
 <template>
   <FuraBaseFieldCombo
-    class="datePicker"
-    :class="{ notWritable }"
+    class="fura-datePicker"
+    :class="{ 'fura-notWritable': notWritable }"
     :label="label"
     :description="description"
     :invalid="invalid"
@@ -198,7 +198,7 @@ export default {
     <input
       ref="field"
       type="text"
-      class="field"
+      class="fura-field"
       :value="fieldValue"
       :placeholder="placeholder"
       :disabled="disabled || null"
@@ -209,14 +209,14 @@ export default {
       @blur="handleBlur"
     >
     <FuraIcon
-      class="icon"
+      class="fura-icon"
       name="Calendar"
       @click.stop="handleIconClick"
     />
 
     <template #dropdown>
       <FuraCalendar
-        class="calendar"
+        class="fura-calendar"
         :days="days"
         :months="months"
         :first-day-of-the-week="firstDayOfTheWeek"

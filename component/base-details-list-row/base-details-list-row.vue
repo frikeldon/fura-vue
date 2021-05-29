@@ -31,22 +31,32 @@ export default {
   emits: [
     /** Se genera cuando el usuario hace clic en el componente. */
     'click'
-  ]
+  ],
+  computed: {
+    typeClass (value) {
+      return ['header', 'group', 'data'].includes(value)
+        ? `fura-${value}`
+        : null
+    }
+  }
 }
 </script>
 
 <template>
   <tr
-    :class="[type, { selected, compact }]"
+    :class="[typeClass, {
+      'fura-selected': selected,
+      'fura-compact': compact
+    }]"
     @click.stop="$emit('click')"
   >
     <td
       v-if="selection"
-      class="checkboxCell"
+      class="fura-checkboxCell"
     >
       <div v-if="type === 'data' || selection === 'multiple'">
         <FuraCheck
-          class="check"
+          class="fura-check"
           :model-value="selected"
           @update:model-value="$emit('click')"
         />

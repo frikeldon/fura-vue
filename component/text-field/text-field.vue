@@ -87,8 +87,8 @@ export default {
 
 <template>
   <FuraBaseFieldInput
-    class="textField"
-    :class="{ multiline }"
+    class="fura-textField"
+    :class="{ 'fura-multiline': multiline }"
     :label="label"
     :description="description"
     :invalid="invalid"
@@ -101,7 +101,7 @@ export default {
   >
     <div
       v-if="prefix"
-      class="prefix"
+      class="fura-prefix"
     >
       <span v-text="prefix" />
     </div>
@@ -109,10 +109,10 @@ export default {
     <textarea
       v-if="multiline"
       ref="field"
-      class="field"
+      class="fura-field"
       :class="{
-        hasIcon: icon,
-        unresizable
+        'fura-hasIcon': icon,
+        'fura-unresizable': unresizable
       }"
       :value="modelValue"
       :placeholder="placeholder"
@@ -128,8 +128,8 @@ export default {
       v-else
       ref="field"
       type="text"
-      class="field"
-      :class="{ hasIcon: icon }"
+      class="fura-field"
+      :class="{ 'fura-hasIcon': icon }"
       :value="modelValue"
       :placeholder="placeholder"
       :disabled="disabled || null"
@@ -143,14 +143,14 @@ export default {
 
     <FuraIcon
       v-if="icon"
-      class="icon"
+      class="fura-icon"
       :name="icon"
       @click.stop="$emit('click')"
     />
 
     <div
       v-if="sufix"
-      class="sufix"
+      class="fura-sufix"
     >
       <span v-text="sufix" />
     </div>

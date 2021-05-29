@@ -12,8 +12,11 @@ export default {
 
 <template>
   <div
-    class="overlay"
-    :class="{ dark, fixed }"
+    class="fura-overlay"
+    :class="{
+      'fura-dark': dark,
+      'fura-fixed': fixed
+    }"
   >
     <!-- @slot El contenido de Overlay -->
     <slot />

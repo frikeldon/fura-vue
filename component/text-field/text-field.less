@@ -4,7 +4,7 @@
 
 /* Normal field */
 
-.field {
+.fura-field {
   .normalize();
   padding: 0px 8px;
   color: @neutralPrimary;
@@ -24,16 +24,16 @@
     color: @neutralTertiary;
   }
 
-  &.hasIcon {
+  &.fura-hasIcon {
     padding-right: 24px;
   }
 
-  &.unresizable {
+  &.fura-unresizable {
     resize: none;
   }
 }
 
-.icon {
+.fura-icon {
   user-select: none;
   position: absolute;
   bottom: 8px;
@@ -44,8 +44,8 @@
   color: @neutralPrimary;
 }
 
-.prefix,
-.sufix {
+.fura-prefix,
+.fura-sufix {
   background: @neutralLighter;
   color: @neutralTertiary;
   display: flex;
@@ -62,18 +62,18 @@
 
 /* Multiline field */
 
-.multiline::v-deep(.fieldGroup) {
+.fura-multiline::v-deep(.fura-fieldGroup) {
   height: auto;
   min-height: 60px;
 }
 
-.multiline {
-  &::v-deep(.fieldGroup) {
+.fura-multiline {
+  &::v-deep(.fura-fieldGroup) {
     height: auto;
     min-height: 60px;
   }
 
-  .field {
+  .fura-field {
     padding: 6px 8px;
     min-height: inherit;
     line-height: 17px;
@@ -81,12 +81,12 @@
     outline: 0;
     overflow: auto;
 
-    &.hasIcon {
+    &.fura-hasIcon {
       padding-right: 40px;
     }
   }
 
-  .icon {
+  .fura-icon {
     padding-right: 24px;
   }
 }

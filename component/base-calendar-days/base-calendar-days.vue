@@ -102,8 +102,8 @@ export default {
 </script>
 
 <template>
-  <table class="days">
-    <thead class="weekday">
+  <table class="fura-days">
+    <thead class="fura-weekday">
       <tr>
         <th
           v-for="(day, index) in sortedDays"
@@ -120,11 +120,11 @@ export default {
         <td
           v-for="(day, dayIndex) in week"
           :key="dayIndex"
-          class="day"
+          class="fura-day"
           :class="{
-            today: areSameDay(day, today),
-            otherMonth: day.getMonth() !== currentMonth,
-            selected: areSameDay(day, value)
+            'fura-today': areSameDay(day, today),
+            'fura-otherMonth': day.getMonth() !== currentMonth,
+            'fura-selected': areSameDay(day, value)
           }"
         >
           <button @click="$emit('select', day)">

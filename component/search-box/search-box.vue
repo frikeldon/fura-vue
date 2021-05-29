@@ -82,8 +82,11 @@ export default {
 
 <template>
   <FuraBaseFieldInput
-    class="searchBox"
-    :class="{ disabled, underlined }"
+    class="fura-searchBox"
+    :class="{
+      'fura-disabled': disabled,
+      'fura-underlined': underlined
+    }"
     :label="label"
     :description="description"
     :invalid="invalid"
@@ -95,15 +98,15 @@ export default {
     @click-label="$refs.field.focus()"
   >
     <div
-      class="icon"
-      :class="{ disableAnimation }"
+      class="fura-icon"
+      :class="{ 'fura-disableAnimation': disableAnimation }"
     >
       <FuraIcon :name="icon" />
     </div>
 
     <input
       type="text"
-      class="field"
+      class="fura-field"
       :value="modelValue"
       :placeholder="placeholder"
       :disabled="disabled || null"
@@ -114,7 +117,7 @@ export default {
     >
     <div
       v-if="modelValue && !disabled"
-      class="clear"
+      class="fura-clear"
     >
       <button @click="clear">
         <span>

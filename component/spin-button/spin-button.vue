@@ -98,8 +98,8 @@ export default {
 
 <template>
   <FuraBaseFieldInput
-    class="spinButton"
-    :class="{ disabled }"
+    class="fura-spinButton"
+    :class="{ 'fura-disabled': disabled }"
     :label="label"
     :description="description"
     :invalid="invalid"
@@ -121,22 +121,22 @@ export default {
     >
     <span>
       <button
-        class="up"
+        class="fura-up"
         :disabled="disabled || null"
         @click="handleClickUp"
       >
         <FuraIcon
-          class="icon"
+          class="fura-icon"
           name="ChevronUpSmall"
         />
       </button>
       <button
-        class="down"
+        class="fura-down"
         :disabled="disabled || null"
         @click="handleClickDown"
       >
         <FuraIcon
-          class="icon"
+          class="fura-icon"
           name="ChevronDownSmall"
         />
       </button>

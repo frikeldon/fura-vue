@@ -83,12 +83,12 @@ export default {
 </script>
 
 <template>
-  <div class="collection">
+  <div class="fura-collection">
     <div
       v-for="(item, index) in items"
       :key="index"
       :ref="el => refElements.push({ item, index, el })"
-      class="item"
+      class="fura-item"
     >
       <!--
         @slot Elemento del menú.
@@ -105,7 +105,7 @@ export default {
       >
         <FuraBaseCommandButton
           v-if="item.type === 'more'"
-          class="more"
+          class="fura-more"
           :icon="item.icon || 'More'"
           :icon-color="item.iconColor"
           :mousestop-delay="mousestopDelay"

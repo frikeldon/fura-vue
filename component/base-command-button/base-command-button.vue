@@ -70,20 +70,20 @@ export default {
     <span>
       <FuraIcon
         v-if="iconSpace || icon"
-        class="icon"
+        class="fura-icon"
         :style="{ color: disabled ? '' : iconColor }"
         :name="icon"
         @click.stop="handleClick"
       />
       <span
         v-if="text"
-        class="text"
+        class="fura-text"
       >
         <span v-text="text" />
       </span>
       <FuraIcon
         v-if="expandIcon"
-        class="expand"
+        class="fura-expand"
         :name="expandIcon"
         @click.stop="handleExpandClick"
       />

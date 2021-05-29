@@ -2,7 +2,7 @@
 @import "../../theme/typography.less";
 @import "../../theme/color.less";
 
-.title {
+.fura-title {
   flex: 1 1 0px;
   .normalize();
   padding: 0px 28px 0px 8px;
@@ -15,7 +15,7 @@
   border: 0;
 }
 
-.autofill {
+.fura-autofill {
   flex: 1 1 0px;
   padding: 0px;
   flex-grow: 1;
@@ -31,7 +31,7 @@
   }
 }
 
-.caret {
+.fura-caret {
   position: absolute;
   .fontStyleSmall();
   box-sizing: border-box;
@@ -67,7 +67,7 @@
   }
 }
 
-.icon {
+.fura-icon {
   font-size: 12px;
   margin: 0px 4px;
   height: 16px;
@@ -76,7 +76,7 @@
   flex-shrink: 0;
 }
 
-.open .caret {
+.fura-open .fura-caret {
   color: @neutralDark;
   background-color: @neutralLight;
 
@@ -85,7 +85,7 @@
   }
 }
 
-.select {
+.fura-select {
   flex: 1 1 0px;
   background-color: @white;
   box-shadow: 0 0px 15px -5px @blackTranslucent40;
@@ -93,12 +93,12 @@
   max-height: 200px;
 }
 
-.comboBox::v-deep(.dropdown) {
+.fura-comboBox::v-deep(.fura-dropdown) {
   justify-content: center;
   align-items: center;
 }
 
-.loadingDropdown {
+.fura-loadingDropdown {
   flex: 1 1 0px;
   display: flex;
   background-color: @white;
@@ -109,6 +109,6 @@
   justify-content: center;
 }
 
-.spinner {
+.fura-spinner {
   padding: 20px 0px;
 }

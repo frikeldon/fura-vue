@@ -36,7 +36,7 @@ export default {
 </script>
 
 <template>
-  <div class="grid">
+  <div class="fura-grid">
     <div
       v-for="(row, rowIndex) in rows"
       :key="rowIndex"
@@ -44,8 +44,8 @@ export default {
       <button
         v-for="(year, yearIndex) in row"
         :key="yearIndex"
-        class="button"
-        :class="{ selected: year === value }"
+        class="fura-button"
+        :class="{ 'fura-selected': year === value }"
         @click="$emit('select', year)"
         v-text="year"
       />

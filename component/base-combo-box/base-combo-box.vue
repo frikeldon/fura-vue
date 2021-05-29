@@ -137,7 +137,7 @@ export default {
 
 <template>
   <FuraBaseFieldCombo
-    class="comboBox"
+    class="fura-comboBox"
     :label="label"
     :description="description"
     :invalid="invalid"
@@ -149,10 +149,10 @@ export default {
     :open="open && !disabled && !readonly"
     @click="$refs.autofill.focus()"
   >
-    <div class="title">
+    <div class="fura-title">
       <FuraAutofill
         ref="autofill"
-        class="autofill"
+        class="fura-autofill"
         :autofill="autoComplete"
         :placeholder="autofillPlaceholder"
         :disabled="disabled"
@@ -167,13 +167,13 @@ export default {
       />
     </div>
     <button
-      class="caret"
+      class="fura-caret"
       :disabled="disabled || null"
       @click.stop="handleCaretClick"
     >
       <span>
         <FuraIcon
-          class="icon"
+          class="fura-icon"
           name="ChevronDown"
           @click.stop="handleCaretClick"
         />
@@ -183,7 +183,7 @@ export default {
       <FuraBaseSelect
         v-if="optionsLoaded"
         ref="select"
-        class="select"
+        class="fura-select"
         :options="options"
         :value="value"
         :multiple="multiple"
@@ -244,10 +244,10 @@ export default {
       </FuraBaseSelect>
       <div
         v-else
-        class="loadingDropdown"
+        class="fura-loadingDropdown"
       >
         <FuraSpinner
-          class="spinner"
+          class="fura-spinner"
           :label="loadingText"
         />
       </div>

@@ -4,7 +4,7 @@
 
 @optionHeight: 36px;
 
-.select {
+.fura-select {
   display: block;
   position: relative;
   outline: none;
@@ -13,7 +13,7 @@
   padding: 1px 0px;
 }
 
-.header {
+.fura-header {
   .fontStyleMedium(@weight: @fontWeightSemibold);
   color: @themePrimary;
   height: @optionHeight;
@@ -26,7 +26,7 @@
   border: none;
 }
 
-.header > span {
+.fura-header > span {
   white-space: nowrap;
   text-overflow: ellipsis;
   min-width: 0px;
@@ -39,16 +39,16 @@
   overflow: hidden;
 }
 
-.header.disabled {
+.fura-header.fura-disabled {
   color: @neutralTertiary;
 }
 
-.divider {
+.fura-divider {
   height: 1px;
   background-color: @neutralLight;
 }
 
-.option {
+.fura-option {
   position: relative;
   display: flex;
   background-color: transparent;
@@ -61,7 +61,7 @@
   overflow-wrap: break-word;
   border: 0px solid transparent;
 
-  &.highlighted {
+  &.fura-highlighted {
     background-color: @neutralLight;
 
     &:hover {
@@ -71,7 +71,7 @@
   }
 }
 
-.checkbox {
+.fura-checkbox {
   padding: 0px;
 
   label {
@@ -106,12 +106,12 @@
     overflow: hidden;
   }
 
-  .icon {
+  .fura-icon {
     opacity: 0;
     color: @white;
   }
 
-  &:not(.selected):not(.disabled):hover .icon {
+  &:not(.fura-selected):not(.fura-disabled):hover .fura-icon {
     color: @neutralSecondary;
     opacity: 1;
   }
@@ -126,23 +126,23 @@
     overflow: hidden;
   }
 
-  &.selected {
+  &.fura-selected {
     div {
       background: @themePrimary;
       border-color: @themePrimary;
     }
 
-    .icon {
+    .fura-icon {
       opacity: 1;
     }
 
-    &:not(.disabled):hover div {
+    &:not(.fura-disabled):hover div {
       background: @themeDark;
       border-color: @themeDark;
     }
   }
 
-  &.disabled {
+  &.fura-disabled {
     label {
       cursor: default;
     }
@@ -156,17 +156,17 @@
     }
   }
 
-  &.disabled.selected div {
+  &.fura-disabled.fura-selected div {
     background: @neutralTertiaryAlt;
     border-color: @neutralTertiaryAlt;
   }
 
-  &.marked::after {
+  &.fura-marked::after {
     .borderCss(@color: @neutralSecondary; @offset: -1px; @radius: 1px);
   }
 }
 
-.button {
+.fura-button {
   .fontStyleMedium();
   text-align: left;
   cursor: pointer;
@@ -177,22 +177,22 @@
   text-decoration: none;
 
   &:hover,
-  &.selected:hover {
+  &.fura-selected:hover {
     color: @themePrimary;
   }
 
-  &.selected {
+  &.fura-selected {
     color: @neutralDark;
     background-color: @neutralLight;
   }
 
-  &.disabled {
+  &.fura-disabled {
     cursor: default;
     color: @neutralTertiary;
     pointer-events: none;
   }
 
-  &.marked::after {
+  &.fura-marked::after {
     .borderCss(@color: @neutralSecondary; @radius: 1px);
   }
 }

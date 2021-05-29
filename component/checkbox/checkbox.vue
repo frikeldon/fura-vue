@@ -55,24 +55,24 @@ export default {
 
 <template>
   <label
-    class="checkbox"
+    class="fura-checkbox"
     :class="{
-      indeterminate,
-      checked: !indeterminate && modelValue,
-      disabled,
-      boxSideEnd: boxSide === 'end'
+      'fura-indeterminate': indeterminate,
+      'fura-checked': !indeterminate && modelValue,
+      'fura-disabled': disabled,
+      'fura-boxSideEnd': boxSide === 'end'
     }"
     @click.stop="handleClick"
   >
-    <div class="box">
+    <div class="fura-box">
       <FuraIcon
-        class="icon"
+        class="fura-icon"
         name="CheckMark"
       />
     </div>
     <span
       v-if="label"
-      class="label"
+      class="fura-label"
       v-text="label"
     />
   </label>

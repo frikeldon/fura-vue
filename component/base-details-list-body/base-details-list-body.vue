@@ -46,6 +46,18 @@ export default {
     currentData () {
       return this.data.slice(this.startIndex, this.startIndex + this.count)
     }
+  },
+  methods: {
+    /**
+     * Devuelve el nombre de la clase CSS que corresponde a cada alineamiento.
+     * @param align Alineamiento de texto (left, center, right).
+     * @return Nombre de la clase CSS que corresponde al alineamiento.
+     */
+    getAlignClass (align) {
+      return ['left', 'center', 'right'].includes(align)
+        ? `fura-${align}`
+        : null
+    }
   }
 }
 </script>
@@ -63,12 +75,12 @@ export default {
     >
       <td
         v-if="collapsible"
-        class="expanderCell"
+        class="fura-expanderCell"
       />
       <td
         v-for="(column, columnIndex) in columns"
         :key="columnIndex"
-        :class="column.align"
+        :class="getAlignClass(column.align)"
         @click.stop="$emit('clickCell', {
           row: startIndex + rowIndex,
           column: columnIndex

@@ -140,7 +140,7 @@ export default {
 
 <template>
   <div
-    class="select"
+    class="fura-select"
     :tabindex="disabled ? '' : '0'"
     @keydown.stop.prevent="handleKeydown"
   >
@@ -167,19 +167,19 @@ export default {
           v-if="multiple && !hideCheckbox"
           :ref="el => refOptions.push({ index, el })"
           :key="`option_multiple_${index}`"
-          class="option checkbox"
+          class="fura-option fura-checkbox"
           :class="{
-            selected: isValueSelected(option.value),
-            disabled: disabled || option.disabled,
-            marked: !(disabled || option.disabled) && (markedIndex === index),
-            highlighted: !(disabled || option.disabled) && (highlightedIndex === index)
+            'fura-selected': isValueSelected(option.value),
+            'fura-disabled': disabled || option.disabled,
+            'fura-marked': !(disabled || option.disabled) && (markedIndex === index),
+            'fura-highlighted': !(disabled || option.disabled) && (highlightedIndex === index)
           }"
           @click.stop="handleClick(index)"
         >
           <label>
             <div>
               <FuraIcon
-                class="icon"
+                class="fura-icon"
                 name="CheckMark"
                 @click.stop="handleClick(index)"
               />
@@ -192,12 +192,12 @@ export default {
           v-else
           :ref="el => refOptions.push({ index, el })"
           :key="`option_${index}`"
-          class="option button"
+          class="fura-option fura-button"
           :class="{
-            selected: isValueSelected(option.value),
-            disabled: disabled || option.disabled,
-            marked: !(disabled || option.disabled) && (markedIndex === index),
-            highlighted: !(disabled || option.disabled) && (highlightedIndex === index)
+            'fura-selected': isValueSelected(option.value),
+            'fura-disabled': disabled || option.disabled,
+            'fura-marked': !(disabled || option.disabled) && (markedIndex === index),
+            'fura-highlighted': !(disabled || option.disabled) && (highlightedIndex === index)
           }"
           :disabled="disabled || option.disabled || null"
           @click.stop="handleClick(index)"
@@ -218,8 +218,8 @@ export default {
       >
         <div
           :key="index"
-          class="header"
-          :class="{ disabled: disabled || option.disabled }"
+          class="fura-header"
+          :class="{ 'fura-disabled': disabled || option.disabled }"
         >
           <span v-text="option.text" />
         </div>
@@ -238,7 +238,7 @@ export default {
       >
         <div
           :key="index"
-          class="divider"
+          class="fura-divider"
         />
       </slot>
     </template>

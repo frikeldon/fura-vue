@@ -163,13 +163,23 @@ export default {
       const dataIndices = this.getDataGroupIndices(groupIndex)
       return dataIndices.length > 0 &&
         dataIndices.every(index => this.selectedIndices.includes(index))
+    },
+    /**
+     * Devuelve el nombre de la clase CSS que corresponde a cada alineamiento.
+     * @param align Alineamiento de texto (left, center, right).
+     * @return Nombre de la clase CSS que corresponde al alineamiento.
+     */
+    getAlignClass (align) {
+      return ['left', 'center', 'right'].includes(align)
+        ? `fura-${align}`
+        : null
     }
   }
 }
 </script>
 
 <template>
-  <table :class="{ autoLayout }">
+  <table :class="{ 'fura-autoLayout': autoLayout }">
     <thead>
       <FuraBaseDetailsListRow
         type="header"
@@ -180,7 +190,7 @@ export default {
       >
         <th
           v-if="collapsible"
-          class="headerCell expanderCell"
+          class="fura-headerCell fura-expanderCell"
         >
           <FuraExpanderButton
             :expanded="!allCollapsed"
@@ -191,8 +201,8 @@ export default {
           v-for="(column, index) in columns"
           :key="index"
           :style="{ width: column.width }"
-          class="headerCell"
-          :class="column.align"
+          class="fura-headerCell"
+          :class="getAlignClass(column.align)"
           @click.stop="$emit('clickHeader', index)"
         >
           <!--
@@ -205,11 +215,11 @@ export default {
             :column="column"
             :index="index"
           >
-            <div class="headerTitle">
+            <div class="fura-headerTitle">
               <span v-text="column.title" />
               <FuraIcon
                 v-if="column.icon"
-                class="icon"
+                class="fura-icon"
                 :name="column.icon"
               />
             </div>
@@ -222,7 +232,7 @@ export default {
         v-for="(group, index) in groups"
         :key="index"
       >
-        <thead class="group">
+        <thead class="fura-group">
           <FuraBaseDetailsListRow
             type="group"
             :selection="selection"
@@ -232,7 +242,7 @@ export default {
           >
             <th
               v-if="collapsible"
-              class="expanderCell"
+              class="fura-expanderCell"
             >
               <FuraExpanderButton
                 :expanded="!collapsedIndices.has(index)"
@@ -256,8 +266,8 @@ export default {
                 :is-collapsed="collapsedIndices.has(index)"
               >
                 <div
-                  class="groupTitle"
-                  :class="{ collapsed: collapsedIndices.has(index) }"
+                  class="fura-groupTitle"
+                  :class="{ 'fura-collapsed': collapsedIndices.has(index) }"
                   v-text="group.name"
                 />
               </slot>

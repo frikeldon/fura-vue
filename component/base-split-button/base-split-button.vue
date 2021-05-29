@@ -40,10 +40,10 @@ export default {
 </script>
 
 <template>
-  <div class="splitButton">
+  <div class="fura-splitButton">
     <span>
       <FuraBaseCommandButton
-        class="action"
+        class="fura-action"
         :text="text"
         :icon="icon"
         :icon-space="iconSpace"
@@ -54,7 +54,7 @@ export default {
         @mousestop="$emit('mousestop')"
       />
       <FuraBaseCommandButton
-        class="expand"
+        class="fura-expand"
         :expand-icon="expandIcon"
         :mousestop-delay="mousestopDelay"
         :disabled="disabled"
@@ -62,7 +62,7 @@ export default {
         @click-expand="$emit('clickExpand', $event)"
         @mousestop="$emit('mousestopExpand')"
       />
-      <span class="divisor" />
+      <span class="fura-divisor" />
     </span>
   </div>
 </template>

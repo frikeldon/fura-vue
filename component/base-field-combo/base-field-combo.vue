@@ -36,32 +36,32 @@ export default {
 
 <template>
   <div
-    class="fieldCombo"
+    class="fura-fieldCombo"
     :class="{
-      required,
-      disabled,
-      underlined,
-      borderless,
-      open,
-      requiredPlaceholder: !label && required,
-      invalid: invalid || errorMessage
+      'fura-required': required,
+      'fura-disabled': disabled,
+      'fura-underlined': underlined,
+      'fura-borderless': borderless,
+      'fura-open': open,
+      'fura-requiredPlaceholder': !label && required,
+      'fura-invalid': invalid || errorMessage
     }"
   >
-    <div class="elementWrapper">
+    <div class="fura-elementWrapper">
       <FuraLabel
         v-if="label"
-        class="label"
+        class="fura-label"
         :required="required"
         :disabled="disabled"
         @click.stop="$emit('click', $event)"
         v-text="label"
       />
-      <div class="fieldWrapper">
-        <div class="fieldGroup">
+      <div class="fura-fieldWrapper">
+        <div class="fura-fieldGroup">
           <!-- @slot Campo del formulario. -->
           <slot />
         </div>
-        <div class="dropdownPanel">
+        <div class="fura-dropdownPanel">
           <!-- @slot Panel desplegable. -->
           <slot name="dropdown" />
         </div>
@@ -70,12 +70,12 @@ export default {
     <span v-if="description || errorMessage">
       <span
         v-if="description"
-        class="description"
+        class="fura-description"
         v-text="description"
       />
       <p
         v-if="errorMessage"
-        class="errorMessage slideDownIn20"
+        class="fura-errorMessage fura-slideDownIn20"
       >
         <span v-text="errorMessage" />
       </p>

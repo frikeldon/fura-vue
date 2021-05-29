@@ -24,23 +24,23 @@ export default {
 </script>
 
 <template>
-  <div class="progressIndicator">
+  <div class="fura-progressIndicator">
     <div
       v-if="label"
-      class="label"
+      class="fura-label"
       v-text="label"
     />
-    <div class="itemProgress">
-      <div class="progressTrack" />
+    <div class="fura-itemProgress">
+      <div class="fura-progressTrack" />
       <div
-        class="progressBar"
-        :class="progress === null ? 'indeterminate' : null"
-        :style="{ width: progress }"
+        class="fura-progressBar"
+        :class="progress === null ? 'fura-indeterminate' : null"
+        :style="{ 'width': progress }"
       />
     </div>
     <div
       v-if="description"
-      class="description"
+      class="fura-description"
       v-text="description"
     />
   </div>

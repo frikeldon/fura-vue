@@ -9,41 +9,41 @@
 @borderFocusColor: @themePrimary;
 @borderInvalidColor: @redDark;
 
-.inputField {
+.fura-inputField {
   .normalize();
   .fontStyleMedium();
   position: relative;
 
-  &.disabled {
+  &.fura-disabled {
     pointer-events: none;
 
-    .fieldGroup {
+    .fura-fieldGroup {
       background-color: @backgroundDisabledColor;
     }
   }
 
-  &:not(.disabled):not(.borderless) {
-    &:not(.underlined) {
-      .fieldGroup::after {
+  &:not(.fura-disabled):not(.fura-borderless) {
+    &:not(.fura-underlined) {
+      .fura-fieldGroup::after {
         .borderCss(@color: @borderColor);
       }
 
-      .fieldGroup:focus-within::after {
+      .fura-fieldGroup:focus-within::after {
         .borderCss(@color: @borderFocusColor, @width: 2px);
       }
 
-      &.invalid .fieldGroup::after {
+      &.fura-invalid .fura-fieldGroup::after {
         border-color: @borderInvalidColor;
       }
     }
 
-    .fieldGroup:hover::after {
+    .fura-fieldGroup:hover::after {
       border-color: @borderHoverColor;
     }
   }
 }
 
-.fieldGroup {
+.fura-fieldGroup {
   .normalize();
   border: 0;
   background: @white;
@@ -53,12 +53,12 @@
   position: relative;
 }
 
-.description {
+.fura-description {
   color: @neutralSecondary;
   font-size: @fontSizeSmall;
 }
 
-.errorMessage {
+.fura-errorMessage {
   color: @redDark;
   font-size: @fontSizeSmall;
   margin: 0;
@@ -67,7 +67,7 @@
   align-items: center;
 }
 
-.requiredPlaceholder:not([underlined]) .wrapper::after {
+.fura-requiredPlaceholder:not([underlined]) .fura-wrapper::after {
   content: "*";
   color: @redDark;
   position: absolute;
@@ -75,21 +75,21 @@
   right: -10px;
 }
 
-.underlined {
-  .wrapper {
+.fura-underlined {
+  .fura-wrapper {
     text-overflow: ellipsis;
     position: relative;
     display: flex;
   }
 
-  .label {
+  .fura-label {
     margin-right: 8px;
     padding-left: 12px;
     line-height: 22px;
     height: 32px;
   }
 
-  &.required .label {
+  &.fura-required .fura-label {
     position: relative;
     margin-right: 10px;
 
@@ -99,14 +99,14 @@
     }
   }
 
-  .fieldGroup {
+  .fura-fieldGroup {
     position: relative;
     flex: 1 1 0px;
     max-width: 100%;
     width: 0%;
   }
 
-  &.requiredPlaceholder .fieldGroup::after {
+  &.fura-requiredPlaceholder .fura-fieldGroup::after {
     content: "*";
     color: @redDark;
     position: absolute;
@@ -114,19 +114,19 @@
     right: -10px;
   }
 
-  .wrapper::after {
+  .fura-wrapper::after {
     .borderBottomCss(@color: @borderColor);
   }
 
-  .wrapper:focus-within::after {
+  .fura-wrapper:focus-within::after {
     .borderBottomCss(@color: @borderFocusColor, @width: 2px);
   }
 
-  &.invalid .wrapper::after {
+  &.fura-invalid .fura-wrapper::after {
     border-color: @borderInvalidColor;
   }
 
-  &.disabled .wrapper::after {
+  &.fura-disabled .fura-wrapper::after {
     border-color: @backgroundDisabledColor;
   }
 }

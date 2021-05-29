@@ -3,7 +3,7 @@
 
 @calendarDay: 28px;
 
-.days {
+.fura-days {
   text-align: center;
   border-collapse: collapse;
   border-spacing: 0;
@@ -18,8 +18,8 @@ td {
   padding: 0;
 }
 
-.day,
-.weekday th {
+.fura-day,
+.fura-weekday th {
   width: @calendarDay;
   height: @calendarDay;
   padding: 0;
@@ -35,7 +35,7 @@ td {
   text-transform: uppercase;
 }
 
-.day {
+.fura-day {
   button {
     width: 24px;
     height: 24px;
@@ -64,14 +64,14 @@ td {
     outline: transparent;
   }
 
-  &.selected {
+  &.fura-selected {
     background-color: @neutralLight;
     border-radius: 2px;
   }
 }
 
-.today button,
-.today button:hover {
+.fura-today button,
+.fura-today button:hover {
   position: relative;
   color: @white;
   font-weight: @fontWeightSemibold;
@@ -79,7 +79,7 @@ td {
   border-radius: 100%;
 }
 
-.otherMonth:not(.today) button {
+.fura-otherMonth:not(.fura-today) button {
   color: @neutralSecondary;
 
   &:hover {

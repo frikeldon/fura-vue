@@ -24,11 +24,14 @@ export default {
 
 <template>
   <button
-    :class="{ expanded, vertical }"
+    :class="{
+      'fura-expanded': expanded,
+      'fura-vertical': vertical
+    }"
     @click.stop="$emit('click', $event)"
   >
     <FuraIcon
-      class="icon"
+      class="fura-icon"
       :name="icon"
     />
   </button>

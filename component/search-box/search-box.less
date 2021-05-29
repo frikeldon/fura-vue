@@ -3,11 +3,11 @@
 @import "../../theme/color.less";
 @import "../../theme/animation.less";
 
-.searchBox::v-deep(.fieldGroup) {
+.fura-searchBox::v-deep(.fura-fieldGroup) {
   padding: 1px 0px 1px 4px;
 }
 
-.icon {
+.fura-icon {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,7 +19,7 @@
   color: @themePrimary;
   cursor: text;
 
-  &:not(.disableAnimation) {
+  &:not(.fura-disableAnimation) {
     transition: width 0.167s ease 0s;
     > * {
       transition: opacity 0.167s ease 0s;
@@ -31,8 +31,8 @@
   }
 }
 
-.searchBox:focus-within {
-  .icon {
+.fura-searchBox:focus-within {
+  .fura-icon {
     width: 4px;
     > * {
       opacity: 0;
@@ -56,7 +56,7 @@ input {
   overflow: hidden;
 }
 
-.clear {
+.fura-clear {
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -94,10 +94,10 @@ input {
   }
 }
 
-.disabled i {
+.fura-disabled i {
   color: @neutralTertiary;
 }
 
-.underlined.disabled::v-deep(.fieldGroup) {
+.fura-underlined.disabled::v-deep(.fura-fieldGroup) {
   background-color: @white;
 }

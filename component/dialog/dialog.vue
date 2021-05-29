@@ -22,37 +22,49 @@ export default {
   emits: [
     /** Se genera cuando el usuario pulsa el botón de cerrar. */
     'click'
-  ]
+  ],
+  methods: {
+    /**
+     * Devuelve el nombre de la clase CSS que corresponde a cada tipo de dialogo.
+     * @param type Tipo de dialogo (normal, largeHeader, close).
+     * @return Nombre de la clase CSS que corresponde al tipo de dialogo.
+     */
+    getTypeClass (type) {
+      return ['normal', 'largeHeader', 'close'].includes(type)
+        ? `fura-${type}`
+        : null
+    }
+  }
 }
 </script>
 
 <template>
   <div
-    class="dialog"
-    :class="type"
+    class="fura-dialog"
+    :class="getTypeClass(type)"
   >
-    <div class="header">
+    <div class="fura-header">
       <div
-        class="title"
+        class="fura-title"
         v-text="header"
       />
       <div
         v-if="type === 'close'"
-        class="topButton"
+        class="fura-topButton"
       >
         <button @click="$emit('click')">
           <FuraIcon
-            class="icon"
+            class="fura-icon"
             name="Cancel"
           />
         </button>
       </div>
     </div>
-    <div class="inner">
-      <div class="content">
+    <div class="fura-inner">
+      <div class="fura-content">
         <p
           v-if="text"
-          class="subText"
+          class="fura-subText"
           v-text="text"
         />
         <!-- @slot Cuerpo del diálogo. -->
@@ -111,7 +123,7 @@ export default {
       v-model="choiceValue"
     />
     <template #footer>
-      <div class="footer">
+      <div class="fura-footer">
         <fura-button
           primary
           text="Ok"
@@ -166,7 +178,7 @@ export default {
           v-model="choiceValue"
         />
         <template #footer>
-          <div class="footer">
+          <div class="fura-footer">
             <fura-button
               primary
               text="Ok"

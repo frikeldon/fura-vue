@@ -9,19 +9,31 @@ export default {
     },
     /** Indica si el separador se dibuja verticalmente. */
     vertical: { type: Boolean, default: false }
+  },
+  methods: {
+    /**
+     * Devuelve el nombre de la clase CSS que corresponde a cada alineamiento.
+     * @param align Alineamiento (start, center, end).
+     * @return Nombre de la clase CSS que corresponde al alineamiento.
+     */
+    getAlignClass (align) {
+      return ['start', 'center', 'end'].includes(align)
+        ? `fura-${align}`
+        : null
+    }
   }
 }
 </script>
 
 <template>
   <div
-    class="separator"
+    class="fura-separator"
     :class="[
-      alignContent,
-      vertical ? 'vertical' : 'horizontal'
+      getAlignClass(alignContent),
+      vertical ? 'fura-vertical' : 'fura-horizontal'
     ]"
   >
-    <div class="content">
+    <div class="fura-content">
       <slot />
     </div>
   </div>

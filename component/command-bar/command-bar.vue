@@ -160,10 +160,10 @@ export default {
 </script>
 
 <template>
-  <div class="commandBar">
+  <div class="fura-commandBar">
     <FuraCommandBarItemCollection
       ref="near"
-      class="near"
+      class="fura-near"
       :items="currentStateItems"
       :mousestop-delay="mousestopDelay"
       @click="handleClick($event)"
@@ -171,7 +171,7 @@ export default {
     />
     <FuraCommandBarItemCollection
       ref="far"
-      class="far"
+      class="fura-far"
       :items="currentStateFarItems"
       :mousestop-delay="mousestopDelay"
       @click="handleClick($event)"

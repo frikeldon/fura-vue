@@ -39,20 +39,24 @@ export default {
 
 <template>
   <div
-    class="searchBox"
-    :class="{ inline, disabled, withoutText: !onText && !offText }"
+    class="fura-searchBox"
+    :class="{
+      'fura-inline': inline,
+      'fura-disabled': disabled,
+      'fura-withoutText': !onText && !offText
+    }"
   >
     <FuraLabel
       v-if="label"
-      class="label"
+      class="fura-label"
       :required="required"
       :disabled="disabled"
       v-text="label"
     />
-    <div class="container">
+    <div class="fura-container">
       <button
-        class="toggle"
-        :class="{ checked: modelValue }"
+        class="fura-toggle"
+        :class="{ 'fura-checked': modelValue }"
         :disabled="disabled || null"
         @click="handleClick"
       >
@@ -60,7 +64,7 @@ export default {
       </button>
       <label
         v-if="onText || offText"
-        class="stateText"
+        class="fura-stateText"
         v-text="modelValue ? onText : offText"
         @click="handleClick"
       />

@@ -66,25 +66,37 @@ export default {
     hasActionsSlots () {
       return this.$slots.actions && this.$slots.actions().findIndex(o => o.type !== Comment) !== -1
     }
+  },
+  methods: {
+    /**
+     * Devuelve el nombre de la clase CSS que corresponde a cada tipo de barra de mensaje.
+     * @param type Tipo de barra de mensaje (info, error, blocked, severeWarning, success, warning).
+     * @return Nombre de la clase CSS que corresponde al tipo de barra de mensaje.
+     */
+    getTypeClass (type) {
+      return ['info', 'error', 'blocked', 'severeWarning', 'success', 'warning'].includes(type)
+        ? `fura-${type}`
+        : null
+    }
   }
 }
 </script>
 
 <template>
   <div
-    class="messageBar"
-    :class="[type, {
-      noDismiss: !dismiss,
-      singleline: singleline && !extended,
-      multiline: !singleline
+    class="fura-messageBar"
+    :class="[getTypeClass(type), {
+      'fura-noDismiss': !dismiss,
+      'fura-singleline': singleline && !extended,
+      'fura-multiline': !singleline
     }]"
   >
-    <div class="content">
-      <div class="icon">
+    <div class="fura-content">
+      <div class="fura-icon">
         <FuraIcon :name="iconName" />
       </div>
-      <div class="text">
-        <span class="innerText">
+      <div class="fura-text">
+        <span class="fura-innerText">
           <span>
             <!-- @slot Contenido de la barra de mensajes. -->
             <slot />
@@ -93,12 +105,12 @@ export default {
       </div>
       <div
         v-if="!hasActionsSlots && singleline && truncated"
-        class="expand"
+        class="fura-expand"
       >
         <button @click="extended = !extended">
           <span>
             <FuraIcon
-              class="buttonIcon"
+              class="fura-buttonIcon"
               :name="extended ? 'DoubleChevronDown' : 'DoubleChevronUp'"
             />
           </span>
@@ -106,19 +118,19 @@ export default {
       </div>
       <div
         v-if="hasActionsSlots && singleline"
-        class="actions"
+        class="fura-actions"
       >
         <!-- @slot Acciones de la barra de mensajes. -->
         <slot name="actions" />
       </div>
       <div
         v-if="dismiss"
-        class="dismiss"
+        class="fura-dismiss"
       >
         <button @click="$emit('dismiss')">
           <span>
             <FuraIcon
-              class="buttonIcon"
+              class="fura-buttonIcon"
               :name="dismissIcon ?? 'Clear'"
             />
           </span>
@@ -127,7 +139,7 @@ export default {
     </div>
     <div
       v-if="hasActionsSlots && !singleline"
-      class="actions multiline"
+      class="fura-actions fura-multiline"
     >
       <!-- @slot Acciones de la barra de mensajes. -->
       <slot name="actions" />

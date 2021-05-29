@@ -2,12 +2,12 @@
 @import "../../theme/typography.less";
 @import "../../theme/color.less";
 
-.tagPicker::v-deep(.fieldGroup) {
+.fura-tagPicker::v-deep(.fura-fieldGroup) {
   min-height: 32px;
   height: auto;
 }
 
-.field {
+.fura-field {
   display: flex;
   position: relative;
   flex-wrap: wrap;
@@ -19,13 +19,13 @@
   border: 0;
 }
 
-.itemsWrapper {
+.fura-itemsWrapper {
   display: flex;
   flex-wrap: wrap;
   max-width: 100%;
 }
 
-.autofill {
+.fura-autofill {
   flex: 1 1 0px;
   height: 32px;
   padding: 0px 6px;
@@ -38,14 +38,14 @@
   text-overflow: ellipsis;
 }
 
-.tagPicker::v-deep(.dropdown) {
+.fura-tagPicker::v-deep(.fura-dropdown) {
   .normalize();
   background-color: @white;
   width: 100%;
   max-width: 100%;
 }
 
-.dropdownWrapper {
+.fura-dropdownWrapper {
   flex: 1 1 0px;
   background-color: @white;
   box-shadow: 0 0px 15px -5px @blackTranslucent40;
@@ -55,7 +55,7 @@
   overflow-x: hidden;
 }
 
-.loadingDropdown {
+.fura-loadingDropdown {
   flex: 1 1 0px;
   display: flex;
   background-color: @white;
@@ -66,11 +66,11 @@
   justify-content: center;
 }
 
-.spinner {
+.fura-spinner {
   padding: 20px 0px;
 }
 
-.tag {
+.fura-tag {
   .fontStyleMedium();
   position: relative;
   box-sizing: content-box;
@@ -147,14 +147,14 @@
     }
   }
 
-  &.disabled .item,
-  &.disabled .item > button {
+  &.fura-disabled .fura-item,
+  &.fura-disabled .fura-item > button {
     cursor: default;
     pointer-events: none;
     background: @neutralLight;
   }
 
-  .itemIcon {
+  .fura-itemIcon {
     font-size: @iconFontSizeSmall;
     margin: 0px 4px;
     height: 16px;

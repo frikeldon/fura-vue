@@ -1,13 +1,13 @@
 @import "../../theme/typography.less";
 @import "../../theme/color.less";
 
-.separator {
+.fura-separator {
   .fontStyleMedium();
   position: relative;
   z-index: 1;
 }
 
-.horizontal {
+.fura-horizontal {
   padding: 4px 0;
 
   &::after {
@@ -23,20 +23,20 @@
     z-index: -1;
   }
 
-  &.start {
+  &.fura-start {
     text-align: start;
   }
 
-  &.center {
+  &.fura-center {
     text-align: center;
   }
 
-  &.end {
+  &.fura-end {
     text-align: end;
   }
 }
 
-.vertical {
+.fura-vertical {
   padding: 0 4px;
   height: inherit;
   display: table-cell;
@@ -54,27 +54,27 @@
     z-index: -1;
   }
 
-  &.start {
+  &.fura-start {
     vertical-align: top;
   }
 
-  &.center {
+  &.fura-center {
     vertical-align: middle;
   }
 
-  &.end {
+  &.fura-end {
     vertical-align: bottom;
   }
 }
 
-.content {
+.fura-content {
   position: relative;
   display: inline-block;
   padding: 0 12px;
   color: @neutralPrimary;
   background: @white;
 
-  .vertical & {
+  .fura-vertical & {
     padding: 12px 0;
   }
 }

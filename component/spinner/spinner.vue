@@ -13,16 +13,28 @@ export default {
     },
     /** El texto a mostrar debajo de Spinner. */
     label: { type: String, default: '' }
+  },
+  methods: {
+    /**
+     * Devuelve el nombre de la clase CSS que corresponde a cada tamaño.
+     * @param align Tamaño (xSmall, small, medium, large).
+     * @return Nombre de la clase CSS que corresponde al tamaño.
+     */
+    getSizeClass (size) {
+      return ['xSmall', 'small', 'medium', 'large'].includes(size)
+        ? `fura-${size}`
+        : null
+    }
   }
 }
 </script>
 
 <template>
-  <div :class="size">
-    <div class="circle" />
+  <div :class="getSizeClass(size)">
+    <div class="fura-circle" />
     <div
       v-if="label"
-      class="label"
+      class="fura-label"
       v-text="label"
     />
   </div>
