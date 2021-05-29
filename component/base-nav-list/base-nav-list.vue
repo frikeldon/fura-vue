@@ -66,7 +66,7 @@ export default {
           v-if="Array.isArray(link.links) && link.links.length > 0"
           class="expander"
           vertical
-          :extended="link.extended"
+          :expanded="link.expanded"
           @click="handleClickExpander(link, index)"
         />
         <component
@@ -93,7 +93,7 @@ export default {
         </component>
       </div>
       <FuraBaseNavList
-        v-if="Array.isArray(link.links) && link.links.length > 0 && !link.expanded"
+        v-if="Array.isArray(link.links) && link.links.length > 0 && link.expanded"
         :links="link.links"
         :nesting-level="nestingLevel + 1"
         :wrapped-text="wrappedText"
