@@ -6,7 +6,7 @@ function defaultParse (text) {
 }
 
 function defaultStringify (number) {
-  if (isNaN(number)) { return '' }
+  if (number == null || isNaN(number)) { return '' }
 
   const options = {
     style: this.formatStyle,
