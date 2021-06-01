@@ -81,12 +81,16 @@ export default {
       >
         <span v-text="text" />
       </span>
-      <FuraIcon
+      <span
         v-if="expandIcon"
         class="fura-expand"
-        :name="expandIcon"
         @click.stop="handleExpandClick"
-      />
+      >
+        <FuraIcon
+          class="fura-expandIcon"
+          :name="expandIcon"
+        />
+      </span>
     </span>
   </button>
 </template>
