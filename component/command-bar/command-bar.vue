@@ -117,11 +117,13 @@ export default {
       this.expanded = []
       this.expandedSide = 'none'
     },
-    handleClick (event) {
+    handleClick (bar, event) {
       if (typeof event.item.action === 'function') {
         event.item.action.call(null)
+        this.collapseAll()
+      } else {
+        this.handleExpand(bar, event)
       }
-      this.collapseAll()
     },
     handleExpand (bar, event) {
       const ids = getExpandedIdsFromEvent(event)
@@ -166,7 +168,7 @@ export default {
       class="fura-near"
       :items="currentStateItems"
       :mousestop-delay="mousestopDelay"
-      @click="handleClick($event)"
+      @click="handleClick('near', $event)"
       @expand="handleExpand('near', $event)"
     />
     <FuraCommandBarItemCollection
@@ -174,7 +176,7 @@ export default {
       class="fura-far"
       :items="currentStateFarItems"
       :mousestop-delay="mousestopDelay"
-      @click="handleClick($event)"
+      @click="handleClick('far', $event)"
       @expand="handleExpand('far', $event)"
     />
   </div>
