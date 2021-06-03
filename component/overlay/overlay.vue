@@ -4,7 +4,7 @@ export default {
   props: {
     /** Indica si Overlay se dibuja oscuro. */
     dark: { type: Boolean, default: false },
-    /** Indica si Overlay tiene position fixed en vez de absolute */
+    /** Indica si Overlay tiene position fixed en vez de absolute. */
     fixed: { type: Boolean, default: false }
   }
 }
@@ -18,7 +18,7 @@ export default {
       'fura-fixed': fixed
     }"
   >
-    <!-- @slot El contenido de Overlay -->
+    <!-- @slot El contenido de Overlay. -->
     <slot />
   </div>
 </template>
