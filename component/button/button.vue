@@ -57,7 +57,7 @@ export default {
     :href="href"
     :target="href ? target : null"
     :disabled="disabled || null"
-    @click="$emit('click', $event)"
+    @click.stop="$emit('click', $event)"
   >
     <span>
       <FuraIcon

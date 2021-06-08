@@ -46,7 +46,7 @@ export default {
         :key="yearIndex"
         class="fura-button"
         :class="{ 'fura-selected': year === value }"
-        @click="$emit('select', year)"
+        @click.stop="$emit('select', year)"
         v-text="year"
       />
     </div>

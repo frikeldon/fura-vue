@@ -159,7 +159,7 @@ export default {
         :readonly="!allowFreeform"
         :accent-insensitive="accentInsensitive"
         :suggested-value="autoComplete ? suggestedText : ''"
-        @click="handleFuraAutofillClick"
+        @click.stop="handleFuraAutofillClick"
         @update:model-value="$emit('input', $event)"
         @keydown="$emit('keydown', $event)"
         @focus="$emit('focus', $event)"

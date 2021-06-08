@@ -59,7 +59,7 @@ export default {
         :key="colIndex"
         class="fura-button"
         :class="{ 'fura-selected': getMonthByCoords(rowIndex, colIndex) === value }"
-        @click="$emit('select', getMonthByCoords(rowIndex, colIndex))"
+        @click.stop="$emit('select', getMonthByCoords(rowIndex, colIndex))"
         v-text="monthName"
       />
     </div>

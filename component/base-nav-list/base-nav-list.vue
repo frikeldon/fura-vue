@@ -77,7 +77,7 @@ export default {
           :target="link.href ? link.target : null"
           :title="link.title ?? link.name"
           :disabled="link.disabled || null"
-          @click="handleClickLink(link, index)"
+          @click.stop="handleClickLink(link, index)"
         >
           <span>
             <FuraIcon

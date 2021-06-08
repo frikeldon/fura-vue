@@ -107,7 +107,7 @@ export default {
         v-if="!hasActionsSlots && singleline && truncated"
         class="fura-expand"
       >
-        <button @click="extended = !extended">
+        <button @click.stop="extended = !extended">
           <span>
             <FuraIcon
               class="fura-buttonIcon"
@@ -127,7 +127,7 @@ export default {
         v-if="dismiss"
         class="fura-dismiss"
       >
-        <button @click="$emit('dismiss')">
+        <button @click.stop="$emit('dismiss')">
           <span>
             <FuraIcon
               class="fura-buttonIcon"

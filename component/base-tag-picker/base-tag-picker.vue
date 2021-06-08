@@ -130,7 +130,7 @@ export default {
               <span v-text="item.text" />
               <button
                 tabindex="-1"
-                @click="$emit('remove', index)"
+                @click.stop="$emit('remove', index)"
               >
                 <span>
                   <FuraIcon

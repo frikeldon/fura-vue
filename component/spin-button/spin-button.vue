@@ -123,7 +123,7 @@ export default {
       <button
         class="fura-up"
         :disabled="disabled || null"
-        @click="handleClickUp"
+        @click.stop="handleClickUp"
       >
         <FuraIcon
           class="fura-icon"
@@ -133,7 +133,7 @@ export default {
       <button
         class="fura-down"
         :disabled="disabled || null"
-        @click="handleClickDown"
+        @click.stop="handleClickDown"
       >
         <FuraIcon
           class="fura-icon"

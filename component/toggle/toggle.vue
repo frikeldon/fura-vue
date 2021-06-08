@@ -58,7 +58,7 @@ export default {
         class="fura-toggle"
         :class="{ 'fura-checked': modelValue }"
         :disabled="disabled || null"
-        @click="handleClick"
+        @click.stop="handleClick"
       >
         <span />
       </button>
@@ -66,7 +66,7 @@ export default {
         v-if="onText || offText"
         class="fura-stateText"
         v-text="modelValue ? onText : offText"
-        @click="handleClick"
+        @click.stop="handleClick"
       />
     </div>
   </div>
