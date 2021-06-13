@@ -30,7 +30,7 @@ export default {
     /** Prefijo que se muestra antes del contenido del campo de texto. No está incluido en el valor. */
     prefix: { type: String, default: '' },
     /** Sufijo que se muestra después del contenido del campo de texto. No está incluido en el valor. */
-    sufix: { type: String, default: '' },
+    suffix: { type: String, default: '' },
     /** Si el campo de texto permite entrar varias líneas. */
     multiline: { type: Boolean, default: false },
     /** El nombre del icono a mostrar en el campo de texto. */
@@ -149,10 +149,10 @@ export default {
     />
 
     <div
-      v-if="sufix"
-      class="fura-sufix"
+      v-if="suffix"
+      class="fura-suffix"
     >
-      <span v-text="sufix" />
+      <span v-text="suffix" />
     </div>
   </FuraBaseFieldInput>
 </template>
@@ -220,9 +220,9 @@ export default {
 </script>
 <template>
   <fura-text-field
-    label="With prefix and sufix"
+    label="With prefix and suffix"
     prefix="www."
-    sufix=".com"
+    suffix=".com"
     v-model="value"
   />
 </template>

@@ -60,7 +60,7 @@ export default {
     /** Prefijo que se muestra antes del contenido del campo. No está incluido en el valor. */
     prefix: { type: String, default: '' },
     /** Sufijo que se muestra después del contenido del campo. No está incluido en el valor. */
-    sufix: { type: String, default: '' },
+    suffix: { type: String, default: '' },
     /** Si el campo permite entrar varias líneas. */
     multiline: { type: Boolean, default: false },
     /** El nombre del icono a mostrar en el campo. */
@@ -231,7 +231,7 @@ export default {
     :underlined="underlined"
     :placeholder="placeholder"
     :prefix="prefix"
-    :sufix="sufix"
+    :suffix="suffix"
     :multiline="multiline"
     :icon="icon"
     :readonly="readonly"
