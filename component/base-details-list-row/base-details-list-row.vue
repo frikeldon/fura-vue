@@ -33,9 +33,9 @@ export default {
     'click'
   ],
   computed: {
-    typeClass (value) {
-      return ['header', 'group', 'data'].includes(value)
-        ? `fura-${value}`
+    typeClass () {
+      return ['header', 'group', 'data'].includes(this.type)
+        ? `fura-${this.type}`
         : null
     }
   }
