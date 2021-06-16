@@ -46,6 +46,7 @@ import SearchBox from './component/search-box/index.js'
 import Select from './component/select/index.js'
 import Separator from './component/separator/index.js'
 import SpinButton from './component/spin-button/index.js'
+import SpinNav from './component/spin-nav/index.js'
 import Spinner from './component/spinner/index.js'
 import TagPicker from './component/tag-picker/index.js'
 import TextField from './component/text-field/index.js'
@@ -100,6 +101,7 @@ export const components = {
   Select,
   Separator,
   SpinButton,
+  SpinNav,
   Spinner,
   TagPicker,
   TextField,
