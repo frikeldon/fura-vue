@@ -12,17 +12,36 @@ export default {
       validator: value => !value || ['xSmall', 'small', 'medium', 'large'].includes(value)
     },
     /** El texto a mostrar debajo de Spinner. */
-    label: { type: String, default: '' }
+    label: { type: String, default: '' },
+    /**
+     * Posición de la etiqueta con respecto al Spinner.
+     * @values top, right, bottom, left
+     */
+    labelPosition: {
+      type: String,
+      default: 'bottom',
+      validator: value => !value || ['top', 'right', 'bottom', 'left'].includes(value)
+    }
   },
   methods: {
     /**
      * Devuelve el nombre de la clase CSS que corresponde a cada tamaño.
-     * @param align Tamaño (xSmall, small, medium, large).
+     * @param size Tamaño (xSmall, small, medium, large).
      * @return Nombre de la clase CSS que corresponde al tamaño.
      */
     getSizeClass (size) {
       return ['xSmall', 'small', 'medium', 'large'].includes(size)
         ? `fura-${size}`
+        : null
+    },
+    /**
+     * Devuelve el nombre de la clase CSS que corresponde a cada posición de la etiqueta.
+     * @param position Posición (top, right, bottom, left).
+     * @return Nombre de la clase CSS que corresponde a la posición.
+     */
+    getLabelPositionClass (position) {
+      return ['top', 'right', 'bottom', 'left'].includes(position)
+        ? `fura-${position}`
         : null
     }
   }
@@ -30,7 +49,10 @@ export default {
 </script>
 
 <template>
-  <div :class="getSizeClass(size)">
+  <div
+    class="fura-spinner"
+    :class="[getSizeClass(size), getLabelPositionClass(labelPosition)]"
+  >
     <div class="fura-circle" />
     <div
       v-if="label"
@@ -63,4 +85,29 @@ export default {
 
 <docs>
 <fura-spinner size="large" />
+</docs>
+
+<docs>
+<fura-spinner label="I am definitely loading..." />
+</docs>
+
+<docs>
+<fura-spinner
+  label="Seriously, still loading..."
+  label-position="top"
+/>
+</docs>
+
+<docs>
+<fura-spinner
+  label="Wait, wait..."
+  label-position="right"
+/>
+</docs>
+
+<docs>
+<fura-spinner
+  label="Nope, still loading..."
+  label-position="left"
+/>
 </docs>

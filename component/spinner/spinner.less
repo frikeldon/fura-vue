@@ -10,8 +10,45 @@
   }
 }
 
+.fura-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fura-top {
+  flex-direction: column-reverse;
+
+  .fura-label {
+    margin-bottom: 10px;
+  }
+}
+
+.fura-right {
+  flex-direction: row;
+
+  .fura-label {
+    margin-left: 10px;
+  }
+}
+
+.fura-bottom {
+  flex-direction: column;
+
+  .fura-label {
+    margin-top: 10px;
+  }
+}
+
+.fura-left {
+  flex-direction: row-reverse;
+
+  .fura-label {
+    margin-right: 10px;
+  }
+}
+
 .fura-circle {
-  margin: auto;
   box-sizing: border-box;
   border-radius: 50%;
   border: 1.5px solid @themeLight;
@@ -44,6 +81,5 @@
 .fura-label {
   .fontStyleMedium();
   color: @themePrimary;
-  margin-top: 10px;
   text-align: center;
 }
