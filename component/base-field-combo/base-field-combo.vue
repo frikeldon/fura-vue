@@ -120,7 +120,7 @@ export default {
       style="
         flex: 1 1 0px;
         border: 0;
-        background-color: 'rgba(113, 175, 229, 0.4);
+        background-color: rgba(113, 175, 229, 0.4);
         outline: 0;
       }"
       @click="open = !open"
