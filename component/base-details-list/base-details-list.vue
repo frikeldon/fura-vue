@@ -21,7 +21,11 @@ export default {
       validator: columns => Array.isArray(columns) &&
         columns.every(column =>
           typeof (column.title ?? '') === 'string' &&
-          typeof (column.key ?? '') === 'string' &&
+          (
+            typeof (column.key ?? '') === 'string' ||
+            typeof (column.key ?? '') === 'number' ||
+            typeof (column.key ?? '') === 'symbol'
+          ) &&
           typeof (column.align ?? '') === 'string' &&
           typeof (column.width ?? '') === 'string' &&
           typeof (column.icon ?? '') === 'string'
