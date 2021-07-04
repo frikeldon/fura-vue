@@ -183,7 +183,12 @@ export default {
 </script>
 
 <template>
-  <table :class="{ 'fura-autoLayout': autoLayout }">
+  <table
+    :class="{
+      'fura-auto': autoLayout === 'auto',
+      'fura-fullAuto': autoLayout === 'fullAuto',
+    }"
+  >
     <thead>
       <FuraBaseDetailsListRow
         type="header"
