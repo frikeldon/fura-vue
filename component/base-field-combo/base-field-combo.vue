@@ -22,7 +22,9 @@ export default {
     /** Indica si el campo de formulario asociado está subrayado o no. */
     underlined: { type: Boolean, default: false },
     /** Indica si se muestra el panel del campo de formulario asociado. */
-    open: { type: Boolean, default: false }
+    open: { type: Boolean, default: false },
+    /** Indica si el panel del campo aparece en la parte superior. */
+    dropup: { type: Boolean, default: false }
   },
   emits: [
     /**
@@ -43,6 +45,7 @@ export default {
       'fura-underlined': underlined,
       'fura-borderless': borderless,
       'fura-open': open,
+      'fura-dropup': dropup,
       'fura-requiredPlaceholder': !label && required,
       'fura-invalid': invalid || errorMessage
     }"
@@ -60,10 +63,10 @@ export default {
         <div class="fura-fieldGroup">
           <!-- @slot Campo del formulario. -->
           <slot />
-        </div>
-        <div class="fura-dropdownPanel">
-          <!-- @slot Panel desplegable. -->
-          <slot name="dropdown" />
+          <div class="fura-dropdownPanel">
+            <!-- @slot Panel desplegable. -->
+            <slot name="dropdown" />
+          </div>
         </div>
       </div>
     </div>
@@ -99,6 +102,7 @@ export default {
         borderless: false,
         underlined: false,
         open: false,
+        dropup: false
       }
     }
   }
@@ -114,6 +118,7 @@ export default {
     :borderless="borderless"
     :underlined="underlined"
     :open="open"
+    :dropup="dropUp"
   >
     <div
       tabindex="0"

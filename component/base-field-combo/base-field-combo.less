@@ -140,9 +140,15 @@
   .normalize();
   display: none;
   position: absolute;
+  top: 100%;
   width: 100%;
   z-index: 400;
   user-select: none;
+
+  .fura-dropup & {
+    top: unset;
+    bottom: 100%;
+  }
 
   .fura-fieldCombo.fura-open & {
     display: flex;
