@@ -32,7 +32,22 @@ export default {
      * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
      */
     'click'
-  ]
+  ],
+  methods: {
+    getViewportMargins () {
+      const {
+        top,
+        right: boundingRight,
+        bottom: boundingBottom,
+        left
+      } = this.$refs.fieldGroup.getBoundingClientRect()
+
+      const bottom = (window.innerHeight || document.documentElement.clientHeight) - boundingBottom
+      const right = (window.innerWidth || document.documentElement.clientWidth) - boundingRight
+
+      return { top, right, bottom, left }
+    }
+  }
 }
 </script>
 
@@ -60,7 +75,10 @@ export default {
         v-text="label"
       />
       <div class="fura-fieldWrapper">
-        <div class="fura-fieldGroup">
+        <div
+          ref="fieldGroup"
+          class="fura-fieldGroup"
+        >
           <!-- @slot Campo del formulario. -->
           <slot />
           <div class="fura-dropdownPanel">

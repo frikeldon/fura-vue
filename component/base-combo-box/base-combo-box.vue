@@ -4,9 +4,11 @@ import FuraAutofill from '../autofill'
 import FuraBaseSelect from '../base-select'
 import FuraIcon from '../icon'
 import FuraSpinner from '../spinner'
+import dropup from '../../mixin/dropup.js'
 
 export default {
   name: 'FuraBaseComboBox',
+  mixins: [dropup],
   components: {
     FuraBaseFieldCombo,
     FuraBaseSelect,
@@ -137,6 +139,7 @@ export default {
 
 <template>
   <FuraBaseFieldCombo
+    ref="base"
     class="fura-comboBox"
     :label="label"
     :description="description"
@@ -147,6 +150,7 @@ export default {
     :borderless="borderless"
     :underlined="underlined"
     :open="open && !disabled && !readonly"
+    :dropup="dropup"
     @click="$refs.autofill.focus()"
   >
     <div class="fura-title">

@@ -2,9 +2,11 @@
 import FuraBaseFieldCombo from '../base-field-combo'
 import FuraIcon from '../icon'
 import FuraCalendar from '../calendar'
+import dropup from '../../mixin/dropup.js'
 
 export default {
   name: 'FuraDatePicker',
+  mixins: [dropup],
   components: {
     FuraBaseFieldCombo,
     FuraIcon,
@@ -182,6 +184,7 @@ export default {
 
 <template>
   <FuraBaseFieldCombo
+    ref="base"
     class="fura-datePicker"
     :class="{ 'fura-notWritable': notWritable }"
     :label="label"
@@ -193,6 +196,7 @@ export default {
     :borderless="borderless"
     :underlined="underlined"
     :open="open && !disabled && !readonly"
+    :dropup="dropup"
     @click="$refs.field.focus()"
   >
     <input

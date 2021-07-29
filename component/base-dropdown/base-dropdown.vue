@@ -2,9 +2,11 @@
 import FuraBaseFieldCombo from '../base-field-combo'
 import FuraBaseSelect from '../base-select'
 import FuraIcon from '../icon'
+import dropup from '../../mixin/dropup.js'
 
 export default {
   name: 'FuraBaseDropdown',
+  mixins: [dropup],
   components: {
     FuraBaseFieldCombo,
     FuraBaseSelect,
@@ -92,6 +94,7 @@ export default {
 
 <template>
   <FuraBaseFieldCombo
+    ref="base"
     class="fura-dropdown"
     :label="label"
     :description="description"
@@ -102,6 +105,7 @@ export default {
     :borderless="borderless"
     :underlined="underlined"
     :open="open && !disabled && !readonly"
+    :dropup="dropup"
     @click="$refs.container.focus()"
   >
     <div
