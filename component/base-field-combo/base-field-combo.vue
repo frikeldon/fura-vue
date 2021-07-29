@@ -136,7 +136,7 @@ export default {
     :borderless="borderless"
     :underlined="underlined"
     :open="open"
-    :dropup="dropUp"
+    :dropup="dropup"
   >
     <div
       tabindex="0"
