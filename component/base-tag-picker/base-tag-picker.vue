@@ -85,7 +85,12 @@ export default {
      * Se genera cuando el usuario pulsa una tecla.
      * @property {KeyboardEvent} keyboardEvent Descripción del evento de pulsación de tecla.
      */
-    'keydown'
+    'keydown',
+    /**
+     * Se genera cuando el componente tiene el panel desplegado y el usuario hace clic fuera del componente.
+     * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
+     */
+    'clickOutside'
   ]
 }
 </script>
@@ -106,6 +111,7 @@ export default {
     :open="open && !disabled && !readonly"
     :dropup="dropup"
     @click="$refs.autofill.focus()"
+    @click-outside="$emit('clickOutside', $event)"
   >
     <div class="fura-field">
       <span

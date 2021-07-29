@@ -199,6 +199,7 @@ export default {
     @click="handleClick"
     @select="handleSelect"
     @input="handleInput"
+    @clickOutside="open = false"
   >
     <template #default="slotProps">
       <!--

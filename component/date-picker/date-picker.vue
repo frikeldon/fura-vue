@@ -198,6 +198,7 @@ export default {
     :open="open && !disabled && !readonly"
     :dropup="dropup"
     @click="$refs.field.focus()"
+    @clickOutside="open = false"
   >
     <input
       ref="field"

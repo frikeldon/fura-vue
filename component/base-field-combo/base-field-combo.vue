@@ -26,12 +26,22 @@ export default {
     /** Indica si el panel del campo aparece en la parte superior. */
     dropup: { type: Boolean, default: false }
   },
+  data () {
+    return {
+      clickOutsideHandler: null
+    }
+  },
   emits: [
     /**
      * Se genera cuando el usuario hace clic en la etiqueta el componente.
      * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
      */
-    'click'
+    'click',
+    /**
+     * Se genera cuando el componente tiene el panel desplegado y el usuario hace clic fuera del componente.
+     * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
+     */
+    'clickOutside'
   ],
   methods: {
     getViewportMargins () {
@@ -47,6 +57,29 @@ export default {
 
       return { top, right, bottom, left }
     }
+  },
+  watch: {
+    open (open) {
+      if (open) {
+        window.addEventListener('click', this.clickOutsideHandler, true)
+      } else {
+        window.removeEventListener('click', this.clickOutsideHandler, true)
+      }
+    }
+  },
+  mounted () {
+    this.clickOutsideHandler = event => {
+      const { fieldGroup, dropdownPanel } = this.$refs
+      if (!fieldGroup.contains(event.target) || event.target === dropdownPanel) {
+        this.$emit('clickOutside', event)
+      }
+    }
+  },
+  unmounted () {
+    if (this.clickOutsideHandler) {
+      window.removeEventListener('click', this.clickOutsideHandler, true)
+    }
+    this.clickOutsideHandler = null
   }
 }
 </script>
@@ -81,7 +114,10 @@ export default {
         >
           <!-- @slot Campo del formulario. -->
           <slot />
-          <div class="fura-dropdownPanel">
+          <div
+            ref="dropdownPanel"
+            class="fura-dropdownPanel"
+          >
             <!-- @slot Panel desplegable. -->
             <slot name="dropdown" />
           </div>
