@@ -151,7 +151,7 @@ export default {
     @keydown="handleKeydown"
     @click="handleClick"
     @select="handleSelect"
-    @clickOutside="open = false"
+    @click-outside.stop.prevent="open = false"
   >
     <template #default="slotProps">
       <!--
