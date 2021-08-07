@@ -18,7 +18,9 @@ export default {
     /** Tiempo en milisegundos que el mouse debe estar sobre el botón para activar el evento mousestop. */
     mousestopDelay: { type: Number, default: 800 },
     /** Estado de deshabilitado. */
-    disabled: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false },
+    /** Estado de selección. */
+    checked: { type: Boolean, default: false }
   },
   emits: [
     /**
@@ -50,6 +52,7 @@ export default {
         :icon-color="iconColor"
         :mousestop-delay="mousestopDelay"
         :disabled="disabled"
+        :checked="checked"
         @click="$emit('click', $event)"
         @mousestop="$emit('mousestop')"
       />
@@ -58,6 +61,7 @@ export default {
         :expand-icon="expandIcon"
         :mousestop-delay="mousestopDelay"
         :disabled="disabled"
+        :checked="checked"
         @click="$emit('clickExpand', $event)"
         @click-expand="$emit('clickExpand', $event)"
         @mousestop="$emit('mousestopExpand')"

@@ -18,7 +18,9 @@ export default {
     /** Tiempo en milisegundos que el mouse debe estar sobre el botón para activar el evento mousestop. */
     mousestopDelay: { type: Number, default: 800 },
     /** Estado de deshabilitado. */
-    disabled: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false },
+    /** Estado de selección. */
+    checked: { type: Boolean, default: false }
   },
   emits: [
     /**
@@ -63,6 +65,7 @@ export default {
 <template>
   <button
     :disabled="disabled || null"
+    :class="checked ? 'fura-checked' : null"
     @click.stop="handleClick"
     @mouseover.stop="handleMouseover"
     @mouseout.stop="clearMouseHandler"

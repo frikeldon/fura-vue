@@ -110,6 +110,7 @@ export default {
           :icon-color="item.iconColor"
           :mousestop-delay="mousestopDelay"
           :disabled="item.disabled"
+          :checked="item.checked"
           @click="handleExpand(item, index)"
           @mousestop="handleExpand(item, index)"
         />
@@ -120,6 +121,7 @@ export default {
           :icon-color="item.iconColor"
           :mousestop-delay="mousestopDelay"
           :disabled="item.disabled"
+          :checked="item.checked"
           expand-icon="ChevronDown"
           @click="handleClick(item, index)"
           @click-expand="handleExpand(item, index)"
@@ -134,6 +136,7 @@ export default {
           :mousestop-delay="mousestopDelay"
           :expand-icon="checkItemHasChilds(item) ? 'ChevronDown' : ''"
           :disabled="item.disabled"
+          :checked="item.checked"
           @click="handleClick(item, index)"
           @click-expand="handleExpand(item, index)"
           @mousestop="handleExpand(item, index)"
