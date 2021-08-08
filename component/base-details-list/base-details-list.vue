@@ -338,7 +338,7 @@ export default {
                 :group="group"
                 :column-index="columnIndex"
                 :column="column"
-                :data="data.slice(group.startIndex, group.startIndex + group.count)"
+                :data="data"
               />
             </td>
           </FuraBaseDetailsListRow>
@@ -571,8 +571,9 @@ export default {
       getGroupFooter (slotProps) {
         if (slotProps) {
           if (slotProps.columnIndex === 0) {
-            const first = slotProps.data[0][1]
-            const last = slotProps.data[slotProps.data.length - 1][1]
+            const groupData = slotProps.data.slice(slotProps.group.startIndex, slotProps.group.startIndex + slotProps.group.count)
+            const first = groupData[0][1]
+            const last = groupData[groupData.length - 1][1]
             return `Items ${first}..${last}`
            } else if (slotProps.columnIndex === 1) {
             return this.data.map(row => row[1]).join(', ')
