@@ -158,7 +158,7 @@ export default {
   >
     <template #default="slotProps">
       <!--
-        @slot Contenido de una celda
+        @slot Contenido de una celda.
         @binding {number} rowIndex Índice de la fila.
         @binding {number} columnIndex Índice de la definición de la columna.
         @binding {string} content Contenido de la celda.
@@ -173,7 +173,7 @@ export default {
     </template>
     <template #header="slotProps">
       <!--
-        @slot Contenido de una cabecera
+        @slot Contenido de una cabecera.
         @binding {object} column Referencia a la definición de la columna.
         @binding {number} index Índice de la definición de la columna.
       -->
@@ -185,7 +185,7 @@ export default {
     </template>
     <template #group="slotProps">
       <!--
-        @slot Contenido de un encabezado de grupo
+        @slot Contenido de un encabezado de grupo.
         @binding {object} group Referencia a la definición del grupo.
         @binding {number} index Índice de la definición del grupo.
         @binding {boolean} isCollapsed Indica si el grupo está plegado.
@@ -197,9 +197,9 @@ export default {
         :is-collapsed="slotProps.isCollapsed"
       />
     </template>
-    <template #groupFooter="slotProps">
+    <template #bodyHeader="slotProps">
       <!--
-        @slot Contenido de una celda de un pie de grupo
+        @slot Contenido de una celda de un encabezado de cuerpo.
         @binding {number} groupIndex Índice de la definición del grupo.
         @binding {object} group Referencia a la definición del grupo.
         @binding {number} columnIndex Índice de la definición de la columna.
@@ -207,7 +207,25 @@ export default {
         @binding {Array} data Datos del grupo.
       -->
       <slot
-        name="groupFooter"
+        name="bodyHeader"
+        :group-index="slotProps?.groupIndex"
+        :group="slotProps?.group"
+        :column-index="slotProps?.columnIndex"
+        :column="slotProps?.column"
+        :data="slotProps?.data"
+      />
+    </template>
+    <template #bodyFooter="slotProps">
+      <!--
+        @slot Contenido de una celda de un pie de cuerpo.
+        @binding {number} groupIndex Índice de la definición del grupo.
+        @binding {object} group Referencia a la definición del grupo.
+        @binding {number} columnIndex Índice de la definición de la columna.
+        @binding {object} column Referencia a la definición de la columna.
+        @binding {Array} data Datos del grupo.
+      -->
+      <slot
+        name="bodyFooter"
         :group-index="slotProps?.groupIndex"
         :group="slotProps?.group"
         :column-index="slotProps?.columnIndex"
@@ -415,16 +433,17 @@ export default {
       }
     },
     methods: {
-      getGroupFooter (slotProps) {
+      getBodyFooter (slotProps) {
         if (slotProps) {
           if (slotProps.columnIndex === 0) {
-            const first = this.data[slotProps.group.startIndex][1]
-            const last = this.data[slotProps.group.startIndex + slotProps.group.count - 1][1]
-            return `Items ${first}..${last}`
+            const groupData = slotProps.data.slice(slotProps.group.startIndex, slotProps.group.startIndex + slotProps.group.count)
+            if (groupData.length > 1) {
+              const first = groupData[0][1]
+              const last = groupData[groupData.length - 1][1]
+              return `Items ${first}..${last}`
+            }
            } else if (slotProps.columnIndex === 1) {
-            return this.data.slice(slotProps.group.startIndex, slotProps.group.startIndex + slotProps.group.count)
-              .map(row => row[1])
-              .join(', ')
+            return this.data.map(row => row[1]).join(', ')
           }
         }
         return ''
@@ -439,9 +458,9 @@ export default {
     :data="data"
     v-model:selected-indices="selectedIndices"
   >
-    <template v-slot:groupFooter="slotProps">
+    <template v-slot:bodyFooter="slotProps">
       <span>
-        <b v-text="getGroupFooter(slotProps)"></b>
+        <b v-text="getBodyFooter(slotProps)"></b>
       </span>
     </template>
   </fura-details-list>

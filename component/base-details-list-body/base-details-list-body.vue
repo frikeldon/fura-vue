@@ -27,7 +27,13 @@ export default {
     /** Indica si la tabla debe dibujarse en modo compacto. */
     compact: { type: Boolean, default: false },
     /** Indica si los grupos de la tabla se puede plegar. */
-    collapsible: { type: Boolean, default: false }
+    collapsible: { type: Boolean, default: false },
+    /** Indica si las filas de cabecera y pie estan seleccionadas. */
+    headersSelected: { type: Boolean, default: false },
+    /** Índice de la agrupación de datos. */
+    groupIndex: { type: Number, default: null },
+    /** Definición de la agrupación de datos. */
+    group: { type: Object, default: null }
   },
   emits: [
     /**
@@ -45,6 +51,12 @@ export default {
     /** Datos a mostrar. */
     currentData () {
       return this.data.slice(this.startIndex, this.startIndex + this.count)
+    },
+    hasHeaderSlots () {
+      return this.$slots.header && this.$slots.header().length > 0
+    },
+    hasFooterSlots () {
+      return this.$slots.footer && this.$slots.footer().length > 0
     }
   },
   methods: {
@@ -63,6 +75,38 @@ export default {
 </script>
 
 <template>
+  <thead v-if="hasHeaderSlots">
+    <FuraBaseDetailsListRow
+      type="group"
+      :selection="selection ? 'simple' : null"
+      :selected="headersSelected"
+      :compact="compact"
+    >
+      <td v-if="collapsible" />
+      <td
+        v-for="(column, columnIndex) in columns"
+        :key="columnIndex"
+        :class="column.align"
+      >
+        <!--
+          @slot Contenido de una celda de una cabecera. Las propiedades pueden no estar definidas siempre.
+          @binding {number} groupIndex Índice de la definición del grupo.
+          @binding {object} group Referencia a la definición del grupo.
+          @binding {number} columnIndex Índice de la definición de la columna.
+          @binding {object} column Referencia a la definición de la columna.
+          @binding {Array} data Datos del grupo.
+        -->
+        <slot
+          name="header"
+          :group-index="groupIndex"
+          :group="group"
+          :column-index="columnIndex"
+          :column="column"
+          :data="data"
+        />
+      </td>
+    </FuraBaseDetailsListRow>
+  </thead>
   <tbody>
     <FuraBaseDetailsListRow
       v-for="(row, rowIndex) in currentData"
@@ -87,7 +131,7 @@ export default {
         })"
       >
         <!--
-          @slot Contenido de una celda
+          @slot Contenido de una celda.
           @binding {number} rowIndex Índice de la fila.
           @binding {number} columnIndex Índice de la definición de la columna.
           @binding {string} content Contenido de la celda.
@@ -104,6 +148,38 @@ export default {
       </td>
     </FuraBaseDetailsListRow>
   </tbody>
+  <thead v-if="hasFooterSlots">
+    <FuraBaseDetailsListRow
+      type="group"
+      :selection="selection ? 'simple' : null"
+      :selected="headersSelected"
+      :compact="compact"
+    >
+      <td v-if="collapsible" />
+      <td
+        v-for="(column, columnIndex) in columns"
+        :key="columnIndex"
+        :class="column.align"
+      >
+        <!--
+          @slot Contenido de una celda de un pie. Las propiedades pueden no estar definidas siempre.
+          @binding {number} groupIndex Índice de la definición del grupo.
+          @binding {object} group Referencia a la definición del grupo.
+          @binding {number} columnIndex Índice de la definición de la columna.
+          @binding {object} column Referencia a la definición de la columna.
+          @binding {Array} data Datos del grupo.
+        -->
+        <slot
+          name="footer"
+          :group-index="groupIndex"
+          :group="group"
+          :column-index="columnIndex"
+          :column="column"
+          :data="data"
+        />
+      </td>
+    </FuraBaseDetailsListRow>
+  </thead>
 </template>
 
 <style lang="less" scoped src="./base-details-list-body.less"></style>
@@ -136,6 +212,46 @@ export default {
       :start-index="startIndex"
       :count="count"
     />
+  </table>
+</template>
+</docs>
+
+<docs>
+<script>
+  export default {
+    data () {
+      return {
+        columns: [{},{}],
+        data: [
+          ['1', 'One'],
+          ['2', 'Two'],
+          ['3', 'Three'],
+        ],
+        startIndex: 0,
+        count: 3,
+        groupIndex: 0,
+        group: { name: 'Group' }
+      }
+    }
+  }
+</script>
+<template>
+  <table>
+    <fura-base-details-list-body
+      :columns="columns"
+      :data="data"
+      :start-index="startIndex"
+      :count="count"
+      :group-index="groupIndex"
+      :group="group"
+    >
+      <template #header="slotProps">
+        <span v-text="slotProps && slotProps.data[0][slotProps.columnIndex]" />
+      </template>
+      <template #footer="slotProps">
+        <span v-text="slotProps && slotProps.data[2][slotProps.columnIndex]" />
+      </template>
+    </fura-base-details-list-body>
   </table>
 </template>
 </docs>

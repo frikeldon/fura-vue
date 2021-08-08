@@ -1,9 +1,21 @@
 <script>
-import { Comment } from 'vue'
+import { Comment, Fragment } from 'vue'
 import FuraBaseDetailsListBody from '../base-details-list-body'
 import FuraBaseDetailsListRow from '../base-details-list-row'
 import FuraExpanderButton from '../expander-button'
 import FuraIcon from '../icon'
+
+function hasContentNodes (nodes) {
+  return nodes.findIndex(node => {
+    if (node.type === Comment) {
+      return false
+    }
+    if (node.type === Fragment) {
+      return hasContentNodes(node.children)
+    }
+    return true
+  }) !== -1
+}
 
 export default {
   name: 'FuraBaseDetailsList',
@@ -123,8 +135,11 @@ export default {
       const allIndices = Array.from(data.keys())
       return allIndices.every(index => selectedIndices.includes(index))
     },
-    hasGroupFooterSlots () {
-      return this.$slots.groupFooter && this.$slots.groupFooter().findIndex(o => o.type !== Comment) !== -1
+    hasBodyHeaderSlots () {
+      return this.$slots.bodyHeader && hasContentNodes(this.$slots.bodyHeader())
+    },
+    hasBodyFooterSlots () {
+      return this.$slots.bodyFooter && hasContentNodes(this.$slots.bodyFooter())
     }
   },
   methods: {
@@ -215,7 +230,7 @@ export default {
           @click.stop="$emit('clickHeader', index)"
         >
           <!--
-            @slot Contenido de una cabecera
+            @slot Contenido de una cabecera.
             @binding {object} column Referencia a la definición de la columna.
             @binding {number} index Índice de la definición de la columna.
           -->
@@ -263,7 +278,7 @@ export default {
               :style="{ paddingLeft: `${(group.level || 0) * 36}px`}"
             >
               <!--
-                @slot Contenido de un encabezado de grupo
+                @slot Contenido de un encabezado de grupo.
                 @binding {object} group Referencia a la definición del grupo.
                 @binding {number} index Índice de la definición del grupo.
                 @binding {boolean} isCollapsed Indica si el grupo está plegado.
@@ -293,39 +308,17 @@ export default {
             :selected-indices="selectedIndices"
             :compact="compact"
             :collapsible="collapsible"
+            :group-index="index"
+            :group="group"
             @select="$emit('selectRow', $event)"
             @click-cell="$emit('clickCell', $event)"
-            v-slot="slotProps"
           >
-            <!--
-              @slot Contenido de una celda
-              @binding {number} rowIndex Índice de la fila.
-              @binding {number} columnIndex Índice de la definición de la columna.
-              @binding {string} content Contenido de la celda.
-              @binding {object} column Referencia a la definición de la columna.
-            -->
-            <slot
-              :row-index="slotProps.rowIndex"
-              :column-index="slotProps.columnIndex"
-              :content="slotProps.content"
-              :column="slotProps.column"
-            />
-          </FuraBaseDetailsListBody>
-          <FuraBaseDetailsListRow
-            v-if="hasGroupFooterSlots && group.count > 0"
-            type="group"
-            :selection="selection ? 'simple' : null"
-            :compact="compact"
-            :selected="isGroupSelected(index)"
-          >
-            <td v-if="collapsible" />
-            <td
-              v-for="(column, columnIndex) in columns"
-              :key="columnIndex"
-              :class="column.align"
+            <template
+              v-if="hasBodyHeaderSlots"
+              #header="slotProps"
             >
               <!--
-                @slot Contenido de una celda de un pie de grupo
+                @slot Contenido de una celda de un encabezado de cuerpo.
                 @binding {number} groupIndex Índice de la definición del grupo.
                 @binding {object} group Referencia a la definición del grupo.
                 @binding {number} columnIndex Índice de la definición de la columna.
@@ -333,15 +326,51 @@ export default {
                 @binding {Array} data Datos del grupo.
               -->
               <slot
-                name="groupFooter"
-                :group-index="index"
-                :group="group"
-                :column-index="columnIndex"
-                :column="column"
-                :data="data"
+                name="bodyHeader"
+                :group-index="slotProps && slotProps.groupIndex"
+                :group="slotProps && slotProps.group"
+                :column-index="slotProps && slotProps.columnIndex"
+                :column="slotProps && slotProps.column"
+                :data="slotProps && slotProps.data"
               />
-            </td>
-          </FuraBaseDetailsListRow>
+            </template>
+            <template #default="slotProps">
+              <!--
+                @slot Contenido de una celda.
+                @binding {number} rowIndex Índice de la fila.
+                @binding {number} columnIndex Índice de la definición de la columna.
+                @binding {string} content Contenido de la celda.
+                @binding {object} column Referencia a la definición de la columna.
+              -->
+              <slot
+                :row-index="slotProps.rowIndex"
+                :column-index="slotProps.columnIndex"
+                :content="slotProps.content"
+                :column="slotProps.column"
+              />
+            </template>
+            <template
+              v-if="hasBodyFooterSlots"
+              #footer="slotProps"
+            >
+              <!--
+                @slot Contenido de una celda de un pie de cuerpo.
+                @binding {number} groupIndex Índice de la definición del grupo.
+                @binding {object} group Referencia a la definición del grupo.
+                @binding {number} columnIndex Índice de la definición de la columna.
+                @binding {object} column Referencia a la definición de la columna.
+                @binding {Array} data Datos del grupo.
+              -->
+              <slot
+                name="bodyFooter"
+                :group-index="slotProps && slotProps.groupIndex"
+                :group="slotProps && slotProps.group"
+                :column-index="slotProps && slotProps.columnIndex"
+                :column="slotProps && slotProps.column"
+                :data="slotProps && slotProps.data"
+              />
+            </template>
+          </FuraBaseDetailsListBody>
         </template>
       </template>
     </template>
@@ -355,23 +384,68 @@ export default {
       :selected-indices="selectedIndices"
       :compact="compact"
       :collapsible="collapsible"
+      :group-index="index"
+      :group="group"
       @select="$emit('selectRow', $event)"
       @click-cell="$emit('clickCell', $event)"
-      v-slot="slotProps"
     >
-      <!--
-        @slot Contenido de una celda
-        @binding {number} rowIndex Índice de la fila.
-        @binding {number} columnIndex Índice de la definición de la columna.
-        @binding {string} content Contenido de la celda.
-        @binding {object} column Referencia a la definición de la columna.
-      -->
-      <slot
-        :row-index="slotProps.rowIndex"
-        :column-index="slotProps.columnIndex"
-        :content="slotProps.content"
-        :column="slotProps.column"
-      />
+      <template
+        v-if="hasBodyHeaderSlots"
+        #header="slotProps"
+      >
+        <!--
+          @slot Contenido de una celda de un encabezado de cuerpo.
+          @binding {number} groupIndex Índice de la definición del grupo.
+          @binding {object} group Referencia a la definición del grupo.
+          @binding {number} columnIndex Índice de la definición de la columna.
+          @binding {object} column Referencia a la definición de la columna.
+          @binding {Array} data Datos del grupo.
+        -->
+        <slot
+          name="bodyHeader"
+          :group-index="slotProps && slotProps.groupIndex"
+          :group="slotProps && slotProps.group"
+          :column-index="slotProps && slotProps.columnIndex"
+          :column="slotProps && slotProps.column"
+          :data="slotProps && slotProps.data"
+        />
+      </template>
+      <template #default="slotProps">
+        <!--
+          @slot Contenido de una celda.
+          @binding {number} rowIndex Índice de la fila.
+          @binding {number} columnIndex Índice de la definición de la columna.
+          @binding {string} content Contenido de la celda.
+          @binding {object} column Referencia a la definición de la columna.
+        -->
+        <slot
+          :row-index="slotProps.rowIndex"
+          :column-index="slotProps.columnIndex"
+          :content="slotProps.content"
+          :column="slotProps.column"
+        />
+      </template>
+      <template
+        v-if="hasBodyFooterSlots"
+        #footer="slotProps"
+      >
+        <!--
+          @slot Contenido de una celda de un pie de cuerpo.
+          @binding {number} groupIndex Índice de la definición del grupo.
+          @binding {object} group Referencia a la definición del grupo.
+          @binding {number} columnIndex Índice de la definición de la columna.
+          @binding {object} column Referencia a la definición de la columna.
+          @binding {Array} data Datos del grupo.
+        -->
+        <slot
+          name="bodyFooter"
+          :group-index="slotProps && slotProps.groupIndex"
+          :group="slotProps && slotProps.group"
+          :column-index="slotProps && slotProps.columnIndex"
+          :column="slotProps && slotProps.column"
+          :data="slotProps && slotProps.data"
+        />
+      </template>
     </FuraBaseDetailsListBody>
   </table>
 </template>
@@ -568,13 +642,15 @@ export default {
       }
     },
     methods: {
-      getGroupFooter (slotProps) {
+      getBodyFooter (slotProps) {
         if (slotProps) {
           if (slotProps.columnIndex === 0) {
             const groupData = slotProps.data.slice(slotProps.group.startIndex, slotProps.group.startIndex + slotProps.group.count)
-            const first = groupData[0][1]
-            const last = groupData[groupData.length - 1][1]
-            return `Items ${first}..${last}`
+            if (groupData.length > 1) {
+              const first = groupData[0][1]
+              const last = groupData[groupData.length - 1][1]
+              return `Items ${first}..${last}`
+            }
            } else if (slotProps.columnIndex === 1) {
             return this.data.map(row => row[1]).join(', ')
           }
@@ -586,13 +662,14 @@ export default {
 </script>
 <template>
   <fura-base-details-list
+    ref="list"
     :columns="columns"
     :groups="groups"
     :data="data"
   >
-    <template v-slot:groupFooter="slotProps">
+    <template v-slot:bodyFooter="slotProps">
       <span>
-        <b v-text="getGroupFooter(slotProps)"></b>
+        <b v-text="getBodyFooter(slotProps)"></b>
       </span>
     </template>
   </fura-base-details-list>
