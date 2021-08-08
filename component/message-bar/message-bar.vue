@@ -64,7 +64,7 @@ export default {
       return icon ?? typeIcon
     },
     hasActionsSlots () {
-      return this.$slots.actions && this.$slots.actions().findIndex(o => o.type !== Comment) !== -1
+      return this.$slots.actions && this.$slots.actions().length > 0
     }
   },
   methods: {
