@@ -206,7 +206,7 @@ export default {
       'fura-fullAuto': autoLayout === 'fullAuto',
     }"
   >
-    <thead>
+    <thead data-type="header">
       <FuraBaseDetailsListRow
         type="header"
         :selection="selection"
@@ -261,6 +261,7 @@ export default {
         <thead
           v-if="!withoutGroupHeader"
           class="fura-group"
+          data-type="group-header"
         >
           <FuraBaseDetailsListRow
             type="group"

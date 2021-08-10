@@ -75,7 +75,10 @@ export default {
 </script>
 
 <template>
-  <thead v-if="hasHeaderSlots">
+  <thead
+    v-if="hasHeaderSlots"
+    data-type="body-header"
+  >
     <FuraBaseDetailsListRow
       type="group"
       :selection="selection ? 'simple' : null"
@@ -148,7 +151,10 @@ export default {
       </td>
     </FuraBaseDetailsListRow>
   </tbody>
-  <thead v-if="hasFooterSlots">
+  <thead
+    v-if="hasFooterSlots"
+    data-type="body-footer"
+  >
     <FuraBaseDetailsListRow
       type="group"
       :selection="selection ? 'simple' : null"
