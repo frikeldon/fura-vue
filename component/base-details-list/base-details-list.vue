@@ -390,8 +390,6 @@ export default {
       :selected-indices="selectedIndices"
       :compact="compact"
       :collapsible="collapsible"
-      :group-index="index"
-      :group="group"
       @select="$emit('selectRow', $event)"
       @click-cell="$emit('clickCell', $event)"
     >
