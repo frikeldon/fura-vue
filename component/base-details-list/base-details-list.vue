@@ -296,7 +296,7 @@ export default {
                 <div
                   class="fura-groupTitle"
                   :class="{ 'fura-collapsed': collapsedIndices.has(index) }"
-                  v-text="group.name"
+                  v-text="group.name?.toString()"
                 />
               </slot>
             </th>
