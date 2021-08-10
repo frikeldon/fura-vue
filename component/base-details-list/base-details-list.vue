@@ -32,7 +32,6 @@ export default {
       required: true,
       validator: columns => Array.isArray(columns) &&
         columns.every(column =>
-          typeof (column.title ?? '') === 'string' &&
           (
             typeof (column.key ?? '') === 'string' ||
             typeof (column.key ?? '') === 'number' ||
@@ -54,8 +53,7 @@ export default {
         groups.every(group =>
           Number.isInteger(group.startIndex) &&
           Number.isInteger(group.count) &&
-          Number.isInteger(group.level || 0) &&
-          typeof group.name === 'string'
+          Number.isInteger(group.level || 0)
         )
       )
     },
