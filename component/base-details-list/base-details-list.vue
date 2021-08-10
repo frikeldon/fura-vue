@@ -86,7 +86,9 @@ export default {
     /** Indica si los grupos de la tabla se puede plegar. */
     collapsible: { type: Boolean, default: false },
     /** Lista con los índices de los grupos plegados. */
-    collapsedIndices: { type: Set, default: () => new Set() }
+    collapsedIndices: { type: Set, default: () => new Set() },
+    /** Indica si no deben dibujarse las filas de cabecera de grupo. */
+    withoutGroupHeader: { type: Boolean, default: false }
   },
   emits: [
     /**
@@ -256,7 +258,10 @@ export default {
         v-for="(group, index) in groups"
         :key="index"
       >
-        <thead class="fura-group">
+        <thead
+          v-if="!withoutGroupHeader"
+          class="fura-group"
+        >
           <FuraBaseDetailsListRow
             type="group"
             :selection="selection"

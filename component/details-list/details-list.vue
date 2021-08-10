@@ -28,7 +28,9 @@ export default {
      */
     selection: { type: String, default: '' },
     /** Indica si los grupos de la tabla se puede plegar. */
-    collapsible: { type: Boolean, default: false }
+    collapsible: { type: Boolean, default: false },
+    /** Indica si no deben dibujarse las filas de cabecera de grupo. */
+    withoutGroupHeader: { type: Boolean, default: false }
   },
   emits: [
     /**
@@ -148,6 +150,7 @@ export default {
     :selection="selection"
     :collapsible="collapsible"
     :collapsed-indices="collapsedIndices"
+    :without-group-header="withoutGroupHeader"
     @expand-group="toggleGroupCollapsed"
     @expand-all="setAllCollapsed"
     @select-row="toggleSelectedRow"
