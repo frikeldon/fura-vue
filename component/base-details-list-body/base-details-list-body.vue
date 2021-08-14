@@ -78,6 +78,7 @@ export default {
   <thead
     v-if="hasHeaderSlots"
     data-type="body-header"
+    :data-level="isNaN(group?.level) ? undefined : group?.level"
   >
     <FuraBaseDetailsListRow
       type="group"
@@ -154,6 +155,7 @@ export default {
   <thead
     v-if="hasFooterSlots"
     data-type="body-footer"
+    :data-level="isNaN(group?.level) ? undefined : group?.level"
   >
     <FuraBaseDetailsListRow
       type="group"
