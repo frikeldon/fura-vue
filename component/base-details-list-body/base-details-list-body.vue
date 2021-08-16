@@ -90,7 +90,7 @@ export default {
       <td
         v-for="(column, columnIndex) in columns"
         :key="columnIndex"
-        :class="column.align"
+        :class="getAlignClass(column.align)"
       >
         <!--
           @slot Contenido de una celda de una cabecera. Las propiedades pueden no estar definidas siempre.
@@ -167,7 +167,7 @@ export default {
       <td
         v-for="(column, columnIndex) in columns"
         :key="columnIndex"
-        :class="column.align"
+        :class="getAlignClass(column.align)"
       >
         <!--
           @slot Contenido de una celda de un pie. Las propiedades pueden no estar definidas siempre.
