@@ -33,7 +33,7 @@ export default {
     /** Coleccion de elementos con el desbordamiento calculado. */
     currentItems () {
       const { items, overflowItems, overflowIndex } = this
-      const currentItems = [...items.slice(0, overflowIndex)]
+      const currentItems = items.slice(0, overflowIndex)
       const currentOverflowItems = [
         ...items.slice(overflowIndex),
         ...overflowItems
