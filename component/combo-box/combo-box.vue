@@ -150,6 +150,13 @@ export default {
         )
       }
     }
+  },
+  watch: {
+    open (open) {
+      if (this.allowFreeform && !open) {
+        this.$refs.comboBox.$refs.autofill.$refs.field.value = ''
+      }
+    }
   }
 }
 </script>
