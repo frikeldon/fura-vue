@@ -73,10 +73,10 @@ export default {
         const { select } = this.$refs.dropdown.$refs
         if (code === 'ArrowDown') {
           this.markedIndex = select.getNextEnabledOptionIndex(this.markedIndex, 1)
-          select.scrollToOption(this.markedIndex)
+          select.scrollToOption(this.markedIndex, this.immediateScroll)
         } else if (code === 'ArrowUp') {
           this.markedIndex = select.getNextEnabledOptionIndex(this.markedIndex, -1)
-          select.scrollToOption(this.markedIndex)
+          select.scrollToOption(this.markedIndex, this.immediateScroll)
         } else if (code === 'Space' || code === 'Enter') {
           this.handleSelect(this.markedIndex)
         } else if (code.startsWith('Key')) {
@@ -85,7 +85,7 @@ export default {
           )
           if (index >= 0) {
             this.markedIndex = index
-            select.scrollToOption(this.markedIndex)
+            select.scrollToOption(this.markedIndex, this.immediateScroll)
           }
         } else if (code === 'Escape' || code === 'Backspace') {
           this.open = false

@@ -104,7 +104,6 @@ export default {
         event.preventDefault()
         const indexIncrement = code === 'ArrowDown' ? 1 : -1
         this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, indexIncrement)
-        select.scrollToOption(this.suggestedIndex)
         if (this.allowFreeform) {
           this.$nextTick(() => autofill.suggest(this.options[this.suggestedIndex].text, !this.autoComplete))
         } else {

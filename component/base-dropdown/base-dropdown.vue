@@ -87,9 +87,9 @@ export default {
       if (open) {
         const { select } = this.$refs
         if (this.markedIndex in this.options) {
-          select.scrollToOption(this.markedIndex, true)
+          select.scrollToOption(this.markedIndex, this.immediateScroll)
         } else if (select.selectedIndices.length > 0) {
-          select.scrollToOption(select.selectedIndices[0], true)
+          select.scrollToOption(select.selectedIndices[0], this.immediateScroll)
         }
       }
     }

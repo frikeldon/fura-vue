@@ -123,7 +123,7 @@ export default {
   watch: {
     suggestedIndex (index) {
       if (this.open && index in this.options) {
-        this.$refs.select.scrollToOption(index)
+        this.$refs.select.scrollToOption(index, this.immediateScroll)
       }
     },
     open (open) {
@@ -131,9 +131,9 @@ export default {
         const { select } = this.$refs
         if (select) {
           if (this.suggestedIndex in this.options) {
-            select.scrollToOption(this.suggestedIndex, true)
+            select.scrollToOption(this.suggestedIndex, this.immediateScroll)
           } else if (select.selectedIndices.length > 0) {
-            select.scrollToOption(select.selectedIndices[0], true)
+            select.scrollToOption(select.selectedIndices[0], this.immediateScroll)
           }
         }
       }
