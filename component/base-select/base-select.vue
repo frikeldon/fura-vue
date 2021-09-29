@@ -89,9 +89,9 @@ export default {
           const elementBottom = element.offsetTop
           const elementTop = elementBottom + element.getBoundingClientRect().height
           if (parentBottom > elementBottom) {
-            element.scrollIntoView({ block: 'start', behavior: 'smooth' })
+            parent.scroll({ top: elementBottom, behavior: 'smooth' })
           } else if (parentTop < elementTop) {
-            element.scrollIntoView({ block: 'end', behavior: 'smooth' })
+            parent.scroll({ top: elementBottom, behavior: 'smooth' })
           }
         }
       }
