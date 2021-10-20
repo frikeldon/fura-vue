@@ -144,10 +144,10 @@ export default {
         <slot
           :row-index="startIndex + rowIndex"
           :column-index="columnIndex"
-          :content="row[column.key || columnIndex]"
+          :content="row[column.key ?? columnIndex]"
           :column="column"
         >
-          <div v-text="row[column.key || columnIndex]?.toString()" />
+          <div v-text="row[column.key ?? columnIndex]?.toString()" />
         </slot>
       </td>
     </FuraBaseDetailsListRow>
