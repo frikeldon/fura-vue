@@ -1,8 +1,7 @@
 <script>
-import { defineComponent } from 'vue'
 import code from './code.js'
 
-export default defineComponent({
+export default {
   name: 'FuraIcon',
   props: {
     /** El nombre del icono. Si la cadena está vacía, un icono vacío se representará con el mismo ancho que un icono. */
@@ -13,7 +12,7 @@ export default defineComponent({
     }
   },
   code
-})
+}
 </script>
 
 <template>
