@@ -100,7 +100,31 @@ export default {
     handleKeydown (event) {
       const { select, autofill } = this.$refs.comboBox.$refs
       const { code } = event
-      if (code === 'ArrowDown' || code === 'ArrowUp') {
+      if (!this.allowFreeform) {
+        if (this.open) {
+          if (code === 'ArrowDown') {
+            this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, 1)
+            select.scrollToOption(this.suggestedIndex, this.immediateScroll)
+          } else if (code === 'ArrowUp') {
+            this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, -1)
+            select.scrollToOption(this.suggestedIndex, this.immediateScroll)
+          } else if (code === 'Space' || code === 'Enter') {
+            this.handleSelect(this.suggestedIndex)
+          } else if (code.startsWith('Key')) {
+            const index = select.options.findIndex(option =>
+              option.text && equalInsensitive(option.text[0], event.key, true)
+            )
+            if (index >= 0) {
+              this.suggestedIndex = index
+              select.scrollToOption(this.suggestedIndex, this.immediateScroll)
+            }
+          } else if (code === 'Escape' || code === 'Backspace') {
+            this.open = false
+          }
+        } else {
+          this.open = true
+        }
+      } else if (code === 'ArrowDown' || code === 'ArrowUp') {
         event.preventDefault()
         const indexIncrement = code === 'ArrowDown' ? 1 : -1
         this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, indexIncrement)
