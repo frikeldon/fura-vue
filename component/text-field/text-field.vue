@@ -43,6 +43,8 @@ export default {
     unresizable: { type: Boolean, default: false },
     /** Indica si se ajustaautomáticamente la altura para campos de texto de varias líneas. */
     autoAdjustHeight: { type: Boolean, default: false },
+    /** Indica si el campo es del tipo 'password' */
+    password: { type: Boolean, default: false },
     /** Valor actual del campo. */
     modelValue: { type: String, default: '' }
   },
@@ -127,7 +129,7 @@ export default {
     <input
       v-else
       ref="field"
-      type="text"
+      :type="password ? 'password' : 'text'"
       class="fura-field"
       :class="{ 'fura-hasIcon': icon }"
       :value="modelValue"
@@ -276,6 +278,23 @@ export default {
     multiline
     auto-adjust-height
     label="With auto adjusting height"
+    v-model="value"
+  />
+</template>
+</docs>
+
+<docs>
+<script>
+export default {
+  data () {
+    return { value: '' }
+  }
+}
+</script>
+<template>
+  <fura-text-field
+    label="I'm a password field"
+    password
     v-model="value"
   />
 </template>
