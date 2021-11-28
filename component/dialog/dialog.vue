@@ -52,7 +52,10 @@ export default {
         v-if="type === 'close'"
         class="fura-topButton"
       >
-        <button @click.stop="$emit('click')">
+        <button
+          type="button"
+          @click.stop="$emit('click')"
+        >
           <FuraIcon
             class="fura-icon"
             name="Cancel"

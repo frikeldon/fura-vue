@@ -139,6 +139,7 @@ export default {
             >
               <span v-text="item.text" />
               <button
+                type="button"
                 tabindex="-1"
                 @click.stop="$emit('remove', index)"
               >

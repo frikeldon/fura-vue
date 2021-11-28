@@ -24,6 +24,7 @@ export default {
 
 <template>
   <button
+    type="button"
     :class="{
       'fura-expanded': expanded,
       'fura-vertical': vertical

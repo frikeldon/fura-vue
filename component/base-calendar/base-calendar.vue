@@ -148,12 +148,14 @@ export default {
       </div>
       <div class="fura-titleComponents">
         <button
+          type="button"
           class="fura-prev"
           @click.stop="$emit('navigate', -1)"
         >
           <FuraIcon name="Up" />
         </button>
         <button
+          type="button"
           class="fura-next"
           @click.stop="$emit('navigate', 1)"
         >
@@ -186,6 +188,7 @@ export default {
     />
     <button
       v-if="goToday"
+      type="button"
       class="fura-goToday"
       @click.stop="$emit('clickGoToday')"
       v-text="goToday"

@@ -53,7 +53,10 @@ export default {
         <div class="fura-header">
           <div v-text="headerText" />
         </div>
-        <button @click.stop="$emit('click')">
+        <button
+          type="button"
+          @click.stop="$emit('click')"
+        >
           <FuraIcon
             class="fura-icon"
             name="Cancel"

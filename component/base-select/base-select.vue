@@ -192,6 +192,7 @@ export default {
           v-else
           :ref="el => refOptions.push({ index, el })"
           :key="`option_${index}`"
+          type="button"
           class="fura-option fura-button"
           :class="{
             'fura-selected': isValueSelected(option.value),

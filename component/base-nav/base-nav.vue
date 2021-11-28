@@ -45,6 +45,7 @@ export default {
     >
       <button
         v-if="group.name"
+        type="button"
         @click.stop="$emit('expand', { group, groupIndex })"
       >
         <FuraIcon

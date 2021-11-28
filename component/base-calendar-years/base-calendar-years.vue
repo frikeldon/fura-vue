@@ -44,6 +44,7 @@ export default {
       <button
         v-for="(year, yearIndex) in row"
         :key="yearIndex"
+        type="button"
         class="fura-button"
         :class="{ 'fura-selected': year === value }"
         @click.stop="$emit('select', year)"

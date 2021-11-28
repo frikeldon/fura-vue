@@ -55,6 +55,7 @@ export default {
     />
     <div class="fura-container">
       <button
+        type="button"
         class="fura-toggle"
         :class="{ 'fura-checked': modelValue }"
         :disabled="disabled || null"

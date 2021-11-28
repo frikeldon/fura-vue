@@ -127,7 +127,10 @@ export default {
             'fura-selected': areSameDay(day, value)
           }"
         >
-          <button @click.stop="$emit('select', day)">
+          <button
+            type="button"
+            @click.stop="$emit('select', day)"
+          >
             <span v-text="day.getDate()" />
           </button>
         </td>

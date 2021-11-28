@@ -64,6 +64,7 @@ export default {
 
 <template>
   <button
+    type="button"
     :disabled="disabled || null"
     :class="checked ? 'fura-checked' : null"
     @click.stop="handleClick"

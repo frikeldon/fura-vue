@@ -177,6 +177,7 @@ export default {
       />
     </div>
     <button
+      type="button"
       class="fura-caret"
       :disabled="disabled || null"
       @click.stop="handleCaretClick"

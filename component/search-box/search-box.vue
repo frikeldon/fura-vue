@@ -119,7 +119,10 @@ export default {
       v-if="modelValue && !disabled"
       class="fura-clear"
     >
-      <button @click.stop="clear">
+      <button
+        type="button"
+        @click.stop="clear"
+      >
         <span>
           <FuraIcon name="Clear" />
         </span>

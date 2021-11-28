@@ -121,6 +121,7 @@ export default {
     >
     <span>
       <button
+        type="button"
         class="fura-up"
         :disabled="disabled || null"
         @click.stop="handleClickUp"
@@ -131,6 +132,7 @@ export default {
         />
       </button>
       <button
+        type="button"
         class="fura-down"
         :disabled="disabled || null"
         @click.stop="handleClickDown"

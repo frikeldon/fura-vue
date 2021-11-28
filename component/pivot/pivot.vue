@@ -34,6 +34,7 @@ export default {
     <button
       v-for="(tab, index) in tabs"
       :key="index"
+      type="button"
       :class="{ 'fura-selected': modelValue === tab.value }"
       @click.stop="$emit('update:modelValue', tab.value)"
     >
