@@ -29,7 +29,16 @@ export default {
     /** Estado de seleccionado. */
     checked: { type: Boolean, default: false },
     /** Estado de deshabilitado. */
-    disabled: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false },
+    /**
+     * Indica la función del botón dentro de un formulario.
+     * @values button, submit, reset
+     */
+    formRole: {
+      type: String,
+      default: null,
+      validator: value => !value || ['button', 'submit', 'reset'].includes(value)
+    }
   },
   emits: [
     /**
@@ -57,6 +66,7 @@ export default {
     :href="href"
     :target="href ? target : null"
     :disabled="disabled || null"
+    :type="(!href && formRole) || null"
     @click.stop="$emit('click', $event)"
   >
     <span>
