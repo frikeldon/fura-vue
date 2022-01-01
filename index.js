@@ -35,6 +35,7 @@ import Dropdown from './component/dropdown/index.js'
 import ExpanderButton from './component/expander-button/index.js'
 import Icon from './component/icon/index.js'
 import Label from './component/label/index.js'
+import Link from './component/link/index.js'
 import MessageBar from './component/message-bar/index.js'
 import Nav from './component/nav/index.js'
 import NumberField from './component/number-field/index.js'
@@ -90,6 +91,7 @@ export const components = {
   ExpanderButton,
   Icon,
   Label,
+  Link,
   MessageBar,
   Nav,
   NumberField,

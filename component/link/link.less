@@ -1,0 +1,49 @@
+@import "../../theme/mixin.less";
+@import "../../theme/typography.less";
+@import "../../theme/color.less";
+
+a {
+  .normalize();
+  .fontStyleMedium();
+
+  background-color: transparent;
+  border: none;
+  color: @themePrimary;
+  cursor: pointer;
+  display: inline;
+  overflow: inherit;
+  text-align: left;
+  text-decoration: none;
+  text-overflow: inherit;
+  user-select: text;
+
+  &:hover {
+    border-bottom-color: @themeDarker;
+    color: @themeDark;
+  }
+
+  &:active {
+    border-bottom-color: @themeDarker;
+    color: @themeDarker;
+  }
+
+  &.fura-underline {
+    text-decoration: underline;
+  }
+
+  &.fura-disabled {
+    border-bottom-color: transparent;
+    color: @neutralTertiary;
+    cursor: default;
+
+    &:hover {
+      border-bottom-color: transparent;
+      color: @neutralTertiary;
+    }
+
+    &:active {
+      border-bottom-color: transparent;
+      color: @neutralTertiary;
+    }
+  }
+}
