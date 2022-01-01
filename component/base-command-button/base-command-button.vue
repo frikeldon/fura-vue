@@ -20,7 +20,11 @@ export default {
     /** Estado de deshabilitado. */
     disabled: { type: Boolean, default: false },
     /** Estado de selección. */
-    checked: { type: Boolean, default: false }
+    checked: { type: Boolean, default: false },
+    /** Si se proporciona, el componente se dibuja como enlace y no como botón. */
+    href: { type: String, default: null },
+    /** Atributo target del enlace. El atributo 'href' debe ser proporcionado. */
+    target: { type: String, default: null }
   },
   emits: [
     /**
@@ -63,10 +67,13 @@ export default {
 </script>
 
 <template>
-  <button
-    type="button"
+  <component
+    :is="href ? 'a' : 'button'"
+    :type="href ? undefined : 'button'"
     :disabled="disabled || null"
     :class="checked ? 'fura-checked' : null"
+    :href="disabled ? undefined : href"
+    :target="(!disabled && href) ? target : undefined"
     @click.stop="handleClick"
     @mouseover.stop="handleMouseover"
     @mouseout.stop="clearMouseHandler"
@@ -96,7 +103,7 @@ export default {
         />
       </span>
     </span>
-  </button>
+  </component>
 </template>
 
 <style lang="less" scoped src="./base-command-button.less"></style>

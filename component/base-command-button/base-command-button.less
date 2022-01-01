@@ -2,7 +2,8 @@
 @import "../../theme/typography.less";
 @import "../../theme/color.less";
 
-button {
+button,
+a {
   .fontStyleMedium();
   box-sizing: border-box;
   display: inline-block;
@@ -82,7 +83,8 @@ button {
   color: @neutralSecondary;
 }
 
-button[disabled] {
+button[disabled],
+a[disabled] {
   &,
   &:active,
   &:hover {
@@ -92,7 +94,9 @@ button[disabled] {
     border-color: @neutralLighter;
   }
 
-  .fura-icon, .fura-expand, .fura-text > span {
+  .fura-icon,
+  .fura-expand,
+  .fura-text > span {
     color: @neutralTertiaryAlt;
   }
 }

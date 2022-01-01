@@ -20,7 +20,11 @@ export default {
     /** Estado de deshabilitado. */
     disabled: { type: Boolean, default: false },
     /** Estado de selección. */
-    checked: { type: Boolean, default: false }
+    checked: { type: Boolean, default: false },
+    /** Si se proporciona, el componente se dibuja como enlace y no como botón. */
+    href: { type: String, default: null },
+    /** Atributo target del enlace. El atributo 'href' debe ser proporcionado. */
+    target: { type: String, default: null }
   },
   emits: [
     /**
@@ -53,6 +57,8 @@ export default {
         :mousestop-delay="mousestopDelay"
         :disabled="disabled"
         :checked="checked"
+        :href="href"
+        :target="target"
         @click="$emit('click', $event)"
         @mousestop="$emit('mousestop')"
       />
