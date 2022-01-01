@@ -191,7 +191,9 @@ export default {
           {
             value: 'download',
             text: 'Download',
-            icon: 'Download'
+            icon: 'Download',
+            href: 'data:text/plain;charset=utf-8,Hello world!',
+            download: 'hello-world.txt'
           }
         ]
       }
@@ -299,7 +301,9 @@ export default {
           {
             value: 'download',
             text: 'Download',
-            icon: 'Download'
+            icon: 'Download',
+            href: 'data:text/plain;charset=utf-8,Hello world!',
+            download: 'hello-world.txt'
           }
         ]
       }
@@ -425,7 +429,9 @@ export default {
       {
         value: 'download',
         text: 'Download',
-        icon: 'Download'
+        icon: 'Download',
+        href: 'data:text/plain;charset=utf-8,Hello world!',
+        download: 'hello-world.txt'
       },
       {
         value: 'expand',
