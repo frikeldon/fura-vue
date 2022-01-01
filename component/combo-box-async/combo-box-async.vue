@@ -28,8 +28,8 @@ export default {
     getOptionsWait: { type: Number, default: 0 },
     /** Indica si las opciones seleccionadas deben ocultarse de las opciones candidatas. */
     filterOptions: { type: Boolean, default: false },
-    /** Lista de opciones seleccionadas. */
-    modelValue: { type: Array, default: () => [] },
+    /** Opcion o lista de opciones seleccionadas. */
+    modelValue: { type: undefined, default: undefined },
     /** Indica si el campo es de solo lectura. */
     readonly: { type: Boolean, default: false },
     /** Indica si el campo permite seleccionar más de una opción. */
@@ -63,28 +63,74 @@ export default {
   computed: {
     /** Texto descriptivo de los valores seleccionados. */
     selectedText () {
-      return this.modelValue.map(option => option.text).join(', ')
+      const { multiple, modelValue } = this
+      if (multiple) {
+        return Array.isArray(modelValue)
+          ? modelValue.map(option => option.text).join(', ')
+          : ''
+      } else {
+        return modelValue?.text ?? ''
+      }
     },
     selectedValue () {
       const { modelValue, multiple } = this
-      return multiple
-        ? modelValue.map(option => option.value)
-        : modelValue[0]?.value
+      if (multiple) {
+        return Array.isArray(modelValue)
+          ? modelValue.map(option => option.value) ?? []
+          : []
+      } else {
+        return modelValue?.value
+      }
     },
     optionsWithSelected () {
-      const { modelValue, options, filterOptions } = this
+      const { modelValue, multiple, options, filterOptions } = this
       if (filterOptions) {
+        const selectedValues = multiple
+          ? Array.isArray(modelValue) ? modelValue : []
+          : [modelValue]
         const filterdOptions = options.filter(option => !this.isOptionSelected(option))
-        return [...modelValue, { type: 'divider' }, ...filterdOptions]
+        return [...selectedValues, { type: 'divider' }, ...filterdOptions]
       } else {
         return options
+      }
+    },
+    hasSelectedValues () {
+      const { modelValue, multiple } = this
+      if (multiple) {
+        return Array.isArray(modelValue)
+          ? modelValue.length > 0
+          : false
+      } else {
+        return this.modelValue != null
+      }
+    },
+    firstUnselectedOptionIndex () {
+      const { modelValue, multiple } = this
+      if (multiple) {
+        return Array.isArray(modelValue)
+          ? modelValue.length
+          : 0
+      } else {
+        return this.modelValue != null
+          ? 1
+          : 0
       }
     }
   },
   methods: {
     isOptionSelected (option) {
-      for (const selected of this.modelValue) {
-        if (selected.value === option.value) return true
+      if (this.multiple) {
+        if (Array.isArray(this.modelValue)) {
+          for (const selected of this.modelValue) {
+            if (selected.value === option.value) {
+              return true
+            }
+          }
+        }
+      } else {
+        if (this.modelValue?.value === option.value) {
+          return true
+        }
       }
       return false
     },
@@ -113,7 +159,7 @@ export default {
       this.open = !this.open
       if (
         (!this.filterOptions && this.options.length === 0) ||
-        (this.filterOptions && this.modelValue.length === 0)
+        (this.filterOptions && !this.hasSelectedValues)
       ) {
         this.open = false
       }
@@ -133,10 +179,10 @@ export default {
           }
         }
       } else {
-        if (this.modelValue[0]?.value === selected.value) {
-          this.$emit('update:modelValue', [])
+        if (this.modelValue?.value === selected.value) {
+          this.$emit('update:modelValue', null)
         } else {
-          this.$emit('update:modelValue', [selected])
+          this.$emit('update:modelValue', selected)
         }
       }
       this.open = false
@@ -152,7 +198,7 @@ export default {
         this.options = await this.getOptions(text)
         if (this.autoComplete) {
           const firstIndex = this.filterOptions
-            ? this.modelValue.length + 1
+            ? this.firstUnselectedOptionIndex
             : 0
           this.suggestedIndex = this.options.findIndex((option, index) =>
             index >= firstIndex &&
