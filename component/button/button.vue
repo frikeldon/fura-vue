@@ -46,7 +46,14 @@ export default {
      * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
      */
     'click'
-  ]
+  ],
+  methods: {
+    handleClick (event) {
+      if (!this.disabled) {
+        this.$emit('click', event)
+      }
+    }
+  }
 }
 </script>
 
@@ -63,11 +70,11 @@ export default {
       'fura-primary': primary,
       'fura-checked': checked
     }"
-    :href="href"
-    :target="href ? target : null"
+    :href="disabled ? undefined : href"
+    :target="(!disabled && href) ? target : undefined"
     :disabled="disabled || null"
     :type="(!href && formRole) || null"
-    @click.stop="$emit('click', $event)"
+    @click.stop="handleClick"
   >
     <span>
       <FuraIcon
