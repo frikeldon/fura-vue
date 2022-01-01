@@ -116,3 +116,5 @@ export default function install (app, { prefix = 'fura' } = {}) {
     app.component(`${prefix}-${kebabName}`, components[name])
   }
 }
+
+install.components = components
