@@ -1,0 +1,28 @@
+<script>
+  export default {
+    data() {
+      return {
+        progress: 0,
+        timer: null,
+      };
+    },
+    mounted() {
+      this.timer = setInterval(() => {
+        this.progress += 0.001;
+        if (this.progress > 1.1) {
+          this.progress = -0.5;
+        }
+      }, 1);
+    },
+    unmounted() {
+      clearInterval(this.timer);
+    },
+  };
+</script>
+<template>
+  <fura-progress-indicator
+    label="Example title"
+    description="Example description"
+    :percent-complete="progress"
+  />
+</template>

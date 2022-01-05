@@ -78,29 +78,3 @@ export default {
 </template>
 
 <style lang="less" scoped src="./base-split-button.less"></style>
-
-<docs>
-<script>
-  export default {
-    methods: {
-      onClick() { alert('click') },
-      onClickExpand() { alert('click expand') },
-      onMousestop() { alert('mousestop') },
-      onMousestopExpand() { alert('mousestop expand') }
-    }
-  }
-</script>
-<template>
-  <div style="display: inline-block; border: 1px solid black">
-    <fura-base-split-button
-      text="Add Item"
-      icon="Add"
-      expand-icon="ChevronDown"
-      @click="onClick"
-      @click-expand="onClickExpand"
-      @mousestop="onMousestop"
-      @mousestop-expand="onMousestopExpand"
-    />
-  </div>
-</template>
-</docs>

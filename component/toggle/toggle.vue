@@ -74,30 +74,3 @@ export default {
 </template>
 
 <style lang="less" scoped src="./toggle.less"></style>
-
-<docs>
-<script>
-  export default {
-    data () {
-      return {
-        label: 'Toggle',
-        onText: 'On',
-        offText: 'Off',
-        inline: false,
-        disabled: false,
-        value: false
-      }
-    }
-  }
-</script>
-<template>
-  <fura-toggle
-    :label="label"
-    :on-text="onText"
-    :off-text="offText"
-    :inline="inline"
-    :disabled="disabled"
-    v-model="value"
-  />
-</template>
-</docs>

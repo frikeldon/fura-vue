@@ -1,0 +1,24 @@
+<script>
+  export default {
+    data() {
+      return {
+        options: [
+          { text: "Option a", value: "a" },
+          { text: "Option b", value: "b" },
+          { text: "Option c", value: "c" },
+          { text: "Option d", value: "d", disabled: true },
+          { text: "Option e", value: "e" },
+        ],
+        value: null,
+      };
+    },
+    methods: {
+      onSelect(index) {
+        this.value = this.options[index].value;
+      },
+    },
+  };
+</script>
+<template>
+  <fura-base-select :options="options" :value="value" @select="onSelect" />
+</template>

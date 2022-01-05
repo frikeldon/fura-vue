@@ -1,0 +1,22 @@
+<script>
+  export default {
+    data() {
+      return {
+        firstYear: new Date().getFullYear(),
+        value: null,
+      };
+    },
+    methods: {
+      onSelect(value) {
+        this.value = value;
+      },
+    },
+  };
+</script>
+<template>
+  <fura-base-calendar-years
+    :first-year="firstYear"
+    :value="value"
+    @select="onSelect"
+  />
+</template>

@@ -1,0 +1,69 @@
+<script>
+  export default {
+    data() {
+      return {
+        selected: null,
+        groups: [
+          {
+            expanded: true,
+            links: [
+              {
+                name: "Home",
+                key: "home",
+                links: [
+                  {
+                    name: "Activity",
+                    key: "key1",
+                  },
+                  {
+                    name: "MSN",
+                    disabled: true,
+                    key: "key2",
+                  },
+                ],
+              },
+              {
+                name: "Documents",
+                key: "key3",
+              },
+              {
+                name: "Pages",
+                key: "key4",
+              },
+              {
+                name: "Notebook",
+                key: "key5",
+                disabled: true,
+              },
+              {
+                name: "Communication and Media",
+                key: "key6",
+              },
+              {
+                name: "News",
+                icon: "News",
+                key: "key7",
+              },
+            ],
+          },
+        ],
+      };
+    },
+    methods: {
+      onExpand({ link }) {
+        link.expanded = !link.expanded;
+      },
+      onClick({ link }) {
+        this.selected = link.key;
+      },
+    },
+  };
+</script>
+<template>
+  <fura-base-nav
+    :groups="groups"
+    :selected="selected"
+    @expand="onExpand"
+    @click="onClick"
+  />
+</template>

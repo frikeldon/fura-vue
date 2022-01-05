@@ -1,0 +1,27 @@
+<script>
+  export default {
+    data() {
+      return {
+        value: null,
+      };
+    },
+    methods: {
+      stringifyFocus(number) {
+        const text =
+          typeof number === "number" && !isNaN(number) ? String(number) : "";
+        return text.replace(".", ",");
+      },
+      parse(text) {
+        return Number((text || "").replace(",", "."));
+      },
+    },
+  };
+</script>
+<template>
+  <fura-number-field
+    label="I'm a field"
+    v-model="value"
+    :stringify-focus="stringifyFocus"
+    :parse="parse"
+  />
+</template>

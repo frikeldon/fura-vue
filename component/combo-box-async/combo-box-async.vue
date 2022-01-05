@@ -215,6 +215,7 @@ export default {
   }
 }
 </script>
+
 <template>
   <FuraBaseComboBox
     ref="comboBox"
@@ -297,69 +298,3 @@ export default {
     </template>
   </FuraBaseComboBox>
 </template>
-
-<docs>
-<script>
-  import furaVue from 'fura-vue'
-
-  const iconOptions = Object.keys(furaVue.components.Icon.code)
-    .map(name => ({ value: name, text: name }))
-  function getOptions (text) {
-    return new Promise(function (resolve) {
-      setTimeout(() => {
-        const found = iconOptions.filter(item => item.text.toLowerCase().startsWith(text))
-        resolve(found)
-      }, 500 + (Math.random() * 250));
-    })
-  }
-
-  export default {
-    data () {
-      return {
-        label: 'ComboBoxAsync',
-        description: null,
-        invalid: false,
-        errorMessage: null,
-        disabled: false,
-        required: false,
-        borderless: false,
-        underlined: false,
-        placeholder: null,
-        readonly: false,
-        multiple: false,
-        autoComplete: false,
-        accentInsensitive: false,
-        loadingText: 'Loading...',
-        immediateScroll: false,
-        selectedOptions: [],
-        getOptions: getOptions,
-        getOptionsWait: 250,
-        filterOptions: false
-      }
-    }
-  }
-</script>
-<template>
-  <fura-combo-box-async
-    :label="label"
-    :description="description"
-    :invalid="invalid"
-    :error-message="errorMessage"
-    :disabled="disabled"
-    :required="required"
-    :borderless="borderless"
-    :underlined="underlined"
-    :placeholder="placeholder"
-    :readonly="readonly"
-    :multiple="multiple"
-    :auto-complete="autoComplete"
-    :accent-insensitive="accentInsensitive"
-    :loading-text="loadingText"
-    :immediate-scroll="immediateScroll"
-    :get-options="getOptions"
-    :get-options-wait="getOptionsWait"
-    :filter-options="filterOptions"
-    v-model="selectedOptions"
-  />
-</template>
-</docs>

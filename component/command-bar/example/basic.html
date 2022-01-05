@@ -1,0 +1,141 @@
+<script>
+  export default {
+    data() {
+      return {
+        mousestopDelay: 800,
+        maxWidth: 750,
+        autoupdateOverflow: false,
+        items: [
+          {
+            type: "split",
+            value: "newItem",
+            text: "New",
+            icon: "Add",
+            action: () => alert("New"),
+            childs: [
+              {
+                type: "title",
+                text: "Actions",
+              },
+              {
+                value: "upload",
+                text: "Upload",
+                icon: "Upload",
+                iconColor: "salmon",
+              },
+              {
+                value: "rename",
+                text: "Rename",
+              },
+              {
+                value: "share",
+                text: "Sharing",
+                icon: "Share",
+                childs: [
+                  {
+                    value: "sharetoemail",
+                    text: "Share to Email",
+                    icon: "Mail",
+                  },
+                  {
+                    value: "sharetotwitter",
+                    text: "Share to Twitter",
+                    icon: "Share",
+                  },
+                ],
+              },
+              {
+                type: "divider",
+              },
+              {
+                type: "title",
+                text: "Navigation",
+              },
+              {
+                value: "properties",
+                text: "Properties",
+              },
+              {
+                value: "print",
+                text: "Print",
+                icon: "Print",
+                disabled: true,
+              },
+              {
+                value: "bing",
+                text: "Go to Bing",
+              },
+            ],
+          },
+          {
+            value: "upload",
+            text: "Upload",
+            icon: "Upload",
+            action: () => alert("upload"),
+          },
+          {
+            value: "share",
+            text: "Share",
+            icon: "Share",
+            childs: [
+              {
+                value: "sharetoemail",
+                text: "Share to Email",
+                icon: "Mail",
+              },
+              {
+                value: "sharetotwitter",
+                text: "Share to Twitter",
+                icon: "Share",
+              },
+            ],
+          },
+          {
+            value: "download",
+            text: "Download",
+            icon: "Download",
+            href: "data:text/plain;charset=utf-8,Hello world!",
+            download: "hello-world.txt",
+          },
+        ],
+        overflowItems: [
+          {
+            value: "move",
+            text: "Move to...",
+            icon: "MoveToFolder",
+          },
+          {
+            value: "copy",
+            text: "Copy to...",
+            icon: "Copy",
+          },
+          {
+            value: "rename",
+            text: "Rename...",
+            icon: "Edit",
+          },
+        ],
+        farItems: [
+          { value: "tiles", icon: "Tiles" },
+          { value: "info", icon: "Info" },
+        ],
+      };
+    },
+    computed: {
+      containerStyle() {
+        return this.maxWidth ? `max-width: ${this.maxWidth}px` : null;
+      },
+    },
+  };
+</script>
+<template>
+  <div :style="containerStyle">
+    <fura-command-bar
+      :mousestop-delay="mousestopDelay"
+      :items="items"
+      :autoupdate-overflow="autoupdateOverflow"
+      :overflow-items="overflowItems"
+      :far-items="farItems"
+    />
+  </div>
+</template>

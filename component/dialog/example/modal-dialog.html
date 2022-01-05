@@ -1,0 +1,52 @@
+<script>
+  export default {
+    data() {
+      return {
+        show: false,
+        options: [
+          { value: "A", text: "Option A" },
+          { value: "B", text: "Option B" },
+          { value: "C", text: "Option C" },
+        ],
+        choiceValue: "B",
+      };
+    },
+    methods: {
+      openDialog() {
+        this.show = true;
+      },
+      closeDialog() {
+        this.show = false;
+      },
+    },
+  };
+</script>
+<template>
+  <div style="position: relative; height: 100%">
+    <fura-overlay
+      dark
+      v-if="show"
+      style="display: flex; align-items: flex-start; justify-content: center"
+    >
+      <fura-dialog
+        header="All emails together"
+        type="largeHeader"
+        text="Your Inbox has changed. No longer does it include favorites, it is a singular destination for your emails."
+        style="max-width: 400px; margin-top: 15px"
+      >
+        <fura-choice-group
+          label="Pick one"
+          :options="options"
+          v-model="choiceValue"
+        />
+        <template #footer>
+          <div class="fura-footer">
+            <fura-button primary text="Ok" @click="closeDialog()" />
+            <fura-button text="Cancel" @click="closeDialog()" />
+          </div>
+        </template>
+      </fura-dialog>
+    </fura-overlay>
+    <fura-button text="Show Dialog" @click="openDialog()" />
+  </div>
+</template>

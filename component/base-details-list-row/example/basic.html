@@ -1,0 +1,42 @@
+<script>
+  export default {
+    data() {
+      return {
+        selection: "multiple",
+        compact: false,
+        selected: [false, false, false],
+      };
+    },
+  };
+</script>
+<template>
+  <table>
+    <fura-base-details-list-row
+      type="header"
+      :selection="selection"
+      :selected="selected[0]"
+      :compact="compact"
+      @click="selected[0] = !selected[0]"
+    >
+      <th>Header</th>
+    </fura-base-details-list-row>
+    <fura-base-details-list-row
+      type="group"
+      :selection="selection"
+      :selected="selected[1]"
+      :compact="compact"
+      @click="selected[1] = !selected[1]"
+    >
+      <th>Group</th>
+    </fura-base-details-list-row>
+    <fura-base-details-list-row
+      type="data"
+      :selection="selection"
+      :selected="selected[2]"
+      :compact="compact"
+      @click="selected[2] = !selected[2]"
+    >
+      <th>Data</th>
+    </fura-base-details-list-row>
+  </table>
+</template>

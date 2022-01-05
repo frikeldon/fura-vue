@@ -1,0 +1,63 @@
+<script>
+  export default {
+    data() {
+      return {
+        label: "Base combo field",
+        description: "Wrapper of a form field with a dropdown panel.",
+        invalid: false,
+        errorMessage: null,
+        disabled: false,
+        required: false,
+        borderless: false,
+        underlined: false,
+        open: false,
+        dropup: false,
+      };
+    },
+  };
+</script>
+<template>
+  <fura-base-field-combo
+    :label="label"
+    :description="description"
+    :invalid="invalid"
+    :error-message="errorMessage"
+    :disabled="disabled"
+    :required="required"
+    :borderless="borderless"
+    :underlined="underlined"
+    :open="open"
+    :dropup="dropup"
+  >
+    <div
+      tabindex="0"
+      style="
+        flex: 1 1 0px;
+        border: 0;
+        background-color: rgba(113, 175, 229, 0.4);
+        outline: 0;
+      "
+      @click="open = !open"
+    />
+    <template v-slot:dropdown>
+      <div
+        tabindex="0"
+        style="
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          box-shadow: none;
+          flex: 1 1 0px;
+          height: 200px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: rgba(0, 178, 148, 0.4);
+          box-shadow: 0 0px 15px -5px rgba(0, 0, 0, 0.4);
+          border: 1px solid #edebe9;
+          outline: 0;
+        "
+      />
+    </template>
+  </fura-base-field-combo>
+</template>

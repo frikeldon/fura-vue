@@ -1,0 +1,26 @@
+<script>
+  export default {
+    data() {
+      return {
+        options: [
+          { type: "header", text: "Fruits" },
+          { text: "Apple", value: "apple" },
+          { text: "Banana", value: "banana" },
+          { text: "Mango", value: "mango" },
+          { text: "Orange", value: "orange", disabled: true },
+          { text: "Passionfruit", value: "passionfruit" },
+          { text: "Grape", value: "grape" },
+          { type: "divider" },
+          { type: "header", text: "Vegetables" },
+          { text: "Broccoli", value: "broccoli" },
+          { text: "Carrot", value: "carrot" },
+          { text: "Lettuce", value: "lettuce" },
+        ],
+        value: null,
+      };
+    },
+  };
+</script>
+<template>
+  <fura-select :options="options" v-model="value" />
+</template>

@@ -1,0 +1,51 @@
+<script>
+  export default {
+    data() {
+      return {
+        columns: [
+          { key: "button", width: "75px" },
+          { title: "Name", key: "name", align: "left", width: "125px" },
+          { title: "Color", key: "color", align: "left" },
+        ],
+        groups: [
+          { name: 'Color: "red"', startIndex: 0, count: 2, level: 0 },
+          { name: 'Color: "green"', startIndex: 2, count: 0, level: 0 },
+          { name: 'Color: "blue"', startIndex: 2, count: 3, level: 0 },
+        ],
+        data: [
+          { name: "a", color: "red" },
+          { name: "b", color: "red" },
+          { name: "c", color: "blue" },
+          { name: "d", color: "blue" },
+          { name: "e", color: "blue" },
+        ],
+      };
+    },
+    methods: {
+      getGroupName(group) {
+        return `${group.name} (${group.count})`;
+      },
+    },
+  };
+</script>
+<template>
+  <fura-base-details-list :columns="columns" :groups="groups" :data="data">
+    <template v-slot:default="slotProps">
+      <fura-button
+        v-if="slotProps.column.key === 'button'"
+        type="icon"
+        icon="Edit"
+      />
+    </template>
+    <template v-slot:header="slotProps">
+      <fura-button
+        v-if="slotProps.column.key === 'button'"
+        type="icon"
+        icon="Add"
+      />
+    </template>
+    <template v-slot:group="slotProps">
+      <fura-label v-text="getGroupName(slotProps.group)" />
+    </template>
+  </fura-base-details-list>
+</template>

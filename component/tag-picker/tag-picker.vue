@@ -138,6 +138,7 @@ export default {
   debounce
 }
 </script>
+
 <template>
   <FuraBaseTagPicker
     ref="tagPicker"
@@ -233,69 +234,3 @@ export default {
     </template>
   </FuraBaseTagPicker>
 </template>
-
-<docs>
-<script>
-  import furaVue from 'fura-vue'
-
-  const iconItems = Object.keys(furaVue.components.Icon.code)
-    .map(name => ({ value: name, text: name }))
-  function getItems (text) {
-    return new Promise(function (resolve) {
-      setTimeout(() => {
-        const found = iconItems.filter(item => item.text.toLowerCase().startsWith(text))
-        resolve(found)
-      }, 500 + (Math.random() * 250));
-    })
-  }
-
-  export default {
-    data () {
-      return {
-        label: 'Base tagPicker',
-        description: 'tagPicker field without behavior',
-        invalid: false,
-        errorMessage: null,
-        disabled: false,
-        required: false,
-        borderless: false,
-        underlined: false,
-        suggestedIndex: -1,
-        placeholder: 'Pick an element',
-        readonly: false,
-        autoComplete: false,
-        accentInsensitive: false,
-        loadingText: 'Loading...',
-        immediateScroll: false,
-        selectedItems: [],
-        getItems: getItems,
-        getItemsWait: 250,
-        filterItems: false
-      }
-    }
-  }
-</script>
-<template>
-  <fura-tag-picker
-    :label="label"
-    :description="description"
-    :invalid="invalid"
-    :error-message="errorMessage"
-    :disabled="disabled"
-    :required="required"
-    :borderless="borderless"
-    :underlined="underlined"
-    :suggested-index="suggestedIndex"
-    :placeholder="placeholder"
-    :readonly="readonly"
-    :auto-complete="autoComplete"
-    :accent-insensitive="accentInsensitive"
-    :loading-text="loadingText"
-    :immediate-scroll="immediateScroll"
-    :get-items="getItems"
-    :get-items-wait="getItemsWait"
-    :filter-items="filterItems"
-    v-model="selectedItems"
-  />
-</template>
-</docs>

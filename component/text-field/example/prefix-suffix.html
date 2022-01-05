@@ -1,0 +1,15 @@
+<script>
+  export default {
+    data() {
+      return { value: "github" };
+    },
+  };
+</script>
+<template>
+  <fura-text-field
+    label="With prefix and suffix"
+    prefix="www."
+    suffix=".com"
+    v-model="value"
+  />
+</template>

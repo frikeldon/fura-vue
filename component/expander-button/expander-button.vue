@@ -39,23 +39,3 @@ export default {
 </template>
 
 <style lang="less" scoped src="./expander-button.less"></style>
-
-<docs>
-<script>
-  export default {
-    data () {
-      return {
-        expanded: false,
-        vertical: false
-      }
-    }
-  }
-</script>
-<template>
-  <fura-expander-button
-    :expanded="expanded"
-    :vertical="vertical"
-    @click="expanded = !expanded"
-  />
-</template>
-</docs>

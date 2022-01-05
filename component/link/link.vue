@@ -29,35 +29,3 @@ export default {
 </template>
 
 <style lang="less" scoped src="./link.less"></style>
-
-<docs>
-<fura-link
-  href="javascript:alert('Hello world')"
-  v-text="'I\'m a Link'"
-/>
-</docs>
-
-<docs>
-<fura-link
-  underline
-  href="javascript:alert('Hello world')"
-  v-text="'I\'m a underlined Link'"
-/>
-</docs>
-
-<docs>
-<fura-link
-  disabled
-  href="javascript:alert('Hello world')"
-  v-text="'I\'m a disabled Link'"
-/>
-</docs>
-
-<docs>
-<fura-link
-  underline
-  disabled
-  href="javascript:alert('Hello world')"
-  v-text="'I\'m a underlined and disabled Label'"
-/>
-</docs>

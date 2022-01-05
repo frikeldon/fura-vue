@@ -1,0 +1,34 @@
+<script>
+  export default {
+    data() {
+      return {
+        options: [
+          { value: "A", text: "Option A" },
+          { value: "B", text: "Option B" },
+          { value: "C", text: "Option C" },
+        ],
+        choiceValue: "B",
+      };
+    },
+  };
+</script>
+<template>
+  <fura-dialog
+    header="All emails together"
+    type="largeHeader"
+    text="Your Inbox has changed. No longer does it include favorites, it is a singular destination for your emails."
+    style="max-width: 400px; max-height: 250px"
+  >
+    <fura-choice-group
+      label="Pick one"
+      :options="options"
+      v-model="choiceValue"
+    />
+    <template #footer>
+      <div class="fura-footer">
+        <fura-button primary text="Ok" />
+        <fura-button text="Cancel" />
+      </div>
+    </template>
+  </fura-dialog>
+</template>

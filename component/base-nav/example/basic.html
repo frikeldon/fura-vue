@@ -1,0 +1,78 @@
+<script>
+  export default {
+    data() {
+      return {
+        selected: null,
+        groups: [
+          {
+            name: "Basic components",
+            links: [
+              {
+                key: "ActivityItem",
+                name: "ActivityItem",
+              },
+              {
+                key: "Breadcrumb",
+                name: "Breadcrumb",
+              },
+              {
+                key: "Button",
+                name: "Button",
+              },
+            ],
+          },
+          {
+            name: "Extended components",
+            links: [
+              {
+                key: "ColorPicker",
+                name: "ColorPicker",
+              },
+              {
+                key: "ExtendedPeoplePicker",
+                name: "ExtendedPeoplePicker",
+              },
+              {
+                key: "GroupedList",
+                name: "GroupedList",
+              },
+            ],
+          },
+          {
+            name: "Utilities",
+            links: [
+              {
+                key: "FocusTrapZone",
+                name: "FocusTrapZone",
+              },
+              {
+                key: "FocusZone",
+                name: "FocusZone",
+              },
+              {
+                key: "MarqueeSelection",
+                name: "MarqueeSelection",
+              },
+            ],
+          },
+        ],
+      };
+    },
+    methods: {
+      onExpand({ group }) {
+        group.expanded = !group.expanded;
+      },
+      onClick({ link }) {
+        this.selected = link.key;
+      },
+    },
+  };
+</script>
+<template>
+  <fura-base-nav
+    :groups="groups"
+    :selected="selected"
+    @expand="onExpand"
+    @click="onClick"
+  />
+</template>

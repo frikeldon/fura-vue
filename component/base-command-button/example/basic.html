@@ -1,0 +1,27 @@
+<script>
+  export default {
+    methods: {
+      onClick() {
+        alert("click");
+      },
+      onClickExpand() {
+        alert("click expand");
+      },
+      onMousestop() {
+        alert("mousestop");
+      },
+    },
+  };
+</script>
+<template>
+  <div style="display: inline-block; border: 1px solid black">
+    <fura-base-command-button
+      text="Send Mail"
+      icon="Mail"
+      expand-icon="ChevronDown"
+      @click="onClick"
+      @click-expand="onClickExpand"
+      @mousestop="onMousestop"
+    />
+  </div>
+</template>

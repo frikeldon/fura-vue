@@ -1,0 +1,70 @@
+<script>
+  export default {
+    data() {
+      return {
+        current: 1,
+        total: 150,
+        finalButtons: true,
+        editable: true,
+        disablePrev: true,
+        disableNext: false,
+        pageSize: 30,
+      };
+    },
+    computed: {
+      endRange() {
+        const { current, total, pageSize } = this;
+        return Math.min(current + (pageSize - 1), total);
+      },
+      currentText() {
+        const { current, endRange } = this;
+        return `${current}-${endRange}`;
+      },
+    },
+    methods: {
+      onPrev() {
+        const value = Math.max(this.current - this.pageSize, 1);
+        if (value >= 1) {
+          this.current = value;
+        }
+      },
+      onNext() {
+        const value = this.current + this.pageSize;
+        if (value <= this.total) {
+          this.current = value;
+        }
+      },
+      onStart() {
+        this.current = 1;
+      },
+      onEnd() {
+        this.current = Math.max(this.total - (this.pageSize - 1), 1);
+      },
+      onGoTo(page) {
+        const value = Number(page);
+        if (!isNaN(value) && value >= 1 && value <= this.total) {
+          this.current = value;
+        }
+      },
+    },
+  };
+</script>
+<template>
+  <fura-spin-nav
+    :current="currentText"
+    :current-focus="current"
+    :total="total"
+    :endButton="finalButtons"
+    :startButton="finalButtons"
+    :editable="editable"
+    :disablePrev="current <= 1"
+    :disableNext="current + (pageSize - 1) >= total"
+    :disableStart="current <= 1"
+    :disableEnd="current + (pageSize - 1) >= total"
+    @prev="onPrev"
+    @next="onNext"
+    @start="onStart"
+    @end="onEnd"
+    @go-to="onGoTo"
+  />
+</template>

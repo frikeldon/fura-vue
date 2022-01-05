@@ -1,0 +1,42 @@
+<script>
+  export default {
+    data() {
+      return {
+        options: [
+          { type: "header", text: "Fruits" },
+          { text: "Apple", value: "apple" },
+          { text: "Banana", value: "banana" },
+          { text: "Mango", value: "mango" },
+          { text: "Orange", value: "orange", disabled: true },
+          { text: "Passionfruit", value: "passionfruit" },
+          { text: "Grape", value: "grape" },
+          { type: "divider" },
+          { type: "header", text: "Vegetables" },
+          { text: "Broccoli", value: "broccoli" },
+          { text: "Carrot", value: "carrot" },
+          { text: "Lettuce", value: "lettuce" },
+        ],
+        values: [],
+      };
+    },
+    methods: {
+      onSelect(index) {
+        const value = this.options[index].value;
+        const valueIndex = this.values.indexOf(value);
+        if (valueIndex > -1) {
+          this.values.splice(valueIndex, 1);
+        } else {
+          this.values.push(value);
+        }
+      },
+    },
+  };
+</script>
+<template>
+  <fura-base-select
+    multiple
+    :options="options"
+    :value="values"
+    @select="onSelect"
+  />
+</template>

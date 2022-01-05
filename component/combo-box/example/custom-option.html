@@ -1,0 +1,82 @@
+<script>
+  export default {
+    data() {
+      return {
+        label: "ComboBox",
+        description: "ComboBox field without behavior",
+        invalid: false,
+        errorMessage: null,
+        disabled: false,
+        required: false,
+        borderless: false,
+        underlined: false,
+        value: null,
+        placeholder: "Pick an element",
+        readonly: false,
+        multiple: false,
+        allowFreeform: false,
+        autoComplete: false,
+        accentInsensitive: false,
+        immediateScroll: false,
+        maxSelectedOptions: -1,
+        options: [
+          { type: "header", text: "Fruits" },
+          { text: "Apple", value: "apple" },
+          { text: "Banana", value: "banana" },
+          { text: "Mango", value: "mango" },
+          { text: "Orange", value: "orange", disabled: true },
+          { text: "Passionfruit", value: "passionfruit" },
+          { text: "Grape", value: "grape" },
+          { type: "divider" },
+          { type: "header", text: "Vegetables" },
+          { text: "Broccoli", value: "broccoli" },
+          { text: "Carrot", value: "carrot" },
+          { text: "Lettuce", value: "lettuce" },
+        ],
+      };
+    },
+  };
+</script>
+<template>
+  <fura-combo-box
+    :label="label"
+    :description="description"
+    :invalid="invalid"
+    :error-message="errorMessage"
+    :disabled="disabled"
+    :required="required"
+    :borderless="borderless"
+    :underlined="underlined"
+    :placeholder="placeholder"
+    :readonly="readonly"
+    :multiple="multiple"
+    :allow-freeform="allowFreeform"
+    :auto-complete="autoComplete"
+    :accent-insensitive="accentInsensitive"
+    :immediate-scroll="immediateScroll"
+    :max-selected-options="maxSelectedOptions"
+    :options="options"
+    v-model="value"
+  >
+    <template v-slot:default="slotProps">
+      <div>
+        <fura-button
+          style="width: 100%"
+          :primary="slotProps.selected"
+          :text="slotProps.option.text"
+          @click="slotProps.click()"
+        />
+      </div>
+    </template>
+    <template v-slot:header="slotProps">
+      <div>
+        <h3 v-text="slotProps.option.text" />
+      </div>
+    </template>
+    <template v-slot:divider>
+      <div>
+        <hr />
+      </div>
+    </template>
+  </fura-combo-box>
+</template>

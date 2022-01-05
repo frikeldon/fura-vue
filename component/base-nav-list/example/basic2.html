@@ -1,0 +1,83 @@
+<script>
+  export default {
+    data() {
+      return {
+        links: [
+          {
+            name: "Parent link 1",
+            href: "http://example.com",
+            target: "_blank",
+            links: [
+              {
+                name: "Child link 1",
+                href: "http://example.com",
+                target: "_blank",
+              },
+              {
+                name: "Child link 2",
+                href: "http://example.com",
+                target: "_blank",
+                links: [
+                  {
+                    name: "3rd level link 1",
+                    href: "http://example.com",
+                    target: "_blank",
+                    links: [
+                      {
+                        name: "4rd level link 1",
+                        href: "http://example.com",
+                        target: "_blank",
+                      },
+                      {
+                        name: "4rd level link 2",
+                        href: "http://example.com",
+                        target: "_blank",
+                      },
+                    ],
+                  },
+                  {
+                    name: "3rd level link 2",
+                    href: "http://example.com",
+                    target: "_blank",
+                  },
+                ],
+              },
+              {
+                name: "Child link 3",
+                href: "http://example.com",
+                target: "_blank",
+              },
+            ],
+          },
+          {
+            name: "Parent link 2",
+            href: "http://example.com",
+            target: "_blank",
+            links: [
+              {
+                name: "Child link 4",
+                href: "http://example.com",
+                target: "_blank",
+              },
+            ],
+          },
+        ],
+      };
+    },
+    methods: {
+      onExpand(event) {
+        let parent = this;
+        let currentPath = event.path;
+        while (currentPath) {
+          parent = parent.links[currentPath.index];
+          currentPath = currentPath.path;
+        }
+        parent.links[event.index].expanded =
+          !parent.links[event.index].expanded;
+      },
+    },
+  };
+</script>
+<template>
+  <fura-base-nav-list :links="links" @expand="onExpand" />
+</template>

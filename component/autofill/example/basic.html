@@ -1,0 +1,41 @@
+<script>
+  export default {
+    data() {
+      return {
+        value: "",
+        readonly: false,
+        disabled: false,
+        autofill: true,
+        accentInsensitive: false,
+        suggestedValue: "photography",
+      };
+    },
+    computed: {
+      placeholder() {
+        return `Sugested value: "${this.suggestedValue || ""}"`;
+      },
+      label() {
+        return `Current value: ${this.value || ""}`;
+      },
+    },
+  };
+</script>
+<template>
+  <div>
+    <div>
+      <fura-autofill
+        style="width: 100%"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :disabled="disabled"
+        :autofill="autofill"
+        :accent-insensitive="accentInsensitive"
+        :suggested-value="suggestedValue"
+        v-model="value"
+      />
+    </div>
+    <div>
+      <fura-label v-text="label" />
+    </div>
+  </div>
+</template>

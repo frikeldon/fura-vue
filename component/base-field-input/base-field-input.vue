@@ -75,26 +75,3 @@ export default {
 </template>
 
 <style lang="less" scoped src="./base-field-input.less"></style>
-
-<docs>
-<fura-base-field-input
-  label="Base input field"
-  description="Wrapper of a form field."
-  :invalid="false"
-  :error-message="null"
-  :disabled="false"
-  :required="false"
-  :borderless="false"
-  :underlined="false"
->
-  <input
-    type="text"
-    style="
-      flex: 1 1 0px;
-      border: 0;
-      background-color: rgba(113, 175, 229, 0.4);
-      outline: 0;
-    "
-  />
-</fura-base-field-input>
-</docs>

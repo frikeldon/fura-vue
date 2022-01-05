@@ -140,37 +140,3 @@ export default {
 </template>
 
 <style lang="less" scoped src="./base-calendar-days.less"></style>
-
-<docs>
-<script>
-  export default {
-    data () {
-      const today = new Date()
-      return {
-        currentMonth: today.getMonth(),
-        currentYear: today.getFullYear(),
-        days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-        firstDayOfTheWeek: 0,
-        today,
-        value: null
-      }
-    },
-    methods: {
-      onSelect (value) {
-        this.value = value
-      }
-    }
-  }
-</script>
-<template>
-  <fura-base-calendar-days
-    :current-month="currentMonth"
-    :current-year="currentYear"
-    :days="days"
-    :first-day-of-the-week="firstDayOfTheWeek"
-    :today="today"
-    :value="value"
-    @select="onSelect"
-  />
-</template>
-</docs>

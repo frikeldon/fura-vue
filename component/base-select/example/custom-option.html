@@ -1,0 +1,52 @@
+<script>
+  export default {
+    data() {
+      return {
+        options: [
+          { type: "header", text: "Fruits" },
+          { text: "Apple", value: "apple" },
+          { text: "Banana", value: "banana" },
+          { text: "Mango", value: "mango" },
+          { text: "Orange", value: "orange", disabled: true },
+          { text: "Passionfruit", value: "passionfruit" },
+          { text: "Grape", value: "grape" },
+          { type: "divider" },
+          { type: "header", text: "Vegetables" },
+          { text: "Broccoli", value: "broccoli" },
+          { text: "Carrot", value: "carrot" },
+          { text: "Lettuce", value: "lettuce" },
+        ],
+        value: null,
+      };
+    },
+    methods: {
+      onSelect(index) {
+        this.value = this.options[index].value;
+      },
+    },
+  };
+</script>
+<template>
+  <fura-base-select :options="options" :value="value" @select="onSelect">
+    <template v-slot:default="slotProps">
+      <div>
+        <fura-button
+          style="width: 100%"
+          :primary="slotProps.selected"
+          :text="slotProps.option.text"
+          @click="slotProps.click()"
+        />
+      </div>
+    </template>
+    <template v-slot:header="slotProps">
+      <div>
+        <h3 v-text="slotProps.option.text" />
+      </div>
+    </template>
+    <template v-slot:divider>
+      <div>
+        <hr />
+      </div>
+    </template>
+  </fura-base-select>
+</template>

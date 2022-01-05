@@ -137,24 +137,3 @@ export default {
     @click-go-today="handleClickGoToday"
   />
 </template>
-
-<docs>
-<script>
-  export default {
-    data () {
-      return {
-        modelValue: null,
-        today: new Date(),
-        goToday: 'Go today'
-      }
-    }
-  }
-</script>
-<template>
-  <fura-calendar
-    :today="today"
-    :go-today="goToday"
-    v-model="modelValue"
-  />
-</template>
-</docs>

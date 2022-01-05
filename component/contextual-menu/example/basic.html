@@ -1,0 +1,65 @@
+<script>
+  export default {
+    data() {
+      return {
+        showMenu: false,
+        mousestopDelay: 800,
+        horizontalPosition: "after",
+        verticalPosition: "top",
+        items: [
+          {
+            value: "newItem",
+            text: "New",
+            icon: "Add",
+          },
+          {
+            value: "editItem",
+            text: "Edit",
+            icon: "Edit",
+          },
+          {
+            value: "deleteItem",
+            text: "Delete",
+            icon: "Delete",
+          },
+        ],
+        horizontalOptions: [
+          { text: "before", value: "before" },
+          { text: "left", value: "left" },
+          { text: "hCenter", value: "hCenter" },
+          { text: "right", value: "right" },
+          { text: "after", value: "after" },
+        ],
+        verticalOptions: [
+          { text: "above", value: "above" },
+          { text: "top", value: "top" },
+          { text: "vCenter", value: "vCenter" },
+          { text: "bottom", value: "bottom" },
+          { text: "below", value: "below" },
+        ],
+      };
+    },
+  };
+</script>
+<template>
+  <div>
+    <fura-contextual-menu
+      :show-menu="showMenu"
+      :items="items"
+      :horizontal-position="horizontalPosition"
+      :vertical-position="verticalPosition"
+    >
+      <fura-button type="icon" icon="More" @click="showMenu = !showMenu" />
+    </fura-contextual-menu>
+    <fura-dropdown
+      label="Horizontal position"
+      :options="horizontalOptions"
+      v-model="horizontalPosition"
+    />
+    <fura-dropdown
+      label="Vertical position"
+      :options="verticalOptions"
+      v-model="verticalPosition"
+    />
+  </div>
+</template>

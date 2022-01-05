@@ -1,0 +1,58 @@
+<script>
+  export default {
+    data() {
+      return {
+        current: 1,
+        total: 15,
+        finalButtons: true,
+        editable: true,
+        disablePrev: true,
+        disableNext: false,
+      };
+    },
+    methods: {
+      onPrev() {
+        const value = this.current - 1;
+        if (value >= 1) {
+          this.current = value;
+        }
+      },
+      onNext() {
+        const value = this.current + 1;
+        if (value <= this.total) {
+          this.current = value;
+        }
+      },
+      onStart() {
+        this.current = 1;
+      },
+      onEnd() {
+        this.current = this.total;
+      },
+      onGoTo(page) {
+        const value = Number(page);
+        if (!isNaN(value) && value >= 1 && value <= this.total) {
+          this.current = value;
+        }
+      },
+    },
+  };
+</script>
+<template>
+  <fura-spin-nav
+    :current="current"
+    :total="total"
+    :endButton="finalButtons"
+    :startButton="finalButtons"
+    :editable="editable"
+    :disablePrev="current <= 1"
+    :disableNext="current >= total"
+    :disableStart="current <= 1"
+    :disableEnd="current >= total"
+    @prev="onPrev"
+    @next="onNext"
+    @start="onStart"
+    @end="onEnd"
+    @go-to="onGoTo"
+  />
+</template>

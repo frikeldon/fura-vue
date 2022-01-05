@@ -1,0 +1,33 @@
+<script>
+  export default {
+    data() {
+      return {
+        columns: [
+          { title: "Name", key: "name", align: "left", width: "125px" },
+          { title: "Color", key: "color", align: "left" },
+        ],
+        groups: [
+          { name: 'Color: "red"', startIndex: 0, count: 2, level: 0 },
+          { name: 'Color: "green"', startIndex: 2, count: 0, level: 0 },
+          { name: 'Color: "blue"', startIndex: 2, count: 3, level: 0 },
+        ],
+        data: [
+          { name: "a", color: "red" },
+          { name: "b", color: "red" },
+          { name: "c", color: "blue" },
+          { name: "d", color: "blue" },
+          { name: "e", color: "blue" },
+        ],
+        selectedIndices: [],
+      };
+    },
+  };
+</script>
+<template>
+  <fura-details-list
+    :columns="columns"
+    :groups="groups"
+    :data="data"
+    v-model:selected-indices="selectedIndices"
+  />
+</template>

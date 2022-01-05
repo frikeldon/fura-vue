@@ -55,28 +55,3 @@ export default {
 </template>
 
 <style lang="less" scoped src="./base-calendar-years.less"></style>
-
-<docs>
-<script>
-  export default {
-    data () {
-      return {
-        firstYear: (new Date()).getFullYear(),
-        value: null
-      }
-    },
-    methods: {
-      onSelect (value) {
-        this.value = value
-      }
-    }
-  }
-</script>
-<template>
-  <fura-base-calendar-years
-    :first-year="firstYear"
-    :value="value"
-    @select="onSelect"
-  />
-</template>
-</docs>

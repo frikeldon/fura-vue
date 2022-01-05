@@ -1,0 +1,75 @@
+<script>
+  export default {
+    data() {
+      return {
+        columns: [{ title: "Name" }, { title: "Value" }],
+        groups: Array(4)
+          .fill(0)
+          .map((_, i) => i * 5)
+          .flatMap((i) =>
+            i % 10 === 0
+              ? [
+                  {
+                    name: `Group ${i.toString().padStart(3, "0")}`,
+                    startIndex: i,
+                    count: 0,
+                    level: 0,
+                  },
+                  {
+                    name: `Subgroup: ${i.toString().padStart(3, "0")}`,
+                    startIndex: i,
+                    count: 5,
+                    level: 1,
+                  },
+                ]
+              : [
+                  {
+                    name: `Subgroup: ${i.toString().padStart(3, "0")}`,
+                    startIndex: i,
+                    count: 5,
+                    level: 1,
+                  },
+                ]
+          ),
+        data: Array(20)
+          .fill(0)
+          .map((_, i) => [`Item ${i}`, i.toString()]),
+        selectedIndices: [],
+      };
+    },
+    methods: {
+      getBodyFooter(slotProps) {
+        if (slotProps) {
+          if (slotProps.columnIndex === 0) {
+            const groupData = slotProps.data.slice(
+              slotProps.group.startIndex,
+              slotProps.group.startIndex + slotProps.group.count
+            );
+            if (groupData.length > 1) {
+              const first = groupData[0][1];
+              const last = groupData[groupData.length - 1][1];
+              return `Items ${first}..${last}`;
+            }
+          } else if (slotProps.columnIndex === 1) {
+            return this.data.map((row) => row[1]).join(", ");
+          }
+        }
+        return "";
+      },
+    },
+  };
+</script>
+<template>
+  <fura-details-list
+    :columns="columns"
+    :groups="groups"
+    :data="data"
+    v-model:selected-indices="selectedIndices"
+  >
+    <template v-slot:bodyFooter="slotProps">
+      <span>
+        <b v-text="getBodyFooter(slotProps)"></b>
+      </span>
+    </template>
+  </fura-details-list>
+</template>

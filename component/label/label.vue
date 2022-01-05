@@ -23,29 +23,3 @@ export default {
 </template>
 
 <style lang="less" scoped src="./label.less"></style>
-
-<docs>
-<fura-label v-text="'I\'m a Label'" />
-</docs>
-
-<docs>
-<fura-label
-  required
-  v-text="'I\'m a required Label'"
-/>
-</docs>
-
-<docs>
-<fura-label
-  disabled
-  v-text="'I\'m a disabled Label'"
-/>
-</docs>
-
-<docs>
-<fura-label
-  required
-  disabled
-  v-text="'I\'m a required and disabled Label'"
-/>
-</docs>

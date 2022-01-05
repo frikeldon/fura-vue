@@ -1,0 +1,40 @@
+<script>
+  export default {
+    data() {
+      return {
+        label: "DatePicker",
+        description: "DatePicker field",
+        invalid: false,
+        errorMessage: null,
+        disabled: false,
+        required: false,
+        borderless: false,
+        underlined: false,
+        readonly: false,
+        placeholder: "Pick a date",
+        notWritable: false,
+        goToday: "Go to today",
+        today: new Date(),
+        modelValue: null,
+      };
+    },
+  };
+</script>
+<template>
+  <fura-date-picker
+    :label="label"
+    :description="description"
+    :invalid="invalid"
+    :error-message="errorMessage"
+    :disabled="disabled"
+    :required="required"
+    :borderless="borderless"
+    :underlined="underlined"
+    :readonly="readonly"
+    :placeholder="placeholder"
+    :not-writable="notWritable"
+    :go-today="goToday"
+    :today="today"
+    v-model="modelValue"
+  />
+</template>

@@ -1,0 +1,14 @@
+<script>
+  export default {
+    data() {
+      return {
+        modelValue: null,
+        today: new Date(),
+        goToday: "Go today",
+      };
+    },
+  };
+</script>
+<template>
+  <fura-calendar :today="today" :go-today="goToday" v-model="modelValue" />
+</template>

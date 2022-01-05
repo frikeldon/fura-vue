@@ -49,22 +49,3 @@ export default {
 </template>
 
 <style lang="less" scoped src="./check.less"></style>
-
-<docs>
-<script>
-  export default {
-    data () {
-      return {
-        checked: true,
-        disabled: false
-      }
-    }
-  }
-</script>
-<template>
-  <fura-check
-    :disabled="disabled"
-    v-model="checked"
-  />
-</template>
-</docs>

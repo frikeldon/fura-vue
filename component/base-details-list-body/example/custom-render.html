@@ -1,0 +1,37 @@
+<script>
+  export default {
+    data() {
+      return {
+        columns: [{}, {}],
+        data: [
+          ["1", "One"],
+          ["2", "Two"],
+          ["3", "Three"],
+        ],
+        startIndex: 0,
+        count: 3,
+        groupIndex: 0,
+        group: { name: "Group" },
+      };
+    },
+  };
+</script>
+<template>
+  <table>
+    <fura-base-details-list-body
+      :columns="columns"
+      :data="data"
+      :start-index="startIndex"
+      :count="count"
+      :group-index="groupIndex"
+      :group="group"
+    >
+      <template #header="slotProps">
+        <span v-text="slotProps && slotProps.data[0][slotProps.columnIndex]" />
+      </template>
+      <template #footer="slotProps">
+        <span v-text="slotProps && slotProps.data[2][slotProps.columnIndex]" />
+      </template>
+    </fura-base-details-list-body>
+  </table>
+</template>

@@ -1,0 +1,36 @@
+<script>
+  export default {
+    data() {
+      return {
+        modelValue: null,
+        large: false,
+        tabStyle: false,
+        tabs: [
+          { text: "Passed", value: "pass", color: "#b7ded2" },
+          { text: "Warning", value: "warning", color: "#f7c297" },
+          { text: "Error", value: "error", color: "#f6a6b2" },
+        ],
+      };
+    },
+  };
+</script>
+<template>
+  <fura-pivot
+    :large="large"
+    :tab-style="tabStyle"
+    :tabs="tabs"
+    v-model="modelValue"
+    v-slot="slotProps"
+  >
+    <span
+      :style="{
+          display: 'inline-block',
+          height: '100%',
+          padding: '0px 15px',
+          background: slotProps.tab.color
+        }"
+    >
+      <span v-text="slotProps.tab.text" />
+    </span>
+  </fura-pivot>
+</template>

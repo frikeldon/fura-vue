@@ -20,13 +20,3 @@ export default {
 </template>
 
 <style lang="less" scoped src="./icon.less"></style>
-
-<docs>
-<span style="font-size: 2em;">
-  This is an icon:
-  <fura-icon
-    name="Contact"
-    style="color: #0078d4;"
-  />.
-</span>
-</docs>

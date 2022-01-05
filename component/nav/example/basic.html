@@ -1,0 +1,178 @@
+<script>
+  export default {
+    data() {
+      return {
+        selected: null,
+        groups: [
+          {
+            expanded: true,
+            links: [
+              {
+                name: "Home",
+                key: "home",
+                links: [
+                  {
+                    name: "Activity",
+                    key: "key1",
+                    action() {
+                      alert("Activity");
+                    },
+                  },
+                  {
+                    name: "MSN",
+                    disabled: true,
+                    key: "key2",
+                  },
+                ],
+              },
+              {
+                name: "Documents",
+                key: "key3",
+              },
+              {
+                name: "Pages",
+                key: "key4",
+              },
+              {
+                name: "Notebook",
+                key: "key5",
+                disabled: true,
+              },
+              {
+                name: "Communication and Media",
+                key: "key6",
+              },
+              {
+                name: "News",
+                icon: "News",
+                key: "key7",
+              },
+            ],
+          },
+          {
+            name: "Basic components",
+            links: [
+              {
+                key: "ActivityItem",
+                name: "ActivityItem",
+              },
+              {
+                key: "Breadcrumb",
+                name: "Breadcrumb",
+              },
+              {
+                key: "Button",
+                name: "Button",
+              },
+            ],
+          },
+          {
+            name: "Extended components",
+            links: [
+              {
+                key: "ColorPicker",
+                name: "ColorPicker",
+              },
+              {
+                key: "ExtendedPeoplePicker",
+                name: "ExtendedPeoplePicker",
+              },
+              {
+                key: "GroupedList",
+                name: "GroupedList",
+              },
+            ],
+          },
+          {
+            name: "Utilities",
+            links: [
+              {
+                key: "FocusTrapZone",
+                name: "FocusTrapZone",
+              },
+              {
+                key: "FocusZone",
+                name: "FocusZone",
+              },
+              {
+                key: "MarqueeSelection",
+                name: "MarqueeSelection",
+              },
+            ],
+          },
+          {
+            name: "Nav with nested links",
+            links: [
+              {
+                name: "Parent link 1",
+                href: "http://example.com",
+                target: "_blank",
+                links: [
+                  {
+                    name: "Child link 1",
+                    href: "http://example.com",
+                    target: "_blank",
+                  },
+                  {
+                    name: "Child link 2",
+                    href: "http://example.com",
+                    target: "_blank",
+                    links: [
+                      {
+                        name: "3rd level link 1",
+                        href: "http://example.com",
+                        target: "_blank",
+                        links: [
+                          {
+                            name: "4rd level link 1",
+                            href: "http://example.com",
+                            target: "_blank",
+                          },
+                          {
+                            name: "4rd level link 2",
+                            href: "http://example.com",
+                            target: "_blank",
+                          },
+                        ],
+                      },
+                      {
+                        name: "3rd level link 2",
+                        href: "http://example.com",
+                        target: "_blank",
+                      },
+                    ],
+                  },
+                  {
+                    name: "Child link 3",
+                    href: "http://example.com",
+                    target: "_blank",
+                  },
+                ],
+              },
+              {
+                name: "Parent link 2",
+                href: "http://example.com",
+                target: "_blank",
+                links: [
+                  {
+                    name: "Child link 4",
+                    href: "http://example.com",
+                    target: "_blank",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      };
+    },
+    methods: {
+      onClick({ link }) {
+        this.selected = link.key;
+      },
+    },
+  };
+</script>
+<template>
+  <fura-nav :groups="groups" v-model="selected" @click="onClick" />
+</template>
