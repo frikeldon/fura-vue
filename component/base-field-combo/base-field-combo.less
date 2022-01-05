@@ -119,11 +119,13 @@
     .borderBottomCss(@color: @borderColor);
   }
 
-  &:not(.fura-disabled):not(.fura-open) .fura-elementWrapper:focus-within::after {
+  &:not(.fura-disabled):not(.fura-open)
+    .fura-elementWrapper:focus-within::after {
     .borderBottomCss(@color: @borderFocusColor, @width: 2px);
   }
 
-  &.fura-invalid:not(.fura-disabled):not(.fura-open) .fura-elementWrapper:focus-within::after {
+  &.fura-invalid:not(.fura-disabled):not(.fura-open)
+    .fura-elementWrapper:focus-within::after {
     border-color: @redDark;
   }
 
