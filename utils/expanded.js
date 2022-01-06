@@ -65,10 +65,10 @@ export function cloneStateWithExpands (childProp, items, expanded) {
 
 export function getExpandedIdsFromEvent (event) {
   const ids = []
-  let current = event.path
+  let current = event.parent
   while (current) {
     ids.push(current.index)
-    current = current.path
+    current = current.parent
   }
   ids.push(event.index)
   return ids

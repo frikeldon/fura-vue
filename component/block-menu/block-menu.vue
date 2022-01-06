@@ -14,7 +14,7 @@ export default {
   emits: [
     /**
      * Se genera cuando el usuario hace click en un elemento de menú.
-     * @property {object} linkInfo Índice del elemento de menú dentro de la coleccion (index), referencia a las propiedades del elemento de menú (item) y la ruta para llegar al elemento de menú si es necesarui (path).
+     * @property {object} linkInfo Índice del elemento de menú dentro de la coleccion (index), referencia a las propiedades del elemento de menú (item) y la ruta para llegar al elemento de menú si es necesarui (parent).
      */
     'click'
   ],

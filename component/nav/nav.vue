@@ -25,7 +25,7 @@ export default {
   emits: [
     /**
      * Se genera cuando el usuario hace click en un enalce.
-     * @property {object} linkInfo Índice del enlace dentro de la coleccion (index), referencia a las propiedades del enlace (link) y la ruta para llegar al enlace si es necesarui (path).
+     * @property {object} linkInfo Índice del enlace dentro de la coleccion (index), referencia a las propiedades del enlace (link) y la ruta para llegar al enlace si es necesarui (parent).
      */
     'click',
     /**
@@ -42,10 +42,10 @@ export default {
   methods: {
     handleExpand (event) {
       const indices = [event.groupIndex]
-      let current = event.path
+      let current = event.parent
       while (current) {
         indices.push(current.index)
-        current = current.path
+        current = current.parent
       }
       if (event.index !== undefined) {
         indices.push(event.index)

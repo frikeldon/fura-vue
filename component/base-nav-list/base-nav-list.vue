@@ -21,28 +21,28 @@ export default {
   emits: [
     /**
      * Se genera cuando el usuario hace click en el botón de expandir de un enlace.
-     * @property {object} linkInfo Índice del enlace dentro de la coleccion (index), referencia a las propiedades del enlace (link) y la ruta para llegar al enlace si es necesarui (path).
+     * @property {object} linkInfo Índice del enlace dentro de la coleccion (index), referencia a las propiedades del enlace (link) y la ruta para llegar al enlace si es necesarui (parent).
     */
     'expand',
     /**
      * Se genera cuando el usuario hace click en un enalce.
-     * @property {object} linkInfo Índice del enlace dentro de la coleccion (index), referencia a las propiedades del enlace (link) y la ruta para llegar al enlace si es necesarui (path).
+     * @property {object} linkInfo Índice del enlace dentro de la coleccion (index), referencia a las propiedades del enlace (link) y la ruta para llegar al enlace si es necesarui (parent).
      */
     'click'
   ],
   methods: {
     handleClickExpander (link, index) {
-      this.$emit('expand', { link, index, path: undefined })
+      this.$emit('expand', { link, index, parent: undefined })
     },
     handleExpandChild (link, index, event) {
-      event.path = { link, index, path: event.path }
+      event.parent = { link, index, parent: event.parent }
       this.$emit('expand', event)
     },
     handleClickLink (link, index) {
-      this.$emit('click', { link, index, path: undefined })
+      this.$emit('click', { link, index, parent: undefined })
     },
     handleClickChild (link, index, event) {
-      event.path = { link, index, path: event.path }
+      event.parent = { link, index, parent: event.parent }
       this.$emit('click', event)
     }
   }

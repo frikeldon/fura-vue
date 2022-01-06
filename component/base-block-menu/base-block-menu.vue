@@ -19,12 +19,12 @@ export default {
   emits: [
     /**
      * Se genera cuando el usuario hace click en el botón de expandir un submenú.
-     * @property {object} itemInfo Índice del elemento de menú dentro de la coleccion (index), referencia a las propiedades del elemento de menú (item) y la ruta para llegar al elemento de menú si es necesarui (path).
+     * @property {object} itemInfo Índice del elemento de menú dentro de la coleccion (index), referencia a las propiedades del elemento de menú (item) y la ruta para llegar al elemento de menú si es necesarui (parent).
     */
     'expand',
     /**
      * Se genera cuando el usuario hace click en un elemento de menú.
-     * @property {object} linkInfo Índice del elemento de menú dentro de la coleccion (index), referencia a las propiedades del elemento de menú (item) y la ruta para llegar al elemento de menú si es necesarui (path).
+     * @property {object} linkInfo Índice del elemento de menú dentro de la coleccion (index), referencia a las propiedades del elemento de menú (item) y la ruta para llegar al elemento de menú si es necesarui (parent).
      */
     'click'
   ],
@@ -45,17 +45,17 @@ export default {
       return Array.isArray(item.childs) && item.childs.length > 0
     },
     handleClick (item, index) {
-      this.$emit('click', { item, index, path: undefined })
+      this.$emit('click', { item, index, parent: undefined })
     },
     handleExpand (item, index) {
-      this.$emit('expand', { item, index, path: undefined })
+      this.$emit('expand', { item, index, parent: undefined })
     },
     handleChildClick (item, index, event) {
-      event.path = { item, index, path: event.path }
+      event.parent = { item, index, parent: event.parent }
       this.$emit('click', event)
     },
     handleChildExpand (item, index, event) {
-      event.path = { item, index, path: event.path }
+      event.parent = { item, index, parent: event.parent }
       this.$emit('expand', event)
     }
   }

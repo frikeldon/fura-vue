@@ -23,12 +23,12 @@ export default {
   emits: [
     /**
      * Se genera cuando el usuario hace click en el botón de expandir de un enlace.
-     * @property {object} linkInfo Índice del enlace dentro de la coleccion (index), referencia a las propiedades del enlace (link) y la ruta para llegar al enlace si es necesarui (path).
+     * @property {object} linkInfo Índice del enlace dentro de la coleccion (index), referencia a las propiedades del enlace (link) y la ruta para llegar al enlace si es necesarui (parent).
     */
     'expand',
     /**
      * Se genera cuando el usuario hace click en un enalce.
-     * @property {object} linkInfo Índice del enlace dentro de la coleccion (index), referencia a las propiedades del enlace (link) y la ruta para llegar al enlace si es necesarui (path).
+     * @property {object} linkInfo Índice del enlace dentro de la coleccion (index), referencia a las propiedades del enlace (link) y la ruta para llegar al enlace si es necesarui (parent).
      */
     'click'
   ]

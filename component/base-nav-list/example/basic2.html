@@ -67,10 +67,10 @@
     methods: {
       onExpand(event) {
         let parent = this;
-        let currentPath = event.path;
-        while (currentPath) {
-          parent = parent.links[currentPath.index];
-          currentPath = currentPath.path;
+        let current = event.parent;
+        while (current) {
+          parent = parent.links[current.index];
+          current = current.parent;
         }
         parent.links[event.index].expanded =
           !parent.links[event.index].expanded;
