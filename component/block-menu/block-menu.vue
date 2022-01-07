@@ -1,6 +1,18 @@
 <script>
 import FuraBaseBlockMenu from '../base-block-menu'
-import { getExpandedIds, cloneStateWithExpands, getExpandedIdsFromEvent } from '../../utils/expanded.js'
+
+export function getExpandedPath (items) {
+  const expanded = []
+  let current = items
+  while (Array.isArray(current)) {
+    const index = current.findIndex(item => item.expanded)
+    if (index > -1) {
+      expanded.push(index)
+    }
+    current = current[index]?.childs
+  }
+  return expanded
+}
 
 export default {
   name: 'FuraBlockMenu',
@@ -20,12 +32,7 @@ export default {
   ],
   data () {
     return {
-      expanded: getExpandedIds('childs', this.items)
-    }
-  },
-  computed: {
-    currentStateItems () {
-      return cloneStateWithExpands('childs', this.items, this.expanded)
+      expandedPath: getExpandedPath(this.items)
     }
   },
   methods: {
@@ -34,7 +41,7 @@ export default {
      * @public
      */
     collapseAll () {
-      this.expanded = []
+      this.expandedPath = []
     },
     handleClick (event) {
       if (typeof event.item.action === 'function') {
@@ -44,17 +51,25 @@ export default {
       this.collapseAll()
     },
     handleExpand (event) {
-      const ids = getExpandedIdsFromEvent(event)
-      if (ids.join() === this.expanded.join()) {
-        this.expanded = this.expanded.slice(0, -1)
+      const path = []
+      for (let current = event; current; current = current.parent) {
+        path.unshift(current.index)
+      }
+
+      const coincident = path.every(
+        (item, index) => item === this.expandedPath[index]
+      )
+
+      if (coincident) {
+        this.expandedPath = path.slice(0, -1)
       } else {
-        this.expanded = ids
+        this.expandedPath = path
       }
     }
   },
   watch: {
     items (value) {
-      this.expanded = getExpandedIds('childs', value)
+      this.expandedPath = getExpandedPath(value)
     }
   }
 }
@@ -62,7 +77,8 @@ export default {
 
 <template>
   <FuraBaseBlockMenu
-    :items="currentStateItems"
+    :items="items"
+    :item-expanded-path="expandedPath"
     :mousestop-delay="mousestopDelay"
     @click="handleClick"
     @expand="handleExpand"

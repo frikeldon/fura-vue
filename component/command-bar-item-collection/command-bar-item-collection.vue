@@ -13,6 +13,8 @@ export default {
   props: {
     /** Elementos de la barra de comandos. */
     items: { type: Array, default: () => [] },
+    /** Indices de los submenus expandidos */
+    itemExpandedPath: { type: Array, default: null },
     /** Tiempo en milisegundos que el mouse debe estar sobre el botón para expandir el menú secundario. */
     mousestopDelay: { type: Number, default: 800 }
   },
@@ -151,8 +153,9 @@ export default {
         />
       </slot>
       <FuraBaseBlockMenu
-        v-if="item.expanded && checkItemHasChilds(item)"
+        v-if="index === itemExpandedPath?.[0]"
         :items="item.childs"
+        :item-expanded-path="itemExpandedPath?.slice?.(1)"
         :mousestop-delay="mousestopDelay"
         @click="handleChildClick(item, index, $event)"
         @expand="handleChildExpand(item, index, $event)"

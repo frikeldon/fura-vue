@@ -94,13 +94,10 @@
                 text: "Rename...",
                 icon: "Edit",
               },
-              {
-                text: "Expand menu",
-                action: () => this.expandItems(),
-              },
             ],
           },
         ],
+        itemExpandedPath: [],
       };
     },
     methods: {
@@ -109,14 +106,21 @@
           item.action();
         }
       },
-      onExpand({ item }) {
-        item.expanded = !item.expanded;
-      },
-      expandItems() {
-        const items = Array.from(this.items);
-        items[0].expanded = true;
-        items[0].childs[3].expanded = true;
-        this.items = items;
+      onExpand(event) {
+        const path = [];
+        for (let current = event; current; current = current.parent) {
+          path.unshift(current.index);
+        }
+
+        const coincident = path.every(
+          (item, index) => item === this.itemExpandedPath[index]
+        );
+
+        if (coincident) {
+          this.itemExpandedPath = path.slice(0, -1);
+        } else {
+          this.itemExpandedPath = path;
+        }
       },
     },
   };
@@ -125,6 +129,7 @@
   <fura-command-bar-item-collection
     :mousestop-delay="mousestopDelay"
     :items="items"
+    :item-expanded-path="itemExpandedPath"
     @click="onClick"
     @expand="onExpand"
   />

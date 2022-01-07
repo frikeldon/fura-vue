@@ -95,14 +95,28 @@
             download: "hello-world.txt",
           },
         ],
+        itemExpandedPath: [],
       };
     },
     methods: {
       onClick({ item }) {
         item.action && item.action();
       },
-      onExpand({ item }) {
-        item.expanded = !item.expanded;
+      onExpand(event) {
+        const path = [];
+        for (let current = event; current; current = current.parent) {
+          path.unshift(current.index);
+        }
+
+        const coincident = path.every(
+          (item, index) => item === this.itemExpandedPath[index]
+        );
+
+        if (coincident) {
+          this.itemExpandedPath = path.slice(0, -1);
+        } else {
+          this.itemExpandedPath = path;
+        }
       },
     },
   };
@@ -111,6 +125,7 @@
   <fura-base-block-menu
     :mousestop-delay="mousestopDelay"
     :items="items"
+    :item-expanded-path="itemExpandedPath"
     @click="onClick"
     @expand="onExpand"
   >

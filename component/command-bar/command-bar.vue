@@ -1,7 +1,6 @@
 <script>
 import FuraCommandBarItemCollection from '../command-bar-item-collection'
 import debounce from '../../utils/debounce'
-import { cloneStateWithExpands, getExpandedIdsFromEvent } from '../../utils/expanded.js'
 
 export default {
   name: 'FuraCommandBar',
@@ -25,8 +24,8 @@ export default {
   data () {
     return {
       overflowIndex: this.items.length,
-      expanded: [],
-      expandedSide: 'none'
+      expandedSide: 'none',
+      expandedPath: []
     }
   },
   computed: {
@@ -45,14 +44,6 @@ export default {
         })
       }
       return currentItems
-    },
-    currentStateItems () {
-      const { currentItems, expanded, expandedSide } = this
-      return cloneStateWithExpands('childs', currentItems, expandedSide === 'near' ? expanded : [])
-    },
-    currentStateFarItems () {
-      const { farItems, expanded, expandedSide } = this
-      return cloneStateWithExpands('childs', farItems, expandedSide === 'far' ? expanded : [])
     },
     isMoreItemVisible () {
       const { currentItems } = this
@@ -114,8 +105,8 @@ export default {
      * @public
      */
     collapseAll () {
-      this.expanded = []
       this.expandedSide = 'none'
+      this.expandedPath = []
     },
     handleClick (bar, event) {
       if (typeof event.item.action === 'function') {
@@ -126,13 +117,29 @@ export default {
       }
     },
     handleExpand (bar, event) {
-      const ids = getExpandedIdsFromEvent(event)
-      if (ids.join() === this.expanded.join()) {
-        this.expanded = this.expanded.slice(0, -1)
-      } else {
-        this.expanded = ids
+      const path = []
+      for (let current = event; current; current = current.parent) {
+        path.unshift(current.index)
       }
-      this.expandedSide = this.expanded.length > 0 ? bar : 'none'
+
+      if (this.expandedSide !== bar) {
+        this.expandedSide = bar
+        this.expandedPath = path
+      } else {
+        const coincident = path.every(
+          (item, index) => item === this.expandedPath[index]
+        )
+
+        if (coincident) {
+          this.expandedPath = path.slice(0, -1)
+        } else {
+          this.expandedPath = path
+        }
+
+        if (this.expandedPath.length === 0) {
+          this.expandedSide = 'none'
+        }
+      }
     }
   },
   watch: {
@@ -166,7 +173,8 @@ export default {
     <FuraCommandBarItemCollection
       ref="near"
       class="fura-near"
-      :items="currentStateItems"
+      :items="currentItems"
+      :item-expanded-path="expandedSide === 'near' && expandedPath || []"
       :mousestop-delay="mousestopDelay"
       @click="handleClick('near', $event)"
       @expand="handleExpand('near', $event)"
@@ -174,7 +182,8 @@ export default {
     <FuraCommandBarItemCollection
       ref="far"
       class="fura-far"
-      :items="currentStateFarItems"
+      :items="farItems"
+      :item-expanded-path="expandedSide === 'far' && expandedPath || []"
       :mousestop-delay="mousestopDelay"
       @click="handleClick('far', $event)"
       @expand="handleExpand('far', $event)"
