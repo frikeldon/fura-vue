@@ -108,20 +108,25 @@ export default {
       this.expandedSide = 'none'
       this.expandedPath = []
     },
-    handleClick (bar, event) {
-      if (typeof event.item.action === 'function') {
-        event.item.action.call(null)
-        this.collapseAll()
-      } else {
-        this.handleExpand(bar, event)
-      }
-    },
-    handleExpand (bar, event) {
-      const path = []
-      for (let current = event; current; current = current.parent) {
-        path.unshift(current.index)
+    handleClick (bar, path) {
+      let item = { childs: null }
+      if (bar === 'near') item.childs = this.items
+      if (bar === 'far') item.childs = this.farItems
+
+      for (let index = 0; index < path.length; index += 1) {
+        if (item.childs) {
+          item = item.childs[path[index]]
+        }
       }
 
+      if (typeof item?.action === 'function') {
+        item.action.call(null)
+        this.collapseAll()
+      } else {
+        this.handleExpand(bar, path)
+      }
+    },
+    handleExpand (bar, path) {
       if (this.expandedSide !== bar) {
         this.expandedSide = bar
         this.expandedPath = path

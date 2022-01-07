@@ -99,18 +99,21 @@
       };
     },
     methods: {
-      onClick({ item }) {
-        item.action && item.action();
-      },
-      onExpand(event) {
-        const path = [];
-        for (let current = event; current; current = current.parent) {
-          path.unshift(current.index);
+      onClick(path) {
+        let item = { childs: this.items };
+        for (let index = 0; index < path.length; index += 1) {
+          if (item.childs) {
+            item = item.childs[path[index]];
+          }
         }
-
+        if (item && item.action) {
+          item.action();
+        }
+      },
+      onExpand(path) {
         const coincident = path.every(
-            (item, index) => item === this.itemExpandedPath[index]
-          );
+          (item, index) => item === this.itemExpandedPath[index]
+        );
 
         if (coincident) {
           this.itemExpandedPath = path.slice(0, -1);

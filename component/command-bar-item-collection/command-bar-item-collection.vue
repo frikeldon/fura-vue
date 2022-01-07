@@ -21,12 +21,12 @@ export default {
   emits: [
     /**
      * Se genera cuando el usuario hace click en el botón de expandir un submenú.
-     * @property {object} itemInfo Índice del elemento de menú dentro de la coleccion (index), referencia a las propiedades del elemento de menú (item) y la ruta para llegar al elemento de menú si es necesarui (parent).
+     * @property {Array} path Indices de los elementos para llegar al elemento que lanza el evento
     */
     'expand',
     /**
      * Se genera cuando el usuario hace click en un elemento de menú.
-     * @property {object} linkInfo Índice del elemento de menú dentro de la coleccion (index), referencia a las propiedades del elemento de menú (item) y la ruta para llegar al elemento de menú si es necesarui (parent).
+     * @property {Array} path Indices de los elementos para llegar al elemento que lanza el evento
      */
     'click'
   ],
@@ -63,19 +63,17 @@ export default {
     checkItemHasChilds (item) {
       return Array.isArray(item.childs) && item.childs.length > 0
     },
-    handleClick (item, index) {
-      this.$emit('click', { item, index, parent: undefined })
+    handleClick (index) {
+      this.$emit('click', [index])
     },
-    handleExpand (item, index) {
-      this.$emit('expand', { item, index, parent: undefined })
+    handleExpand (index) {
+      this.$emit('expand', [index])
     },
-    handleChildClick (item, index, event) {
-      event.parent = { item, index, parent: event.parent }
-      this.$emit('click', event)
+    handleChildClick (index, event) {
+      this.$emit('click', [index, ...event])
     },
-    handleChildExpand (item, index, event) {
-      event.parent = { item, index, parent: event.parent }
-      this.$emit('expand', event)
+    handleChildExpand (index, event) {
+      this.$emit('expand', [index, ...event])
     }
   },
   beforeUpdate () {
@@ -102,8 +100,8 @@ export default {
       <slot
         :item="item"
         :index="index"
-        :click="() => handleClick(item, index)"
-        :expand="() => handleExpand(item, index)"
+        :click="() => handleClick(index)"
+        :expand="() => handleExpand(index)"
       >
         <FuraBaseCommandButton
           v-if="item.type === 'more'"
@@ -113,8 +111,8 @@ export default {
           :mousestop-delay="mousestopDelay"
           :disabled="item.disabled"
           :checked="item.checked"
-          @click="handleExpand(item, index)"
-          @mousestop="handleExpand(item, index)"
+          @click="handleExpand(index)"
+          @mousestop="handleExpand(index)"
         />
         <FuraBaseSplitButton
           v-else-if="item.type === 'split'"
@@ -129,10 +127,10 @@ export default {
           :target="item.target"
           :title="item.title"
           :download="item.download"
-          @click="handleClick(item, index)"
-          @click-expand="handleExpand(item, index)"
-          @mousestop="handleExpand(item, index)"
-          @mousestop-expand="handleExpand(item, index)"
+          @click="handleClick(index)"
+          @click-expand="handleExpand(index)"
+          @mousestop="handleExpand(index)"
+          @mousestop-expand="handleExpand(index)"
         />
         <FuraBaseCommandButton
           v-else
@@ -147,9 +145,9 @@ export default {
           :target="item.target"
           :title="item.title"
           :download="item.download"
-          @click="handleClick(item, index)"
-          @click-expand="handleExpand(item, index)"
-          @mousestop="handleExpand(item, index)"
+          @click="handleClick(index)"
+          @click-expand="handleExpand(index)"
+          @mousestop="handleExpand(index)"
         />
       </slot>
       <FuraBaseBlockMenu
@@ -157,8 +155,8 @@ export default {
         :items="item.childs"
         :item-expanded-path="itemExpandedPath?.slice?.(1)"
         :mousestop-delay="mousestopDelay"
-        @click="handleChildClick(item, index, $event)"
-        @expand="handleChildExpand(item, index, $event)"
+        @click="handleChildClick(index, $event)"
+        @expand="handleChildExpand(index, $event)"
       >
         <template #submenu="slotProps">
           <!--

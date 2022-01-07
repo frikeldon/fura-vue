@@ -26,7 +26,7 @@ export default {
   emits: [
     /**
      * Se genera cuando el usuario hace click en un elemento de menú.
-     * @property {object} linkInfo Índice del elemento de menú dentro de la coleccion (index), referencia a las propiedades del elemento de menú (item) y la ruta para llegar al elemento de menú si es necesarui (parent).
+     * @property {Array} path Indices de los elementos para llegar al elemento que lanza el evento
      */
     'click'
   ],
@@ -43,19 +43,20 @@ export default {
     collapseAll () {
       this.expandedPath = []
     },
-    handleClick (event) {
-      if (typeof event.item.action === 'function') {
-        event.item.action.call(null)
+    handleClick (path) {
+      let item = { childs: this.items }
+      for (let index = 0; index < path.length; index += 1) {
+        if (item.childs) {
+          item = item.childs[path[index]]
+        }
       }
-      this.$emit('click', event)
+      if (typeof item?.action === 'function') {
+        item.action.call(null)
+      }
+      this.$emit('click', path)
       this.collapseAll()
     },
-    handleExpand (event) {
-      const path = []
-      for (let current = event; current; current = current.parent) {
-        path.unshift(current.index)
-      }
-
+    handleExpand (path) {
       const coincident = path.every(
         (item, index) => item === this.expandedPath[index]
       )
