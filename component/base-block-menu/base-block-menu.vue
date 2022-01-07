@@ -35,6 +35,25 @@ export default {
       return this.items
         .filter(item => !item.type || item.type === 'button')
         .some(button => button.icon)
+    },
+    itemExpandedIndex () {
+      const element = this.itemExpandedPath?.[0]
+      return typeof element === 'number'
+        ? element
+        : element?.index
+    },
+    itemExpandedPositionClasses () {
+      const element = this.itemExpandedPath?.[0]
+      const vertical = element?.vertical || 'top'
+      const horizontal = element?.horizontal || 'after'
+      const classes = []
+      if (['over', 'top', 'bottom', 'under'].includes(vertical)) {
+        classes.push(`fura-${vertical}`)
+      }
+      if (['before', 'left', 'right', 'after'].includes(horizontal)) {
+        classes.push(`fura-${horizontal}`)
+      }
+      return classes
     }
   },
   methods: {
@@ -156,8 +175,8 @@ export default {
             />
           </slot>
           <FuraBaseBlockMenu
-            v-if="this.itemExpandedPath?.[0] == index && checkItemHasChilds(item)"
-            class="fura-childBlockMenu"
+            v-if="itemExpandedIndex === index && checkItemHasChilds(item)"
+            :class="itemExpandedPositionClasses"
             :items="item.childs"
             :item-expanded-path="itemExpandedPath?.slice?.(1)"
             :mousestop-delay="mousestopDelay"
