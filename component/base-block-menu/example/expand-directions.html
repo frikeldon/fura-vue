@@ -1,0 +1,110 @@
+<script>
+  function getLevel(level) {
+    return [
+      { text: `Item 1 (${level})`, childs: undefined },
+      { text: `Item 2 (${level})`, childs: undefined },
+      { text: `Item 3 (${level})`, childs: undefined },
+      { text: `Item 4 (${level})`, childs: undefined },
+      { text: `Item 5 (${level})`, childs: undefined },
+    ];
+  }
+  export default {
+    data() {
+      const maxLevel = 50;
+      let current = getLevel(maxLevel);
+
+      for (let step = 0; step < 50; step += 1) {
+        const newItems = getLevel(maxLevel - step - 1);
+        for (let index = 0; index < newItems.length; index += 1) {
+          newItems[index].childs = current;
+        }
+        current = newItems;
+      }
+
+      return {
+        mousestopDelay: 800,
+        items: current,
+        expandedIndices: [],
+        breakDirections: [],
+      };
+    },
+    computed: {
+      expandedPath() {
+        const { expandedIndices, breakDirections } = this;
+        const path = [];
+
+        let vertical;
+        let horizontal;
+
+        for (let index = 0; index < expandedIndices.length; index += 1) {
+          const breakDirection = breakDirections.find(
+            (item) => item.position === index
+          );
+          if (breakDirection && breakDirection.vertical) {
+            vertical = breakDirection.vertical;
+          }
+          if (breakDirection && breakDirection.horizontal) {
+            horizontal = breakDirection.horizontal;
+          }
+          path.push({ index: expandedIndices[index], vertical, horizontal });
+        }
+
+        return path;
+      },
+    },
+    methods: {
+      onClick(path) {
+        let item = { childs: this.items };
+        for (let index = 0; index < path.length; index += 1) {
+          if (item.childs) {
+            item = item.childs[path[index]];
+          }
+        }
+        if (item && item.action) {
+          item.action();
+        }
+        this.expandedIndices = [];
+        this.breakDirections = [];
+      },
+      onExpand(path) {
+        const coincident = path.every(
+          (item, index) => item === this.expandedIndices[index]
+        );
+
+        this.expandedIndices = coincident ? path.slice(0, -1) : path;
+        this.breakDirections = this.breakDirections.filter(
+          (item) => item.position < this.expandedIndices.length
+        );
+      },
+      handleOverload({ data, path }) {
+        if (path.length > 0) {
+          const currentBreak = {
+            position: path.length - 1,
+            vertical: undefined,
+            horizontal: undefined,
+          };
+
+          if (data.top) currentBreak.vertical = "top";
+          if (data.right) currentBreak.horizontal = "before";
+          if (data.bottom) currentBreak.vertical = "bottom";
+          if (data.left) currentBreak.horizontal = "after";
+
+          this.breakDirections = this.breakDirections
+            .filter((item) => item.position < currentBreak.position)
+            .sort((a, b) => a.position - b.position)
+            .concat([currentBreak]);
+        }
+      },
+    },
+  };
+</script>
+<template>
+  <fura-base-block-menu
+    :mousestop-delay="mousestopDelay"
+    :items="items"
+    :item-expanded-path="expandedPath"
+    @click="onClick"
+    @expand="onExpand"
+    @overload="handleOverload"
+  />
+</template>

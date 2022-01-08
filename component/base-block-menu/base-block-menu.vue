@@ -28,7 +28,12 @@ export default {
      * Se genera cuando el usuario hace click en un elemento de menú.
      * @property {Array} path Indices de los elementos para llegar al elemento que lanza el evento
      */
-    'click'
+    'click',
+    /**
+     * Se genera cuando el elemento se renderiza fuera de los margenes visibles de la pagina
+     * @property {object} event Lados que sobresalen de la pantalla y path para llegar al elemento que sobresale.
+     */
+    'overload'
   ],
   computed: {
     iconSpace () {
@@ -71,11 +76,30 @@ export default {
     handleExpand (index) {
       this.$emit('expand', [index])
     },
+    handleOverload (data) {
+      this.$emit('overload', { data, path: [] })
+    },
     handleChildClick (index, event) {
       this.$emit('click', [index, ...event])
     },
     handleChildExpand (index, event) {
       this.$emit('expand', [index, ...event])
+    },
+    handleChildOverload (index, event) {
+      event.path = [index, ...event.path]
+      this.$emit('overload', event)
+    }
+  },
+  mounted () {
+    const clientRect = this.$el.getBoundingClientRect()
+
+    const top = clientRect.top < 0
+    const right = clientRect.right > window.innerWidth
+    const bottom = clientRect.bottom > window.innerHeight
+    const left = clientRect.left < 0
+
+    if (top || right || bottom || left) {
+      this.handleOverload({ top, right, bottom, left })
     }
   }
 }
@@ -180,6 +204,7 @@ export default {
             :mousestop-delay="mousestopDelay"
             @click="handleChildClick(index, $event)"
             @expand="handleChildExpand(index, $event)"
+            @overload="handleChildOverload(index, $event)"
           >
             <template #default="slotProps">
               <!--
