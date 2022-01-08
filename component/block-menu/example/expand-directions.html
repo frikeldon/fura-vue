@@ -1,0 +1,34 @@
+<script>
+  function getLevel(level) {
+    return [
+      { text: `Item 1 (${level})`, childs: undefined },
+      { text: `Item 2 (${level})`, childs: undefined },
+      { text: `Item 3 (${level})`, childs: undefined },
+      { text: `Item 4 (${level})`, childs: undefined },
+      { text: `Item 5 (${level})`, childs: undefined },
+    ];
+  }
+
+  export default {
+    data() {
+      const maxLevel = 50
+      let current = getLevel(maxLevel);
+
+      for (let step = 0; step < 50; step += 1) {
+        const newItems = getLevel(maxLevel - step - 1);
+        for (let index = 0; index < newItems.length; index += 1) {
+          newItems[index].childs = current;
+        }
+        current = newItems;
+      }
+
+      return {
+        mousestopDelay: 800,
+        items: current,
+      };
+    },
+  };
+</script>
+<template>
+  <fura-block-menu :mousestop-delay="mousestopDelay" :items="items" />
+</template>

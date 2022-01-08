@@ -32,7 +32,26 @@ export default {
   ],
   data () {
     return {
-      expandedPath: getExpandedPath(this.items)
+      expandedIndices: getExpandedPath(this.items),
+      breakDirections: []
+    }
+  },
+  computed: {
+    expandedPath () {
+      const { expandedIndices, breakDirections } = this
+      const path = []
+
+      let vertical
+      let horizontal
+
+      for (let index = 0; index < expandedIndices.length; index += 1) {
+        const breakDirection = breakDirections.find(item => item.position === index)
+        if (breakDirection?.vertical) vertical = breakDirection.vertical
+        if (breakDirection?.horizontal) horizontal = breakDirection.horizontal
+        path.push({ index: expandedIndices[index], vertical, horizontal })
+      }
+
+      return path
     }
   },
   methods: {
@@ -41,7 +60,8 @@ export default {
      * @public
      */
     collapseAll () {
-      this.expandedPath = []
+      this.expandedIndices = []
+      this.breakDirections = []
     },
     handleClick (path) {
       let item = { childs: this.items }
@@ -58,19 +78,39 @@ export default {
     },
     handleExpand (path) {
       const coincident = path.every(
-        (item, index) => item === this.expandedPath[index]
+        (item, index) => item === this.expandedIndices[index]
       )
 
-      if (coincident) {
-        this.expandedPath = path.slice(0, -1)
-      } else {
-        this.expandedPath = path
+      this.expandedIndices = coincident
+        ? path.slice(0, -1)
+        : path
+      this.breakDirections = this.breakDirections
+        .filter(item => item.position < this.expandedIndices.length)
+    },
+    handleOverload ({ data, path }) {
+      if (path.length > 0) {
+        const currentBreak = {
+          position: path.length - 1,
+          vertical: undefined,
+          horizontal: undefined
+        }
+
+        if (data.top) currentBreak.vertical = 'top'
+        if (data.right) currentBreak.horizontal = 'before'
+        if (data.bottom) currentBreak.vertical = 'bottom'
+        if (data.left) currentBreak.horizontal = 'after'
+
+        this.breakDirections = this.breakDirections
+          .filter(item => item.position < currentBreak.position)
+          .sort((a, b) => a.position - b.position)
+          .concat([currentBreak])
       }
     }
   },
   watch: {
     items (value) {
-      this.expandedPath = getExpandedPath(value)
+      this.expandedIndices = getExpandedPath(value)
+      this.breakDirections = []
     }
   }
 }
@@ -83,6 +123,7 @@ export default {
     :mousestop-delay="mousestopDelay"
     @click="handleClick"
     @expand="handleExpand"
+    @overload="handleOverload"
   >
     <template #default="slotProps">
       <!--
