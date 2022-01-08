@@ -28,7 +28,12 @@ export default {
      * Se genera cuando el usuario hace click en un elemento de menú.
      * @property {Array} path Indices de los elementos para llegar al elemento que lanza el evento
      */
-    'click'
+    'click',
+    /**
+     * Se genera cuando el elemento se renderiza fuera de los margenes visibles de la pagina
+     * @property {object} event Lados que sobresalen de la pantalla y path para llegar al elemento que sobresale.
+     */
+    'overload'
   ],
   data () {
     return {
@@ -41,6 +46,25 @@ export default {
     refItems () {
       return this.refElements.filter(item => item.el)
         .map(item => ({ ...item }))
+    },
+    itemExpandedIndex () {
+      const element = this.itemExpandedPath?.[0]
+      return typeof element === 'number'
+        ? element
+        : element?.index
+    },
+    itemExpandedPositionClasses () {
+      const element = this.itemExpandedPath?.[0]
+      const vertical = element?.vertical || 'bottom'
+      const horizontal = element?.horizontal || 'right'
+      const classes = []
+      if (['top', 'bottom'].includes(vertical)) {
+        classes.push(`fura-${vertical}Bar`)
+      }
+      if (['left', 'right'].includes(horizontal)) {
+        classes.push(`fura-${horizontal}Bar`)
+      }
+      return classes
     }
   },
   methods: {
@@ -74,6 +98,10 @@ export default {
     },
     handleChildExpand (index, event) {
       this.$emit('expand', [index, ...event])
+    },
+    handleChildOverload (index, event) {
+      event.path = [index, ...event.path]
+      this.$emit('overload', event)
     }
   },
   beforeUpdate () {
@@ -151,13 +179,15 @@ export default {
         />
       </slot>
       <FuraBaseBlockMenu
-        v-if="index === itemExpandedPath?.[0]"
+        v-if="index === itemExpandedIndex"
         class="fura-submenu"
+        :class="itemExpandedPositionClasses"
         :items="item.childs"
         :item-expanded-path="itemExpandedPath?.slice?.(1)"
         :mousestop-delay="mousestopDelay"
         @click="handleChildClick(index, $event)"
         @expand="handleChildExpand(index, $event)"
+        @overload="handleChildOverload(index, $event)"
       >
         <template #submenu="slotProps">
           <!--
