@@ -25,7 +25,8 @@ export default {
     return {
       overflowIndex: this.items.length,
       expandedSide: 'none',
-      expandedPath: []
+      expandedIndices: [],
+      breakDirections: []
     }
   },
   computed: {
@@ -48,6 +49,26 @@ export default {
     isMoreItemVisible () {
       const { currentItems } = this
       return currentItems[currentItems.length - 1]?.type === 'more'
+    },
+    expandedPath () {
+      const { expandedIndices, breakDirections } = this
+      const path = []
+
+      let vertical
+      let horizontal
+
+      for (let index = 0; index < expandedIndices.length; index += 1) {
+        if (index === 1) {
+          vertical = undefined
+          horizontal = undefined
+        }
+        const breakDirection = breakDirections.find(item => item.position === index)
+        if (breakDirection?.vertical) vertical = breakDirection.vertical
+        if (breakDirection?.horizontal) horizontal = breakDirection.horizontal
+        path.push({ index: expandedIndices[index], vertical, horizontal })
+      }
+
+      return path
     }
   },
   methods: {
@@ -106,7 +127,8 @@ export default {
      */
     collapseAll () {
       this.expandedSide = 'none'
-      this.expandedPath = []
+      this.expandedIndices = []
+      this.breakDirections = []
     },
     handleClick (bar, path) {
       let item = { childs: null }
@@ -129,22 +151,49 @@ export default {
     handleExpand (bar, path) {
       if (this.expandedSide !== bar) {
         this.expandedSide = bar
-        this.expandedPath = path
+        this.expandedIndices = path
       } else {
         const coincident = path.every(
-          (item, index) => item === this.expandedPath[index]
+          (item, index) => item === this.expandedIndices[index]
         )
 
         if (coincident) {
-          this.expandedPath = path.slice(0, -1)
+          this.expandedIndices = path.slice(0, -1)
         } else {
-          this.expandedPath = path
+          this.expandedIndices = path
         }
+        this.breakDirections = this.breakDirections
+          .filter(item => item.position < this.expandedIndices.length)
 
-        if (this.expandedPath.length === 0) {
+        if (this.expandedIndices.length === 0) {
           this.expandedSide = 'none'
+          this.breakDirections = []
         }
       }
+    },
+    handleOverload ({ data, path }) {
+      const currentBreak = {
+        position: path.length - 1,
+        vertical: undefined,
+        horizontal: undefined
+      }
+
+      if (path.length === 1) {
+        if (data.top) currentBreak.vertical = 'bottom'
+        if (data.right) currentBreak.horizontal = 'left'
+        if (data.bottom) currentBreak.vertical = 'top'
+        if (data.left) currentBreak.horizontal = 'right'
+      } else {
+        if (data.top) currentBreak.vertical = 'top'
+        if (data.right) currentBreak.horizontal = 'before'
+        if (data.bottom) currentBreak.vertical = 'bottom'
+        if (data.left) currentBreak.horizontal = 'after'
+      }
+
+      this.breakDirections = this.breakDirections
+        .filter(item => item.position < currentBreak.position)
+        .sort((a, b) => a.position - b.position)
+        .concat([currentBreak])
     }
   },
   watch: {
@@ -183,6 +232,7 @@ export default {
       :mousestop-delay="mousestopDelay"
       @click="handleClick('near', $event)"
       @expand="handleExpand('near', $event)"
+      @overload="handleOverload($event)"
     />
     <FuraCommandBarItemCollection
       ref="far"
@@ -192,6 +242,7 @@ export default {
       :mousestop-delay="mousestopDelay"
       @click="handleClick('far', $event)"
       @expand="handleExpand('far', $event)"
+      @overload="handleOverload($event)"
     />
   </div>
 </template>
