@@ -152,6 +152,7 @@ export default {
       </slot>
       <FuraBaseBlockMenu
         v-if="index === itemExpandedPath?.[0]"
+        class="fura-submenu"
         :items="item.childs"
         :item-expanded-path="itemExpandedPath?.slice?.(1)"
         :mousestop-delay="mousestopDelay"

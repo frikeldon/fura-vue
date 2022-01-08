@@ -53,10 +53,10 @@ export default {
       const horizontal = element?.horizontal || 'after'
       const classes = []
       if (['over', 'top', 'bottom', 'under'].includes(vertical)) {
-        classes.push(`fura-${vertical}`)
+        classes.push(`fura-${vertical}Menu`)
       }
       if (['before', 'left', 'right', 'after'].includes(horizontal)) {
-        classes.push(`fura-${horizontal}`)
+        classes.push(`fura-${horizontal}Menu`)
       }
       return classes
     }
@@ -198,6 +198,7 @@ export default {
           </slot>
           <FuraBaseBlockMenu
             v-if="itemExpandedIndex === index && checkItemHasChilds(item)"
+            class="fura-subBlockMenu"
             :class="itemExpandedPositionClasses"
             :items="item.childs"
             :item-expanded-path="itemExpandedPath?.slice?.(1)"
