@@ -1,10 +1,10 @@
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
 .fura-dialog {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 25.6px 57.6px 0px,
     rgba(0, 0, 0, 0.18) 0px 4.8px 14.4px 0px;
-  background-color: @white;
+  background-color: @varWhite;
   box-sizing: border-box;
   position: relative;
   text-align: left;
@@ -22,7 +22,7 @@
 
 .fura-title {
   .fontStyleXLarge();
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   margin: 0px;
   min-height: 20px;
   padding: 16px 46px 20px 24px;
@@ -30,10 +30,10 @@
 }
 
 .fura-largeHeader {
-  border-top: 4px solid @themePrimary;
+  border-top: 4px solid @varThemePrimary;
 
   .fura-title {
-    color: @themePrimary;
+    color: @varThemePrimary;
   }
 }
 
@@ -48,7 +48,7 @@
 
   > button {
     position: relative;
-    color: @neutralPrimary;
+    color: @varNeutralPrimary;
     flex: 0 0 auto;
     font-size: 14px;
     font-weight: 400;
@@ -68,8 +68,8 @@
 
     &:hover,
     &:active {
-      color: @neutralDark;
-      background-color: @neutralLight;
+      color: @varNeutralDark;
+      background-color: @varNeutralLight;
     }
 
     > .fura-icon {
@@ -89,7 +89,7 @@
 .fura-subText {
   .fontStyleMedium();
   margin: 0px 0px 24px 0px;
-  color: @neutralSecondary;
+  color: @varNeutralSecondary;
   line-height: 1.5;
   overflow-wrap: break-word;
 }

@@ -1,5 +1,5 @@
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
 .fura-panel {
   position: absolute;
@@ -11,7 +11,7 @@
   left: auto;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: @white;
+  background-color: @varWhite;
   box-shadow: rgba(0, 0, 0, 0.22) 0px 25.6px 57.6px 0px,
     rgba(0, 0, 0, 0.18) 0px 4.8px 14.4px 0px;
 }
@@ -66,7 +66,7 @@
   width: 32px;
   height: 32px;
   background-color: transparent;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   margin-right: 14px;
   user-select: none;
   outline: transparent;
@@ -77,8 +77,8 @@
 
 .fura-navigation > button:hover,
 .fura-navigation > button:active {
-  color: @neutralDark;
-  background-color: @neutralLight;
+  color: @varNeutralDark;
+  background-color: @varNeutralLight;
 }
 
 .fura-navigation > button > .fura-icon {
@@ -100,7 +100,7 @@
 
 .fura-header > div {
   .fontStyleXLarge();
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   line-height: 27px;
   overflow-wrap: break-word;
   word-break: break-word;

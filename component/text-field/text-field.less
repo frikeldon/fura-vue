@@ -1,5 +1,5 @@
 @import "../../theme/mixin.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 @import "../../theme/animation.less";
 
 /* Normal field */
@@ -7,7 +7,7 @@
 .fura-field {
   .normalize();
   padding: 0px 8px;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   flex: 1 1 0px;
   min-width: 0px;
   text-overflow: ellipsis;
@@ -16,12 +16,12 @@
   outline: 0;
 
   &::placeholder {
-    color: @neutralSecondary;
+    color: @varNeutralSecondary;
     opacity: 1;
   }
 
   &[disabled]::placeholder {
-    color: @neutralTertiary;
+    color: @varNeutralTertiary;
   }
 
   &.fura-hasIcon {
@@ -41,13 +41,13 @@
   top: auto;
   font-size: 16px;
   line-height: 18px;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
 }
 
 .fura-prefix,
 .fura-suffix {
-  background: @neutralLighter;
-  color: @neutralTertiary;
+  background: @varNeutralLighter;
+  color: @varNeutralTertiary;
   display: flex;
   align-items: center;
   padding: 0 10px;

@@ -1,6 +1,6 @@
 @import "../../theme/mixin.less";
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
 .fura-tagPicker::v-deep(.fura-fieldGroup) {
   min-height: 32px;
@@ -34,22 +34,22 @@
   border: 0;
   outline: none;
   .fontStyleMedium();
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   text-overflow: ellipsis;
 }
 
 .fura-tagPicker::v-deep(.fura-dropdown) {
   .normalize();
-  background-color: @white;
+  background-color: @varWhite;
   width: 100%;
   max-width: 100%;
 }
 
 .fura-dropdownWrapper {
   flex: 1 1 0px;
-  background-color: @white;
-  box-shadow: 0 0px 15px -5px @blackTranslucent40;
-  border: 1px solid @neutralLight;
+  background-color: @varWhite;
+  box-shadow: 0 0px 15px -5px @varBlackTranslucent40;
+  border: 1px solid @varNeutralLight;
   max-height: 200px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -58,10 +58,10 @@
 .fura-loadingDropdown {
   flex: 1 1 0px;
   display: flex;
-  background-color: @white;
+  background-color: @varWhite;
   min-height: 100px;
-  box-shadow: 0 0px 15px -5px @blackTranslucent40;
-  border: 1px solid @neutralLight;
+  box-shadow: 0 0px 15px -5px @varBlackTranslucent40;
+  border: 1px solid @varNeutralLight;
   align-items: center;
   justify-content: center;
 }
@@ -83,10 +83,10 @@
   flex-wrap: nowrap;
   max-width: 300px;
   min-width: 0px;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   user-select: none;
   outline: transparent;
-  background: @neutralLighter;
+  background: @varNeutralLighter;
 
   > span {
     text-overflow: ellipsis;
@@ -107,7 +107,7 @@
     width: 30px;
     height: 100%;
     background-color: transparent;
-    color: @neutralSecondary;
+    color: @varNeutralSecondary;
     user-select: none;
     outline: transparent;
     border: 0px none transparent;
@@ -116,8 +116,8 @@
     flex: 0 0 auto;
 
     &:hover {
-      color: @neutralPrimary;
-      background: @neutralQuaternaryAlt;
+      color: @varNeutralPrimary;
+      background: @varNeutralQuaternaryAlt;
     }
 
     > span {
@@ -130,19 +130,19 @@
   }
 
   &:hover {
-    color: @neutralDark;
-    background: @neutralLight;
+    color: @varNeutralDark;
+    background: @varNeutralLight;
   }
 
   &:focus {
-    background: @themePrimary;
-    color: @white;
+    background: @varThemePrimary;
+    color: @varWhite;
 
     button {
-      color: @white;
+      color: @varWhite;
 
       &:hover {
-        background: @themeDark;
+        background: @varThemeDark;
       }
     }
   }
@@ -151,7 +151,7 @@
   &.fura-disabled .fura-item > button {
     cursor: default;
     pointer-events: none;
-    background: @neutralLight;
+    background: @varNeutralLight;
   }
 
   .fura-itemIcon {

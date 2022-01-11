@@ -1,7 +1,7 @@
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
-@calendarDay: 28px;
+@varCalendarDay: 28px;
 
 .fura-days {
   text-align: center;
@@ -20,12 +20,12 @@ td {
 
 .fura-day,
 .fura-weekday th {
-  width: @calendarDay;
-  height: @calendarDay;
+  width: @varCalendarDay;
+  height: @varCalendarDay;
   padding: 0;
-  line-height: @calendarDay;
+  line-height: @varCalendarDay;
   .fontStyleSmall();
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
@@ -53,8 +53,8 @@ td {
 
     &:hover {
       cursor: pointer;
-      background: @neutralLighter;
-      color: @neutralDark;
+      background: @varNeutralLighter;
+      color: @varNeutralDark;
     }
   }
 
@@ -65,7 +65,7 @@ td {
   }
 
   &.fura-selected {
-    background-color: @neutralLight;
+    background-color: @varNeutralLight;
     border-radius: 2px;
   }
 }
@@ -73,14 +73,14 @@ td {
 .fura-today button,
 .fura-today button:hover {
   position: relative;
-  color: @white;
+  color: @varWhite;
   font-weight: @fontWeightSemibold;
-  background: @themePrimary;
+  background: @varThemePrimary;
   border-radius: 100%;
 }
 
 .fura-otherMonth:not(.fura-today) button {
-  color: @neutralSecondary;
+  color: @varNeutralSecondary;
 
   &:hover {
     background-color: transparent;

@@ -1,6 +1,6 @@
 @import "../../theme/mixin.less";
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
 button,
 a {
@@ -11,8 +11,8 @@ a {
   cursor: pointer;
   padding: 0px 4px 0px 4px;
   min-width: 40px;
-  background-color: @white;
-  color: @neutralPrimary;
+  background-color: @varWhite;
+  color: @varNeutralPrimary;
   height: 100%;
   user-select: none;
   outline: transparent;
@@ -20,11 +20,11 @@ a {
   text-decoration: none;
 
   &:hover {
-    background-color: @neutralLighter;
+    background-color: @varNeutralLighter;
   }
 
   &:active {
-    background-color: @neutralLight;
+    background-color: @varNeutralLight;
   }
 
   > span {
@@ -36,7 +36,7 @@ a {
   }
 
   &.fura-checked {
-    background-color: @neutralLight;
+    background-color: @varNeutralLight;
   }
 }
 
@@ -46,7 +46,7 @@ a {
   line-height: 1em;
   text-align: center;
   flex-shrink: 0;
-  color: @themePrimary;
+  color: @varThemePrimary;
 }
 
 .fura-text {
@@ -57,7 +57,7 @@ a {
   > span {
     .normalize();
     .fontStyleMedium();
-    color: @neutralPrimary;
+    color: @varNeutralPrimary;
     box-sizing: border-box;
     display: block;
     padding: 5px 0;
@@ -80,7 +80,7 @@ a {
   line-height: 1em;
   text-align: center;
   flex-shrink: 0;
-  color: @neutralSecondary;
+  color: @varNeutralSecondary;
 }
 
 button[disabled],
@@ -89,14 +89,14 @@ a[disabled] {
   &:active,
   &:hover {
     cursor: default;
-    background-color: @neutralLighter;
-    color: @neutralTertiary;
-    border-color: @neutralLighter;
+    background-color: @varNeutralLighter;
+    color: @varNeutralTertiary;
+    border-color: @varNeutralLighter;
   }
 
   .fura-icon,
   .fura-expand,
   .fura-text > span {
-    color: @neutralTertiaryAlt;
+    color: @varNeutralTertiaryAlt;
   }
 }

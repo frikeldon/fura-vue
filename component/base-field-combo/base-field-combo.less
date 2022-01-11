@@ -1,13 +1,13 @@
 @import "../../theme/mixin.less";
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 @import "../../theme/animation.less";
 
-@backgroundDisabledColor: @neutralLighter;
-@borderColor: @neutralSecondary;
-@borderHoverColor: @neutralPrimary;
-@borderFocusColor: @themePrimary;
-@borderInvalidColor: @redDark;
+@varBackgroundDisabledColor: @varNeutralLighter;
+@varBorderColor: @varNeutralSecondary;
+@varBorderHoverColor: @varNeutralPrimary;
+@varBorderFocusColor: @varThemePrimary;
+@varBorderInvalidColor: @varRedDark;
 
 .fura-fieldCombo {
   .normalize();
@@ -18,28 +18,28 @@
     pointer-events: none;
 
     .fura-fieldGroup {
-      background-color: @backgroundDisabledColor;
+      background-color: @varBackgroundDisabledColor;
     }
   }
 
   &:not(.fura-disabled):not(.fura-borderless) {
     &:not(.fura-underlined) {
       .fura-fieldGroup::after {
-        .borderCss(@color: @borderColor);
+        .borderCss(@color: @varBorderColor);
       }
 
       &:not(.fura-open) .fura-fieldGroup:focus-within::after {
-        .borderCss(@color: @borderFocusColor, @width: 2px);
+        .borderCss(@color: @varBorderFocusColor, @width: 2px);
       }
 
       &.fura-invalid .fura-fieldGroup::after,
       &.fura-invalid:not(.fura-open) .fura-fieldGroup::after {
-        border-color: @borderInvalidColor;
+        border-color: @varBorderInvalidColor;
       }
     }
 
     .fura-fieldGroup:hover::after {
-      border-color: @borderHoverColor;
+      border-color: @varBorderHoverColor;
     }
   }
 }
@@ -47,7 +47,7 @@
 .fura-fieldGroup {
   .normalize();
   border: 0;
-  background: @white;
+  background: @varWhite;
   height: 32px;
   display: flex;
   flex-direction: row;
@@ -55,12 +55,12 @@
 }
 
 .fura-description {
-  color: @neutralSecondary;
+  color: @varNeutralSecondary;
   font-size: @fontSizeSmall;
 }
 
 .fura-errorMessage {
-  color: @redDark;
+  color: @varRedDark;
   font-size: @fontSizeSmall;
   margin: 0;
   padding-top: 5px;
@@ -70,7 +70,7 @@
 
 .fura-requiredPlaceholder:not([underlined]) .fura-elementWrapper::after {
   content: "*";
-  color: @redDark;
+  color: @varRedDark;
   position: absolute;
   top: -5px;
   right: -10px;
@@ -109,32 +109,32 @@
 
   &.fura-requiredPlaceholder .fura-fieldGroup::after {
     content: "*";
-    color: @redDark;
+    color: @varRedDark;
     position: absolute;
     top: -5px;
     right: -10px;
   }
 
   .fura-elementWrapper::after {
-    .borderBottomCss(@color: @borderColor);
+    .borderBottomCss(@color: @varBorderColor);
   }
 
   &:not(.fura-disabled):not(.fura-open)
     .fura-elementWrapper:focus-within::after {
-    .borderBottomCss(@color: @borderFocusColor, @width: 2px);
+    .borderBottomCss(@color: @varBorderFocusColor, @width: 2px);
   }
 
   &.fura-invalid:not(.fura-disabled):not(.fura-open)
     .fura-elementWrapper:focus-within::after {
-    border-color: @redDark;
+    border-color: @varRedDark;
   }
 
   &.fura-invalid .fura-elementWrapper::after {
-    border-color: @borderInvalidColor;
+    border-color: @varBorderInvalidColor;
   }
 
   &.fura-disabled .fura-elementWrapper::after {
-    border-color: @backgroundDisabledColor;
+    border-color: @varBackgroundDisabledColor;
   }
 }
 

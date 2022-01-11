@@ -1,7 +1,7 @@
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
-@gridItem: 40px;
+@varGridItem: 40px;
 
 .fura-grid {
   position: relative;
@@ -10,14 +10,14 @@
 }
 
 .fura-button {
-  width: @gridItem;
-  height: @gridItem;
+  width: @varGridItem;
+  height: @varGridItem;
   line-height: 100%;
   cursor: pointer;
   float: left;
   margin: 0 12px 16px 0;
   .fontStyleSmallPlus();
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   text-align: center;
   border: none;
   padding: 0;
@@ -30,15 +30,15 @@
   }
 
   &:hover {
-    color: @neutralDark;
-    background-color: @neutralLighter;
+    color: @varNeutralDark;
+    background-color: @varNeutralLighter;
   }
 
   &.fura-selected {
-    background-color: @neutralLight;
+    background-color: @varNeutralLight;
 
     &:hover {
-      background-color: @neutralLighter;
+      background-color: @varNeutralLighter;
     }
   }
 }

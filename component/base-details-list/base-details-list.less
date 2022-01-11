@@ -1,18 +1,18 @@
 @import "../../theme/mixin.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 @import "../../theme/typography.less";
 
-@expanderWidth: 36px;
+@varExpanderWidth: 36px;
 
 table {
   .normalize();
   width: 100%;
   table-layout: fixed;
   .fontStyleSmall();
-  color: @neutralPrimary;
-  background: @white;
+  color: @varNeutralPrimary;
+  background: @varWhite;
   border-collapse: collapse;
-  border-color: @neutralLight;
+  border-color: @varNeutralLight;
 }
 
 .fura-auto {
@@ -25,7 +25,7 @@ table {
 }
 
 .fura-expanderCell {
-  width: @expanderWidth;
+  width: @varExpanderWidth;
 }
 
 th {
@@ -33,7 +33,7 @@ th {
 }
 
 .fura-headerCell:hover {
-  background: @neutralLighter;
+  background: @varNeutralLighter;
 }
 
 .fura-headerTitle {

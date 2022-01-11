@@ -1,6 +1,6 @@
 @import "../../theme/mixin.less";
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 @import "../../theme/animation.less";
 
 .fura-searchBox::v-deep(.fura-fieldGroup) {
@@ -16,7 +16,7 @@
   font-size: @iconFontSizeMedium;
   width: 32px;
   text-align: center;
-  color: @themePrimary;
+  color: @varThemePrimary;
   cursor: text;
 
   &:not(.fura-disableAnimation) {
@@ -47,7 +47,7 @@ input {
   padding: 0;
   padding-bottom: 0.5px;
   background-color: transparent;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   min-width: 0px;
   text-overflow: ellipsis;
   border: 0;
@@ -89,15 +89,15 @@ input {
       flex-wrap: nowrap;
       justify-content: center;
       align-items: center;
-      color: @neutralSecondary;
+      color: @varNeutralSecondary;
     }
   }
 }
 
 .fura-disabled i {
-  color: @neutralTertiary;
+  color: @varNeutralTertiary;
 }
 
 .fura-underlined.disabled::v-deep(.fura-fieldGroup) {
-  background-color: @white;
+  background-color: @varWhite;
 }

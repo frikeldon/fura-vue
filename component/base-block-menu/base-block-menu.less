@@ -1,9 +1,9 @@
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 @import "../../theme/typography.less";
 
 .fura-blockMenu {
   display: block;
-  background-color: @white;
+  background-color: @varWhite;
   z-index: 100;
   min-width: 180px;
   box-shadow: rgba(0, 0, 0, 0.133) 0px 3.2px 7.2px 0px,
@@ -36,7 +36,7 @@
       &.fura-title {
         .fontStyleSmall();
         font-weight: 600;
-        color: @themePrimary;
+        color: @varThemePrimary;
         height: 36px;
         line-height: 36px;
         cursor: default;
@@ -70,7 +70,7 @@
           line-height: 1em;
           text-align: center;
           flex-shrink: 0;
-          color: @themePrimary;
+          color: @varThemePrimary;
         }
       }
     }

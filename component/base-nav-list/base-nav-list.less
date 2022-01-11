@@ -1,5 +1,5 @@
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
 ul {
   list-style-type: none;
@@ -14,7 +14,7 @@ li {
 .fura-container {
   display: block;
   position: relative;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
 }
 
 .fura-expander {
@@ -25,7 +25,7 @@ li {
   top: 1px;
   bottom: 1px;
   left: 1px;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   z-index: 1;
 }
 
@@ -36,7 +36,7 @@ li {
   line-height: @iconFontSizeMedium;
   text-align: center;
   flex-shrink: 0;
-  color: @themePrimary;
+  color: @varThemePrimary;
 }
 
 .fura-link {
@@ -49,7 +49,7 @@ li {
   height: 44px;
   line-height: 44px;
   width: 100%;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   background-color: transparent;
   border: 1px solid transparent;
   user-select: none;
@@ -83,20 +83,20 @@ li {
 }
 
 .fura-container:hover {
-  background: @neutralLighter;
+  background: @varNeutralLighter;
 
   .fura-link {
-    color: @themePrimary;
+    color: @varThemePrimary;
   }
 }
 
 .fura-container.fura-selected {
   .fura-link {
-    background-color: @neutralLight;
+    background-color: @varNeutralLight;
     font-weight: @fontWeightSemibold;
 
     > span:after {
-      border-left: 2px solid @themePrimary;
+      border-left: 2px solid @varThemePrimary;
       content: "";
       position: absolute;
       top: 0;
@@ -108,11 +108,11 @@ li {
   }
 
   .fura-expander {
-    color: @themePrimary;
-    background-color: @neutralLighterAlt;
+    color: @varThemePrimary;
+    background-color: @varNeutralLighterAlt;
 
     &:after {
-      border-left: 2px solid @themePrimary;
+      border-left: 2px solid @varThemePrimary;
       content: "";
       position: absolute;
       inset: 0px;
@@ -122,8 +122,8 @@ li {
 }
 
 .fura-container:hover .fura-link {
-  background-color: @neutralLighter;
-  color: @themePrimary;
+  background-color: @varNeutralLighter;
+  color: @varThemePrimary;
 }
 
 .fura-link[disabled] {
@@ -133,6 +133,6 @@ li {
   &:active,
   .fura-container:hover & {
     cursor: default;
-    color: @neutralTertiary;
+    color: @varNeutralTertiary;
   }
 }

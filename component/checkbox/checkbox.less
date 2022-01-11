@@ -1,9 +1,9 @@
 @import "../../theme/mixin.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 @import "../../theme/typography.less";
 
-@transitionDuration: 200ms;
-@transitionTiming: cubic-bezier(0.4, 0, 0.23, 1);
+@varTransitionDuration: 200ms;
+@varTransitionTiming: cubic-bezier(0.4, 0, 0.23, 1);
 
 .fura-checkbox {
   .fontStyleMedium();
@@ -24,30 +24,30 @@
     height: 20px;
     width: 20px;
     transition-property: background, border, border-color;
-    transition-duration: @transitionDuration;
-    transition-timing-function: @transitionTiming;
+    transition-duration: @varTransitionDuration;
+    transition-timing-function: @varTransitionTiming;
     margin-right: 4px;
-    border: 1px solid @neutralPrimary;
+    border: 1px solid @varNeutralPrimary;
     border-radius: 2px;
     overflow: hidden;
   }
 
   .fura-icon {
     opacity: 0;
-    color: @white;
+    color: @varWhite;
   }
 
   .fura-label {
     .fontStyleMedium();
-    color: @neutralPrimary;
+    color: @varNeutralPrimary;
     line-height: 20px;
     margin-left: 4px;
   }
 
   &.fura-checked {
     .fura-box {
-      background: @themePrimary;
-      border-color: @themePrimary;
+      background: @varThemePrimary;
+      border-color: @varThemePrimary;
     }
 
     .fura-icon {
@@ -57,7 +57,7 @@
 
   &.fura-indeterminate {
     .fura-box {
-      border-color: @themePrimary;
+      border-color: @varThemePrimary;
     }
 
     .fura-box::after {
@@ -69,17 +69,17 @@
       left: 4px;
       box-sizing: border-box;
       transition-property: border-width, border, border-color;
-      transition-duration: @transitionDuration;
-      transition-timing-function: @transitionTiming;
+      transition-duration: @varTransitionDuration;
+      transition-timing-function: @varTransitionTiming;
       border-radius: 2px;
       border-width: 5px;
       border-style: solid;
-      border-color: @themePrimary;
+      border-color: @varThemePrimary;
     }
 
     &:not(.fura-disabled):hover .fura-box,
     &:not(.fura-disabled):hover .fura-box::after {
-      border-color: @themeDark;
+      border-color: @varThemeDark;
     }
   }
 
@@ -87,33 +87,33 @@
     cursor: default;
 
     .fura-box {
-      border-color: @neutralTertiaryAlt;
+      border-color: @varNeutralTertiaryAlt;
     }
 
     &.fura-checked .fura-box {
-      background: @neutralTertiaryAlt;
-      border-color: @neutralTertiaryAlt;
+      background: @varNeutralTertiaryAlt;
+      border-color: @varNeutralTertiaryAlt;
     }
 
     .fura-label {
-      color: @neutralTertiary;
+      color: @varNeutralTertiary;
     }
 
     &.fura-indeterminate .fura-box,
     &.fura-indeterminate .fura-box::after {
-      border-color: @neutralTertiaryAlt;
+      border-color: @varNeutralTertiaryAlt;
     }
   }
 
   &:not(.fura-indeterminate):not(.fura-disabled):not(.fura-checked):hover
     .fura-icon {
-    color: @neutralSecondary;
+    color: @varNeutralSecondary;
     opacity: 1;
   }
 
   &:not(.fura-disabled).fura-checked:hover .fura-box {
-    background: @themeDark;
-    border-color: @themeDark;
+    background: @varThemeDark;
+    border-color: @varThemeDark;
   }
 
   &.fura-boxSideEnd {

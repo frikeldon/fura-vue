@@ -1,8 +1,8 @@
 @import "../../theme/mixin.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 @import "../../theme/typography.less";
 
-@optionHeight: 36px;
+@varOptionHeight: 36px;
 
 .fura-select {
   display: block;
@@ -15,9 +15,9 @@
 
 .fura-header {
   .fontStyleMedium(@weight: @fontWeightSemibold);
-  color: @themePrimary;
-  height: @optionHeight;
-  line-height: @optionHeight;
+  color: @varThemePrimary;
+  height: @varOptionHeight;
+  line-height: @varOptionHeight;
   cursor: default;
   padding: 0px 8px;
   text-align: left;
@@ -40,12 +40,12 @@
 }
 
 .fura-header.fura-disabled {
-  color: @neutralTertiary;
+  color: @varNeutralTertiary;
 }
 
 .fura-divider {
   height: 1px;
-  background-color: @neutralLight;
+  background-color: @varNeutralLight;
 }
 
 .fura-option {
@@ -56,17 +56,17 @@
   align-items: center;
   width: 100%;
   height: 0px;
-  min-height: @optionHeight;
+  min-height: @varOptionHeight;
   line-height: 20px;
   overflow-wrap: break-word;
   border: 0px solid transparent;
 
   &.fura-highlighted {
-    background-color: @neutralLight;
+    background-color: @varNeutralLight;
 
     &:hover {
-      color: @themeDark;
-      background: @neutralTertiaryAlt;
+      color: @varThemeDark;
+      background: @varNeutralTertiaryAlt;
     }
   }
 }
@@ -101,18 +101,18 @@
     transition-duration: 200ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.23, 1);
     margin-right: 4px;
-    border: 1px solid @neutralPrimary;
+    border: 1px solid @varNeutralPrimary;
     border-radius: 2px;
     overflow: hidden;
   }
 
   .fura-icon {
     opacity: 0;
-    color: @white;
+    color: @varWhite;
   }
 
   &:not(.fura-selected):not(.fura-disabled):hover .fura-icon {
-    color: @neutralSecondary;
+    color: @varNeutralSecondary;
     opacity: 1;
   }
 
@@ -128,8 +128,8 @@
 
   &.fura-selected {
     div {
-      background: @themePrimary;
-      border-color: @themePrimary;
+      background: @varThemePrimary;
+      border-color: @varThemePrimary;
     }
 
     .fura-icon {
@@ -137,8 +137,8 @@
     }
 
     &:not(.fura-disabled):hover div {
-      background: @themeDark;
-      border-color: @themeDark;
+      background: @varThemeDark;
+      border-color: @varThemeDark;
     }
   }
 
@@ -148,21 +148,21 @@
     }
 
     div {
-      border-color: @neutralTertiaryAlt;
+      border-color: @varNeutralTertiaryAlt;
     }
 
     span {
-      color: @neutralTertiary;
+      color: @varNeutralTertiary;
     }
   }
 
   &.fura-disabled.fura-selected div {
-    background: @neutralTertiaryAlt;
-    border-color: @neutralTertiaryAlt;
+    background: @varNeutralTertiaryAlt;
+    border-color: @varNeutralTertiaryAlt;
   }
 
   &.fura-marked::after {
-    .borderCss(@color: @neutralSecondary; @offset: -1px; @radius: 1px);
+    .borderCss(@color: @varNeutralSecondary; @offset: -1px; @radius: 1px);
   }
 }
 
@@ -171,28 +171,28 @@
   text-align: left;
   cursor: pointer;
   padding: 0px 8px;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   user-select: none;
   outline: transparent;
   text-decoration: none;
 
   &:hover,
   &.fura-selected:hover {
-    color: @themePrimary;
+    color: @varThemePrimary;
   }
 
   &.fura-selected {
-    color: @neutralDark;
-    background-color: @neutralLight;
+    color: @varNeutralDark;
+    background-color: @varNeutralLight;
   }
 
   &.fura-disabled {
     cursor: default;
-    color: @neutralTertiary;
+    color: @varNeutralTertiary;
     pointer-events: none;
   }
 
   &.fura-marked::after {
-    .borderCss(@color: @neutralSecondary; @radius: 1px);
+    .borderCss(@color: @varNeutralSecondary; @radius: 1px);
   }
 }

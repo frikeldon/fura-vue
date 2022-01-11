@@ -1,5 +1,5 @@
 @import "../../theme/mixin.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 @import "../../theme/typography.less";
 
 /* Row */
@@ -10,24 +10,24 @@ tr {
 
 .fura-header,
 .fura-data {
-  border-bottom: 1px solid @neutralLight;
+  border-bottom: 1px solid @varNeutralLight;
 }
 
 .fura-group {
-  border-bottom: 1px solid @white;
+  border-bottom: 1px solid @varWhite;
 }
 
 .fura-data:hover,
 .fura-group:hover {
-  background: @neutralLighter;
+  background: @varNeutralLighter;
 }
 
 /* Row -> Selected */
 
 .fura-data.fura-selected,
 .fura-group.fura-selected {
-  background: @neutralLight;
-  border-bottom: 1px solid @white;
+  background: @varNeutralLight;
+  border-bottom: 1px solid @varWhite;
 }
 
 /* Check */

@@ -1,14 +1,14 @@
 @import "../../theme/mixin.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 @import "../../theme/animation.less";
 
-@defaultHeight: 32px;
+@varDefaultHeight: 32px;
 
 input {
   .normalize();
   font-size: 14px;
-  color: @neutralPrimary;
-  background-color: @white;
+  color: @varNeutralPrimary;
+  background-color: @varWhite;
   height: 100%;
   padding: 0px 8px 0px 9px;
   display: block;
@@ -40,7 +40,7 @@ span {
     height: 50%;
 
     &:hover {
-      background-color: @neutralLighter;
+      background-color: @varNeutralLighter;
     }
 
     &.fura-up {
@@ -55,18 +55,18 @@ span {
 
 .fura-icon {
   display: inline-block;
-  font-size: (@defaultHeight / 4);
-  height: (@defaultHeight / 2);
-  line-height: (@defaultHeight / 2);
+  font-size: (@varDefaultHeight / 4);
+  height: (@varDefaultHeight / 2);
+  line-height: (@varDefaultHeight / 2);
 }
 
 .fura-disabled {
   input,
   span button {
-    background-color: @neutralLighter;
+    background-color: @varNeutralLighter;
   }
 
   .fura-icon {
-    color: @neutralTertiary;
+    color: @varNeutralTertiary;
   }
 }

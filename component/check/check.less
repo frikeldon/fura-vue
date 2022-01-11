@@ -1,4 +1,4 @@
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
 .icon() {
   position: absolute;
@@ -17,7 +17,7 @@ div {
   vertical-align: top;
   position: relative;
   user-select: none;
-  color: @neutralSecondary;
+  color: @varNeutralSecondary;
 
   &::before {
     content: "";
@@ -25,7 +25,7 @@ div {
     inset: 1px;
     opacity: 1;
     border-radius: 50%;
-    background: @white;
+    background: @varWhite;
   }
 }
 
@@ -63,18 +63,18 @@ div {
 
 .fura-checked {
   &::before {
-    background: @themePrimary;
+    background: @varThemePrimary;
   }
 
   .fura-circle,
   .fura-checkmark {
-    color: @white;
+    color: @varWhite;
     opacity: 1;
   }
 }
 
 .fura-disabled {
-  color: @neutralLight;
+  color: @varNeutralLight;
 
   &:hover > .fura-checkmark {
     opacity: 0;
@@ -83,7 +83,7 @@ div {
 
 .fura-disabled.fura-checked {
   &::before {
-    background: @neutralLight;
+    background: @varNeutralLight;
   }
 
   &:hover > .fura-checkmark {

@@ -1,6 +1,6 @@
 @import "../../theme/mixin.less";
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
 .fura-title {
   flex: 1 1 0px;
@@ -11,7 +11,7 @@
   line-height: 30px;
   position: relative;
   white-space: nowrap;
-  color: @neutralSecondary;
+  color: @varNeutralSecondary;
   border: 0;
 }
 
@@ -23,7 +23,7 @@
   border: 0;
   outline: none;
   .fontStyleMedium();
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   text-overflow: ellipsis;
 
   &[readonly] {
@@ -42,7 +42,7 @@
   width: 32px;
   height: 100%;
   background-color: transparent;
-  color: @neutralSecondary;
+  color: @varNeutralSecondary;
   top: 0px;
   right: 0px;
   line-height: 30px;
@@ -52,8 +52,8 @@
   text-decoration: none;
 
   &:hover {
-    color: @neutralDark;
-    background-color: @neutralLighter;
+    color: @varNeutralDark;
+    background-color: @varNeutralLighter;
     cursor: pointer;
   }
 
@@ -77,19 +77,19 @@
 }
 
 .fura-open .fura-caret {
-  color: @neutralDark;
-  background-color: @neutralLight;
+  color: @varNeutralDark;
+  background-color: @varNeutralLight;
 
   &:hover {
-    background-color: @neutralQuaternaryAlt;
+    background-color: @varNeutralQuaternaryAlt;
   }
 }
 
 .fura-select {
   flex: 1 1 0px;
-  background-color: @white;
-  box-shadow: 0 0px 15px -5px @blackTranslucent40;
-  border: 1px solid @neutralLight;
+  background-color: @varWhite;
+  box-shadow: 0 0px 15px -5px @varBlackTranslucent40;
+  border: 1px solid @varNeutralLight;
   max-height: 200px;
 }
 
@@ -101,10 +101,10 @@
 .fura-loadingDropdown {
   flex: 1 1 0px;
   display: flex;
-  background-color: @white;
+  background-color: @varWhite;
   min-height: 100px;
-  box-shadow: 0 0px 15px -5px @blackTranslucent40;
-  border: 1px solid @neutralLight;
+  box-shadow: 0 0px 15px -5px @varBlackTranslucent40;
+  border: 1px solid @varNeutralLight;
   align-items: center;
   justify-content: center;
 }

@@ -1,9 +1,9 @@
 @import "../../theme/mixin.less";
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
-@animationDuration: 0.267s;
-@animationEaseFunction: cubic-bezier(0.1, 0.25, 0.75, 0.9);
+@varAnimationDuration: 0.267s;
+@varAnimationEaseFunction: cubic-bezier(0.1, 0.25, 0.75, 0.9);
 
 div {
   border: 0;
@@ -39,18 +39,18 @@ button {
   overflow: visible;
   text-transform: none;
   text-align: center;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   user-select: none;
 }
 
 button:hover {
-  background-color: @neutralLighter;
-  color: @neutralDark;
+  background-color: @varNeutralLighter;
+  color: @varNeutralDark;
   cursor: pointer;
 }
 
 button:active {
-  background-color: @neutralLight;
+  background-color: @varNeutralLight;
 }
 
 button::before {
@@ -61,8 +61,8 @@ button::before {
   height: 2px;
   left: 8px;
   right: 8px;
-  transition: left @animationDuration @animationEaseFunction 0s,
-    right @animationDuration @animationEaseFunction 0s;
+  transition: left @varAnimationDuration @varAnimationEaseFunction 0s,
+    right @varAnimationDuration @varAnimationEaseFunction 0s;
 }
 
 button > span {
@@ -77,7 +77,7 @@ button > span {
   height: 100%;
   white-space: nowrap;
   text-transform: none;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   user-select: none;
   box-sizing: inherit;
   margin: 0;
@@ -94,7 +94,7 @@ button > span > span {
   text-transform: none;
   text-align: center;
   cursor: pointer;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   user-select: none;
   box-sizing: inherit;
   margin: 0;
@@ -124,7 +124,7 @@ button > span > span {
 }
 
 button.fura-selected::before {
-  background-color: @themePrimary;
+  background-color: @varThemePrimary;
 }
 
 button.fura-selected:hover::before {
@@ -139,8 +139,8 @@ button.fura-selected:hover::before {
 .fura-tabStyle button.fura-selected {
   margin: 0;
   padding: 0 10px;
-  color: @white;
-  background-color: @themePrimary;
+  color: @varWhite;
+  background-color: @varThemePrimary;
   vertical-align: top;
 }
 
@@ -159,5 +159,5 @@ button.fura-selected:hover::before {
 .fura-tabStyle button.fura-selected .fura-icon,
 .fura-tabStyle button.fura-selected .fura-label,
 .fura-tabStyle button.fura-selected .fura-count {
-  color: @white;
+  color: @varWhite;
 }

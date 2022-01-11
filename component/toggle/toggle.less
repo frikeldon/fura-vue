@@ -1,5 +1,5 @@
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
 .fura-searchBox {
   .fontStyleMedium();
@@ -24,14 +24,14 @@ button {
   outline: transparent;
   transition: all 0.1s ease 0s;
   border-radius: 10px;
-  border: 1px solid @neutralSecondary;
-  background: @white;
+  border: 1px solid @varNeutralSecondary;
+  background: @varWhite;
 
   span {
     display: block;
     width: 12px;
     height: 12px;
-    background-color: @neutralSecondary;
+    background-color: @varNeutralSecondary;
     box-sizing: border-box;
     border-radius: 50%;
     transition: all 0.1s ease 0s;
@@ -42,27 +42,27 @@ button {
 
   &.fura-checked {
     justify-content: flex-end;
-    background: @themePrimary;
+    background: @varThemePrimary;
     border-color: transparent;
 
     span {
-      background-color: @white;
+      background-color: @varWhite;
     }
   }
 
   .fura-disabled & {
     cursor: default;
-    border-color: @neutralTertiaryAlt;
+    border-color: @varNeutralTertiaryAlt;
 
     span {
-      background-color: @neutralTertiaryAlt;
+      background-color: @varNeutralTertiaryAlt;
     }
 
     &.fura-checked {
-      background-color: @neutralTertiaryAlt;
+      background-color: @varNeutralTertiaryAlt;
 
       span {
-        background-color: @white;
+        background-color: @varWhite;
       }
     }
   }
@@ -75,7 +75,7 @@ button {
   user-select: none;
 
   .fura-disabled & {
-    color: @neutralTertiaryAlt;
+    color: @varNeutralTertiaryAlt;
   }
 }
 

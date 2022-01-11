@@ -1,11 +1,11 @@
 @import "../../theme/mixin.less";
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
 label {
   .normalize();
   .fontStyleMedium(@weight: @fontWeightSemibold);
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   box-sizing: border-box;
   display: block;
   padding: 5px 0px;
@@ -13,15 +13,15 @@ label {
 }
 
 .fura-disabled {
-  color: @neutralTertiary;
+  color: @varNeutralTertiary;
 }
 
 .fura-required::after {
   content: " *";
-  color: @redDark;
+  color: @varRedDark;
   padding-right: 12px;
 }
 
 .fura-disabled.required::after {
-  color: @neutralTertiary;
+  color: @varNeutralTertiary;
 }

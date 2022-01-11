@@ -1,6 +1,6 @@
 @import "../../theme/mixin.less";
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
 a {
   .normalize();
@@ -8,7 +8,7 @@ a {
 
   background-color: transparent;
   border: none;
-  color: @themePrimary;
+  color: @varThemePrimary;
   cursor: pointer;
   display: inline;
   overflow: inherit;
@@ -18,13 +18,13 @@ a {
   user-select: text;
 
   &:hover {
-    border-bottom-color: @themeDarker;
-    color: @themeDark;
+    border-bottom-color: @varThemeDarker;
+    color: @varThemeDark;
   }
 
   &:active {
-    border-bottom-color: @themeDarker;
-    color: @themeDarker;
+    border-bottom-color: @varThemeDarker;
+    color: @varThemeDarker;
   }
 
   &.fura-underline {
@@ -33,17 +33,17 @@ a {
 
   &.fura-disabled {
     border-bottom-color: transparent;
-    color: @neutralTertiary;
+    color: @varNeutralTertiary;
     cursor: default;
 
     &:hover {
       border-bottom-color: transparent;
-      color: @neutralTertiary;
+      color: @varNeutralTertiary;
     }
 
     &:active {
       border-bottom-color: transparent;
-      color: @neutralTertiary;
+      color: @varNeutralTertiary;
     }
   }
 }

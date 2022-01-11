@@ -1,4 +1,4 @@
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 @import "../../theme/typography.less";
 
 .fura-button {
@@ -11,23 +11,23 @@
   height: 32px;
   min-width: 80px;
   padding: 0 16px;
-  color: @neutralPrimary;
-  background-color: @white;
-  border: 1px solid @neutralSecondaryAlt;
+  color: @varNeutralPrimary;
+  background-color: @varWhite;
+  border: 1px solid @varNeutralSecondaryAlt;
   user-select: none;
   outline: transparent;
   text-decoration: none;
   border-radius: 2px;
 
   &:hover {
-    background-color: @neutralLighter;
-    color: @neutralDark;
+    background-color: @varNeutralLighter;
+    color: @varNeutralDark;
   }
 
   &.fura-checked,
   &:active {
-    background-color: @neutralLight;
-    color: @neutralDark;
+    background-color: @varNeutralLight;
+    color: @varNeutralDark;
   }
 
   > span {
@@ -56,7 +56,7 @@
   font-size: @fontSizeSmall;
   font-weight: @fontWeightRegular;
   line-height: 100%;
-  color: @neutralSecondary;
+  color: @varNeutralSecondary;
 }
 
 .fura-icon {
@@ -71,16 +71,16 @@
 .fura-button.fura-action {
   padding: 0px 4px;
   height: 40px;
-  color: @black;
+  color: @varBlack;
   background-color: transparent;
   border-color: transparent;
 
   .fura-icon {
-    color: @themeDarkAlt;
+    color: @varThemeDarkAlt;
   }
 
   &.fura-checked .fura-icon {
-    color: @themeDarker;
+    color: @varThemeDarker;
   }
 
   .fura-label {
@@ -88,7 +88,7 @@
   }
 
   &:hover {
-    color: @themePrimary;
+    color: @varThemePrimary;
   }
 }
 
@@ -100,11 +100,11 @@
   text-decoration: none;
 
   &.fura-checked:hover {
-    background-color: @neutralQuaternaryAlt;
+    background-color: @varNeutralQuaternaryAlt;
   }
 
   .fura-icon {
-    color: @themePrimary;
+    color: @varThemePrimary;
   }
 
   .fura-label {
@@ -112,7 +112,7 @@
   }
 
   &:hover {
-    color: @themePrimary;
+    color: @varThemePrimary;
   }
 }
 
@@ -142,49 +142,49 @@
   height: 32px;
   min-width: 32px;
   background-color: transparent;
-  color: @themePrimary;
+  color: @varThemePrimary;
   border-width: 0px;
 
   &:hover {
-    color: @themeDarkAlt;
-    background-color: @neutralLighter;
+    color: @varThemeDarkAlt;
+    background-color: @varNeutralLighter;
   }
 
   &.fura-checked,
   &:active {
-    color: @themeDark;
-    background-color: @neutralLight;
+    color: @varThemeDark;
+    background-color: @varNeutralLight;
   }
 
   &.fura-checked:hover {
-    color: @themeDark;
-    background-color: @neutralQuaternaryAlt;
+    color: @varThemeDark;
+    background-color: @varNeutralQuaternaryAlt;
   }
 }
 
 .fura-button.fura-primary {
-  color: @white;
-  background-color: @themePrimary;
-  border-color: @themePrimary;
+  color: @varWhite;
+  background-color: @varThemePrimary;
+  border-color: @varThemePrimary;
 
   .fura-icon,
   .fura-description {
-    color: @white;
+    color: @varWhite;
   }
 
   &:hover {
-    background-color: @themeDarkAlt;
-    border-color: @themeDarkAlt;
+    background-color: @varThemeDarkAlt;
+    border-color: @varThemeDarkAlt;
   }
 
   &:active {
-    background-color: @themeDark;
-    border-color: @themeDark;
+    background-color: @varThemeDark;
+    border-color: @varThemeDark;
   }
 
   &.fura-checked {
-    background-color: @themeDark;
-    border-color: @themePrimary;
+    background-color: @varThemeDark;
+    border-color: @varThemePrimary;
   }
 }
 
@@ -195,22 +195,22 @@
   &:active,
   &:hover {
     cursor: default;
-    background-color: @neutralLighter;
-    color: @neutralTertiary;
-    border-color: @neutralLighter;
+    background-color: @varNeutralLighter;
+    color: @varNeutralTertiary;
+    border-color: @varNeutralLighter;
   }
 
   .fura-description {
-    color: @neutralTertiary;
+    color: @varNeutralTertiary;
   }
 
   .fura-icon {
-    color: @neutralTertiaryAlt;
+    color: @varNeutralTertiaryAlt;
   }
 
   &.fura-command,
   &.fura-action {
-    border-color: @white;
-    background-color: @white;
+    border-color: @varWhite;
+    background-color: @varWhite;
   }
 }

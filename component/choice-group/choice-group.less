@@ -1,14 +1,14 @@
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
-@choiceFieldSize: 20px;
+@varChoiceFieldSize: 20px;
 
 .fura-field {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   .fontStyleMedium();
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   margin: 0;
   padding: 0;
   border: 0;
@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    color: @neutralPrimary;
+    color: @varNeutralPrimary;
     min-height: 26px;
     position: relative;
     margin-top: 8px;
@@ -36,7 +36,7 @@
 }
 
 .fura-option {
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   box-sizing: inherit;
   margin: 0;
   padding: 0;
@@ -63,10 +63,10 @@
     &::before {
       content: "";
       display: inline-block;
-      background-color: @white;
-      border: 1px solid @neutralPrimary;
-      width: @choiceFieldSize;
-      height: @choiceFieldSize;
+      background-color: @varWhite;
+      border: 1px solid @varNeutralPrimary;
+      width: @varChoiceFieldSize;
+      height: @varChoiceFieldSize;
       font-weight: normal;
       position: absolute;
       top: 0;
@@ -82,7 +82,7 @@
       height: 0;
       border-radius: 50%;
       position: absolute;
-      left: @choiceFieldSize / 2;
+      left: @varChoiceFieldSize / 2;
       right: 0;
       transition: border-width 200ms cubic-bezier(0.4, 0, 0.23, 1);
       box-sizing: border-box;
@@ -90,7 +90,7 @@
   }
 
   &:not(.fura-disabled) label:hover::after {
-    border: 5px solid @neutralSecondary;
+    border: 5px solid @varNeutralSecondary;
     left: 5px;
     top: 5px;
     width: 10px;
@@ -99,11 +99,11 @@
 
   &.fura-checked {
     label::before {
-      border-color: @themePrimary;
+      border-color: @varThemePrimary;
     }
 
     label::after {
-      border: 5px solid @themePrimary;
+      border: 5px solid @varThemePrimary;
       left: 5px;
       top: 5px;
       width: 10px;
@@ -113,17 +113,17 @@
 
   &:not(.fura-disabled) label:hover::before,
   &:not(.fura-disabled) label:hover::after {
-    border-color: @themeDark;
+    border-color: @varThemeDark;
   }
 
   &.fura-disabled,
   &.fura-disabled.fura-checked {
-    color: @neutralTertiary;
+    color: @varNeutralTertiary;
 
     label,
     label::before,
     label::after {
-      border-color: @neutralTertiary;
+      border-color: @varNeutralTertiary;
       cursor: default;
     }
   }

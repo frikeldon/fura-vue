@@ -1,12 +1,12 @@
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
-@calendarDay: 28px;
+@varCalendarDay: 28px;
 
 .fura-calendar {
   display: inline-block;
   position: relative;
-  background-color: @white;
+  background-color: @varWhite;
 
   &.fura-showGoToday {
     padding-bottom: 28px;
@@ -16,8 +16,8 @@
 .fura-header {
   position: relative;
   display: inline-flex;
-  height: @calendarDay;
-  line-height: @calendarDay;
+  height: @varCalendarDay;
+  line-height: @varCalendarDay;
   width: 100%;
 }
 
@@ -26,7 +26,7 @@
   flex-grow: 1;
   .fontStyleMedium();
   font-weight: @fontWeightSemibold;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   padding: 0 5px;
 
   > div {
@@ -36,7 +36,7 @@
   }
 
   > div:hover {
-    color: @black;
+    color: @varBlack;
     cursor: pointer;
   }
 }
@@ -49,14 +49,14 @@
 
 .fura-prev,
 .fura-next {
-  width: @calendarDay;
-  height: @calendarDay;
+  width: @varCalendarDay;
+  height: @varCalendarDay;
   display: inline-block;
   text-align: center;
-  line-height: @calendarDay;
+  line-height: @varCalendarDay;
   text-align: center;
   font-size: @iconFontSizeSmall;
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   border-radius: 2px;
   position: relative;
   background-color: transparent;
@@ -65,7 +65,7 @@
 
   &:hover,
   &:focus {
-    color: @neutralDark;
+    color: @varNeutralDark;
     cursor: pointer;
     outline: 1px solid transparent;
   }
@@ -73,10 +73,10 @@
 
 .fura-goToday {
   bottom: 0;
-  color: @themePrimary;
+  color: @varThemePrimary;
   cursor: pointer;
   .fontStyleSmall();
-  color: @neutralPrimary;
+  color: @varNeutralPrimary;
   height: 30px;
   line-height: 30px;
   padding: 0 10px;
@@ -87,12 +87,12 @@
   right: 13px;
 
   &:hover {
-    color: @themePrimary;
+    color: @varThemePrimary;
     outline: 1px solid transparent;
   }
 
   &:active {
-    color: @themeDark;
+    color: @varThemeDark;
   }
 
   &:focus {

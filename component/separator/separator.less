@@ -1,5 +1,5 @@
 @import "../../theme/typography.less";
-@import "../../theme/color.less";
+@import "../../theme/var-color.less";
 
 .fura-separator {
   .fontStyleMedium();
@@ -11,7 +11,7 @@
   padding: 4px 0;
 
   &::after {
-    background-color: @neutralLighter;
+    background-color: @varNeutralLighter;
     height: 1px;
     content: "";
     display: block;
@@ -43,7 +43,7 @@
   text-align: center;
 
   &::after {
-    background-color: @neutralLighter;
+    background-color: @varNeutralLighter;
     width: 1px;
     content: "";
     position: absolute;
@@ -71,8 +71,8 @@
   position: relative;
   display: inline-block;
   padding: 0 12px;
-  color: @neutralPrimary;
-  background: @white;
+  color: @varNeutralPrimary;
+  background: @varWhite;
 
   .fura-vertical & {
     padding: 12px 0;
