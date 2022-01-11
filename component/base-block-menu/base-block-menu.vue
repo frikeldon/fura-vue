@@ -94,8 +94,8 @@ export default {
     const clientRect = this.$el.getBoundingClientRect()
 
     const top = clientRect.top < 0
-    const right = clientRect.right > window.innerWidth
-    const bottom = clientRect.bottom > window.innerHeight
+    const right = clientRect.right > document.body.scrollWidth
+    const bottom = clientRect.bottom > document.body.scrollWidth
     const left = clientRect.left < 0
 
     if (top || right || bottom || left) {
