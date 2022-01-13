@@ -179,7 +179,7 @@ export default {
         />
       </slot>
       <FuraBaseBlockMenu
-        v-if="index === itemExpandedIndex"
+        v-if="index === itemExpandedIndex && Array.isArray(item.childs) && item.childs.length > 0"
         class="fura-submenu"
         :class="itemExpandedPositionClasses"
         :items="item.childs"
