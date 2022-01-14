@@ -21,12 +21,20 @@ export default {
     /** Milisegundos entre dos comprobaciones consecutivas de cambio de tamaño. */
     autoupdateOverflowRate: { type: Number, default: 250 }
   },
+  emits: [
+    /**
+     * Se genera cuando el el usuario hace clic fuera del componente.
+     * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
+     */
+    'clickOutside'
+  ],
   data () {
     return {
       overflowIndex: this.items.length,
       expandedSide: 'none',
       expandedIndices: [],
-      breakDirections: []
+      breakDirections: [],
+      clickOutsideHandler: null
     }
   },
   computed: {
@@ -215,9 +223,23 @@ export default {
   mounted () {
     this.createObserver()
     this.itemWidths = this.$refs.near.getItemWidths()
+
+    this.clickOutsideHandler = event => {
+      if (this.$el !== event.target && !this.$el.contains(event.target)) {
+        this.collapseAll()
+        this.$emit('clickOutside', event)
+      }
+    }
+    window.addEventListener('click', this.clickOutsideHandler, true)
   },
   beforeUnmount () {
     this.observer.unobserve(this.$el)
+  },
+  unmounted () {
+    if (this.clickOutsideHandler) {
+      window.removeEventListener('click', this.clickOutsideHandler, true)
+    }
+    this.clickOutsideHandler = null
   }
 }
 </script>

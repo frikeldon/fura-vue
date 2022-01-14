@@ -38,7 +38,7 @@ export default {
   data () {
     return {
       refElements: [],
-      expanded: null
+      clickOutsideHandler: null
     }
   },
   computed: {

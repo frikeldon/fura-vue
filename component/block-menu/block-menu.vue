@@ -28,12 +28,19 @@ export default {
      * Se genera cuando el usuario hace click en un elemento de menú.
      * @property {Array} path Indices de los elementos para llegar al elemento que lanza el evento
      */
-    'click'
+    'click',
+    /**
+     * Se genera cuando el el usuario hace clic fuera del componente.
+     * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
+     */
+    'clickOutside'
   ],
   data () {
     return {
       expandedIndices: getExpandedPath(this.items),
-      breakDirections: []
+      breakDirections: [],
+      clickOutsideHandler: null
+
     }
   },
   computed: {
@@ -112,6 +119,22 @@ export default {
       this.expandedIndices = getExpandedPath(value)
       this.breakDirections = []
     }
+  },
+  mounted () {
+    this.clickOutsideHandler = event => {
+      if (this.$el !== event.target && !this.$el.contains(event.target)) {
+        this.collapseAll()
+        this.$emit('clickOutside', event)
+      }
+    }
+
+    window.addEventListener('click', this.clickOutsideHandler, true)
+  },
+  unmounted () {
+    if (this.clickOutsideHandler) {
+      window.removeEventListener('click', this.clickOutsideHandler, true)
+    }
+    this.clickOutsideHandler = null
   }
 }
 </script>
