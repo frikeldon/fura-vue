@@ -138,7 +138,7 @@ export default {
       this.expandedIndices = []
       this.breakDirections = []
     },
-    handleClick (bar, path) {
+    handleClick (bar, { event, path }) {
       let item = { childs: null }
       if (bar === 'near') item.childs = this.items
       if (bar === 'far') item.childs = this.farItems
@@ -150,13 +150,13 @@ export default {
       }
 
       if (typeof item?.action === 'function') {
-        item.action.call(null)
+        item.action.call(null, event)
         this.collapseAll()
       } else {
-        this.handleExpand(bar, path)
+        this.handleExpand(bar, { event, path })
       }
     },
-    handleExpand (bar, path) {
+    handleExpand (bar, { path }) {
       if (this.expandedSide !== bar) {
         this.expandedSide = bar
         this.expandedIndices = path
@@ -179,7 +179,7 @@ export default {
         }
       }
     },
-    handleOverload ({ data, path }) {
+    handleOverload ({ event, path }) {
       const currentBreak = {
         position: path.length - 1,
         vertical: undefined,
@@ -187,15 +187,15 @@ export default {
       }
 
       if (path.length === 1) {
-        if (data.top) currentBreak.vertical = 'bottom'
-        if (data.right) currentBreak.horizontal = 'left'
-        if (data.bottom) currentBreak.vertical = 'top'
-        if (data.left) currentBreak.horizontal = 'right'
+        if (event.top) currentBreak.vertical = 'bottom'
+        if (event.right) currentBreak.horizontal = 'left'
+        if (event.bottom) currentBreak.vertical = 'top'
+        if (event.left) currentBreak.horizontal = 'right'
       } else {
-        if (data.top) currentBreak.vertical = 'top'
-        if (data.right) currentBreak.horizontal = 'before'
-        if (data.bottom) currentBreak.vertical = 'bottom'
-        if (data.left) currentBreak.horizontal = 'after'
+        if (event.top) currentBreak.vertical = 'top'
+        if (event.right) currentBreak.horizontal = 'before'
+        if (event.bottom) currentBreak.vertical = 'bottom'
+        if (event.left) currentBreak.horizontal = 'after'
       }
 
       this.breakDirections = this.breakDirections

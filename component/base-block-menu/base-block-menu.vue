@@ -21,12 +21,12 @@ export default {
   emits: [
     /**
      * Se genera cuando el usuario hace click en el botón de expandir un submenú.
-     * @property {Array} path Indices de los elementos para llegar al elemento que lanza el evento
+     * @property {object} data Indices de los elementos para llegar al elemento que lanza el evento y el objeto descriptor del evento click.
     */
     'expand',
     /**
      * Se genera cuando el usuario hace click en un elemento de menú.
-     * @property {Array} path Indices de los elementos para llegar al elemento que lanza el evento
+     * @property {object} data Indices de los elementos para llegar al elemento que lanza el evento y el objeto descriptor del evento click.
      */
     'click',
     /**
@@ -70,20 +70,22 @@ export default {
     checkItemHasChilds (item) {
       return Array.isArray(item.childs) && item.childs.length > 0
     },
-    handleClick (index) {
-      this.$emit('click', [index])
+    handleClick (index, event) {
+      this.$emit('click', { event, path: [index] })
     },
-    handleExpand (index) {
-      this.$emit('expand', [index])
+    handleExpand (index, event) {
+      this.$emit('expand', { event, path: [index] })
     },
-    handleOverload (data) {
-      this.$emit('overload', { data, path: [] })
+    handleOverload (event) {
+      this.$emit('overload', { event, path: [] })
     },
-    handleChildClick (index, event) {
-      this.$emit('click', [index, ...event])
+    handleChildClick (index, data) {
+      data.path = [index, ...data.path]
+      this.$emit('click', data)
     },
-    handleChildExpand (index, event) {
-      this.$emit('expand', [index, ...event])
+    handleChildExpand (index, data) {
+      data.path = [index, ...data.path]
+      this.$emit('expand', data)
     },
     handleChildOverload (index, event) {
       event.path = [index, ...event.path]
@@ -95,7 +97,7 @@ export default {
 
     const top = clientRect.top < 0
     const right = clientRect.right > document.body.scrollWidth
-    const bottom = clientRect.bottom > document.body.scrollWidth
+    const bottom = clientRect.bottom > document.body.scrollHeight
     const left = clientRect.left < 0
 
     if (top || right || bottom || left) {
@@ -153,8 +155,8 @@ export default {
           <slot
             :item="item"
             :index="index"
-            :click="() => handleClick(index)"
-            :expand="() => handleExpand(index)"
+            :click="$event => handleClick(index, $event)"
+            :expand="$event => handleExpand(index, $event)"
           >
             <FuraBaseSplitButton
               v-if="checkItemHasActions(item) && checkItemHasChilds(item)"
@@ -171,10 +173,10 @@ export default {
               :target="item.target"
               :title="item.title"
               :download="item.download"
-              @click="handleClick(index)"
-              @click-expand="handleExpand(index)"
-              @mousestop="handleExpand(item, index)"
-              @mousestop-expand="handleExpand(item, index)"
+              @click="handleClick(index, $event)"
+              @click-expand="handleExpand(index, $event)"
+              @mousestop="handleExpand(index, $event)"
+              @mousestop-expand="handleExpand(index, $event)"
             />
             <FuraBaseCommandButton
               v-else
@@ -191,9 +193,9 @@ export default {
               :target="item.target"
               :title="item.title"
               :download="item.download"
-              @click="handleClick(index)"
-              @click-expand="handleExpand(index)"
-              @mousestop="handleExpand(item, index)"
+              @click="handleClick(index, $event)"
+              @click-expand="handleExpand(index, $event)"
+              @mousestop="handleExpand(index, $event)"
             />
           </slot>
           <FuraBaseBlockMenu

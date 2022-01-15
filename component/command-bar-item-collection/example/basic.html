@@ -101,7 +101,7 @@
       };
     },
     methods: {
-      onClick(path) {
+      onClick({ path }) {
         let item = { childs: this.items };
         for (let index = 0; index < path.length; index += 1) {
           if (item.childs) {
@@ -112,7 +112,7 @@
           item.action();
         }
       },
-      onExpand(path) {
+      onExpand({ path }) {
         const coincident = path.every(
           (item, index) => item === this.itemExpandedPath[index]
         );

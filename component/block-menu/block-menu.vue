@@ -26,7 +26,7 @@ export default {
   emits: [
     /**
      * Se genera cuando el usuario hace click en un elemento de menú.
-     * @property {Array} path Indices de los elementos para llegar al elemento que lanza el evento
+     * @property {object} data Indices de los elementos para llegar al elemento que lanza el evento y el objeto descriptor del evento click.
      */
     'click',
     /**
@@ -70,20 +70,20 @@ export default {
       this.expandedIndices = []
       this.breakDirections = []
     },
-    handleClick (path) {
+    handleClick (data) {
       let item = { childs: this.items }
-      for (let index = 0; index < path.length; index += 1) {
+      for (let index = 0; index < data.path.length; index += 1) {
         if (item.childs) {
-          item = item.childs[path[index]]
+          item = item.childs[data.path[index]]
         }
       }
       if (typeof item?.action === 'function') {
-        item.action.call(null)
+        item.action.call(null, data.event)
       }
-      this.$emit('click', path)
+      this.$emit('click', data)
       this.collapseAll()
     },
-    handleExpand (path) {
+    handleExpand ({ path }) {
       const coincident = path.every(
         (item, index) => item === this.expandedIndices[index]
       )
@@ -94,7 +94,7 @@ export default {
       this.breakDirections = this.breakDirections
         .filter(item => item.position < this.expandedIndices.length)
     },
-    handleOverload ({ data, path }) {
+    handleOverload ({ event, path }) {
       if (path.length > 0) {
         const currentBreak = {
           position: path.length - 1,
@@ -102,10 +102,10 @@ export default {
           horizontal: undefined
         }
 
-        if (data.top) currentBreak.vertical = 'top'
-        if (data.right) currentBreak.horizontal = 'before'
-        if (data.bottom) currentBreak.vertical = 'bottom'
-        if (data.left) currentBreak.horizontal = 'after'
+        if (event.top) currentBreak.vertical = 'top'
+        if (event.right) currentBreak.horizontal = 'before'
+        if (event.bottom) currentBreak.vertical = 'bottom'
+        if (event.left) currentBreak.horizontal = 'after'
 
         this.breakDirections = this.breakDirections
           .filter(item => item.position < currentBreak.position)
