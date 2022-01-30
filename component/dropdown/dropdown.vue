@@ -123,6 +123,7 @@ export default {
           this.$emit('update:modelValue', newValue)
         }
       }
+      this.$refs.dropdown.$refs.container.focus()
     }
   }
 }

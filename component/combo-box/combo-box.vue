@@ -48,7 +48,11 @@ export default {
      * Se genera cuando el usuario realiza una alteración en el valor de ComboBox.
      * @property {string,Array} modelValue Valor o lista de valores seleccionados.
      */
-    'update:modelValue'
+    'update:modelValue',
+    /** Se genera cuando el componente recibe el foco. */
+    'focus',
+    /** Se genera cuando el componente pierde el foco. */
+    'blur'
   ],
   data () {
     return {
@@ -161,6 +165,7 @@ export default {
       if (this.allowFreeform) {
         this.$refs.comboBox.$refs.autofill.$refs.field.value = ''
       }
+      this.$refs.comboBox.$refs.autofill.focus()
     },
     handleInput (value) {
       if (value) {
@@ -213,6 +218,8 @@ export default {
     @select="handleSelect"
     @input="handleInput"
     @click-outside.stop.prevent="open = false"
+    @focus="$emit('focus')"
+    @blur="$emit('blur')"
   >
     <template #default="slotProps">
       <!--

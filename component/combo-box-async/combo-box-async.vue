@@ -50,7 +50,11 @@ export default {
      * Se genera cuando el usuario realiza una alteración en el valor de ComboBox.
      * @property {Array} modelValue Lista de opciones seleccionadas
      */
-    'update:modelValue'
+    'update:modelValue',
+    /** Se genera cuando el componente recibe el foco. */
+    'focus',
+    /** Se genera cuando el componente pierde el foco. */
+    'blur'
   ],
   data () {
     return {
@@ -189,6 +193,7 @@ export default {
       this.suggestedIndex = -1
       this.$refs.comboBox.$refs.autofill.$refs.field.value = ''
       this.options = []
+      this.$refs.comboBox.$refs.autofill.focus()
     },
     async handleInput (text) {
       this.options = []
@@ -246,6 +251,8 @@ export default {
     @select="handleSelect"
     @input="handleInput"
     @click-outside.stop.prevent="open = false"
+    @focus="$emit('focus')"
+    @blur="$emit('blur')"
   >
     <template #default="slotProps">
       <!--

@@ -119,15 +119,9 @@ export default {
      * @property {Date} modelValue Fecha seleccionada en el calendario.
      */
     'update:modelValue',
-    /**
-     * Se genera cuando el componente recibe el foco.
-     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
-     */
+    /** Se genera cuando el componente recibe el foco. */
     'focus',
-    /**
-     * Se genera cuando el componente pierde el foco.
-     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
-     */
+    /** Se genera cuando el componente pierde el foco. */
     'blur'
   ],
   data () {
@@ -169,14 +163,13 @@ export default {
     handleCalendarUpdateModelValue (value) {
       this.$emit('update:modelValue', value)
       this.open = false
+      this.$refs.field.focus()
     },
-    handleFocus (event) {
+    handleFocus () {
       this.hasFocus = true
-      this.$emit('focus', event)
     },
-    handleBlur (event) {
+    handleBlur () {
       this.hasFocus = false
-      this.$emit('blur', event)
     }
   }
 }
@@ -199,6 +192,8 @@ export default {
     :dropup="dropup"
     @click="$refs.field.focus()"
     @click-outside.stop.prevent="open = false"
+    @focus="$emit('focus')"
+    @blur="$emit('blur')"
   >
     <input
       ref="field"
@@ -216,6 +211,7 @@ export default {
     <FuraIcon
       class="fura-icon"
       name="Calendar"
+      tabindex="0"
       @click.stop="handleIconClick"
     />
 
@@ -228,6 +224,7 @@ export default {
         :today="today"
         :model-value="modelValue"
         :go-today="goToday"
+        tabindex="0"
         @update:model-value="handleCalendarUpdateModelValue"
       />
     </template>

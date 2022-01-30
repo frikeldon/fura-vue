@@ -61,15 +61,9 @@ export default {
     'keydown',
     /** Se genera cuando el usuario hace clic en el campo de Dropdown. */
     'click',
-    /**
-     * Se genera cuando el componente recibe el foco.
-     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
-     */
+    /** Se genera cuando el componente recibe el foco. */
     'focus',
-    /**
-     * Se genera cuando el componente pierde el foco.
-     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
-     */
+    /** Se genera cuando el componente pierde el foco. */
     'blur',
     /**
      * Se genera cuando el componente tiene el panel desplegado y el usuario hace clic fuera del componente.
@@ -113,6 +107,8 @@ export default {
     :dropup="dropup"
     @click="$refs.container.focus()"
     @click-outside="$emit('clickOutside', $event)"
+    @focus="$emit('focus')"
+    @blur="$emit('blur')"
   >
     <div
       ref="container"
@@ -120,8 +116,6 @@ export default {
       :tabindex="disabled ? '' : '0'"
       @click.stop="$emit('click')"
       @keydown.stop.prevent="$emit('keydown', $event)"
-      @focus="$emit('focus', $event)"
-      @blur="$emit('blur', $event)"
     >
       <span
         class="fura-title"

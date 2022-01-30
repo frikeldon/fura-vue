@@ -59,7 +59,11 @@ export default {
      * Se genera cuando el usuario realiza una alteración en el valor de TagPicker.
      * @property {Array} modelValue Lista de valores seleccionados.
      */
-    'update:modelValue'
+    'update:modelValue',
+    /** Se genera cuando el componente recibe el foco. */
+    'focus',
+    /** Se genera cuando el componente pierde el foco. */
+    'blur'
   ],
   computed: {
     debouncedHandleInput () {
@@ -79,6 +83,7 @@ export default {
       const nextElements = this.modelValue.slice(index + 1)
       const newValue = [...prevElements, ...nextElements]
       this.$emit('update:modelValue', newValue)
+      this.$refs.tagPicker.$refs.autofill.focus()
     },
     handleKeydown (event) {
       const { select, autofill } = this.$refs.tagPicker.$refs
@@ -133,6 +138,7 @@ export default {
         this.open = false
         this.$emit('update:modelValue', [...this.modelValue, selected])
       }
+      this.$refs.tagPicker.$refs.autofill.focus()
     }
   },
   debounce
@@ -166,6 +172,8 @@ export default {
     @input="debouncedHandleInput"
     @select="handleSelect"
     @click-outside.stop.prevent="open = false"
+    @focus="$emit('focus')"
+    @blur="$emit('blur')"
   >
     <template #tag="slotProps">
       <!--

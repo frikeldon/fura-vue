@@ -83,20 +83,14 @@ export default {
      */
     'input',
     /**
-     * Se genera cuando el componente recibe el foco.
-     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
-     */
-    'focus',
-    /**
-     * Se genera cuando el componente pierde el foco.
-     * @property {FocusEvent} focusEvent Descripción del evento de cambio de foco.
-     */
-    'blur',
-    /**
      * Se genera cuando el componente tiene el panel desplegado y el usuario hace clic fuera del componente.
      * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
      */
-    'clickOutside'
+    'clickOutside',
+    /** Se genera cuando el componente recibe el foco. */
+    'focus',
+    /** Se genera cuando el componente pierde el foco. */
+    'blur'
   ],
   computed: {
     suggestedText () {
@@ -158,6 +152,8 @@ export default {
     :dropup="dropup"
     @click="$refs.autofill.focus()"
     @click-outside="$emit('clickOutside', $event)"
+    @focus="$emit('focus')"
+    @blur="$emit('blur')"
   >
     <div class="fura-title">
       <FuraAutofill
@@ -172,8 +168,6 @@ export default {
         @click.stop="handleFuraAutofillClick"
         @update:model-value="$emit('input', $event)"
         @keydown="$emit('keydown', $event)"
-        @focus="$emit('focus', $event)"
-        @blur="$emit('blur', $event)"
       />
     </div>
     <button

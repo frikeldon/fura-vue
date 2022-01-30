@@ -75,13 +75,16 @@ export default {
     handleSelectMonth (month) {
       this.currentMonth = month
       this.currentView = 'days'
+      this.$el.focus()
     },
     handleSelectYear (year) {
       this.currentYear = year
       this.currentView = 'days'
+      this.$el.focus()
     },
     handleSelectView (value) {
       this.currentView = value
+      this.$el.focus()
     },
     handleNavigate (direction) {
       if (this.currentView === 'days') {
@@ -100,11 +103,13 @@ export default {
       } else if (this.currentView === 'years') {
         this.currentYear = this.currentYear + (direction * 12)
       }
+      this.$el.focus()
     },
     handleClickGoToday () {
       const today = this.today || new Date()
       this.currentMonth = today.getMonth()
       this.currentYear = today.getFullYear()
+      this.$el.focus()
     }
   },
   watch: {

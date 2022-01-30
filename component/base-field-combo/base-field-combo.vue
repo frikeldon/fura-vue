@@ -28,7 +28,9 @@ export default {
   },
   data () {
     return {
-      clickOutsideHandler: null
+      clickOutsideHandler: null,
+      focused: false,
+      blurHandler: null
     }
   },
   emits: [
@@ -41,7 +43,11 @@ export default {
      * Se genera cuando el componente tiene el panel desplegado y el usuario hace clic fuera del componente.
      * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
      */
-    'clickOutside'
+    'clickOutside',
+    /** Se genera cuando el componente recibe el foco. */
+    'focus',
+    /** Se genera cuando el componente pierde el foco. */
+    'blur'
   ],
   methods: {
     getViewportMargins () {
@@ -56,6 +62,30 @@ export default {
       const right = (window.innerWidth || document.documentElement.clientWidth) - boundingRight
 
       return { top, right, bottom, left }
+    },
+    createBlurHandler () {
+      if (!this.blurHandler) {
+        this.blurHandler = setTimeout(() => {
+          this.focused = false
+          this.$emit('blur')
+        }, 0)
+      }
+    },
+    clearBlurHandler () {
+      if (this.blurHandler) {
+        clearTimeout(this.blurHandler)
+        this.blurHandler = null
+      }
+    },
+    handleFocusin () {
+      this.clearBlurHandler()
+      if (!this.focused) {
+        this.focused = true
+        this.$emit('focus')
+      }
+    },
+    handleFocusout () {
+      this.createBlurHandler()
     }
   },
   watch: {
@@ -97,6 +127,8 @@ export default {
       'fura-requiredPlaceholder': !label && required,
       'fura-invalid': invalid || errorMessage
     }"
+    @focusin="handleFocusin"
+    @focusout="handleFocusout"
   >
     <div class="fura-elementWrapper">
       <FuraLabel
