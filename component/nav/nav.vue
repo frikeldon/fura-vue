@@ -47,11 +47,6 @@ export default {
     /** Valor del elemento de menú seleccionado. */
     modelValue: { type: String, default: null }
   },
-  data () {
-    return {
-      expanded: new Set(getExpandedTreeIds(this.groups))
-    }
-  },
   emits: [
     /**
      * Se genera cuando el usuario hace click en un enalce.
@@ -64,6 +59,11 @@ export default {
      */
     'update:modelValue'
   ],
+  data () {
+    return {
+      expanded: new Set(getExpandedTreeIds(this.groups))
+    }
+  },
   computed: {
     currentStateGroups () {
       return cloneStateWithTreeExpands(this.groups, this.expanded)

@@ -46,14 +46,6 @@ export default {
     /** Indica si el desplazamiento del Select debe hacerse sin animación. */
     immediateScroll: { type: Boolean, default: false }
   },
-  data () {
-    return {
-      open: false,
-      items: [],
-      suggestedIndex: -1,
-      itemsLoaded: false
-    }
-  },
   emits: [
     /**
      * Se genera cuando el usuario realiza una alteración en el valor de TagPicker.
@@ -65,6 +57,14 @@ export default {
     /** Se genera cuando el componente pierde el foco. */
     'blur'
   ],
+  data () {
+    return {
+      open: false,
+      items: [],
+      suggestedIndex: -1,
+      itemsLoaded: false
+    }
+  },
   computed: {
     debouncedHandleInput () {
       const { handleInput, getItemsWait } = this

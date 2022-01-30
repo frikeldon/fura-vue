@@ -26,13 +26,6 @@ export default {
     /** Indica si el panel del campo aparece en la parte superior. */
     dropup: { type: Boolean, default: false }
   },
-  data () {
-    return {
-      clickOutsideHandler: null,
-      focused: false,
-      blurHandler: null
-    }
-  },
   emits: [
     /**
      * Se genera cuando el usuario hace clic en la etiqueta el componente.
@@ -49,6 +42,13 @@ export default {
     /** Se genera cuando el componente pierde el foco. */
     'blur'
   ],
+  data () {
+    return {
+      clickOutsideHandler: null,
+      focused: false,
+      blurHandler: null
+    }
+  },
   methods: {
     getViewportMargins () {
       const {

@@ -56,6 +56,13 @@ export default {
       default: ''
     }
   },
+  emits: [
+    /**
+     * Se genera cuando el usuario selecciona una fecha en la vista de dias.
+     * @property {Date} modelValue Fecha seleccionada en el calendario.
+     */
+    'update:modelValue'
+  ],
   data () {
     const today = this.today || new Date()
     return {
@@ -64,13 +71,6 @@ export default {
       currentYear: today.getFullYear()
     }
   },
-  emits: [
-    /**
-     * Se genera cuando el usuario selecciona una fecha en la vista de dias.
-     * @property {Date} modelValue Fecha seleccionada en el calendario.
-     */
-    'update:modelValue'
-  ],
   methods: {
     handleSelectMonth (month) {
       this.currentMonth = month
