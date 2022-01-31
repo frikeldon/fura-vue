@@ -95,7 +95,7 @@ export default {
     :required="required"
     :borderless="borderless"
     :underlined="underlined"
-    @click-label="$refs.field.focus()"
+    @click="$refs.field.focus()"
   >
     <div
       class="fura-icon"
@@ -105,6 +105,7 @@ export default {
     </div>
 
     <input
+      ref="field"
       type="text"
       class="fura-field"
       :value="modelValue"
