@@ -110,10 +110,10 @@ export const components = {
   Toggle
 }
 
-export default function install (app, { prefix = 'fura' } = {}) {
+export default function install (app) {
   for (const name in components) {
     const kebabName = name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
-    app.component(`${prefix}-${kebabName}`, components[name])
+    app.component('fura-' + kebabName, components[name])
   }
 }
 
