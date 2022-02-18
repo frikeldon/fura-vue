@@ -1,0 +1,7 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm run lint
+npm run build
+git add -f dist/fura-vue.js
+git add -f dist/fura-vue.css
