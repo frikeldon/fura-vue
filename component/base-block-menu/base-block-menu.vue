@@ -74,7 +74,9 @@ export default {
       this.$emit('click', { event, path: [index] })
     },
     handleExpand (index, event) {
-      this.$emit('expand', { event, path: [index] })
+      if (!this.items[index].disabled) {
+        this.$emit('expand', { event, path: [index] })
+      }
     },
     handleOverload (event) {
       this.$emit('overload', { event, path: [] })

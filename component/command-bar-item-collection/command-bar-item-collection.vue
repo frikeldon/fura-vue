@@ -91,7 +91,9 @@ export default {
       this.$emit('click', { event, path: [index] })
     },
     handleExpand (index, event) {
-      this.$emit('expand', { event, path: [index] })
+      if (!this.items[index].disabled) {
+        this.$emit('expand', { event, path: [index] })
+      }
     },
     handleChildClick (index, data) {
       data.path = [index, ...data.path]
