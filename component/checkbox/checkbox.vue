@@ -45,8 +45,9 @@ export default {
       if (!this.disabled && !this.readonly) {
         if (this.indeterminate) {
           this.$emit('update:indeterminate', false)
+        } else {
+          this.$emit('update:modelValue', !this.modelValue)
         }
-        this.$emit('update:modelValue', !this.modelValue)
       }
     }
   }
