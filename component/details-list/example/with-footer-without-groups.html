@@ -1,0 +1,69 @@
+<script>
+  export default {
+    data() {
+      return {
+        columns: [
+          { title: "Name", key: "name", align: "left", width: "125px" },
+          { title: "Color", key: "color", align: "center" },
+          { title: "Number", key: "number", align: "left" },
+        ],
+        data: [
+          { name: "a", color: "red", number: 25 },
+          { name: "b", color: "red", number: 30 },
+          { name: "c", color: "blue", number: 52 },
+          { name: "d", color: "blue", number: 18 },
+          { name: "e", color: "blue", number: 7 },
+        ],
+      };
+    },
+    computed: {
+      sumNumbers() {
+        return this.data.reduce(
+          (accumulated, item) => accumulated + item.number,
+          0
+        );
+      },
+      listColors() {
+        return [...new Set(this.data.map((item) => item.color))].join(", ");
+      },
+    },
+  };
+</script>
+
+<template>
+  <fura-details-list :columns="columns" :data="data">
+    <template #bodyFooter="slotProps">
+      <div v-if="slotProps?.column?.key === 'color'" class="cela">
+        <b>({{ listColors }})</b>
+      </div>
+      <div v-else-if="slotProps?.column?.key === 'number'" class="cela">
+        <b>Total {{ sumNumbers }}</b>
+      </div>
+      <div v-else class="cela" />
+    </template>
+  </fura-details-list>
+</template>
+
+<style>
+  .cela {
+    box-sizing: border-box;
+    padding: 0px 8px 0px 12px;
+    margin: 0;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    outline: 0;
+  }
+
+  .fura-left .cela {
+    justify-content: flex-start;
+  }
+
+  .fura-center .cela {
+    justify-content: center;
+  }
+
+  .fura-right .cela {
+    justify-content: flex-end;
+  }
+</style>
