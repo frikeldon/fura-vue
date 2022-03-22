@@ -3375,17 +3375,17 @@ span button.fura-down[data-v-23d84962] {
   border-radius: 2px;
 }
 
-.fura-searchBox[data-v-461313bd] {
+.fura-searchBox[data-v-6d1bbea4] {
   font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
   font-size: 14px;
   font-weight: 400;
   margin-bottom: 8px;
 }
-.fura-container[data-v-461313bd] {
+.fura-container[data-v-6d1bbea4] {
   display: inline-flex;
   position: relative;
 }
-button[data-v-461313bd] {
+button[data-v-6d1bbea4] {
   position: relative;
   font-size: 20px;
   box-sizing: border-box;
@@ -3401,7 +3401,7 @@ button[data-v-461313bd] {
   border: 1px solid var(--neutral-secondary, var(--neutral-secondary, #605e5c));
   background: var(--white, var(--white, #ffffff));
 }
-button span[data-v-461313bd] {
+button span[data-v-6d1bbea4] {
   display: block;
   width: 12px;
   height: 12px;
@@ -3413,50 +3413,50 @@ button span[data-v-461313bd] {
   border-width: 0.28em;
   border-style: solid;
 }
-button.fura-checked[data-v-461313bd] {
+button.fura-checked[data-v-6d1bbea4] {
   justify-content: flex-end;
   background: var(--theme-primary, var(--theme-primary, #0078d4));
   border-color: transparent;
 }
-button.fura-checked span[data-v-461313bd] {
+button.fura-checked span[data-v-6d1bbea4] {
   background-color: var(--white, var(--white, #ffffff));
 }
-.fura-disabled button[data-v-461313bd] {
+.fura-disabled button[data-v-6d1bbea4] {
   cursor: default;
   border-color: var(--neutral-tertiary-alt, var(--neutral-tertiary-alt, #c8c6c4));
 }
-.fura-disabled button span[data-v-461313bd] {
+.fura-disabled button span[data-v-6d1bbea4] {
   background-color: var(--neutral-tertiary-alt, var(--neutral-tertiary-alt, #c8c6c4));
 }
-.fura-disabled button.fura-checked[data-v-461313bd] {
+.fura-disabled button.fura-checked[data-v-6d1bbea4] {
   background-color: var(--neutral-tertiary-alt, var(--neutral-tertiary-alt, #c8c6c4));
 }
-.fura-disabled button.fura-checked span[data-v-461313bd] {
+.fura-disabled button.fura-checked span[data-v-6d1bbea4] {
   background-color: var(--white, var(--white, #ffffff));
 }
-.fura-stateText[data-v-461313bd] {
+.fura-stateText[data-v-6d1bbea4] {
   padding: 0;
   margin: 0px 8px;
   font-weight: 400;
   user-select: none;
 }
-.fura-disabled .fura-stateText[data-v-461313bd] {
+.fura-disabled .fura-stateText[data-v-6d1bbea4] {
   color: var(--neutral-tertiary-alt, var(--neutral-tertiary-alt, #c8c6c4));
 }
-.fura-inline[data-v-461313bd] {
+.fura-inline[data-v-6d1bbea4] {
   display: flex;
   align-items: center;
 }
-.fura-inline > *[data-v-461313bd] {
+.fura-inline > *[data-v-6d1bbea4] {
   text-overflow: ellipsis;
 }
-.fura-inline .fura-label[data-v-461313bd] {
+.fura-inline .fura-label[data-v-6d1bbea4] {
   margin-right: 16px;
 }
-.fura-inline .fura-withoutText[data-v-461313bd] {
+.fura-inline .fura-withoutText[data-v-6d1bbea4] {
   align-items: center;
 }
-.fura-inline .fura-withoutText .fura-label[data-v-461313bd] {
+.fura-inline .fura-withoutText .fura-label[data-v-6d1bbea4] {
   order: 1;
   margin-right: 0px;
   margin-left: 16px;

@@ -49,7 +49,6 @@ export default {
     <FuraLabel
       v-if="label"
       class="fura-label"
-      :required="required"
       :disabled="disabled"
       v-text="label"
     />
