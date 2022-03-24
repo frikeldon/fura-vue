@@ -1,3 +1,5 @@
+import packageJson from './package.json'
+
 import Autofill from './component/autofill/index.js'
 import BaseBlockMenu from './component/base-block-menu/index.js'
 import BaseCalendar from './component/base-calendar/index.js'
@@ -53,7 +55,7 @@ import TagPicker from './component/tag-picker/index.js'
 import TextField from './component/text-field/index.js'
 import Toggle from './component/toggle/index.js'
 
-export const components = {
+export const component = {
   Autofill,
   BaseBlockMenu,
   BaseCalendar,
@@ -110,11 +112,15 @@ export const components = {
   Toggle
 }
 
-export default function install (app) {
-  for (const name in components) {
+export function install (app) {
+  for (const name in component) {
     const kebabName = name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
-    app.component('fura-' + kebabName, components[name])
+    app.component('fura-' + kebabName, component[name])
   }
 }
 
-install.components = components
+export default {
+  component,
+  install,
+  version: packageJson.version
+}
