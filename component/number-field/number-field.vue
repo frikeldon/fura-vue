@@ -177,7 +177,9 @@ export default {
         if (!value) {
           this.$emit('update:modelValue', null)
         } else {
-          this.$emit('update:modelValue', this.parse(value))
+          if (value !== '-' || this.textValue) {
+            this.$emit('update:modelValue', this.parse(value))
+          }
         }
       }
     },
@@ -206,7 +208,7 @@ export default {
       if (!allowedKeys.includes(key)) {
         const { value, selectionStart, selectionEnd } = target
         const newValue = value.substring(0, selectionStart) + key + value.substring(selectionEnd)
-        if (newValue.trim() !== '-' && isNaN(this.parse(newValue))) {
+        if (newValue !== '-' && isNaN(this.parse(newValue))) {
           event.preventDefault()
           event.stopPropagation()
           event.target.value = this.textValue
