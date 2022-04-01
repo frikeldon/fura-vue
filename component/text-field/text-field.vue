@@ -73,7 +73,7 @@ export default {
     'keydown'
   ],
   methods: {
-    handleTextareaInput (event) {
+    adjustHeight () {
       if (this.multiline && this.autoAdjustHeight) {
         const { field } = this.$refs
         if (field && field.tagName === 'TEXTAREA') {
@@ -81,8 +81,14 @@ export default {
           field.style.height = `${field.scrollHeight + 2}px` // +2 to avoid vertical scroll bars
         }
       }
+    },
+    handleTextareaInput (event) {
+      this.adjustHeight()
       this.$emit('update:modelValue', event.target.value)
     }
+  },
+  mounted () {
+    this.adjustHeight()
   }
 }
 </script>
