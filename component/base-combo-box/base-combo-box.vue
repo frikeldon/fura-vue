@@ -173,6 +173,7 @@ export default {
     <button
       type="button"
       class="fura-caret"
+      tabindex="-1"
       :disabled="disabled || null"
       @click.stop="handleCaretClick"
     >
