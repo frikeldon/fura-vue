@@ -107,25 +107,32 @@ export default {
       if (!this.allowFreeform) {
         if (this.open) {
           if (code === 'ArrowDown') {
+            event.preventDefault()
             this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, 1)
             select.scrollToOption(this.suggestedIndex, this.immediateScroll)
           } else if (code === 'ArrowUp') {
+            event.preventDefault()
             this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, -1)
             select.scrollToOption(this.suggestedIndex, this.immediateScroll)
           } else if (code === 'Space' || code === 'Enter') {
+            event.preventDefault()
             this.handleSelect(this.suggestedIndex)
           } else if (code.startsWith('Key')) {
+            event.preventDefault()
             const index = select.options.findIndex(option =>
               option.text && equalInsensitive(option.text[0], event.key, true)
             )
             if (index >= 0) {
+              event.preventDefault()
               this.suggestedIndex = index
               select.scrollToOption(this.suggestedIndex, this.immediateScroll)
             }
           } else if (code === 'Escape' || code === 'Backspace') {
+            event.preventDefault()
             this.open = false
           }
-        } else {
+        } else if (code !== 'Tab') {
+          event.preventDefault()
           this.open = true
         }
       } else if (code === 'ArrowDown' || code === 'ArrowUp') {
@@ -139,8 +146,10 @@ export default {
         }
       } else if (code === 'Enter') {
         if (!this.allowFreeform || this.autoComplete) {
+          event.preventDefault()
           this.handleSelect(this.suggestedIndex)
         } else if (this.allowFreeform) {
+          event.preventDefault()
           const selectedIndex = this.options.findIndex(option =>
             (!option.type || option.type === 'option') &&
             !option.disabled &&
@@ -223,14 +232,14 @@ export default {
   >
     <template #default="slotProps">
       <!--
-            @slot Opción de ComboBox.
-            @binding {object} option Referencia a la opción.
-            @binding {number} index Índice de la opción.
-            @binding {boolean} selected Estado de selecionado de la opción.
-            @binding {boolean} marked Estado marcado de la opción.
-            @binding {boolean} highlighted Estado resaltado de la opción.
-            @binding {function} click Función para seleccionar la opción.
-          -->
+        @slot Opción de ComboBox.
+        @binding {object} option Referencia a la opción.
+        @binding {number} index Índice de la opción.
+        @binding {boolean} selected Estado de selecionado de la opción.
+        @binding {boolean} marked Estado marcado de la opción.
+        @binding {boolean} highlighted Estado resaltado de la opción.
+        @binding {function} click Función para seleccionar la opción.
+      -->
       <slot
         :option="slotProps.option"
         :index="slotProps.index"
@@ -243,10 +252,10 @@ export default {
 
     <template #header="slotProps">
       <!--
-            @slot Encabezado de ComboBox
-            @binding {object} option Referencia a la opción.
-            @binding {number} index Índice de la opción.
-          -->
+        @slot Encabezado de ComboBox
+        @binding {object} option Referencia a la opción.
+        @binding {number} index Índice de la opción.
+      -->
       <slot
         name="header"
         :option="slotProps.option"
@@ -258,10 +267,10 @@ export default {
 
     <template #divider="slotProps">
       <!--
-            @slot Separador del ComboBox
-            @binding {object} option Referencia a la opción.
-            @binding {number} index Índice de la opción.
-          -->
+        @slot Separador del ComboBox
+        @binding {object} option Referencia a la opción.
+        @binding {number} index Índice de la opción.
+      -->
       <slot
         name="divider"
         :option="slotProps.option"
