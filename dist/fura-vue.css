@@ -503,7 +503,7 @@ label[data-v-678fd14e] {
   color: var(--red-dark, var(--red-dark, #a4262c));
   padding-right: 12px;
 }
-.fura-disabled.required[data-v-678fd14e]::after {
+.fura-disabled.fura-required[data-v-678fd14e]::after {
   color: var(--neutral-tertiary, var(--neutral-tertiary, #a19f9d));
 }
 
