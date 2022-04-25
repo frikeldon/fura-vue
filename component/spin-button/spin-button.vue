@@ -85,11 +85,17 @@ export default {
       this.$emit('update:modelValue', this.dec(this.modelValue))
     },
     handleChange (event) {
-      const newValue = this.parse(event.target.value)
-      if (isNaN(newValue)) {
-        this.$refs.field.value = this.textValue
+      if (!event.target.value) {
+        if (this.modelValue !== null) {
+          this.$emit('update:modelValue', null)
+        }
       } else {
-        this.$emit('update:modelValue', newValue)
+        const newValue = this.parse(event.target.value)
+        if (isNaN(newValue)) {
+          this.$refs.field.value = this.textValue
+        } else {
+          this.$emit('update:modelValue', newValue)
+        }
       }
     }
   }
