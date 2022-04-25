@@ -29,7 +29,7 @@ export default {
     readonly: { type: Boolean, default: false },
     /** Método asincrónico para solicitar los elementos candidatos a elegir. */
     getItems: { type: Function, required: true },
-    /** Milisegundos entre dos solicitudes de elementos candidatos. */
+    /** Milisegundos sin cambiar el valor para realizar una solicitud de opciones candidatas. */
     getItemsWait: { type: Number, default: 0 },
     /** Indica si los elementos seleccionados deben ocultarse de los elementos candidatos. */
     filterItems: { type: Boolean, default: false },

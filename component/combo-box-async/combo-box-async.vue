@@ -25,7 +25,7 @@ export default {
     underlined: { type: Boolean, default: false },
     /** Método asincrónico para solicitar las opciones candidatas a elegir. */
     getOptions: { type: Function, required: true },
-    /** Milisegundos entre dos solicitudes de opciones candidatas. */
+    /** Milisegundos sin cambiar el valor para realizar una solicitud de opciones candidatas. */
     getOptionsWait: { type: Number, default: 0 },
     /** Indica si las opciones seleccionadas deben ocultarse de las opciones candidatas. */
     filterOptions: { type: Boolean, default: false },
