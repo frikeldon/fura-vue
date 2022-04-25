@@ -148,9 +148,11 @@ export default {
       const { code } = event
       if (code === 'ArrowDown' || code === 'ArrowUp') {
         event.preventDefault()
-        const indexIncrement = code === 'ArrowDown' ? 1 : -1
-        this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, indexIncrement)
-        this.$nextTick(() => autofill.suggest(this.optionsWithSelected[this.suggestedIndex].text, !this.autoComplete))
+        if (select) {
+          const indexIncrement = code === 'ArrowDown' ? 1 : -1
+          this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, indexIncrement)
+          this.$nextTick(() => autofill.suggest(this.optionsWithSelected[this.suggestedIndex].text, !this.autoComplete))
+        }
       } else if (code === 'Enter') {
         if (this.autoComplete) {
           this.handleSelect(this.suggestedIndex)
