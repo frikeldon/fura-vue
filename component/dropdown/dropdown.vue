@@ -42,7 +42,11 @@ export default {
      * Se genera cuando el usuario realiza una alteración en el valor de Dropdown.
      * @property {string,Array} modelValue Valor o lista de valores seleccionados.
      */
-    'update:modelValue'
+    'update:modelValue',
+    /** Se genera cuando el componente recibe el foco. */
+    'focus',
+    /** Se genera cuando el componente pierde el foco. */
+    'blur'
   ],
   data () {
     return {
@@ -153,6 +157,8 @@ export default {
     @click="handleClick"
     @select="handleSelect"
     @click-outside.stop.prevent="open = false"
+    @focus="$emit('focus')"
+    @blur="$emit('blur')"
   >
     <template #default="slotProps">
       <!--
