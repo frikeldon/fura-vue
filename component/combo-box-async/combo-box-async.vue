@@ -1,6 +1,7 @@
 <script>
 import FuraBaseComboBox from '../base-combo-box'
 import { startsWith, equalInsensitive } from '../../utils/text'
+import debounce from '../../utils/debounce'
 
 export default {
   name: 'FuraComboBoxAsync',
@@ -119,6 +120,10 @@ export default {
           ? 1
           : 0
       }
+    },
+    debouncedHandleInput () {
+      const { handleInput, getOptionsWait } = this
+      return debounce(handleInput, getOptionsWait, this)
     }
   },
   methods: {
@@ -249,7 +254,7 @@ export default {
     @keydown="handleKeydown"
     @click="handleClick"
     @select="handleSelect"
-    @input="handleInput"
+    @input="debouncedHandleInput"
     @click-outside.stop.prevent="open = false"
     @focus="$emit('focus')"
     @blur="$emit('blur')"
