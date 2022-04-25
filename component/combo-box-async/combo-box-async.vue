@@ -160,7 +160,9 @@ export default {
             !option.disabled &&
             equalInsensitive(option.text, autofill.$refs.field.value, this.accentInsensitive)
           )
-          this.handleSelect(selectedIndex)
+          if (selectedIndex > -1) {
+            this.handleSelect(selectedIndex)
+          }
         }
       }
     },
