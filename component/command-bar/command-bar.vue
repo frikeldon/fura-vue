@@ -140,7 +140,7 @@ export default {
     },
     handleClick (bar, { event, path }) {
       let item = { childs: null }
-      if (bar === 'near') item.childs = this.items
+      if (bar === 'near') item.childs = this.currentItems
       if (bar === 'far') item.childs = this.farItems
 
       for (let index = 0; index < path.length; index += 1) {
