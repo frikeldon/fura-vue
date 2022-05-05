@@ -2301,7 +2301,7 @@ nav[data-v-72714d68] {
   left: 0px;
 }
 
-.fura-commandBar[data-v-af277ec4] {
+.fura-commandBar[data-v-e90749e6] {
   font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -2312,10 +2312,10 @@ nav[data-v-72714d68] {
   max-width: 100%;
   overflow: visible;
 }
-.fura-near[data-v-af277ec4] {
+.fura-near[data-v-e90749e6] {
   flex-grow: 1;
 }
-.fura-far[data-v-af277ec4] {
+.fura-far[data-v-e90749e6] {
   flex-shrink: 0;
 }
 

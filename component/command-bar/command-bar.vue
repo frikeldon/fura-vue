@@ -92,7 +92,11 @@ export default {
     },
     /** Calcula el índice del elemento que crea desbordamiento en la barra de comandos. */
     updateOverflowIndex () {
-      if (Array.isArray(this.itemWidths)) {
+      if (
+        Array.isArray(this.itemWidths) &&
+        this.$refs.near &&
+        this.$refs.far
+      ) {
         if (this.itemWidths.length === 0) { // First execution
           this.itemWidths = this.$refs.near.getItemWidths()
         }
