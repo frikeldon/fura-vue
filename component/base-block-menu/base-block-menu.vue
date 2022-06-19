@@ -67,8 +67,8 @@ export default {
       return typeof item.action === 'function'
     },
     /** Comprueba si un elemento tiene elementos hijos. */
-    checkItemHasChilds (item) {
-      return Array.isArray(item.childs) && item.childs.length > 0
+    checkItemHasChildren (item) {
+      return Array.isArray(item.children) && item.children.length > 0
     },
     handleClick (index, event) {
       this.$emit('click', { event, path: [index] })
@@ -161,7 +161,7 @@ export default {
             :expand="$event => handleExpand(index, $event)"
           >
             <FuraBaseSplitButton
-              v-if="checkItemHasActions(item) && checkItemHasChilds(item)"
+              v-if="checkItemHasActions(item) && checkItemHasChildren(item)"
               class="fura-button"
               :text="item.text"
               :icon="item.icon"
@@ -188,7 +188,7 @@ export default {
               :icon-color="item.iconColor"
               :icon-space="iconSpace"
               :mousestop-delay="mousestopDelay"
-              :expand-icon="checkItemHasChilds(item) ? 'ChevronRight' : ''"
+              :expand-icon="checkItemHasChildren(item) ? 'ChevronRight' : ''"
               :disabled="item.disabled"
               :checked="item.checked"
               :href="item.href"
@@ -201,10 +201,10 @@ export default {
             />
           </slot>
           <FuraBaseBlockMenu
-            v-if="itemExpandedIndex === index && checkItemHasChilds(item)"
+            v-if="itemExpandedIndex === index && checkItemHasChildren(item)"
             class="fura-subBlockMenu"
             :class="itemExpandedPositionClasses"
-            :items="item.childs"
+            :items="item.children"
             :item-expanded-path="itemExpandedPath?.slice?.(1)"
             :mousestop-delay="mousestopDelay"
             @click="handleChildClick(index, $event)"

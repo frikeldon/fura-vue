@@ -9,7 +9,7 @@
             text: "New",
             icon: "Add",
             action: () => alert("New"),
-            childs: [
+            children: [
               {
                 type: "title",
                 text: "Actions",
@@ -28,7 +28,7 @@
                 value: "share",
                 text: "Sharing",
                 icon: "Share",
-                childs: [
+                children: [
                   {
                     value: "sharetoemail",
                     text: "Share to Email",
@@ -74,7 +74,7 @@
             value: "share",
             text: "Share",
             icon: "Share",
-            childs: [
+            children: [
               {
                 value: "sharetoemail",
                 text: "Share to Email",
@@ -109,7 +109,7 @@
           @click="slotProps.click"
         />
         <fura-expander-button
-          v-if="slotProps.item.childs"
+          v-if="slotProps.item.children"
           style="flex-grow: 0"
           :expanded="slotProps.item.expanded"
           @click="slotProps.expand"

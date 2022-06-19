@@ -9,7 +9,7 @@
             text: "New",
             icon: "Add",
             action: () => alert("New"),
-            childs: [
+            children: [
               {
                 type: "title",
                 text: "Actions",
@@ -25,7 +25,7 @@
               {
                 text: "Sharing",
                 icon: "Share",
-                childs: [
+                children: [
                   {
                     text: "Share to Email",
                     icon: "Mail",
@@ -64,7 +64,7 @@
           {
             text: "Share",
             icon: "Share",
-            childs: [
+            children: [
               {
                 text: "Share to Email",
                 icon: "Mail",
@@ -81,7 +81,7 @@
           },
           {
             type: "more",
-            childs: [
+            children: [
               {
                 text: "Move to...",
                 icon: "MoveToFolder",
@@ -102,10 +102,10 @@
     },
     methods: {
       onClick({ path }) {
-        let item = { childs: this.items };
+        let item = { children: this.items };
         for (let index = 0; index < path.length; index += 1) {
-          if (item.childs) {
-            item = item.childs[path[index]];
+          if (item.children) {
+            item = item.children[path[index]];
           }
         }
         if (item && item.action) {

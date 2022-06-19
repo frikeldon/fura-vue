@@ -1,11 +1,11 @@
 <script>
   function getLevel(level) {
     return [
-      { text: `Item 1 (${level})`, childs: undefined },
-      { text: `Item 2 (${level})`, childs: undefined },
-      { text: `Item 3 (${level})`, childs: undefined },
-      { text: `Item 4 (${level})`, childs: undefined },
-      { text: `Item 5 (${level})`, childs: undefined },
+      { text: `Item 1 (${level})`, children: undefined },
+      { text: `Item 2 (${level})`, children: undefined },
+      { text: `Item 3 (${level})`, children: undefined },
+      { text: `Item 4 (${level})`, children: undefined },
+      { text: `Item 5 (${level})`, children: undefined },
     ];
   }
   export default {
@@ -16,7 +16,7 @@
       for (let step = 0; step < 50; step += 1) {
         const newItems = getLevel(maxLevel - step - 1);
         for (let index = 0; index < newItems.length; index += 1) {
-          newItems[index].childs = current;
+          newItems[index].children = current;
         }
         current = newItems;
       }
@@ -54,10 +54,10 @@
     },
     methods: {
       onClick({ path }) {
-        let item = { childs: this.items };
+        let item = { children: this.items };
         for (let index = 0; index < path.length; index += 1) {
-          if (item.childs) {
-            item = item.childs[path[index]];
+          if (item.children) {
+            item = item.children[path[index]];
           }
         }
         if (item && item.action) {

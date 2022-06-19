@@ -147,36 +147,36 @@ a[disabled] .fura-text > span[data-v-0d44d1d0] {
   background-color: #c8c6c4;
 }
 
-.fura-blockMenu[data-v-ad00195e] {
+.fura-blockMenu[data-v-7eb2a2b9] {
   display: block;
   background-color: var(--white, var(--white, #ffffff));
   z-index: 100;
   min-width: 180px;
   box-shadow: rgba(0, 0, 0, 0.133) 0px 3.2px 7.2px 0px, rgba(0, 0, 0, 0.11) 0px 0.6px 1.8px 0px;
 }
-.fura-blockMenu ul[data-v-ad00195e] {
+.fura-blockMenu ul[data-v-7eb2a2b9] {
   width: 100%;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-.fura-blockMenu ul li[data-v-ad00195e] {
+.fura-blockMenu ul li[data-v-7eb2a2b9] {
   display: block;
   position: relative;
   box-sizing: border-box;
   height: 36px;
   flex-shrink: 0;
 }
-.fura-blockMenu ul li .fura-button[data-v-ad00195e] {
+.fura-blockMenu ul li .fura-button[data-v-7eb2a2b9] {
   width: 100%;
 }
-.fura-blockMenu ul li.fura-divider[data-v-ad00195e] {
+.fura-blockMenu ul li.fura-divider[data-v-7eb2a2b9] {
   display: block;
   height: 1px;
   background-color: #edebe9;
   position: relative;
 }
-.fura-blockMenu ul li.fura-title[data-v-ad00195e] {
+.fura-blockMenu ul li.fura-title[data-v-7eb2a2b9] {
   font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
   font-size: 12px;
   font-weight: 400;
@@ -191,14 +191,14 @@ a[disabled] .fura-text > span[data-v-0d44d1d0] {
   background: none transparent;
   border: 0;
 }
-.fura-blockMenu ul li.fura-title div[data-v-ad00195e] {
+.fura-blockMenu ul li.fura-title div[data-v-7eb2a2b9] {
   white-space: nowrap;
   height: inherit;
   display: flex;
   align-items: center;
   max-width: 100%;
 }
-.fura-blockMenu ul li.fura-title span[data-v-ad00195e] {
+.fura-blockMenu ul li.fura-title span[data-v-7eb2a2b9] {
   margin: 0px 4px 0px 4px;
   vertical-align: middle;
   display: inline-block;
@@ -207,7 +207,7 @@ a[disabled] .fura-text > span[data-v-0d44d1d0] {
   white-space: nowrap;
   overflow: hidden;
 }
-.fura-blockMenu ul li.fura-title .fura-icon[data-v-ad00195e] {
+.fura-blockMenu ul li.fura-title .fura-icon[data-v-7eb2a2b9] {
   font-size: 16px;
   margin: 0px 4px 0px 4px;
   line-height: 1em;
@@ -215,31 +215,31 @@ a[disabled] .fura-text > span[data-v-0d44d1d0] {
   flex-shrink: 0;
   color: var(--theme-primary, var(--theme-primary, #0078d4));
 }
-.fura-subBlockMenu[data-v-ad00195e] {
+.fura-subBlockMenu[data-v-7eb2a2b9] {
   position: absolute;
 }
-.fura-overMenu[data-v-ad00195e] {
+.fura-overMenu[data-v-7eb2a2b9] {
   bottom: 100%;
 }
-.fura-topMenu[data-v-ad00195e] {
+.fura-topMenu[data-v-7eb2a2b9] {
   top: 0px;
 }
-.fura-bottomMenu[data-v-ad00195e] {
+.fura-bottomMenu[data-v-7eb2a2b9] {
   bottom: 0px;
 }
-.fura-underMenu[data-v-ad00195e] {
+.fura-underMenu[data-v-7eb2a2b9] {
   top: 100%;
 }
-.fura-beforeMenu[data-v-ad00195e] {
+.fura-beforeMenu[data-v-7eb2a2b9] {
   right: 100%;
 }
-.fura-leftMenu[data-v-ad00195e] {
+.fura-leftMenu[data-v-7eb2a2b9] {
   left: 0px;
 }
-.fura-rightMenu[data-v-ad00195e] {
+.fura-rightMenu[data-v-7eb2a2b9] {
   right: 0px;
 }
-.fura-afterMenu[data-v-ad00195e] {
+.fura-afterMenu[data-v-7eb2a2b9] {
   left: 100%;
 }
 
@@ -2269,39 +2269,39 @@ nav[data-v-72714d68] {
   cursor: default;
 }
 
-.fura-collection[data-v-c746e7a2] {
+.fura-collection[data-v-83568872] {
   position: relative;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
 }
-.fura-item[data-v-c746e7a2] {
+.fura-item[data-v-83568872] {
   position: relative;
   box-sizing: border-box;
   flex-shrink: 0;
   display: block;
   height: 36px;
 }
-.fura-item .fura-more[data-v-c746e7a2] .fura-icon {
+.fura-item .fura-more[data-v-83568872] .fura-icon {
   color: var(--neutral-primary, var(--neutral-primary, #323130));
 }
-.fura-submenu[data-v-c746e7a2] {
+.fura-submenu[data-v-83568872] {
   position: absolute;
 }
-.fura-topBar[data-v-c746e7a2] {
+.fura-topBar[data-v-83568872] {
   bottom: 100%;
 }
-.fura-bottomBar[data-v-c746e7a2] {
+.fura-bottomBar[data-v-83568872] {
   top: 100%;
 }
-.fura-leftBar[data-v-c746e7a2] {
+.fura-leftBar[data-v-83568872] {
   right: 0px;
 }
-.fura-rightBar[data-v-c746e7a2] {
+.fura-rightBar[data-v-83568872] {
   left: 0px;
 }
 
-.fura-commandBar[data-v-e90749e6] {
+.fura-commandBar[data-v-502339d6] {
   font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -2312,10 +2312,10 @@ nav[data-v-72714d68] {
   max-width: 100%;
   overflow: visible;
 }
-.fura-near[data-v-e90749e6] {
+.fura-near[data-v-502339d6] {
   flex-grow: 1;
 }
-.fura-far[data-v-e90749e6] {
+.fura-far[data-v-502339d6] {
   flex-shrink: 0;
 }
 

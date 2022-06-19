@@ -9,7 +9,7 @@ export function getExpandedPath (items) {
     if (index > -1) {
       expanded.push(index)
     }
-    current = current[index]?.childs
+    current = current[index]?.children
   }
   return expanded
 }
@@ -71,10 +71,10 @@ export default {
       this.breakDirections = []
     },
     handleClick (data) {
-      let item = { childs: this.items }
+      let item = { children: this.items }
       for (let index = 0; index < data.path.length; index += 1) {
-        if (item.childs) {
-          item = item.childs[data.path[index]]
+        if (item.children) {
+          item = item.children[data.path[index]]
         }
       }
       if (typeof item?.action === 'function') {

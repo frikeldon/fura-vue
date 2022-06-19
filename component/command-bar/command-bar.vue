@@ -49,7 +49,7 @@ export default {
       if (currentOverflowItems.length > 0) {
         currentItems.push({
           type: 'more',
-          childs: currentOverflowItems
+          children: currentOverflowItems
         })
       }
       return currentItems
@@ -130,8 +130,8 @@ export default {
       return typeof item.action === 'function'
     },
     /** Comprueba si un elemento tiene elementos hijos. */
-    checkItemHasChilds (item) {
-      return Array.isArray(item.childs) && item.childs.length > 0
+    checkItemHasChildren (item) {
+      return Array.isArray(item.children) && item.children.length > 0
     },
     /**
      * Esconde todos los submenús desplegados.
@@ -143,13 +143,13 @@ export default {
       this.breakDirections = []
     },
     handleClick (bar, { event, path }) {
-      let item = { childs: null }
-      if (bar === 'near') item.childs = this.currentItems
-      if (bar === 'far') item.childs = this.farItems
+      let item = { children: null }
+      if (bar === 'near') item.children = this.currentItems
+      if (bar === 'far') item.children = this.farItems
 
       for (let index = 0; index < path.length; index += 1) {
-        if (item.childs) {
-          item = item.childs[path[index]]
+        if (item.children) {
+          item = item.children[path[index]]
         }
       }
 

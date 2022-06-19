@@ -84,8 +84,8 @@ export default {
       return widths
     },
     /** Comprueba si un elemento del menú tiene elementos hijos. */
-    checkItemHasChilds (item) {
-      return Array.isArray(item.childs) && item.childs.length > 0
+    checkItemHasChildren (item) {
+      return Array.isArray(item.children) && item.children.length > 0
     },
     handleClick (index, event) {
       this.$emit('click', { event, path: [index] })
@@ -170,7 +170,7 @@ export default {
           :icon="item.icon"
           :icon-color="item.iconColor"
           :mousestop-delay="mousestopDelay"
-          :expand-icon="checkItemHasChilds(item) ? 'ChevronDown' : ''"
+          :expand-icon="checkItemHasChildren(item) ? 'ChevronDown' : ''"
           :disabled="item.disabled"
           :checked="item.checked"
           :href="item.href"
@@ -183,10 +183,10 @@ export default {
         />
       </slot>
       <FuraBaseBlockMenu
-        v-if="index === itemExpandedIndex && Array.isArray(item.childs) && item.childs.length > 0"
+        v-if="index === itemExpandedIndex && Array.isArray(item.children) && item.children.length > 0"
         class="fura-submenu"
         :class="itemExpandedPositionClasses"
-        :items="item.childs"
+        :items="item.children"
         :item-expanded-path="itemExpandedPath?.slice?.(1)"
         :mousestop-delay="mousestopDelay"
         @click="handleChildClick(index, $event)"

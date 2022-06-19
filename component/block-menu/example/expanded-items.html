@@ -9,7 +9,7 @@
             text: "New",
             icon: "Add",
             action: () => alert("New"),
-            childs: [
+            children: [
               {
                 type: "title",
                 text: "Actions",
@@ -28,7 +28,7 @@
                 value: "share",
                 text: "Sharing",
                 icon: "Share",
-                childs: [
+                children: [
                   {
                     value: "sharetoemail",
                     text: "Share to Email",
@@ -74,7 +74,7 @@
             value: "share",
             text: "Share",
             icon: "Share",
-            childs: [
+            children: [
               {
                 value: "sharetoemail",
                 text: "Share to Email",
@@ -106,7 +106,7 @@
       expandItems() {
         const items = Array.from(this.items);
         items[0].expanded = true;
-        items[0].childs[3].expanded = true;
+        items[0].children[3].expanded = true;
         this.items = items;
       },
     },
