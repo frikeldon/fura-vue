@@ -116,8 +116,12 @@ export default {
       return this.options.indexOf(nextOptionItem)
     },
     handleKeydown (event) {
-      if (!this.disabled && !this.readonly) {
-        this.$emit('keydown', event)
+      if (!event.code === 'Tab') {
+        event.stopPropagation()
+        event.preventDefault()
+        if (!this.disabled && !this.readonly) {
+          this.$emit('keydown', event)
+        }
       }
     },
     handleClick (index) {
@@ -142,7 +146,7 @@ export default {
   <div
     class="fura-select"
     :tabindex="disabled ? '' : '0'"
-    @keydown.stop.prevent="handleKeydown"
+    @keydown="handleKeydown"
   >
     <template v-for="(option, index) in options">
       <!--

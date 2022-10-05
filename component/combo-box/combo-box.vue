@@ -102,60 +102,59 @@ export default {
       }
     },
     handleKeydown (event) {
-      const { select, autofill } = this.$refs.comboBox.$refs
       const { code } = event
-      if (!this.allowFreeform) {
-        if (this.open) {
-          if (code === 'ArrowDown') {
-            event.preventDefault()
-            this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, 1)
-            select.scrollToOption(this.suggestedIndex, this.immediateScroll)
-          } else if (code === 'ArrowUp') {
-            event.preventDefault()
-            this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, -1)
-            select.scrollToOption(this.suggestedIndex, this.immediateScroll)
-          } else if (code === 'Space' || code === 'Enter') {
+      if (code !== 'Tab') {
+        const { select, autofill } = this.$refs.comboBox.$refs
+        if (!this.allowFreeform) {
+          if (this.open) {
+            if (code === 'ArrowDown') {
+              event.preventDefault()
+              this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, 1)
+              select.scrollToOption(this.suggestedIndex, this.immediateScroll)
+            } else if (code === 'ArrowUp') {
+              event.preventDefault()
+              this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, -1)
+              select.scrollToOption(this.suggestedIndex, this.immediateScroll)
+            } else if (code === 'Space' || code === 'Enter') {
+              event.preventDefault()
+              this.handleSelect(this.suggestedIndex)
+            } else if (code.startsWith('Key')) {
+              event.preventDefault()
+              const index = select.options.findIndex(option =>
+                option.text && equalInsensitive(option.text[0], event.key, true)
+              )
+              if (index >= 0) {
+                event.preventDefault()
+                this.suggestedIndex = index
+                select.scrollToOption(this.suggestedIndex, this.immediateScroll)
+              }
+            } else if (code === 'Escape' || code === 'Backspace') {
+              event.preventDefault()
+              this.open = false
+            }
+          }
+        } else if (code === 'ArrowDown' || code === 'ArrowUp') {
+          event.preventDefault()
+          const indexIncrement = code === 'ArrowDown' ? 1 : -1
+          this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, indexIncrement)
+          if (this.allowFreeform) {
+            this.$nextTick(() => autofill.suggest(this.options[this.suggestedIndex].text, !this.autoComplete))
+          } else {
+            autofill.$refs.field.value = this.options[this.suggestedIndex].text
+          }
+        } else if (code === 'Enter') {
+          if (!this.allowFreeform || this.autoComplete) {
             event.preventDefault()
             this.handleSelect(this.suggestedIndex)
-          } else if (code.startsWith('Key')) {
+          } else if (this.allowFreeform) {
             event.preventDefault()
-            const index = select.options.findIndex(option =>
-              option.text && equalInsensitive(option.text[0], event.key, true)
+            const selectedIndex = this.options.findIndex(option =>
+              (!option.type || option.type === 'option') &&
+              !option.disabled &&
+              equalInsensitive(option.text, autofill.$refs.field.value, this.accentInsensitive)
             )
-            if (index >= 0) {
-              event.preventDefault()
-              this.suggestedIndex = index
-              select.scrollToOption(this.suggestedIndex, this.immediateScroll)
-            }
-          } else if (code === 'Escape' || code === 'Backspace') {
-            event.preventDefault()
-            this.open = false
+            this.handleSelect(selectedIndex)
           }
-        } else if (code !== 'Tab') {
-          event.preventDefault()
-          this.open = true
-        }
-      } else if (code === 'ArrowDown' || code === 'ArrowUp') {
-        event.preventDefault()
-        const indexIncrement = code === 'ArrowDown' ? 1 : -1
-        this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, indexIncrement)
-        if (this.allowFreeform) {
-          this.$nextTick(() => autofill.suggest(this.options[this.suggestedIndex].text, !this.autoComplete))
-        } else {
-          autofill.$refs.field.value = this.options[this.suggestedIndex].text
-        }
-      } else if (code === 'Enter') {
-        if (!this.allowFreeform || this.autoComplete) {
-          event.preventDefault()
-          this.handleSelect(this.suggestedIndex)
-        } else if (this.allowFreeform) {
-          event.preventDefault()
-          const selectedIndex = this.options.findIndex(option =>
-            (!option.type || option.type === 'option') &&
-            !option.disabled &&
-            equalInsensitive(option.text, autofill.$refs.field.value, this.accentInsensitive)
-          )
-          this.handleSelect(selectedIndex)
         }
       }
     },

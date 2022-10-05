@@ -85,7 +85,13 @@ export default {
     handleTextareaInput (event) {
       this.adjustHeight()
       this.$emit('update:modelValue', event.target.value)
+    },
+    handleKeyDown (event) {
+      if (!event.code === 'Tab') {
+        this.$emit('keydown', event)
+      }
     }
+
   },
   mounted () {
     this.adjustHeight()
@@ -130,7 +136,7 @@ export default {
       @input.stop="handleTextareaInput"
       @focus="$emit('focus', $event)"
       @blur="$emit('blur', $event)"
-      @keydown="$emit('keydown', $event)"
+      @keydown="handleKeyDown"
     />
     <input
       v-else
@@ -146,7 +152,7 @@ export default {
       @input.stop="$emit('update:modelValue', $event.target.value)"
       @focus="$emit('focus', $event)"
       @blur="$emit('blur', $event)"
-      @keydown="$emit('keydown', $event)"
+      @keydown="handleKeyDown"
     >
 
     <FuraIcon

@@ -72,6 +72,7 @@ export default {
     },
     handlekeydown (event) {
       if (event.key === 'Enter') {
+        event.stopPropagation()
         event.preventDefault()
         this.$emit('goTo', this.$refs.current.$el.innerText)
         this.$refs.current.$el.blur()
@@ -103,7 +104,7 @@ export default {
       v-text="textValue"
       @focus="handleFocus"
       @blur="handleBlur"
-      @keydown.stop="handlekeydown"
+      @keydown="handlekeydown"
     />
     <template v-if="total">
       <FuraLabel

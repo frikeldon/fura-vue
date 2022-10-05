@@ -86,23 +86,25 @@ export default {
       this.$refs.tagPicker.$refs.autofill.focus()
     },
     handleKeydown (event) {
-      const { select, autofill } = this.$refs.tagPicker.$refs
       const { code } = event
-      if (code === 'ArrowDown' || code === 'ArrowUp') {
-        event.preventDefault()
-        const indexIncrement = code === 'ArrowDown' ? 1 : -1
-        this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, indexIncrement)
-        this.$nextTick(() => autofill.suggest(this.items[this.suggestedIndex].text, !this.autoComplete))
-      } else if (code === 'Enter') {
-        if (this.autoComplete) {
-          this.handleSelect(this.suggestedIndex)
-        } else {
-          const selectedIndex = this.items.findIndex(item =>
-            (!item.type || item.type === 'option') &&
+      if (code !== 'Tab') {
+        const { select, autofill } = this.$refs.tagPicker.$refs
+        if (code === 'ArrowDown' || code === 'ArrowUp') {
+          event.preventDefault()
+          const indexIncrement = code === 'ArrowDown' ? 1 : -1
+          this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, indexIncrement)
+          this.$nextTick(() => autofill.suggest(this.items[this.suggestedIndex].text, !this.autoComplete))
+        } else if (code === 'Enter') {
+          if (this.autoComplete) {
+            this.handleSelect(this.suggestedIndex)
+          } else {
+            const selectedIndex = this.items.findIndex(item =>
+              (!item.type || item.type === 'option') &&
             !item.disabled &&
             equalInsensitive(item.text, autofill.$refs.field.value, this.accentInsensitive)
-          )
-          this.handleSelect(selectedIndex)
+            )
+            this.handleSelect(selectedIndex)
+          }
         }
       }
     },

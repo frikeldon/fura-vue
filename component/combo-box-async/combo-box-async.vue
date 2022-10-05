@@ -144,26 +144,28 @@ export default {
       return false
     },
     handleKeydown (event) {
-      const { select, autofill } = this.$refs.comboBox.$refs
       const { code } = event
-      if (code === 'ArrowDown' || code === 'ArrowUp') {
-        event.preventDefault()
-        if (select) {
-          const indexIncrement = code === 'ArrowDown' ? 1 : -1
-          this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, indexIncrement)
-          this.$nextTick(() => autofill.suggest(this.optionsWithSelected[this.suggestedIndex].text, !this.autoComplete))
-        }
-      } else if (code === 'Enter') {
-        if (this.autoComplete) {
-          this.handleSelect(this.suggestedIndex)
-        } else {
-          const selectedIndex = this.optionsWithSelected.findIndex(option =>
-            (!option.type || option.type === 'option') &&
+      if (code !== 'Tab') {
+        const { select, autofill } = this.$refs.comboBox.$refs
+        if (code === 'ArrowDown' || code === 'ArrowUp') {
+          event.preventDefault()
+          if (select) {
+            const indexIncrement = code === 'ArrowDown' ? 1 : -1
+            this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, indexIncrement)
+            this.$nextTick(() => autofill.suggest(this.optionsWithSelected[this.suggestedIndex].text, !this.autoComplete))
+          }
+        } else if (code === 'Enter') {
+          if (this.autoComplete) {
+            this.handleSelect(this.suggestedIndex)
+          } else {
+            const selectedIndex = this.optionsWithSelected.findIndex(option =>
+              (!option.type || option.type === 'option') &&
             !option.disabled &&
             equalInsensitive(option.text, autofill.$refs.field.value, this.accentInsensitive)
-          )
-          if (selectedIndex > -1) {
-            this.handleSelect(selectedIndex)
+            )
+            if (selectedIndex > -1) {
+              this.handleSelect(selectedIndex)
+            }
           }
         }
       }

@@ -71,6 +71,15 @@ export default {
      */
     'clickOutside'
   ],
+  methods: {
+    handleKeyDown (event) {
+      if (!event.code === 'Tab') {
+        event.stopPropagation()
+        event.preventDefault()
+        this.$emit('keydown', event)
+      }
+    }
+  },
   watch: {
     markedIndex (index) {
       if (this.open && index in this.options) {
@@ -115,7 +124,7 @@ export default {
       class="fura-container"
       :tabindex="disabled ? '' : '0'"
       @click.stop="$emit('click')"
-      @keydown.stop.prevent="$emit('keydown', $event)"
+      @keydown="handleKeyDown"
     >
       <span
         class="fura-title"

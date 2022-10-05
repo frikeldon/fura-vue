@@ -91,6 +91,9 @@ export default {
       this.$emit('update:modelValue', value)
     },
     handleKeydown (event) {
+      if (event.code === 'Tab') return
+      else event.stopPropagation()
+
       const { target: field } = event
       const { value, selectionStart, selectionEnd } = field
 
@@ -129,6 +132,6 @@ export default {
     :readonly="readonly || null"
     :disabled="disabled || null"
     @input.stop="handleInput"
-    @keydown.stop="handleKeydown"
+    @keydown="handleKeydown"
   >
 </template>
