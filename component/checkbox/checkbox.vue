@@ -49,6 +49,12 @@ export default {
           this.$emit('update:modelValue', !this.modelValue)
         }
       }
+    },
+    handleKeydown (event) {
+      const { code } = event
+      if (code === 'Space' || code === 'Enter') {
+        this.handleClick()
+      }
     }
   }
 }
@@ -63,7 +69,9 @@ export default {
       'fura-disabled': disabled,
       'fura-boxSideEnd': boxSide === 'end'
     }"
+    tabindex="0"
     @click.stop="handleClick"
+    @keydown="handleKeydown"
   >
     <div class="fura-box">
       <FuraIcon
