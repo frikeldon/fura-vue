@@ -1,0 +1,190 @@
+@import "../../theme/mixin.less";
+@import "../../theme/var-color.less";
+@import "../../theme/typography.less";
+
+.fura-inputFile {
+  display: none;
+}
+
+.fura-fileContainer {
+  flex: 1 1 0px;
+  display: flex;
+  flex-direction: row;
+  min-width: 0;
+}
+
+.fura-fileMultiDropdown:deep(.fura-fieldGroup:not(.fura-disabled):not(.fura-borderless):not(.fura-underlined):has(.fura-dragging)::after) {
+  .borderCss(@color: @varThemePrimary, @width: 2px);
+}
+
+.fura-openButton {
+  border: 0;
+  background: transparent;
+  flex: 0 0 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  user-select: none;
+  font-size: 16px;
+  line-height: 18px;
+  color: @varNeutralPrimary;
+
+  &:hover {
+    color: @varThemePrimary;
+  }
+}
+
+.fura-fileNames {
+  flex: 1 1 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+
+  .fura-readonly &,
+  .fura-disabled & {
+    margin-left: 8px;
+  }
+
+  label {
+    color: @varNeutralPrimary;
+    font-size: @fontSizeSmallPlus;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    &.fura-placeholder {
+      color: @varNeutralTertiary;
+      font-weight: @fontWeightRegular;
+    }
+  }
+}
+
+.fura-caret {
+  border: 0;
+  background: transparent;
+  flex: 0 0 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  user-select: none;
+  font-size: 12px;
+  color: @varNeutralSecondary;
+
+  &:hover {
+    color: @varNeutralDark;
+    background-color: @varNeutralLighter;
+    cursor: pointer;
+  }
+}
+
+.fura-dropdownWrapper {
+  flex: 1 1 0px;
+  background-color: @varWhite;
+  box-shadow: 0 0px 15px -5px @varBlackTranslucent40;
+  border: 1px solid @varNeutralLight;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.fura-fileItem {
+  flex: 1 1 0px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 8px;
+
+  .fura-fileIcon {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+
+    user-select: none;
+    font-size: 16px;
+    line-height: 18px;
+    color: @varNeutralPrimary;
+
+    .fura-disabled & {
+      color: @varNeutralTertiary;
+    }
+  }
+
+  .fura-fileName {
+    flex: 1 1 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 0;
+
+    label {
+      color: @varNeutralPrimary;
+      font-size: @fontSizeSmallPlus;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  .fura-fileDownload {
+    border: 0;
+    background: transparent;
+    flex: 0 0 32px;
+    width: 32px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    user-select: none;
+    font-size: 16px;
+    line-height: 18px;
+    color: @varNeutralPrimary;
+
+    &:hover {
+      color: @varThemePrimary;
+    }
+  }
+
+  .fura-fileDelete {
+    border: 0;
+    background: transparent;
+    flex: 0 0 32px;
+    width: 32px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    user-select: none;
+    font-size: 16px;
+    line-height: 18px;
+    color: @varNeutralPrimary;
+
+    &:hover {
+      color: @varRed;
+    }
+  }
+
+  &:hover {
+    .fura-fileName label {
+      font-weight: @fontWeightSemibold;
+    }
+
+    .fura-fileDownload,
+    .fura-fileDelete {
+      display: flex;
+    }
+  }
+}
