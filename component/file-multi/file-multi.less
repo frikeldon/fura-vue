@@ -1,0 +1,152 @@
+@import "../../theme/mixin.less";
+@import "../../theme/var-color.less";
+@import "../../theme/typography.less";
+
+.fura-fileMulti {
+  .normalize();
+
+  &.fura-disabled {
+    pointer-events: none;
+  }
+}
+
+.fura-inputFile {
+  display: none;
+}
+
+.fura-fileContainer {
+  .normalize();
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  border: 1px dashed transparent;
+  border-radius: 8px;
+
+  &.fura-dragging {
+    border-color: @neutralTertiary;
+  }
+}
+
+.fura-fileItem {
+  .normalize();
+  flex: 1 1 0px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0px;
+  max-width: 100%;
+
+  .fura-fileIcon {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+
+    user-select: none;
+    font-size: 16px;
+    line-height: 18px;
+    color: @varNeutralPrimary;
+
+    .fura-disabled & {
+      color: @varNeutralTertiary;
+    }
+  }
+
+  .fura-fileName {
+    flex: 1 1 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 0;
+
+    label {
+      color: @varNeutralPrimary;
+      font-size: @fontSizeSmallPlus;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      .fura-disabled & {
+        color: @varNeutralTertiary;
+      }
+    }
+  }
+
+  .fura-fileDownload {
+    border: 0;
+    background: transparent;
+    flex: 0 0 32px;
+    width: 32px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 1px 0;
+
+    user-select: none;
+    font-size: 16px;
+    line-height: 18px;
+    color: @varNeutralPrimary;
+
+    &:hover {
+      color: @varThemePrimary;
+    }
+  }
+
+  .fura-fileDelete {
+    border: 0;
+    background: transparent;
+    flex: 0 0 32px;
+    width: 32px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 1px 0;
+
+    user-select: none;
+    font-size: 16px;
+    line-height: 18px;
+    color: @varNeutralPrimary;
+
+    &:hover {
+      color: @varRed;
+    }
+  }
+
+  &:hover {
+    .fura-fileName label {
+      font-weight: @fontWeightSemibold;
+    }
+
+    .fura-fileDownload,
+    .fura-fileDelete {
+      display: flex;
+    }
+  }
+}
+
+.fura-openButton {
+  border: 0;
+  background: transparent;
+  flex: 0 0 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 0;
+  cursor: pointer;
+
+  user-select: none;
+  font-size: 16px;
+  line-height: 18px;
+  color: @varNeutralPrimary;
+
+  &:hover {
+    color: @varThemePrimary;
+  }
+}

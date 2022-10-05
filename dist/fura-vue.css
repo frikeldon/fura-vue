@@ -2594,6 +2594,139 @@ div[data-v-6fc5d996] {
   color: var(--red, var(--red, #e81123));
 }
 
+.fura-fileMulti[data-v-e10b29fe] {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+.fura-fileMulti.fura-disabled[data-v-e10b29fe] {
+  pointer-events: none;
+}
+.fura-inputFile[data-v-e10b29fe] {
+  display: none;
+}
+.fura-fileContainer[data-v-e10b29fe] {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border: 1px dashed transparent;
+  border-radius: 8px;
+}
+.fura-fileContainer.fura-dragging[data-v-e10b29fe] {
+  border-color: var(--neutral-tertiary, #a19f9d);
+}
+.fura-fileItem[data-v-e10b29fe] {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  flex: 1 1 0px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0px;
+  max-width: 100%;
+}
+.fura-fileItem .fura-fileIcon[data-v-e10b29fe] {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  user-select: none;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--neutral-primary, var(--neutral-primary, #323130));
+}
+.fura-disabled .fura-fileItem .fura-fileIcon[data-v-e10b29fe] {
+  color: var(--neutral-tertiary, var(--neutral-tertiary, #a19f9d));
+}
+.fura-fileItem .fura-fileName[data-v-e10b29fe] {
+  flex: 1 1 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+}
+.fura-fileItem .fura-fileName label[data-v-e10b29fe] {
+  color: var(--neutral-primary, var(--neutral-primary, #323130));
+  font-size: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.fura-disabled .fura-fileItem .fura-fileName label[data-v-e10b29fe] {
+  color: var(--neutral-tertiary, var(--neutral-tertiary, #a19f9d));
+}
+.fura-fileItem .fura-fileDownload[data-v-e10b29fe] {
+  border: 0;
+  background: transparent;
+  flex: 0 0 32px;
+  width: 32px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 1px 0;
+  user-select: none;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--neutral-primary, var(--neutral-primary, #323130));
+}
+.fura-fileItem .fura-fileDownload[data-v-e10b29fe]:hover {
+  color: var(--theme-primary, var(--theme-primary, #0078d4));
+}
+.fura-fileItem .fura-fileDelete[data-v-e10b29fe] {
+  border: 0;
+  background: transparent;
+  flex: 0 0 32px;
+  width: 32px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 1px 0;
+  user-select: none;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--neutral-primary, var(--neutral-primary, #323130));
+}
+.fura-fileItem .fura-fileDelete[data-v-e10b29fe]:hover {
+  color: var(--red, var(--red, #e81123));
+}
+.fura-fileItem:hover .fura-fileName label[data-v-e10b29fe] {
+  font-weight: 600;
+}
+.fura-fileItem:hover .fura-fileDownload[data-v-e10b29fe],
+.fura-fileItem:hover .fura-fileDelete[data-v-e10b29fe] {
+  display: flex;
+}
+.fura-openButton[data-v-e10b29fe] {
+  border: 0;
+  background: transparent;
+  flex: 0 0 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 0;
+  cursor: pointer;
+  user-select: none;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--neutral-primary, var(--neutral-primary, #323130));
+}
+.fura-openButton[data-v-e10b29fe]:hover {
+  color: var(--theme-primary, var(--theme-primary, #0078d4));
+}
+
 a[data-v-3036afd2] {
   box-sizing: border-box;
   margin: 0;
