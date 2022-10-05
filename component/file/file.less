@@ -1,0 +1,119 @@
+@import "../../theme/mixin.less";
+@import "../../theme/var-color.less";
+@import "../../theme/typography.less";
+
+.fura-hidden {
+  display: none;
+}
+
+.fura-fileContainer {
+  flex: 1 1 0px;
+  display: flex;
+  flex-direction: row;
+  min-width: 0;
+}
+
+.fura-file:deep(.fura-fieldGroup:not(.fura-disabled):not(.fura-borderless):not(.fura-underlined):has(.fura-dragging)::after) {
+  .borderCss(@color: @varThemePrimary, @width: 2px);
+}
+
+.fura-openButton {
+  border: 0;
+  background: transparent;
+  flex: 0 0 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  user-select: none;
+  font-size: 16px;
+  line-height: 18px;
+  color: @varNeutralPrimary;
+
+  &:hover {
+    color: @varThemePrimary;
+  }
+}
+
+.fura-fileName {
+  flex: 1 1 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+
+  label {
+    color: @varNeutralPrimary;
+    font-size: @fontSizeSmallPlus;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    &.fura-placeholder {
+      color: @varNeutralTertiary;
+      font-weight: @fontWeightRegular;
+    }
+
+    .fura-disabled & {
+      color: @varNeutralTertiary;
+    }
+  }
+
+  .fura-readonly &,
+  .fura-disabled & {
+    margin-left: 8px;
+  }
+}
+
+.fura-fileDownload {
+  border: 0;
+  background: transparent;
+  flex: 0 0 32px;
+  width: 32px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  user-select: none;
+  font-size: 16px;
+  line-height: 18px;
+  color: @varNeutralPrimary;
+
+  .fura-fileContainer:hover &,
+  .fura-fileContainer:focus-within & {
+    display: flex;
+  }
+
+  &:hover {
+    color: @varThemePrimary;
+  }
+}
+
+.fura-fileDelete {
+  border: 0;
+  background: transparent;
+  flex: 0 0 32px;
+  width: 32px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  user-select: none;
+  font-size: 16px;
+  line-height: 18px;
+  color: @varNeutralPrimary;
+
+  .fura-fileContainer:hover &,
+  .fura-fileContainer:focus-within & {
+    display: flex;
+  }
+
+  &:hover {
+    color: @varRed;
+  }
+}
