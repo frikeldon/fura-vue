@@ -218,7 +218,7 @@ export default {
         <button
           v-if="!disabled && !readonly"
           class="fura-fileDelete"
-          @click.stop="$emit('delete', { index })"
+          @click.stop="$emit('delete', index)"
         >
           <FuraIcon name="Delete" />
         </button>
