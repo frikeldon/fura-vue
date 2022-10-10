@@ -13,6 +13,7 @@ table {
   background: @varWhite;
   border-collapse: collapse;
   border-color: @varNeutralLight;
+  position: relative;
 }
 
 .fura-auto {
@@ -74,5 +75,15 @@ th {
 
   &.fura-collapsed {
     font-weight: @fontWeightRegular;
+  }
+}
+
+.fura-stickyHeader {
+  .fura-headerRow th,
+  .fura-headerRow:deep(.fura-checkboxCell) {
+    position: sticky;
+    top: 0;
+    background: @varWhite;
+    z-index: 1;
   }
 }

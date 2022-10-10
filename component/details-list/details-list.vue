@@ -30,7 +30,9 @@ export default {
     /** Indica si los grupos de la tabla se puede plegar. */
     collapsible: { type: Boolean, default: false },
     /** Indica si no deben dibujarse las filas de cabecera de grupo. */
-    withoutGroupHeader: { type: Boolean, default: false }
+    withoutGroupHeader: { type: Boolean, default: false },
+    /** Indica si la cabecera de la tabla ha de permanecer estàtica al principio de la tabla. */
+    stickyHeader: { type: Boolean, default: false }
   },
   emits: [
     /**
@@ -151,6 +153,7 @@ export default {
     :collapsible="collapsible"
     :collapsed-indices="collapsedIndices"
     :without-group-header="withoutGroupHeader"
+    :sticky-header="stickyHeader"
     @expand-group="toggleGroupCollapsed"
     @expand-all="setAllCollapsed"
     @select-row="toggleSelectedRow"

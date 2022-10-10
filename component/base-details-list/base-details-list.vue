@@ -86,7 +86,9 @@ export default {
     /** Lista con los índices de los grupos plegados. */
     collapsedIndices: { type: Set, default: () => new Set() },
     /** Indica si no deben dibujarse las filas de cabecera de grupo. */
-    withoutGroupHeader: { type: Boolean, default: false }
+    withoutGroupHeader: { type: Boolean, default: false },
+    /** Indica si la cabecera de la tabla ha de permanecer estàtica al principio de la tabla. */
+    stickyHeader: { type: Boolean, default: false }
   },
   emits: [
     /**
@@ -202,11 +204,13 @@ export default {
     :class="{
       'fura-auto': autoLayout === 'auto',
       'fura-fullAuto': autoLayout === 'fullAuto',
+      'fura-stickyHeader': stickyHeader
     }"
   >
     <thead data-type="header">
       <FuraBaseDetailsListRow
         type="header"
+        class="fura-headerRow"
         :selection="selection"
         :compact="compact"
         :selected="allSelected"

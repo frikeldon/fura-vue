@@ -50,7 +50,8 @@ export default {
     }]"
     @click.stop="$emit('click')"
   >
-    <td
+    <component
+      :is="type === 'header' ? 'th' : 'td'"
       v-if="selection"
       class="fura-checkboxCell"
     >
@@ -61,7 +62,7 @@ export default {
           @update:model-value="$emit('click')"
         />
       </div>
-    </td>
+    </component>
     <!-- @slot Row's content -->
     <slot />
   </tr>
