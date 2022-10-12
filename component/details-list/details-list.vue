@@ -32,7 +32,9 @@ export default {
     /** Indica si no deben dibujarse las filas de cabecera de grupo. */
     withoutGroupHeader: { type: Boolean, default: false },
     /** Indica si la cabecera de la tabla ha de permanecer estàtica al principio de la tabla. */
-    stickyHeader: { type: Boolean, default: false }
+    stickyHeader: { type: Boolean, default: false },
+    /** Indica el margen superior que ha de dejar la cabecera en el modo sticky. */
+    stickyHeaderOffset: { type: [String, Number], default: null }
   },
   emits: [
     /**
@@ -154,6 +156,7 @@ export default {
     :collapsed-indices="collapsedIndices"
     :without-group-header="withoutGroupHeader"
     :sticky-header="stickyHeader"
+    :sticky-header-offset="stickyHeaderOffset"
     @expand-group="toggleGroupCollapsed"
     @expand-all="setAllCollapsed"
     @select-row="toggleSelectedRow"

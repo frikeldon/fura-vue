@@ -88,7 +88,9 @@ export default {
     /** Indica si no deben dibujarse las filas de cabecera de grupo. */
     withoutGroupHeader: { type: Boolean, default: false },
     /** Indica si la cabecera de la tabla ha de permanecer estàtica al principio de la tabla. */
-    stickyHeader: { type: Boolean, default: false }
+    stickyHeader: { type: Boolean, default: false },
+    /** Indica el margen superior que ha de dejar la cabecera en el modo sticky. */
+    stickyHeaderOffset: { type: [String, Number], default: null }
   },
   emits: [
     /**
@@ -142,6 +144,15 @@ export default {
     },
     hasBodyFooterSlots () {
       return this.$slots.bodyFooter && hasContentNodes(this.$slots.bodyFooter())
+    },
+    stickyHeaderOffsetStyle () {
+      if (typeof this.stickyHeaderOffset === 'number' && this.stickyHeaderOffset) {
+        return `--fura-baseDetailsList-stickyHeaderOffset: ${this.stickyHeaderOffset}px`
+      }
+      if (typeof this.stickyHeaderOffset === 'string' && this.stickyHeaderOffset) {
+        return `--fura-baseDetailsList-stickyHeaderOffset: ${this.stickyHeaderOffset}`
+      }
+      return null
     }
   },
   methods: {
@@ -206,6 +217,7 @@ export default {
       'fura-fullAuto': autoLayout === 'fullAuto',
       'fura-stickyHeader': stickyHeader
     }"
+    :style="stickyHeaderOffsetStyle"
   >
     <thead data-type="header">
       <FuraBaseDetailsListRow

@@ -82,7 +82,7 @@ th {
   .fura-headerRow th,
   .fura-headerRow:deep(.fura-checkboxCell) {
     position: sticky;
-    top: 0;
+    top: var(--fura-baseDetailsList-stickyHeaderOffset, 0);
     background: @varWhite;
     z-index: 1;
   }
