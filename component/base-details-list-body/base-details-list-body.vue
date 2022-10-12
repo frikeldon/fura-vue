@@ -45,7 +45,17 @@ export default {
      * Se genera cuando el usuario hace clic sobre una celda.
      * @property {object} coords Objeto ({ row, column }) con el número de fila y columna pulsada.
      */
-    'clickCell'
+    'clickCell',
+    /**
+     * Se genera cuando el usuario hace clic, con el botón derecho, sobre una fila.
+     * @property {object} coords Objeto ({ row, column }) con el número de fila y columna pulsada.
+     */
+    'contextmenuRow',
+    /**
+     * Se genera cuando el usuario hace clic, con el botón derecho, sobre una celda.
+     * @property {object} coords Objeto ({ row, column }) con el número de fila y columna pulsada.
+     */
+    'contextmenuCell'
   ],
   computed: {
     /** Datos a mostrar. */
@@ -120,6 +130,10 @@ export default {
       :selected="selectedIndices.includes(startIndex + rowIndex)"
       :compact="compact"
       @click="$emit('select', startIndex + rowIndex)"
+      @contextmenu.stop="$emit('contextmenuRow', {
+        row: startIndex + rowIndex,
+        event: $event,
+      })"
     >
       <td
         v-if="collapsible"
@@ -131,7 +145,13 @@ export default {
         :class="getAlignClass(column.align)"
         @click.stop="$emit('clickCell', {
           row: startIndex + rowIndex,
-          column: columnIndex
+          column: columnIndex,
+          event: $event
+        })"
+        @contextmenu.stop="$emit('contextmenuCell', {
+          row: startIndex + rowIndex,
+          column: columnIndex,
+          event: $event
         })"
       >
         <!--

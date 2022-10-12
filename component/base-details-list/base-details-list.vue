@@ -124,7 +124,17 @@ export default {
      * Se genera cuando el usuario hace clic sobre una celda.
      * @property {object} coords Objeto ({ row, column }) con el número de fila y columna pulsada.
      */
-    'clickCell'
+    'clickCell',
+    /**
+     * Se genera cuando el usuario hace clic, con el botón derecho, sobre una fila.
+     * @property {object} coords Objeto ({ row, column }) con el número de fila y columna pulsada.
+     */
+    'contextmenuRow',
+    /**
+     * Se genera cuando el usuario hace clic, con el botón derecho, sobre una celda.
+     * @property {object} coords Objeto ({ row, column }) con el número de fila y columna pulsada.
+     */
+    'contextmenuCell'
   ],
   computed: {
     /** Indica si todos los grupos estan plegados, si la tabla se puede plegar. */
@@ -332,6 +342,8 @@ export default {
             :group="group"
             @select="$emit('selectRow', $event)"
             @click-cell="$emit('clickCell', $event)"
+            @contextmenu-row="$emit('contextmenuRow', $event)"
+            @contextmenu-cell="$emit('contextmenuCell', $event)"
           >
             <template
               v-if="hasBodyHeaderSlots"
@@ -406,6 +418,8 @@ export default {
       :collapsible="collapsible"
       @select="$emit('selectRow', $event)"
       @click-cell="$emit('clickCell', $event)"
+      @contextmenu-row="$emit('contextmenuRow', $event)"
+      @contextmenu-cell="$emit('contextmenuCell', $event)"
     >
       <template
         v-if="hasBodyHeaderSlots"

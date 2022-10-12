@@ -51,7 +51,17 @@ export default {
      * Se genera cuando el usuario hace clic sobre una celda.
      * @property {object} coords Objeto ({ row, column }) con el número de fila y columna pulsada.
      */
-    'clickCell'
+    'clickCell',
+    /**
+     * Se genera cuando el usuario hace clic, con el botón derecho, sobre una fila.
+     * @property {object} coords Objeto ({ row, column }) con el número de fila y columna pulsada.
+     */
+    'contextmenuRow',
+    /**
+     * Se genera cuando el usuario hace clic, con el botón derecho, sobre una celda.
+     * @property {object} coords Objeto ({ row, column }) con el número de fila y columna pulsada.
+     */
+    'contextmenuCell'
   ],
   data () {
     return {
@@ -164,6 +174,8 @@ export default {
     @select-all="toggleSelectedAll"
     @click-header="$emit('clickHeader', $event)"
     @click-cell="$emit('clickCell', $event)"
+    @contextmenu-row="$emit('contextmenuRow', $event)"
+    @contextmenu-cell="$emit('contextmenuCell', $event)"
   >
     <template #default="slotProps">
       <!--
