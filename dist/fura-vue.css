@@ -147,36 +147,36 @@ a[disabled] .fura-text > span[data-v-0d44d1d0] {
   background-color: #c8c6c4;
 }
 
-.fura-blockMenu[data-v-7eb2a2b9] {
+.fura-blockMenu[data-v-07236eb6] {
   display: block;
   background-color: var(--white, var(--white, #ffffff));
   z-index: 100;
   min-width: 180px;
   box-shadow: rgba(0, 0, 0, 0.133) 0px 3.2px 7.2px 0px, rgba(0, 0, 0, 0.11) 0px 0.6px 1.8px 0px;
 }
-.fura-blockMenu ul[data-v-7eb2a2b9] {
+.fura-blockMenu ul[data-v-07236eb6] {
   width: 100%;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-.fura-blockMenu ul li[data-v-7eb2a2b9] {
+.fura-blockMenu ul li[data-v-07236eb6] {
   display: block;
   position: relative;
   box-sizing: border-box;
   height: 36px;
   flex-shrink: 0;
 }
-.fura-blockMenu ul li .fura-button[data-v-7eb2a2b9] {
+.fura-blockMenu ul li .fura-button[data-v-07236eb6] {
   width: 100%;
 }
-.fura-blockMenu ul li.fura-divider[data-v-7eb2a2b9] {
+.fura-blockMenu ul li.fura-divider[data-v-07236eb6] {
   display: block;
   height: 1px;
   background-color: #edebe9;
   position: relative;
 }
-.fura-blockMenu ul li.fura-title[data-v-7eb2a2b9] {
+.fura-blockMenu ul li.fura-title[data-v-07236eb6] {
   font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
   font-size: 12px;
   font-weight: 400;
@@ -191,14 +191,14 @@ a[disabled] .fura-text > span[data-v-0d44d1d0] {
   background: none transparent;
   border: 0;
 }
-.fura-blockMenu ul li.fura-title div[data-v-7eb2a2b9] {
+.fura-blockMenu ul li.fura-title div[data-v-07236eb6] {
   white-space: nowrap;
   height: inherit;
   display: flex;
   align-items: center;
   max-width: 100%;
 }
-.fura-blockMenu ul li.fura-title span[data-v-7eb2a2b9] {
+.fura-blockMenu ul li.fura-title span[data-v-07236eb6] {
   margin: 0px 4px 0px 4px;
   vertical-align: middle;
   display: inline-block;
@@ -207,7 +207,7 @@ a[disabled] .fura-text > span[data-v-0d44d1d0] {
   white-space: nowrap;
   overflow: hidden;
 }
-.fura-blockMenu ul li.fura-title .fura-icon[data-v-7eb2a2b9] {
+.fura-blockMenu ul li.fura-title .fura-icon[data-v-07236eb6] {
   font-size: 16px;
   margin: 0px 4px 0px 4px;
   line-height: 1em;
@@ -215,31 +215,31 @@ a[disabled] .fura-text > span[data-v-0d44d1d0] {
   flex-shrink: 0;
   color: var(--theme-primary, var(--theme-primary, #0078d4));
 }
-.fura-subBlockMenu[data-v-7eb2a2b9] {
+.fura-subBlockMenu[data-v-07236eb6] {
   position: absolute;
 }
-.fura-overMenu[data-v-7eb2a2b9] {
+.fura-overMenu[data-v-07236eb6] {
   bottom: 100%;
 }
-.fura-topMenu[data-v-7eb2a2b9] {
+.fura-topMenu[data-v-07236eb6] {
   top: 0px;
 }
-.fura-bottomMenu[data-v-7eb2a2b9] {
+.fura-bottomMenu[data-v-07236eb6] {
   bottom: 0px;
 }
-.fura-underMenu[data-v-7eb2a2b9] {
+.fura-underMenu[data-v-07236eb6] {
   top: 100%;
 }
-.fura-beforeMenu[data-v-7eb2a2b9] {
+.fura-beforeMenu[data-v-07236eb6] {
   right: 100%;
 }
-.fura-leftMenu[data-v-7eb2a2b9] {
+.fura-leftMenu[data-v-07236eb6] {
   left: 0px;
 }
-.fura-rightMenu[data-v-7eb2a2b9] {
+.fura-rightMenu[data-v-07236eb6] {
   right: 0px;
 }
-.fura-afterMenu[data-v-7eb2a2b9] {
+.fura-afterMenu[data-v-07236eb6] {
   left: 100%;
 }
 

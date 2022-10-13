@@ -70,6 +70,21 @@ export default {
     checkItemHasChildren (item) {
       return Array.isArray(item.children) && item.children.length > 0
     },
+    /** Comprueba si el elemento esta fuera de los limites de la pantalla. */
+    checkOverload () {
+      const clientRect = this.$el.getBoundingClientRect()
+
+      const top = clientRect.top < 0
+      const right = clientRect.right > document.body.scrollWidth
+      const bottom = clientRect.bottom > document.body.scrollHeight
+      const left = clientRect.left < 0
+
+      if (top || right || bottom || left) {
+        this.handleOverload({ top, right, bottom, left })
+        return true
+      }
+      return false
+    },
     handleClick (index, event) {
       this.$emit('click', { event, path: [index] })
     },
@@ -95,16 +110,7 @@ export default {
     }
   },
   mounted () {
-    const clientRect = this.$el.getBoundingClientRect()
-
-    const top = clientRect.top < 0
-    const right = clientRect.right > document.body.scrollWidth
-    const bottom = clientRect.bottom > document.body.scrollHeight
-    const left = clientRect.left < 0
-
-    if (top || right || bottom || left) {
-      this.handleOverload({ top, right, bottom, left })
-    }
+    this.checkOverload()
   }
 }
 </script>

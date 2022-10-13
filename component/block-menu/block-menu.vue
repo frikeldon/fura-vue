@@ -33,7 +33,12 @@ export default {
      * Se genera cuando el el usuario hace clic fuera del componente.
      * @property {MouseEvent} mouseEvent Descripción del evento de pulsación de ratón.
      */
-    'clickOutside'
+    'clickOutside',
+    /**
+     * Se genera cuando el elemento se renderiza fuera de los margenes visibles de la pagina
+     * @property {object} event Lados que sobresalen de la pantalla y path para llegar al elemento que sobresale.
+     */
+    'overload'
   ],
   data () {
     return {
@@ -69,6 +74,10 @@ export default {
     collapseAll () {
       this.expandedIndices = []
       this.breakDirections = []
+    },
+    /** Comprueba si el elemento esta fuera de los limites de la pantalla. */
+    checkOverload () {
+      return this.$refs.baseBlockMenu.checkOverload()
     },
     handleClick (data) {
       let item = { children: this.items }
@@ -111,6 +120,8 @@ export default {
           .filter(item => item.position < currentBreak.position)
           .sort((a, b) => a.position - b.position)
           .concat([currentBreak])
+      } else {
+        this.$emit('overload', event)
       }
     }
   },
@@ -141,6 +152,7 @@ export default {
 
 <template>
   <FuraBaseBlockMenu
+    ref="baseBlockMenu"
     :items="items"
     :item-expanded-path="expandedPath"
     :mousestop-delay="mousestopDelay"
