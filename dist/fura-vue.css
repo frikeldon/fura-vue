@@ -3068,6 +3068,13 @@ button > span[data-v-1f4413b5] {
   color: var(--warning-icon, #797775);
 }
 
+.fura-dialog[data-v-72c4cc17] {
+  width: 100%;
+  height: 100%;
+  border-color: transparent;
+  background: transparent;
+}
+
 @keyframes furaFadeIn-3769e5c1 {
 from {
     opacity: 0;

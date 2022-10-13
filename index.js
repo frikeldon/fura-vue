@@ -42,6 +42,7 @@ import Icon from './component/icon/index.js'
 import Label from './component/label/index.js'
 import Link from './component/link/index.js'
 import MessageBar from './component/message-bar/index.js'
+import Modal from './component/modal/index.js'
 import Nav from './component/nav/index.js'
 import NumberField from './component/number-field/index.js'
 import Overlay from './component/overlay/index.js'
@@ -101,6 +102,7 @@ export const component = {
   Label,
   Link,
   MessageBar,
+  Modal,
   Nav,
   NumberField,
   Overlay,
