@@ -155,14 +155,14 @@ export default {
     hasBodyFooterSlots () {
       return this.$slots.bodyFooter && hasContentNodes(this.$slots.bodyFooter())
     },
-    stickyHeaderOffsetValue () {
+    stickyHeaderOffsetStyle () {
       if (typeof this.stickyHeaderOffset === 'number' && this.stickyHeaderOffset) {
-        return `${this.stickyHeaderOffset}px`
+        return `--fura-baseDetailsList-stickyHeaderOffset: ${this.stickyHeaderOffset}px`
       }
       if (typeof this.stickyHeaderOffset === 'string' && this.stickyHeaderOffset) {
-        return this.stickyHeaderOffset
+        return `--fura-baseDetailsList-stickyHeaderOffset: ${this.stickyHeaderOffset}`
       }
-      return undefined
+      return null
     }
   },
   methods: {
@@ -227,6 +227,7 @@ export default {
       'fura-fullAuto': autoLayout === 'fullAuto',
       'fura-stickyHeader': stickyHeader
     }"
+    :style="stickyHeaderOffsetStyle"
   >
     <thead data-type="header">
       <FuraBaseDetailsListRow
