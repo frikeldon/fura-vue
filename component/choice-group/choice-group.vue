@@ -46,10 +46,11 @@ export default {
   <div>
     <FuraLabel
       v-if="label"
-      v-text="label"
       :disabled="disabled || null"
       :required="required"
-    />
+    >
+      {{ label }}
+    </FuraLabel>
     <div
       class="fura-field"
       :class="{ 'fura-inRow': inRow }"

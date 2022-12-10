@@ -101,20 +101,19 @@ export default {
       ref="current"
       :contenteditable="editable"
       class="fura-current"
-      v-text="textValue"
       @focus="handleFocus"
       @blur="handleBlur"
       @keydown="handlekeydown"
-    />
+    >
+      {{ textValue }}
+    </FuraLabel>
     <template v-if="total">
-      <FuraLabel
-        class="fura-separator"
-        v-text="'/'"
-      />
-      <FuraLabel
-        class="fura-max"
-        v-text="total"
-      />
+      <FuraLabel class="fura-separator">
+        /
+      </FuraLabel>
+      <FuraLabel class="fura-max">
+        {{ total }}
+      </FuraLabel>
     </template>
     <FuraButton
       type="icon"

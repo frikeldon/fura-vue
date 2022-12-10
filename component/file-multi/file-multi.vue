@@ -175,10 +175,11 @@ export default {
   >
     <FuraLabel
       v-if="label"
-      v-text="label"
       :disabled="disabled"
       :required="required"
-    />
+    >
+      {{ label }}
+    </FuraLabel>
     <input
       ref="inputFile"
       type="file"

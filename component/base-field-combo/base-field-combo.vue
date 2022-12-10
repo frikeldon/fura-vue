@@ -137,8 +137,9 @@ export default {
         :required="required"
         :disabled="disabled"
         @click.stop="$emit('click', $event)"
-        v-text="label"
-      />
+      >
+        {{ label }}
+      </FuraLabel>
       <div class="fura-fieldWrapper">
         <div
           ref="fieldGroup"

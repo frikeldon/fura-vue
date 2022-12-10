@@ -51,8 +51,9 @@ export default {
         :required="required"
         :disabled="disabled"
         @click.stop="$emit('click', $event)"
-        v-text="label"
-      />
+      >
+        {{ label }}
+      </FuraLabel>
       <div class="fura-fieldGroup">
         <!-- @slot Campo del formulario. -->
         <slot />

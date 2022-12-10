@@ -50,8 +50,9 @@ export default {
       v-if="label"
       class="fura-label"
       :disabled="disabled"
-      v-text="label"
-    />
+    >
+      {{ label }}
+    </FuraLabel>
     <div class="fura-container">
       <button
         type="button"
