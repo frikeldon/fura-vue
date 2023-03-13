@@ -68,7 +68,6 @@ export default {
     },
     handleBlur () {
       this.hasFocus = false
-      this.$refs.current.$el.innerText = String(this.current)
     },
     handlekeydown (event) {
       if (event.key === 'Enter') {
