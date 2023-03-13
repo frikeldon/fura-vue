@@ -1,6 +1,6 @@
 {
   "name": "fura-vue",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "description": "Componentes Vue inspirados en Fluent UI de Microsoft.",
   "type": "module",
   "repository": {
