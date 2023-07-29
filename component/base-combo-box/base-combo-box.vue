@@ -117,7 +117,7 @@ export default {
   watch: {
     suggestedIndex (index) {
       if (this.open && index in this.options) {
-        this.$refs.select.scrollToOption(index, this.immediateScroll)
+        this.$refs.select?.scrollToOption(index, this.immediateScroll)
       }
     },
     open (open) {
