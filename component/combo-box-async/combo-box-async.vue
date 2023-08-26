@@ -152,7 +152,6 @@ export default {
           if (select) {
             const indexIncrement = code === 'ArrowDown' ? 1 : -1
             this.suggestedIndex = select.getNextEnabledOptionIndex(this.suggestedIndex, indexIncrement)
-            this.$nextTick(() => autofill.suggest(this.optionsWithSelected[this.suggestedIndex].text, !this.autoComplete))
           }
         } else if (code === 'Enter') {
           if (this.autoComplete) {
