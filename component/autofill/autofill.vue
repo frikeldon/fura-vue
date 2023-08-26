@@ -80,7 +80,6 @@ export default {
       ) {
         field.value = this.suggestedValue
         field.setSelectionRange(value.length, field.value.length, 'backward')
-        this.$emit('update:modelValue', field.value)
       }
     },
     handleInput (event) {
