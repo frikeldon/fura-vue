@@ -89,14 +89,16 @@ export default {
     },
     optionsWithSelected () {
       const { modelValue, multiple, options, filterOptions } = this
+      const selectedValues = multiple
+        ? Array.isArray(modelValue) ? modelValue : []
+        : modelValue ? [modelValue] : []
       if (filterOptions) {
-        const selectedValues = multiple
-          ? Array.isArray(modelValue) ? modelValue : []
-          : [modelValue]
         const filterdOptions = options.filter(option => !this.isOptionSelected(option))
         return [...selectedValues, { type: 'divider' }, ...filterdOptions]
       } else {
-        return options
+        return options.length > 0
+          ? options
+          : selectedValues
       }
     },
     hasSelectedValues () {
@@ -172,8 +174,8 @@ export default {
     handleClick () {
       this.open = !this.open
       if (
-        (!this.filterOptions && this.options.length === 0) ||
-        (this.filterOptions && !this.hasSelectedValues)
+        this.options.length === 0 &&
+        !this.hasSelectedValues
       ) {
         this.open = false
       }
