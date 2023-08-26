@@ -1,7 +1,7 @@
 <script>
   import furaVue from "fura-vue";
 
-  const iconOptions = Object.keys(furaVue.components.Icon.code).map((name) => ({
+  const iconOptions = Object.keys(furaVue.component.Icon.code).map((name) => ({
     value: name,
     text: name,
   }));
@@ -9,7 +9,7 @@
     return new Promise(function (resolve) {
       setTimeout(() => {
         const found = iconOptions.filter((item) =>
-          item.text.toLowerCase().startsWith(text)
+          item.text.toLowerCase().startsWith(text.toLowerCase())
         );
         resolve(found);
       }, 500 + Math.random() * 250);
