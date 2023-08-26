@@ -4,8 +4,8 @@ import { commonStartLength, startsWith } from '../../utils/text.js'
 export default {
   name: 'FuraAutofill',
   props: {
-    /** Valor actual del campo. */
-    modelValue: { type: String, default: '' },
+    /** Valor inicial del campo. */
+    initialValue: { type: String, default: '' },
     /** Texto de ejemplo a mostrar en el campo. */
     placeholder: { type: String, default: null },
     /** Indica si el campo es de solo lectura. */
@@ -113,9 +113,15 @@ export default {
       this.$emit('keydown', event)
     }
   },
+  mounted () {
+    this.$refs.field.value = this.initialValue
+  },
   watch: {
     suggestedValue () {
-      if (this.autofill && this.modelValue !== this.suggestedValue) {
+      const { field } = this.$refs
+      if (this.autofill && this.$refs.field.value !== this.suggestedValue) {
+        const unselectedValue = field.value.substring(0, field.selectionStart) + field.value.substring(field.selectionEnd)
+        field.value = unselectedValue
         this.writeSuggestion()
       }
     }
